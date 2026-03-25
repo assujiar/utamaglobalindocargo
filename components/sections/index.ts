@@ -12,3 +12,15 @@ export type { ClientStoryFeaturedProps } from "./ClientStoryFeatured";
 
 export { CTABand } from "./CTABand";
 export type { CTABandProps } from "./CTABand";
+
+export { ProcessFlow } from "./ProcessFlow";
+export type { ProcessFlowProps, ProcessStep } from "./ProcessFlow";
+
+export { FAQSection } from "./FAQSection";
+export type { FAQSectionProps, FAQItem } from "./FAQSection";
+
+export { ClientStoryCard } from "./ClientStoryCard";
+export type { ClientStoryCardProps, ClientStoryData } from "./ClientStoryCard";
+
+export { RecirculationModule } from "./RecirculationModule";
+export type { RecirculationModuleProps } from "./RecirculationModule";
