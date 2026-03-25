@@ -1,7 +1,7 @@
 import { type ReactNode, type HTMLAttributes } from "react";
 import { cn } from "@/lib/utils/cn";
 
-type GlassVariant = "dark" | "light" | "nav";
+type GlassVariant = "dark" | "tinted" | "light" | "nav";
 
 interface GlassPanelProps extends HTMLAttributes<HTMLDivElement> {
   variant?: GlassVariant;
@@ -11,6 +11,7 @@ interface GlassPanelProps extends HTMLAttributes<HTMLDivElement> {
 
 const glassClassMap: Record<GlassVariant, string> = {
   dark: "glass-dark",
+  tinted: "glass-tinted",
   light: "glass-light",
   nav: "glass-nav",
 };

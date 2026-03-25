@@ -49,20 +49,20 @@ function StatsBar({ locale, className }: StatsBarProps) {
     <ScrollReveal>
       <div
         className={cn(
-          "grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6",
+          "grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8",
           className,
         )}
       >
         {stats.map((stat) => (
           <div key={stat.label_en} className="text-center">
-            <div className="text-3xl sm:text-4xl font-bold text-[--color-text-inverse]">
+            <div className="stat-number text-4xl sm:text-5xl md:text-[56px] text-[--color-text-inverse]">
               <CounterAnimation
                 target={stat.value}
                 suffix={stat.suffix}
                 className="text-[--color-text-inverse]"
               />
             </div>
-            <p className="mt-2 text-sm text-[--color-text-secondary] leading-snug">
+            <p className="mt-3 label-text text-[--color-text-secondary]">
               {locale === "id" ? stat.label_id : stat.label_en}
             </p>
           </div>

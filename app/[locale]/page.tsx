@@ -22,7 +22,7 @@ const content = {
     hero: {
       headline: "Menggerakkan Niaga Indonesia Melintasi Samudera dan Kepulauan",
       subline:
-        "Freight forwarding, kepabeanan, pergudangan, dan distribusi — dikelola oleh satu mitra yang memahami kompleksitas logistik Indonesia.",
+        "Freight forwarding, kepabeanan, pergudangan, dan distribusi yang dikelola oleh satu mitra yang memahami kompleksitas logistik Indonesia.",
       ctaLabel: "Diskusikan Kebutuhan Anda",
     },
     valueProp:
@@ -37,7 +37,7 @@ const content = {
     editorial: {
       heading: "Layanan Unggulan",
       description:
-        "Jaringan distribusi terintegrasi menjangkau 34 provinsi — darat, laut, dan udara dengan pelacakan real-time.",
+        "Jaringan distribusi terintegrasi menjangkau 34 provinsi. Darat, laut, dan udara dengan pelacakan real-time.",
       ctaLabel: "Pelajari Lebih Lanjut",
     },
     ctaBand: {
@@ -46,7 +46,7 @@ const content = {
       trustLine: "Kami merespons dalam 2 jam kerja.",
     },
     seo: {
-      title: "UGC Logistics — Freight Forwarder & Ekspedisi Terpercaya Sejak 1995",
+      title: "UGC Logistics | Freight Forwarder & Ekspedisi Terpercaya Sejak 1995",
       description:
         "PT Utama Globalindo Cargo: jasa freight forwarding, kepabeanan, distribusi domestik, dan pergudangan di Indonesia. Melayani 150+ negara dan 34 provinsi.",
     },
@@ -55,7 +55,7 @@ const content = {
     hero: {
       headline: "Moving Indonesia's Commerce Across Oceans and Islands",
       subline:
-        "Freight forwarding, customs clearance, warehousing, and distribution — managed by one partner who understands the complexity of Indonesian logistics.",
+        "Freight forwarding, customs clearance, warehousing, and distribution managed by one partner who understands the complexity of Indonesian logistics.",
       ctaLabel: "Discuss Your Requirements",
     },
     valueProp:
@@ -70,7 +70,7 @@ const content = {
     editorial: {
       heading: "Featured Service",
       description:
-        "Integrated distribution network reaching 34 provinces — land, sea, and air with real-time tracking.",
+        "Integrated distribution network reaching 34 provinces. Land, sea, and air with real-time tracking.",
       ctaLabel: "Learn More",
     },
     ctaBand: {
@@ -79,7 +79,7 @@ const content = {
       trustLine: "We respond within 2 business hours.",
     },
     seo: {
-      title: "UGC Logistics — Trusted Freight Forwarder Since 1995",
+      title: "UGC Logistics | Trusted Freight Forwarder Since 1995",
       description:
         "PT Utama Globalindo Cargo: freight forwarding, customs clearance, domestic distribution, and warehousing in Indonesia. Serving 150+ countries and 34 provinces.",
     },
@@ -143,7 +143,7 @@ function LocalBusinessSchema() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "UGC Logistics — PT Utama Globalindo Cargo",
+    name: "UGC Logistics | PT Utama Globalindo Cargo",
     url: "https://utamaglobalindocargo.com",
     telephone: "+62-812-8459-6614",
     email: "services@ugc.co.id",
@@ -197,8 +197,15 @@ export default async function HomePage({
       />
 
       {/* 2. Value Proposition Strip */}
-      <section className="py-16 sm:py-20 bg-[--color-bg-light]">
-        <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
+      <section className="py-20 sm:py-28 bg-[--color-bg-dark] relative overflow-hidden">
+        {/* Subtle glow */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[--color-accent-warm] opacity-[0.03] blur-[160px]" />
+        </div>
+        {/* Top glow divider */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.10)] to-transparent" aria-hidden="true" />
+
+        <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <ScrollReveal>
             <p className="text-lg sm:text-xl text-[--color-text-secondary] text-center max-w-3xl mx-auto leading-relaxed">
               {c.valueProp}
@@ -215,16 +222,22 @@ export default async function HomePage({
       />
 
       {/* 4. Proof Section (Stats + Client Story) */}
-      <section className="py-20 sm:py-24 bg-[--color-bg-dark]">
-        <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
+      <section className="py-24 sm:py-32 bg-[--color-bg-dark] relative overflow-hidden">
+        {/* Ambient glow */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[--color-primary] opacity-[0.03] blur-[180px]" />
+        </div>
+        {/* Top glow divider */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.10)] to-transparent" aria-hidden="true" />
+
+        <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           {/* Stats */}
           <StatsBar locale={typedLocale} className="mb-16" />
 
           {/* Badges area */}
           <ScrollReveal>
             <div className="text-center mb-12">
-              {/* TODO-ASSET: Replace with actual WCA and IATA badge images */}
-              <p className="text-sm font-medium text-[--color-text-secondary] uppercase tracking-wider">
+              <p className="label-text text-[--color-text-secondary]">
                 {c.proof.badgesLabel}
               </p>
             </div>
@@ -238,14 +251,17 @@ export default async function HomePage({
       </section>
 
       {/* 5. Featured Editorial / Service Spotlight */}
-      <section className="py-20 sm:py-24 bg-[--color-bg-light]">
+      <section className="py-24 sm:py-32 bg-[--color-bg-dark-elevated] relative">
+        {/* Top glow divider */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.08)] to-transparent" aria-hidden="true" />
+
         <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <ScrollReveal>
-            <div className="glass-light p-8 sm:p-10 rounded-lg max-w-2xl mx-auto text-center">
-              <h2 className="text-heading-md sm:text-heading-lg font-bold text-[--color-text-primary] mb-4">
+            <div className="glass-tinted p-8 sm:p-12 max-w-2xl mx-auto text-center">
+              <h2 className="text-heading-md sm:text-heading-lg font-bold text-[--color-text-primary] mb-4 tracking-[-0.02em]">
                 {c.editorial.heading}
               </h2>
-              <p className="text-[--color-text-secondary] mb-6 leading-relaxed">
+              <p className="text-[--color-text-secondary] mb-8 leading-relaxed">
                 {c.editorial.description}
               </p>
               <Button

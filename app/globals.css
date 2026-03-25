@@ -3,7 +3,8 @@
 
 /*
  * UGC Logistics — Global Styles
- * Design tokens defined in theme.css, Tailwind extensions in tailwind.config.ts
+ * Cinematic Editorial Bold Design System
+ * Design tokens defined in theme.css
  */
 
 /* ─── Base Typography ─── */
@@ -20,15 +21,14 @@ body {
   font-size: 16px;
   line-height: 1.6;
   color: var(--color-text-primary);
-  background-color: var(--color-bg-light);
+  background-color: var(--color-bg-dark);
 }
-
-/* ─── Typography Scale ─── */
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-primary);
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 /* ─── Body Text Constraint ─── */
@@ -37,14 +37,55 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 720px;
 }
 
+/* ─── Label Style ─── */
+
+.label-text {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+/* ─── Stat Number Style ─── */
+
+.stat-number {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+}
+
 /* ─── Glassmorphism Utilities ─── */
 
 .glass-dark {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
+  transition: border-color 250ms ease-out, background 250ms ease-out, box-shadow 250ms ease-out;
+}
+
+.glass-dark:hover {
+  border-color: rgba(255, 70, 0, 0.20);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 40px rgba(255, 70, 0, 0.06);
+}
+
+.glass-tinted {
+  background: rgba(255, 70, 0, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 70, 0, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(255, 70, 0, 0.06);
+  transition: border-color 250ms ease-out, box-shadow 250ms ease-out;
+}
+
+.glass-tinted:hover {
+  border-color: rgba(255, 70, 0, 0.30);
+  box-shadow: 0 0 60px rgba(255, 70, 0, 0.10);
 }
 
 .glass-light {
@@ -53,29 +94,98 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.80);
   border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.06);
 }
 
 .glass-nav {
-  background: rgba(250, 250, 248, 0.80);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: rgba(9, 9, 11, 0.80);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Glassmorphism fallback for browsers without backdrop-filter */
-@supports not (backdrop-filter: blur(24px)) {
+/* Glassmorphism fallback */
+@supports not (backdrop-filter: blur(20px)) {
   .glass-dark {
-    background: rgba(20, 20, 22, 0.95);
+    background: rgba(20, 20, 22, 0.97);
+  }
+
+  .glass-tinted {
+    background: rgba(30, 15, 10, 0.97);
   }
 
   .glass-light {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.97);
   }
 
   .glass-nav {
-    background: rgba(250, 250, 248, 0.97);
+    background: rgba(9, 9, 11, 0.97);
   }
+}
+
+/* ─── Glow Line Section Divider ─── */
+
+.glow-divider {
+  height: 1px;
+  max-width: 60%;
+  margin: 0 auto;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 70, 0, 0.30) 50%,
+    transparent 100%
+  );
+}
+
+/* ─── Gradient Mesh Background ─── */
+
+.gradient-mesh {
+  position: relative;
+}
+
+.gradient-mesh::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(255, 70, 0, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(255, 171, 64, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(255, 61, 0, 0.04) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── Ambient Glow Orb ─── */
+
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(120px);
+  opacity: 0.08;
+  background: var(--color-primary);
+}
+
+.glow-orb-warm {
+  background: var(--color-accent-warm);
+  opacity: 0.06;
+}
+
+/* ─── Button Glow ─── */
+
+.btn-glow {
+  box-shadow: var(--shadow-glow-md);
+  transition: box-shadow 200ms ease-out, transform 200ms ease-out;
+}
+
+.btn-glow:hover {
+  box-shadow: var(--shadow-glow-lg);
+  transform: scale(1.02);
+}
+
+.btn-glow:active {
+  box-shadow: var(--shadow-glow-sm);
+  transform: scale(0.98);
 }
 
 /* ─── Reduced Motion ─── */
@@ -89,13 +199,17 @@ h1, h2, h3, h4, h5, h6 {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+
+  .glow-orb {
+    animation: none !important;
+  }
 }
 
 /* ─── Selection ─── */
 
 ::selection {
-  background-color: rgba(255, 70, 0, 0.15);
-  color: var(--color-text-primary);
+  background-color: rgba(255, 70, 0, 0.25);
+  color: var(--color-text-inverse);
 }
 
 /* ─── Focus Visible ─── */
@@ -109,6 +223,57 @@ h1, h2, h3, h4, h5, h6 {
 
 @keyframes float {
   0%, 100% { transform: translateY(0) translateX(0); }
-  33% { transform: translateY(-20px) translateX(10px); }
-  66% { transform: translateY(10px) translateX(-15px); }
+  33% { transform: translateY(-30px) translateX(15px); }
+  66% { transform: translateY(15px) translateX(-20px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-40px) translateX(20px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.14; }
+}
+
+@keyframes gradient-shift {
+  0% { filter: blur(120px) hue-rotate(0deg); }
+  100% { filter: blur(120px) hue-rotate(15deg); }
+}
+
+/* ─── Marquee ─── */
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Light Section Override ─── */
+
+.section-light {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-primary-light);
+}
+
+.section-light h1,
+.section-light h2,
+.section-light h3,
+.section-light h4 {
+  color: var(--color-text-primary-light);
+}
+
+.section-light p,
+.section-light li {
+  color: var(--color-text-muted);
 }

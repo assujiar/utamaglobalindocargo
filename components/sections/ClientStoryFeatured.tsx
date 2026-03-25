@@ -15,9 +15,9 @@ const placeholder = {
   industry_id: "FMCG & Distribusi",
   industry_en: "FMCG & Distribution",
   display_quote_id:
-    "Distribusi multi-pulau ke 28 provinsi dalam 72 jam — dengan zero damage rate dan pelacakan real-time di setiap titik.",
+    "Distribusi multi-pulau ke 28 provinsi dalam 72 jam, dengan zero damage rate dan pelacakan real-time di setiap titik.",
   display_quote_en:
-    "Multi-island distribution to 28 provinces within 72 hours — with zero damage rate and real-time tracking at every point.",
+    "Multi-island distribution to 28 provinces within 72 hours, with zero damage rate and real-time tracking at every point.",
   result_id:
     "Efisiensi distribusi meningkat 40%, waktu transit berkurang dari 5 hari menjadi 3 hari rata-rata.",
   result_en:
