@@ -39,17 +39,17 @@ function ClientStoryCard({ story, locale, className }: ClientStoryCardProps) {
     <ScrollReveal>
       <div
         className={cn(
-          "border border-[--color-border] rounded-lg p-6 sm:p-8 bg-white",
+          "glass-tinted p-6 sm:p-8",
           className,
         )}
       >
         {/* Industry tag */}
-        <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-[--color-primary]/10 text-[--color-primary] mb-4">
+        <span className="label-text text-[--color-primary] mb-5 block">
           {industry}
         </span>
 
         {/* Pull quote */}
-        <blockquote className="text-lg font-medium text-[--color-text-primary] leading-snug mb-6">
+        <blockquote className="text-lg sm:text-xl font-medium text-[--color-text-inverse] leading-snug mb-6">
           &ldquo;{quote}&rdquo;
         </blockquote>
 
@@ -68,7 +68,7 @@ function ClientStoryCard({ story, locale, className }: ClientStoryCardProps) {
             <span className="text-[--color-text-secondary]">{solution}</span>
           </div>
           <div>
-            <span className="font-semibold text-[--color-text-primary]">
+            <span className="font-semibold text-[--color-primary]">
               {resultLabel}:
             </span>{" "}
             <span className="text-[--color-text-secondary]">{result}</span>

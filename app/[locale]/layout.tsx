@@ -8,7 +8,7 @@ import "../globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "UGC Logistics — PT Utama Globalindo Cargo",
+    default: "UGC Logistics | PT Utama Globalindo Cargo",
     template: "%s | UGC Logistics",
   },
   description:

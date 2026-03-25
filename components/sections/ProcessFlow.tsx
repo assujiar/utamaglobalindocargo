@@ -18,10 +18,16 @@ interface ProcessFlowProps {
 
 function ProcessFlow({ heading, steps, className }: ProcessFlowProps) {
   return (
-    <section className={cn("py-20 sm:py-24 bg-white", className)}>
-      <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
+    <section className={cn("py-24 sm:py-32 bg-[--color-bg-dark] relative", className)}>
+      {/* Gradient mesh subtle */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[--color-primary] opacity-[0.03] blur-[160px]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
         <ScrollReveal>
-          <h2 className="text-heading-md sm:text-heading-lg font-bold text-[--color-text-primary] text-center mb-12 sm:mb-16">
+          <p className="label-text text-[--color-primary] text-center mb-4">Process</p>
+          <h2 className="text-heading-md sm:text-heading-lg font-bold text-[--color-text-primary] text-center mb-14 sm:mb-20 tracking-[-0.02em]">
             {heading}
           </h2>
         </ScrollReveal>
@@ -34,16 +40,16 @@ function ProcessFlow({ heading, steps, className }: ProcessFlowProps) {
           >
             {steps.map((step, i) => (
               <div key={i} className="relative flex flex-col items-center text-center">
-                {/* Connector line */}
+                {/* Glow connector line */}
                 {i < steps.length - 1 && (
                   <div
-                    className="absolute top-5 left-[calc(50%+20px)] right-[calc(-50%+20px)] h-px bg-[--color-border]"
+                    className="absolute top-5 left-[calc(50%+24px)] right-[calc(-50%+24px)] h-px bg-gradient-to-r from-[rgba(255,70,0,0.30)] to-[rgba(255,70,0,0.05)]"
                     aria-hidden="true"
                   />
                 )}
 
-                {/* Step number circle */}
-                <div className="relative z-10 flex items-center justify-center size-10 rounded-full bg-[--color-primary] text-white text-sm font-bold mb-4">
+                {/* Step number circle with glow */}
+                <div className="relative z-10 flex items-center justify-center size-10 rounded-full bg-[--color-primary] text-white text-sm font-bold mb-5 shadow-[0_0_24px_rgba(255,70,0,0.30)]">
                   {step.number}
                 </div>
 
@@ -63,13 +69,13 @@ function ProcessFlow({ heading, steps, className }: ProcessFlowProps) {
           <StaggeredReveal className="flex flex-col gap-0">
             {steps.map((step, i) => (
               <div key={i} className="flex gap-4">
-                {/* Vertical line + circle */}
+                {/* Vertical glow line + circle */}
                 <div className="flex flex-col items-center">
-                  <div className="flex items-center justify-center size-10 shrink-0 rounded-full bg-[--color-primary] text-white text-sm font-bold">
+                  <div className="flex items-center justify-center size-10 shrink-0 rounded-full bg-[--color-primary] text-white text-sm font-bold shadow-[0_0_20px_rgba(255,70,0,0.25)]">
                     {step.number}
                   </div>
                   {i < steps.length - 1 && (
-                    <div className="w-px flex-1 bg-[--color-border] my-1" aria-hidden="true" />
+                    <div className="w-px flex-1 bg-gradient-to-b from-[rgba(255,70,0,0.25)] to-transparent my-1" aria-hidden="true" />
                   )}
                 </div>
 

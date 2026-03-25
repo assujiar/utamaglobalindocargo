@@ -60,45 +60,54 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
   return (
     <>
       {/* ── 1. Hero ── */}
-      <section className="pt-8 pb-16 sm:pt-12 sm:pb-20 bg-[--color-bg-light]">
-        <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
+      <section className="pt-8 pb-20 sm:pt-12 sm:pb-28 bg-[--color-bg-dark] relative overflow-hidden">
+        {/* Ambient glow orbs */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute -top-32 -right-32 w-[600px] h-[600px] rounded-full bg-[--color-primary] opacity-[0.04] blur-[180px]" />
+          <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] rounded-full bg-[--color-accent-warm] opacity-[0.03] blur-[140px]" />
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <Breadcrumb items={breadcrumbItems} />
           <ScrollReveal>
-            <div className="mt-6 max-w-3xl">
-              <span className="inline-block font-mono text-sm font-medium text-[--color-primary] mb-3">
+            <div className="mt-8 max-w-3xl">
+              <span className="label-text text-[--color-primary] mb-4 block">
                 {service.number}
               </span>
-              <h1 className="font-serif text-heading-xl sm:text-display-sm font-bold text-[--color-text-primary] mb-4">
+              <h1 className="font-serif text-heading-xl sm:text-display-sm font-bold text-[--color-text-primary] mb-5 tracking-[-0.02em]">
                 {serviceName}
               </h1>
-              <p className="text-lg sm:text-xl text-[--color-text-secondary] leading-relaxed">
+              <p className="text-lg sm:text-xl text-[--color-text-secondary] leading-relaxed max-w-2xl">
                 {serviceTagline}
               </p>
             </div>
           </ScrollReveal>
         </div>
+
+        {/* Bottom glow divider */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.12)] to-transparent" aria-hidden="true" />
       </section>
 
       {/* ── 2. Service Overview ── */}
-      <section className="py-16 sm:py-20 bg-white">
+      <section className="py-20 sm:py-28 bg-[--color-bg-dark]">
         <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
             <ScrollReveal className="md:col-span-7">
               <div
-                className="prose prose-lg max-w-none text-[--color-text-secondary] leading-relaxed [&_p]:mb-5 [&_a]:text-[--color-primary] [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-[--color-primary-dark]"
+                className="prose prose-lg prose-invert max-w-none text-[--color-text-secondary] leading-relaxed [&_p]:mb-5 [&_a]:text-[--color-primary] [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-[--color-accent-warm]"
                 dangerouslySetInnerHTML={{ __html: overview }}
               />
             </ScrollReveal>
             <div className="md:col-span-5 md:pl-8">
               <ScrollReveal delay={100}>
-                <div className="border border-[--color-border] rounded-lg p-6 bg-[--color-bg-light]">
-                  <h3 className="text-sm font-semibold text-[--color-text-primary] uppercase tracking-wider mb-4">
+                <div className="glass-dark p-6">
+                  <h3 className="label-text text-[--color-primary] mb-5">
                     {isId ? "Ringkasan Layanan" : "Service Summary"}
                   </h3>
-                  <ul className="space-y-3">
+                  <ul className="space-y-3.5">
                     {capabilities.slice(0, 4).map((cap, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="mt-1.5 size-1.5 rounded-full bg-[--color-primary] shrink-0" />
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="mt-2 size-1.5 rounded-full bg-[--color-primary] shrink-0" />
                         <span className="text-sm text-[--color-text-secondary]">
                           {cap.title}
                         </span>
@@ -113,18 +122,24 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
       </section>
 
       {/* ── 3. Capability Breakdown ── */}
-      <section className="py-16 sm:py-20 bg-[--color-bg-light]">
+      <section className="py-20 sm:py-28 bg-[--color-bg-dark-elevated] relative">
+        {/* Top glow divider */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.10)] to-transparent" aria-hidden="true" />
+
         <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <ScrollReveal>
-            <h2 className="text-heading-md sm:text-heading-lg font-bold text-[--color-text-primary] text-center mb-10 sm:mb-14">
-              {isId ? "Kapabilitas Kami" : "Our Capabilities"}
+            <p className="label-text text-[--color-primary] text-center mb-4">
+              {isId ? "Kapabilitas" : "Capabilities"}
+            </p>
+            <h2 className="text-heading-md sm:text-heading-lg font-bold text-[--color-text-primary] text-center mb-12 sm:mb-16 tracking-[-0.02em]">
+              {isId ? "Apa yang Kami Tawarkan" : "What We Offer"}
             </h2>
           </ScrollReveal>
           <StaggeredReveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {capabilities.map((cap, i) => (
               <div
                 key={i}
-                className="border border-[--color-border] rounded-md p-5 sm:p-6 bg-white"
+                className="glass-dark p-5 sm:p-6 transition-all duration-300 hover:border-[rgba(255,70,0,0.20)] hover:shadow-[0_0_30px_rgba(255,70,0,0.06)]"
               >
                 <h3 className="text-base font-semibold text-[--color-text-primary] mb-2">
                   {cap.title}
@@ -133,7 +148,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
                   {cap.description}
                 </p>
                 {cap.metric && (
-                  <span className="inline-block text-xs font-medium text-[--color-primary] bg-[--color-primary]/10 px-2.5 py-1 rounded-full">
+                  <span className="inline-block text-xs font-medium text-[--color-primary] bg-[rgba(255,70,0,0.08)] px-2.5 py-1 rounded-full">
                     {cap.metric}
                   </span>
                 )}
@@ -150,21 +165,31 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
       />
 
       {/* ── 5. Proof (Stats + Client Story) ── */}
-      <section className="py-20 sm:py-24 bg-[--color-bg-dark]">
-        <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
+      <section className="py-24 sm:py-32 bg-[--color-bg-dark] relative overflow-hidden">
+        {/* Ambient glow */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[--color-primary] opacity-[0.03] blur-[160px]" />
+        </div>
+
+        {/* Top glow divider */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.12)] to-transparent" aria-hidden="true" />
+
+        <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           {/* Stats */}
           <ScrollReveal>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-6 mb-14">
+            <p className="label-text text-[--color-primary] text-center mb-4">
+              {isId ? "Data & Bukti" : "Data & Proof"}
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-6 mb-16">
               {detail.stats.map((stat) => (
                 <div key={stat.label_en} className="text-center">
-                  <div className="text-3xl sm:text-4xl font-bold text-[--color-text-inverse]">
+                  <div className="stat-number text-4xl sm:text-5xl md:text-[56px] text-[--color-text-inverse]">
                     <CounterAnimation
                       target={stat.value}
                       suffix={stat.suffix}
-                      className="text-[--color-text-inverse]"
                     />
                   </div>
-                  <p className="mt-2 text-sm text-[--color-text-secondary] leading-snug">
+                  <p className="mt-3 label-text text-[--color-text-secondary]">
                     {isId ? stat.label_id : stat.label_en}
                   </p>
                 </div>
@@ -177,7 +202,6 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
             <ClientStoryCard
               story={detail.clientStory}
               locale={locale}
-              className="bg-[--color-bg-dark] border-white/10 [&_blockquote]:text-[--color-text-inverse] [&_span.text-\\[--color-text-secondary\\]]:text-white/60"
             />
           </div>
         </div>

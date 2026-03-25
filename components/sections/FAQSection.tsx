@@ -46,15 +46,18 @@ function FAQSection({ heading, items, className }: FAQSectionProps) {
   return (
     <>
       <FAQSchemaJsonLd items={items} />
-      <section className={cn("py-20 sm:py-24 bg-[--color-bg-light]", className)}>
+      <section className={cn("py-24 sm:py-32 bg-[--color-bg-dark-elevated]", className)}>
         <div className="mx-auto max-w-[720px] px-5 sm:px-10">
           <ScrollReveal>
-            <h2 className="text-heading-md sm:text-heading-lg font-bold text-[--color-text-primary] text-center mb-10 sm:mb-12">
+            <p className="label-text text-[--color-primary] text-center mb-4">FAQ</p>
+            <h2 className="text-heading-md sm:text-heading-lg font-bold text-[--color-text-primary] text-center mb-12 sm:mb-16 tracking-[-0.02em]">
               {heading}
             </h2>
           </ScrollReveal>
           <ScrollReveal>
-            <Accordion items={accordionItems} defaultOpen={0} />
+            <div className="glass-dark p-6 sm:p-8">
+              <Accordion items={accordionItems} defaultOpen={0} />
+            </div>
           </ScrollReveal>
         </div>
       </section>

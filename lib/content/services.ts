@@ -168,21 +168,21 @@ export const services: ServiceData[] = [
 
 export const serviceDetails: Record<string, ServiceDetail> = {
   // ═══════════════════════════════════════════════════════════════
-  // 01 — DOMESTIC DISTRIBUTION
+  // 01  - DOMESTIC DISTRIBUTION
   // ═══════════════════════════════════════════════════════════════
   domestic: {
     key: "domestic",
     overview_id: `<p>UGC Logistics mengoperasikan jaringan distribusi domestik yang mencakup seluruh 34 provinsi di Indonesia melalui kombinasi moda transportasi darat, laut, dan udara. Kami menangani pengiriman mulai dari dokumen dan paket kecil hingga muatan penuh truk (FTL) dan kontainer (FCL), dengan kapabilitas konsolidasi untuk pengiriman parsial (LTL dan LCL) yang memungkinkan efisiensi biaya tanpa mengorbankan kecepatan.</p>
 
-<p>Untuk jalur darat di Pulau Jawa, Sumatera, dan Kalimantan, kami mengoperasikan armada truk yang dikelola langsung maupun mitra transportasi terverifikasi — mencakup truk box, wingbox, trailer, hingga kendaraan khusus berpendingin untuk produk cold chain. Pengiriman antar-pulau dilayani melalui jaringan pelayaran reguler ke pelabuhan-pelabuhan utama seperti Makassar, Balikpapan, Jayapura, Ambon, dan Sorong, serta jalur udara untuk kargo sensitif waktu ke seluruh bandara komersial di Indonesia.</p>
+<p>Untuk jalur darat di Pulau Jawa, Sumatera, dan Kalimantan, kami mengoperasikan armada truk yang dikelola langsung maupun mitra transportasi terverifikasi  - mencakup truk box, wingbox, trailer, hingga kendaraan khusus berpendingin untuk produk cold chain. Pengiriman antar-pulau dilayani melalui jaringan pelayaran reguler ke pelabuhan-pelabuhan utama seperti Makassar, Balikpapan, Jayapura, Ambon, dan Sorong, serta jalur udara untuk kargo sensitif waktu ke seluruh bandara komersial di Indonesia.</p>
 
-<p>Setiap pengiriman dilengkapi nomor tracking yang dapat dipantau secara real-time melalui portal pelanggan kami. Tim operasional kami tersebar di hub-hub strategis — Jakarta, Surabaya, Medan, Makassar, dan Balikpapan — memastikan koordinasi pengambilan dan pengantaran yang responsif. Untuk kebutuhan distribusi reguler, kami menawarkan skema kontrak dengan jadwal pickup terjadwal, tarif tetap, dan dedicated account manager.</p>`,
+<p>Setiap pengiriman dilengkapi nomor tracking yang dapat dipantau secara real-time melalui portal pelanggan kami. Tim operasional kami tersebar di hub-hub strategis  - Jakarta, Surabaya, Medan, Makassar, dan Balikpapan  - memastikan koordinasi pengambilan dan pengantaran yang responsif. Untuk kebutuhan distribusi reguler, kami menawarkan skema kontrak dengan jadwal pickup terjadwal, tarif tetap, dan dedicated account manager.</p>`,
 
     overview_en: `<p>UGC Logistics operates a domestic distribution network spanning all 34 provinces of Indonesia through a combination of land, sea, and air transport modes. We handle shipments ranging from documents and small parcels to full truckloads (FTL) and full container loads (FCL), with consolidation capabilities for partial shipments (LTL and LCL) that enable cost efficiency without compromising speed.</p>
 
-<p>For overland routes across Java, Sumatra, and Kalimantan, we operate a fleet of directly managed trucks and verified transport partners — including box trucks, wingbox trailers, flatbed trailers, and refrigerated vehicles for cold chain products. Inter-island shipments are served through regular shipping lines to major ports such as Makassar, Balikpapan, Jayapura, Ambon, and Sorong, as well as air freight for time-sensitive cargo to all commercial airports in Indonesia.</p>
+<p>For overland routes across Java, Sumatra, and Kalimantan, we operate a fleet of directly managed trucks and verified transport partners  - including box trucks, wingbox trailers, flatbed trailers, and refrigerated vehicles for cold chain products. Inter-island shipments are served through regular shipping lines to major ports such as Makassar, Balikpapan, Jayapura, Ambon, and Sorong, as well as air freight for time-sensitive cargo to all commercial airports in Indonesia.</p>
 
-<p>Every shipment is assigned a tracking number that can be monitored in real time through our customer portal. Our operations teams are based at strategic hubs — Jakarta, Surabaya, Medan, Makassar, and Balikpapan — ensuring responsive pickup and delivery coordination. For recurring distribution needs, we offer contract arrangements with scheduled pickups, fixed rates, and a dedicated account manager.</p>`,
+<p>Every shipment is assigned a tracking number that can be monitored in real time through our customer portal. Our operations teams are based at strategic hubs  - Jakarta, Surabaya, Medan, Makassar, and Balikpapan  - ensuring responsive pickup and delivery coordination. For recurring distribution needs, we offer contract arrangements with scheduled pickups, fixed rates, and a dedicated account manager.</p>`,
 
     capabilities: [
       {
@@ -212,8 +212,8 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         title_id: "Full Truckload (FTL)",
         title_en: "Full Truckload (FTL)",
-        description_id: "Truk dedikasi untuk muatan penuh — box, wingbox, trailer, hingga kendaraan berpendingin. Pickup dan delivery langsung tanpa transit.",
-        description_en: "Dedicated trucks for full loads — box trucks, wingbox, trailers, and refrigerated vehicles. Direct pickup and delivery without transit.",
+        description_id: "Truk dedikasi untuk muatan penuh  - box, wingbox, trailer, hingga kendaraan berpendingin. Pickup dan delivery langsung tanpa transit.",
+        description_en: "Dedicated trucks for full loads  - box trucks, wingbox, trailers, and refrigerated vehicles. Direct pickup and delivery without transit.",
         metric_id: "Armada dari 4 hingga 32 ton",
         metric_en: "Fleet from 4 to 32 tons",
       },
@@ -232,8 +232,8 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         number: "01",
         title_id: "Konsultasi & Penawaran",
         title_en: "Consultation & Quotation",
-        description_id: "Tim kami menganalisis kebutuhan pengiriman Anda — volume, tujuan, jenis barang — dan memberikan penawaran harga beserta rekomendasi moda terbaik.",
-        description_en: "Our team analyzes your shipping needs — volume, destination, cargo type — and provides a quotation with the best mode recommendation.",
+        description_id: "Tim kami menganalisis kebutuhan pengiriman Anda  - volume, tujuan, jenis barang  - dan memberikan penawaran harga beserta rekomendasi moda terbaik.",
+        description_en: "Our team analyzes your shipping needs  - volume, destination, cargo type  - and provides a quotation with the best mode recommendation.",
       },
       {
         number: "02",
@@ -280,8 +280,8 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       solution_en: "UGC implemented a multi-modal distribution scheme with scheduled pickups from 3 client warehouses, consolidation at Jakarta and Surabaya hubs, and delivery via land (Java-Sumatra) and sea (Eastern Indonesia) with cold chain monitoring.",
       result_id: "Efisiensi distribusi meningkat 40%, waktu transit berkurang dari rata-rata 5 hari menjadi 3 hari, dan tingkat kerusakan barang turun di bawah 0,1%.",
       result_en: "Distribution efficiency improved by 40%, average transit time reduced from 5 days to 3 days, and product damage rate fell below 0.1%.",
-      display_quote_id: "Distribusi multi-pulau ke 28 provinsi dalam 72 jam — dengan zero damage rate dan pelacakan real-time di setiap titik.",
-      display_quote_en: "Multi-island distribution to 28 provinces within 72 hours — with near-zero damage rate and real-time tracking at every point.",
+      display_quote_id: "Distribusi multi-pulau ke 28 provinsi dalam 72 jam  - dengan zero damage rate dan pelacakan real-time di setiap titik.",
+      display_quote_en: "Multi-island distribution to 28 provinces within 72 hours  - with near-zero damage rate and real-time tracking at every point.",
     },
 
     faq: [
@@ -294,8 +294,8 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         question_id: "Apa perbedaan FTL dan LTL, dan mana yang lebih cocok untuk saya?",
         question_en: "What is the difference between FTL and LTL, and which is right for me?",
-        answer_id: "FTL (Full Truckload) berarti Anda menyewa seluruh kapasitas truk — cocok untuk volume besar atau barang yang tidak boleh dicampur. LTL (Less than Truckload) mengkonsolidasikan barang Anda dengan pengirim lain di truk yang sama — lebih hemat biaya untuk volume kecil-menengah. Kami merekomendasikan FTL jika volume Anda di atas 8 CBM atau 3 ton untuk rute yang sama.",
-        answer_en: "FTL (Full Truckload) means you book the entire truck capacity — suitable for large volumes or cargo that cannot be mixed. LTL (Less than Truckload) consolidates your goods with other shippers on the same truck — more cost-effective for small to medium volumes. We recommend FTL if your volume exceeds 8 CBM or 3 tons for the same route.",
+        answer_id: "FTL (Full Truckload) berarti Anda menyewa seluruh kapasitas truk  - cocok untuk volume besar atau barang yang tidak boleh dicampur. LTL (Less than Truckload) mengkonsolidasikan barang Anda dengan pengirim lain di truk yang sama  - lebih hemat biaya untuk volume kecil-menengah. Kami merekomendasikan FTL jika volume Anda di atas 8 CBM atau 3 ton untuk rute yang sama.",
+        answer_en: "FTL (Full Truckload) means you book the entire truck capacity  - suitable for large volumes or cargo that cannot be mixed. LTL (Less than Truckload) consolidates your goods with other shippers on the same truck  - more cost-effective for small to medium volumes. We recommend FTL if your volume exceeds 8 CBM or 3 tons for the same route.",
       },
       {
         question_id: "Apakah tersedia pengiriman untuk barang berpendingin (cold chain)?",
@@ -320,15 +320,15 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     relatedServices: ["international", "warehouse"],
 
     seo: {
-      title_id: "Distribusi Domestik ke 34 Provinsi — UGC Logistics",
-      title_en: "Domestic Distribution to 34 Provinces — UGC Logistics",
+      title_id: "Distribusi Domestik ke 34 Provinsi  - UGC Logistics",
+      title_en: "Domestic Distribution to 34 Provinces  - UGC Logistics",
       description_id: "Layanan distribusi domestik UGC Logistics mencakup pengiriman darat, laut, dan udara ke seluruh Indonesia. FTL, LTL, FCL, LCL, dan air freight dengan pelacakan real-time.",
       description_en: "UGC Logistics domestic distribution covers land, sea, and air shipments across Indonesia. FTL, LTL, FCL, LCL, and air freight with real-time tracking.",
     },
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // 02 — INTERNATIONAL FREIGHT FORWARDING
+  // 02  - INTERNATIONAL FREIGHT FORWARDING
   // ═══════════════════════════════════════════════════════════════
   international: {
     key: "international",
@@ -340,30 +340,30 @@ export const serviceDetails: Record<string, ServiceDetail> = {
 
     overview_en: `<p>As an IATA-licensed freight forwarder and WCA (World Cargo Alliance) member, UGC Logistics provides international freight forwarding services covering exports and imports via air and ocean to over 150 countries. We work with a verified global agent network to ensure smooth shipments from origin to final destination, including handling of international trade documentation.</p>
 
-<p>For exports, we manage the entire process from cargo pickup at the shipper's warehouse, preparation of export documentation (PEB — Pemberitahuan Ekspor Barang), container stuffing or air cargo consolidation, through to delivery at the loading port or airport. For imports, we coordinate with origin agents to ensure timely shipping and support the customs clearance process in Indonesia (see also our <a href="/en/services/import-dtd-customs">Import DTD & Customs</a> service for door-to-door import handling).</p>
+<p>For exports, we manage the entire process from cargo pickup at the shipper's warehouse, preparation of export documentation (PEB  - Pemberitahuan Ekspor Barang), container stuffing or air cargo consolidation, through to delivery at the loading port or airport. For imports, we coordinate with origin agents to ensure timely shipping and support the customs clearance process in Indonesia (see also our <a href="/en/services/import-dtd-customs">Import DTD & Customs</a> service for door-to-door import handling).</p>
 
 <p>We offer mode flexibility: FCL and LCL for ocean freight, as well as general cargo and dangerous goods (DG) handling for air freight. Our freight team understands Indonesian export-import regulations, HS Code classifications, Letter of Credit requirements, and incoterms provisions (FOB, CIF, EXW, DDP, etc.) to ensure your shipments comply with applicable international trade standards.</p>`,
 
     capabilities: [
       {
-        title_id: "Air Freight — Ekspor & Impor",
-        title_en: "Air Freight — Export & Import",
+        title_id: "Air Freight  - Ekspor & Impor",
+        title_en: "Air Freight  - Export & Import",
         description_id: "Pengiriman kargo udara internasional melalui maskapai penerbangan komersial dan kargo. Termasuk handling untuk general cargo, perishable, dan dangerous goods.",
         description_en: "International air cargo shipments via commercial and cargo airlines. Includes handling for general cargo, perishables, and dangerous goods.",
         metric_id: "Koneksi ke 150+ negara",
         metric_en: "Connected to 150+ countries",
       },
       {
-        title_id: "Ocean Freight — FCL",
-        title_en: "Ocean Freight — FCL",
+        title_id: "Ocean Freight  - FCL",
+        title_en: "Ocean Freight  - FCL",
         description_id: "Pengiriman kontainer penuh via laut untuk volume besar. Tersedia kontainer 20', 40' standar, 40' high-cube, open-top, dan flat-rack untuk kargo khusus.",
         description_en: "Full container shipments via ocean for large volumes. Available in 20', 40' standard, 40' high-cube, open-top, and flat-rack containers for special cargo.",
         metric_id: "Semua tipe kontainer tersedia",
         metric_en: "All container types available",
       },
       {
-        title_id: "Ocean Freight — LCL",
-        title_en: "Ocean Freight — LCL",
+        title_id: "Ocean Freight  - LCL",
+        title_en: "Ocean Freight  - LCL",
         description_id: "Konsolidasi kargo laut untuk volume yang tidak memerlukan kontainer penuh. Jadwal konsolidasi reguler ke pelabuhan-pelabuhan utama dunia.",
         description_en: "Ocean cargo consolidation for volumes that don't require a full container. Regular consolidation schedules to major world ports.",
         metric_id: "Jadwal reguler mingguan",
@@ -384,8 +384,8 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         number: "01",
         title_id: "Permintaan & Analisis",
         title_en: "Inquiry & Analysis",
-        description_id: "Kami mempelajari detail pengiriman Anda — jenis barang, volume, negara tujuan/asal, incoterms — untuk menentukan moda dan rute optimal.",
-        description_en: "We review your shipment details — cargo type, volume, destination/origin country, incoterms — to determine the optimal mode and route.",
+        description_id: "Kami mempelajari detail pengiriman Anda  - jenis barang, volume, negara tujuan/asal, incoterms  - untuk menentukan moda dan rute optimal.",
+        description_en: "We review your shipment details  - cargo type, volume, destination/origin country, incoterms  - to determine the optimal mode and route.",
       },
       {
         number: "02",
@@ -412,8 +412,8 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         number: "05",
         title_id: "Transit & Monitoring",
         title_en: "Transit & Monitoring",
-        description_id: "Kargo dalam perjalanan dipantau secara aktif. Update status diberikan di setiap milestone — loading, departure, transshipment, arrival.",
-        description_en: "Cargo in transit is actively monitored. Status updates provided at every milestone — loading, departure, transshipment, arrival.",
+        description_id: "Kargo dalam perjalanan dipantau secara aktif. Update status diberikan di setiap milestone  - loading, departure, transshipment, arrival.",
+        description_en: "Cargo in transit is actively monitored. Status updates provided at every milestone  - loading, departure, transshipment, arrival.",
       },
       {
         number: "06",
@@ -439,16 +439,16 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       solution_en: "UGC arranged weekly LCL consolidation schedules to 3 major ports and monthly FCL bookings to 2 high-volume destinations, with centralized export documentation management and destination agent coordination.",
       result_id: "Lead time pengiriman berkurang 30% berkat konsolidasi terjadwal, dan biaya freight turun 18% dibanding pengiriman per-shipment sebelumnya.",
       result_en: "Shipping lead time was reduced by 30% through scheduled consolidation, and freight costs decreased by 18% compared to the previous per-shipment approach.",
-      display_quote_id: "Konsolidasi terjadwal ke 5 negara tujuan — lead time turun 30% dan biaya freight lebih efisien 18%.",
-      display_quote_en: "Scheduled consolidation to 5 destination countries — lead time down 30% and freight costs 18% more efficient.",
+      display_quote_id: "Konsolidasi terjadwal ke 5 negara tujuan  - lead time turun 30% dan biaya freight lebih efisien 18%.",
+      display_quote_en: "Scheduled consolidation to 5 destination countries  - lead time down 30% and freight costs 18% more efficient.",
     },
 
     faq: [
       {
         question_id: "Apa perbedaan FCL dan LCL untuk pengiriman laut internasional?",
         question_en: "What is the difference between FCL and LCL for international ocean freight?",
-        answer_id: "FCL (Full Container Load) berarti Anda menyewa seluruh kontainer — barang Anda tidak dicampur dengan pengirim lain. LCL (Less than Container Load) mengkonsolidasikan barang Anda dengan kargo pengirim lain di kontainer yang sama. FCL lebih cepat (tidak perlu menunggu konsolidasi) dan lebih aman untuk barang sensitif, sedangkan LCL lebih hemat biaya untuk volume di bawah 15 CBM.",
-        answer_en: "FCL (Full Container Load) means you book the entire container — your goods are not mixed with other shippers. LCL (Less than Container Load) consolidates your goods with other shippers' cargo in the same container. FCL is faster (no consolidation wait) and safer for sensitive goods, while LCL is more cost-effective for volumes under 15 CBM.",
+        answer_id: "FCL (Full Container Load) berarti Anda menyewa seluruh kontainer  - barang Anda tidak dicampur dengan pengirim lain. LCL (Less than Container Load) mengkonsolidasikan barang Anda dengan kargo pengirim lain di kontainer yang sama. FCL lebih cepat (tidak perlu menunggu konsolidasi) dan lebih aman untuk barang sensitif, sedangkan LCL lebih hemat biaya untuk volume di bawah 15 CBM.",
+        answer_en: "FCL (Full Container Load) means you book the entire container  - your goods are not mixed with other shippers. LCL (Less than Container Load) consolidates your goods with other shippers' cargo in the same container. FCL is faster (no consolidation wait) and safer for sensitive goods, while LCL is more cost-effective for volumes under 15 CBM.",
       },
       {
         question_id: "Dokumen apa saja yang diperlukan untuk ekspor dari Indonesia?",
@@ -459,8 +459,8 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         question_id: "Apakah UGC menangani pengiriman dangerous goods (barang berbahaya)?",
         question_en: "Does UGC handle dangerous goods (DG) shipments?",
-        answer_id: "Ya, kami menangani pengiriman dangerous goods via udara dan laut sesuai regulasi IATA DGR dan IMDG Code. Ini mencakup klasifikasi DG yang benar, pengemasan sesuai standar, labeling, dan dokumentasi DG declaration. Tidak semua kelas DG dapat dikirim via udara — tim kami akan mengkonfirmasi kelayakan dan moda yang tepat.",
-        answer_en: "Yes, we handle dangerous goods shipments via air and ocean in compliance with IATA DGR and IMDG Code regulations. This includes correct DG classification, standards-compliant packaging, labeling, and DG declaration documentation. Not all DG classes can be shipped by air — our team will confirm feasibility and the appropriate mode.",
+        answer_id: "Ya, kami menangani pengiriman dangerous goods via udara dan laut sesuai regulasi IATA DGR dan IMDG Code. Ini mencakup klasifikasi DG yang benar, pengemasan sesuai standar, labeling, dan dokumentasi DG declaration. Tidak semua kelas DG dapat dikirim via udara  - tim kami akan mengkonfirmasi kelayakan dan moda yang tepat.",
+        answer_en: "Yes, we handle dangerous goods shipments via air and ocean in compliance with IATA DGR and IMDG Code regulations. This includes correct DG classification, standards-compliant packaging, labeling, and DG declaration documentation. Not all DG classes can be shipped by air  - our team will confirm feasibility and the appropriate mode.",
       },
       {
         question_id: "Berapa lama waktu transit pengiriman laut internasional?",
@@ -473,29 +473,29 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     relatedServices: ["domestic", "import-dtd"],
 
     seo: {
-      title_id: "Freight Forwarding Internasional — Ekspor & Impor via Udara & Laut — UGC Logistics",
-      title_en: "International Freight Forwarding — Export & Import via Air & Ocean — UGC Logistics",
+      title_id: "Freight Forwarding Internasional  - Ekspor & Impor via Udara & Laut  - UGC Logistics",
+      title_en: "International Freight Forwarding  - Export & Import via Air & Ocean  - UGC Logistics",
       description_id: "Layanan freight forwarding internasional UGC Logistics ke 150+ negara. FCL, LCL, air freight, dangerous goods handling. Anggota IATA dan WCA.",
       description_en: "UGC Logistics international freight forwarding to 150+ countries. FCL, LCL, air freight, dangerous goods handling. IATA and WCA member.",
     },
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // 03 — IMPORT DTD & CUSTOMS CLEARANCE
+  // 03  - IMPORT DTD & CUSTOMS CLEARANCE
   // ═══════════════════════════════════════════════════════════════
   "import-dtd": {
     key: "import-dtd",
-    overview_id: `<p>Layanan Import Door-to-Door (DTD) UGC Logistics menangani seluruh rangkaian proses impor barang dari negara asal hingga tiba di gudang Anda di Indonesia. Kami memposisikan diri sebagai satu-satunya titik kontak yang Anda butuhkan — mulai dari koordinasi pengambilan barang di supplier luar negeri, pengiriman internasional (laut atau udara), customs clearance di pelabuhan/bandara Indonesia, hingga pengantaran ke alamat tujuan akhir.</p>
+    overview_id: `<p>Layanan Import Door-to-Door (DTD) UGC Logistics menangani seluruh rangkaian proses impor barang dari negara asal hingga tiba di gudang Anda di Indonesia. Kami memposisikan diri sebagai satu-satunya titik kontak yang Anda butuhkan  - mulai dari koordinasi pengambilan barang di supplier luar negeri, pengiriman internasional (laut atau udara), customs clearance di pelabuhan/bandara Indonesia, hingga pengantaran ke alamat tujuan akhir.</p>
 
 <p>Tim kepabeanan kami berpengalaman menangani klasifikasi tarif (HS Code), perhitungan bea masuk dan pajak impor (BM, PPN, PPh 22), pengurusan PIB (Pemberitahuan Impor Barang), serta perizinan khusus yang mungkin diperlukan seperti izin BPOM untuk produk farmasi, SNI untuk produk elektronik, atau izin dari Kementerian Perdagangan untuk barang tertentu. Kami juga menyediakan layanan undername import bagi perusahaan yang belum memiliki Angka Pengenal Importir (API).</p>
 
-<p>Untuk barang yang memerlukan pemeriksaan fisik oleh Bea Cukai (jalur merah), tim kami mendampingi seluruh proses di lapangan untuk meminimalkan waktu tertahan. Kami beroperasi di seluruh pelabuhan utama Indonesia — Tanjung Priok (Jakarta), Tanjung Perak (Surabaya), Belawan (Medan), Soekarno-Hatta (bandara), serta pelabuhan lainnya sesuai kebutuhan. Setiap impor dilengkapi dengan laporan status yang transparan sehingga Anda selalu mengetahui posisi barang dan estimasi waktu tiba.</p>`,
+<p>Untuk barang yang memerlukan pemeriksaan fisik oleh Bea Cukai (jalur merah), tim kami mendampingi seluruh proses di lapangan untuk meminimalkan waktu tertahan. Kami beroperasi di seluruh pelabuhan utama Indonesia  - Tanjung Priok (Jakarta), Tanjung Perak (Surabaya), Belawan (Medan), Soekarno-Hatta (bandara), serta pelabuhan lainnya sesuai kebutuhan. Setiap impor dilengkapi dengan laporan status yang transparan sehingga Anda selalu mengetahui posisi barang dan estimasi waktu tiba.</p>`,
 
-    overview_en: `<p>UGC Logistics' Import Door-to-Door (DTD) service handles the entire import process from the origin country through to delivery at your warehouse in Indonesia. We position ourselves as the single point of contact you need — from coordinating cargo pickup at your overseas supplier, international shipping (ocean or air), customs clearance at Indonesian ports/airports, through to final-mile delivery to your designated address.</p>
+    overview_en: `<p>UGC Logistics' Import Door-to-Door (DTD) service handles the entire import process from the origin country through to delivery at your warehouse in Indonesia. We position ourselves as the single point of contact you need  - from coordinating cargo pickup at your overseas supplier, international shipping (ocean or air), customs clearance at Indonesian ports/airports, through to final-mile delivery to your designated address.</p>
 
-<p>Our customs team has extensive experience in tariff classification (HS Codes), calculation of import duties and taxes (BM, PPN, PPh 22), preparation of PIB (Import Declaration), and obtaining special permits that may be required — such as BPOM licenses for pharmaceutical products, SNI certifications for electronics, or Ministry of Trade permits for regulated goods. We also provide undername import services for companies that do not yet hold an Importer Identification Number (API).</p>
+<p>Our customs team has extensive experience in tariff classification (HS Codes), calculation of import duties and taxes (BM, PPN, PPh 22), preparation of PIB (Import Declaration), and obtaining special permits that may be required  - such as BPOM licenses for pharmaceutical products, SNI certifications for electronics, or Ministry of Trade permits for regulated goods. We also provide undername import services for companies that do not yet hold an Importer Identification Number (API).</p>
 
-<p>For goods subject to physical inspection by Customs (red lane), our team accompanies the entire process on-site to minimize dwell time. We operate across all major Indonesian ports — Tanjung Priok (Jakarta), Tanjung Perak (Surabaya), Belawan (Medan), Soekarno-Hatta (airport), and other ports as needed. Every import is accompanied by transparent status reports so you always know the position of your goods and the estimated arrival time.</p>`,
+<p>For goods subject to physical inspection by Customs (red lane), our team accompanies the entire process on-site to minimize dwell time. We operate across all major Indonesian ports  - Tanjung Priok (Jakarta), Tanjung Perak (Surabaya), Belawan (Medan), Soekarno-Hatta (airport), and other ports as needed. Every import is accompanied by transparent status reports so you always know the position of your goods and the estimated arrival time.</p>`,
 
     capabilities: [
       {
@@ -579,14 +579,14 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     clientStory: {
       industry_id: "Farmasi & Kesehatan",
       industry_en: "Pharmaceutical & Healthcare",
-      challenge_id: "Importir farmasi membutuhkan impor rutin bahan baku obat dari India dan China yang memerlukan izin BPOM, sertifikat analisa, dan penanganan cold chain — dengan deadline ketat untuk mendukung jadwal produksi.",
-      challenge_en: "A pharmaceutical importer needed regular imports of raw drug materials from India and China requiring BPOM permits, certificates of analysis, and cold chain handling — under tight deadlines to support production schedules.",
+      challenge_id: "Importir farmasi membutuhkan impor rutin bahan baku obat dari India dan China yang memerlukan izin BPOM, sertifikat analisa, dan penanganan cold chain  - dengan deadline ketat untuk mendukung jadwal produksi.",
+      challenge_en: "A pharmaceutical importer needed regular imports of raw drug materials from India and China requiring BPOM permits, certificates of analysis, and cold chain handling  - under tight deadlines to support production schedules.",
       solution_id: "UGC mengelola seluruh proses DTD termasuk pre-clearance preparation selama barang dalam perjalanan, pengurusan izin BPOM secara paralel, dan penggunaan kontainer reefer untuk menjaga suhu. Tim kepabeanan kami memastikan klasifikasi HS Code yang tepat untuk menghindari over-payment bea masuk.",
       solution_en: "UGC managed the entire DTD process including pre-clearance preparation during transit, parallel BPOM permit processing, and reefer container usage for temperature control. Our customs team ensured accurate HS Code classification to avoid duty overpayment.",
       result_id: "Waktu total dari supplier door ke gudang klien berkurang dari 28 hari menjadi 18 hari. Tidak ada satu pun shipment yang tertahan lebih dari 48 jam di pelabuhan selama 12 bulan berturut-turut.",
       result_en: "Total time from supplier door to client warehouse was reduced from 28 days to 18 days. Not a single shipment was held at port for more than 48 hours over 12 consecutive months.",
-      display_quote_id: "Impor bahan baku farmasi dari 2 negara — total waktu impor turun dari 28 menjadi 18 hari dengan zero port detention.",
-      display_quote_en: "Pharmaceutical raw material imports from 2 countries — total import time reduced from 28 to 18 days with zero port detention.",
+      display_quote_id: "Impor bahan baku farmasi dari 2 negara  - total waktu impor turun dari 28 menjadi 18 hari dengan zero port detention.",
+      display_quote_en: "Pharmaceutical raw material imports from 2 countries  - total import time reduced from 28 to 18 days with zero port detention.",
     },
 
     faq: [
@@ -617,37 +617,37 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         question_id: "Apakah UGC bisa membantu jika barang saya tertahan di Bea Cukai?",
         question_en: "Can UGC help if my goods are held at Customs?",
-        answer_id: "Ya. Tim kepabeanan kami berpengalaman menangani kasus barang tertahan — baik karena masalah dokumen, klasifikasi HS Code, maupun perizinan. Kami mendampingi proses klarifikasi dengan pihak Bea Cukai, membantu menyiapkan dokumen tambahan yang diperlukan, dan bekerja untuk mendapatkan release secepat mungkin. Untuk barang yang sudah dalam penanganan forwarder lain, kami juga bisa mengambil alih proses clearance.",
-        answer_en: "Yes. Our customs team has experience handling detained cargo cases — whether due to documentation issues, HS Code classification, or permit problems. We accompany the clarification process with Customs authorities, help prepare additional required documents, and work to secure release as quickly as possible. For goods already handled by another forwarder, we can also take over the clearance process.",
+        answer_id: "Ya. Tim kepabeanan kami berpengalaman menangani kasus barang tertahan  - baik karena masalah dokumen, klasifikasi HS Code, maupun perizinan. Kami mendampingi proses klarifikasi dengan pihak Bea Cukai, membantu menyiapkan dokumen tambahan yang diperlukan, dan bekerja untuk mendapatkan release secepat mungkin. Untuk barang yang sudah dalam penanganan forwarder lain, kami juga bisa mengambil alih proses clearance.",
+        answer_en: "Yes. Our customs team has experience handling detained cargo cases  - whether due to documentation issues, HS Code classification, or permit problems. We accompany the clarification process with Customs authorities, help prepare additional required documents, and work to secure release as quickly as possible. For goods already handled by another forwarder, we can also take over the clearance process.",
       },
     ],
 
     relatedServices: ["international", "domestic"],
 
     seo: {
-      title_id: "Import Door-to-Door & Customs Clearance Indonesia — UGC Logistics",
-      title_en: "Import Door-to-Door & Customs Clearance Indonesia — UGC Logistics",
+      title_id: "Import Door-to-Door & Customs Clearance Indonesia  - UGC Logistics",
+      title_en: "Import Door-to-Door & Customs Clearance Indonesia  - UGC Logistics",
       description_id: "Layanan import DTD dan kepabeanan UGC Logistics. Customs clearance, perizinan BPOM/SNI, undername import, dan pengiriman dari negara asal ke gudang Anda.",
       description_en: "UGC Logistics import DTD and customs clearance services. Customs clearance, BPOM/SNI permits, undername import, and delivery from origin country to your warehouse.",
     },
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // 04 — BLOCKSPACE & AIRCRAFT CHARTER
+  // 04  - BLOCKSPACE & AIRCRAFT CHARTER
   // ═══════════════════════════════════════════════════════════════
   charter: {
     key: "charter",
-    overview_id: `<p>Untuk kebutuhan pengiriman bervolume besar atau bersifat mendesak yang tidak dapat diakomodasi oleh jadwal penerbangan reguler, UGC Logistics menawarkan layanan blockspace dan charter pesawat. Blockspace adalah alokasi ruang kargo tetap pada penerbangan reguler yang kami amankan secara kontraktual dengan maskapai — memberikan Anda jaminan kapasitas di rute-rute dengan permintaan tinggi tanpa harus menyewa seluruh pesawat.</p>
+    overview_id: `<p>Untuk kebutuhan pengiriman bervolume besar atau bersifat mendesak yang tidak dapat diakomodasi oleh jadwal penerbangan reguler, UGC Logistics menawarkan layanan blockspace dan charter pesawat. Blockspace adalah alokasi ruang kargo tetap pada penerbangan reguler yang kami amankan secara kontraktual dengan maskapai  - memberikan Anda jaminan kapasitas di rute-rute dengan permintaan tinggi tanpa harus menyewa seluruh pesawat.</p>
 
 <p>Untuk kebutuhan yang lebih besar atau rute yang tidak terlayani penerbangan kargo reguler, kami mengatur charter pesawat penuh. Kami bekerja sama dengan operator kargo udara untuk menyediakan pesawat mulai dari turboprop berkapasitas 5-8 ton hingga freighter widebody seperti B747F dengan kapasitas hingga 100+ ton. Charter cocok untuk: pengiriman darurat (mesin pengganti untuk pabrik yang shutdown), pengiriman massal musiman (produk menjelang Ramadan/Natal), atau pengiriman ke bandara terpencil yang tidak memiliki penerbangan kargo reguler.</p>
 
-<p>Tim charter kami menangani seluruh koordinasi — negosiasi tarif dengan operator, pengurusan slot bandara, perizinan penerbangan khusus jika diperlukan, ground handling di origin dan destination, serta monitoring kargo dari loading hingga unloading. Layanan ini sering digunakan bersamaan dengan layanan <a href="/id/layanan/kargo-proyek">Kargo Proyek</a> kami untuk pengiriman peralatan industri yang mendesak.</p>`,
+<p>Tim charter kami menangani seluruh koordinasi  - negosiasi tarif dengan operator, pengurusan slot bandara, perizinan penerbangan khusus jika diperlukan, ground handling di origin dan destination, serta monitoring kargo dari loading hingga unloading. Layanan ini sering digunakan bersamaan dengan layanan <a href="/id/layanan/kargo-proyek">Kargo Proyek</a> kami untuk pengiriman peralatan industri yang mendesak.</p>`,
 
-    overview_en: `<p>For high-volume or urgent shipments that cannot be accommodated by regular flight schedules, UGC Logistics offers blockspace and aircraft charter services. Blockspace is a fixed cargo space allocation on regular flights that we secure contractually with airlines — giving you guaranteed capacity on high-demand routes without having to charter an entire aircraft.</p>
+    overview_en: `<p>For high-volume or urgent shipments that cannot be accommodated by regular flight schedules, UGC Logistics offers blockspace and aircraft charter services. Blockspace is a fixed cargo space allocation on regular flights that we secure contractually with airlines  - giving you guaranteed capacity on high-demand routes without having to charter an entire aircraft.</p>
 
 <p>For larger needs or routes not served by regular cargo flights, we arrange full aircraft charters. We work with air cargo operators to provide aircraft ranging from turboprops with 5-8 ton capacity to widebody freighters such as the B747F with capacity exceeding 100 tons. Charters are suitable for: emergency shipments (replacement machinery for a shut-down factory), seasonal bulk shipments (products ahead of Ramadan/Christmas), or deliveries to remote airports without regular cargo flights.</p>
 
-<p>Our charter team handles all coordination — rate negotiation with operators, airport slot arrangement, special flight permits when needed, ground handling at origin and destination, and cargo monitoring from loading through unloading. This service is frequently combined with our <a href="/en/services/project-cargo">Project Cargo</a> service for urgent industrial equipment deliveries.</p>`,
+<p>Our charter team handles all coordination  - rate negotiation with operators, airport slot arrangement, special flight permits when needed, ground handling at origin and destination, and cargo monitoring from loading through unloading. This service is frequently combined with our <a href="/en/services/project-cargo">Project Cargo</a> service for urgent industrial equipment deliveries.</p>`,
 
     capabilities: [
       {
@@ -669,8 +669,8 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         title_id: "Emergency & AOG Shipments",
         title_en: "Emergency & AOG Shipments",
-        description_id: "Pengiriman darurat dan Aircraft on Ground (AOG) — prioritas tertinggi untuk suku cadang pesawat, mesin pabrik, atau komponen kritis lainnya.",
-        description_en: "Emergency and Aircraft on Ground (AOG) shipments — top priority for aircraft spare parts, factory machinery, or other critical components.",
+        description_id: "Pengiriman darurat dan Aircraft on Ground (AOG)  - prioritas tertinggi untuk suku cadang pesawat, mesin pabrik, atau komponen kritis lainnya.",
+        description_en: "Emergency and Aircraft on Ground (AOG) shipments  - top priority for aircraft spare parts, factory machinery, or other critical components.",
         metric_id: "Respon dalam hitungan jam",
         metric_en: "Response within hours",
       },
@@ -735,18 +735,18 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       challenge_en: "A mining company in Papua needed emergency delivery of a 12-ton crusher component within 48 hours due to a production shutdown. No regular cargo flight to the location had sufficient capacity.",
       solution_id: "UGC mengaransir charter B737F dari Jakarta ke Timika dalam waktu 6 jam setelah permintaan diterima. Tim kami mengkoordinasikan ground handling khusus di kedua bandara dan pengangkutan darat dari bandara Timika ke lokasi tambang.",
       solution_en: "UGC arranged a B737F charter from Jakarta to Timika within 6 hours of receiving the request. Our team coordinated specialized ground handling at both airports and overland transport from Timika airport to the mine site.",
-      result_id: "Komponen tiba di lokasi tambang dalam 36 jam sejak permintaan — 12 jam lebih cepat dari target. Downtime produksi diminimalkan, menghindari kerugian estimasi Rp 2 miliar per hari.",
-      result_en: "The component arrived at the mine site within 36 hours of the request — 12 hours ahead of target. Production downtime was minimized, avoiding estimated losses of IDR 2 billion per day.",
-      display_quote_id: "Charter darurat Jakarta-Timika dalam 36 jam — komponen 12 ton tiba 12 jam lebih cepat dari target, menghindari kerugian produksi.",
-      display_quote_en: "Emergency charter Jakarta-Timika in 36 hours — 12-ton component arrived 12 hours ahead of target, avoiding production losses.",
+      result_id: "Komponen tiba di lokasi tambang dalam 36 jam sejak permintaan  - 12 jam lebih cepat dari target. Downtime produksi diminimalkan, menghindari kerugian estimasi Rp 2 miliar per hari.",
+      result_en: "The component arrived at the mine site within 36 hours of the request  - 12 hours ahead of target. Production downtime was minimized, avoiding estimated losses of IDR 2 billion per day.",
+      display_quote_id: "Charter darurat Jakarta-Timika dalam 36 jam  - komponen 12 ton tiba 12 jam lebih cepat dari target, menghindari kerugian produksi.",
+      display_quote_en: "Emergency charter Jakarta-Timika in 36 hours  - 12-ton component arrived 12 hours ahead of target, avoiding production losses.",
     },
 
     faq: [
       {
         question_id: "Berapa berat minimum untuk bisa menggunakan layanan charter?",
         question_en: "What is the minimum weight for charter services?",
-        answer_id: "Tidak ada berat minimum absolut — charter didasarkan pada kebutuhan, bukan hanya berat. Namun secara ekonomis, charter biasanya layak jika volume Anda melebihi 3-5 ton atau jika urgency mengharuskan pengiriman di luar jadwal penerbangan reguler. Untuk volume di bawah itu, blockspace pada penerbangan reguler biasanya lebih cost-effective.",
-        answer_en: "There is no absolute minimum weight — charters are based on need, not just weight. However, economically, a charter is typically viable when your volume exceeds 3-5 tons or when urgency requires shipping outside regular flight schedules. For volumes below that, blockspace on regular flights is usually more cost-effective.",
+        answer_id: "Tidak ada berat minimum absolut  - charter didasarkan pada kebutuhan, bukan hanya berat. Namun secara ekonomis, charter biasanya layak jika volume Anda melebihi 3-5 ton atau jika urgency mengharuskan pengiriman di luar jadwal penerbangan reguler. Untuk volume di bawah itu, blockspace pada penerbangan reguler biasanya lebih cost-effective.",
+        answer_en: "There is no absolute minimum weight  - charters are based on need, not just weight. However, economically, a charter is typically viable when your volume exceeds 3-5 tons or when urgency requires shipping outside regular flight schedules. For volumes below that, blockspace on regular flights is usually more cost-effective.",
       },
       {
         question_id: "Jenis pesawat apa saja yang tersedia untuk charter?",
@@ -771,15 +771,15 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     relatedServices: ["domestic", "project-cargo"],
 
     seo: {
-      title_id: "Blockspace & Charter Pesawat Kargo — UGC Logistics",
-      title_en: "Blockspace & Aircraft Charter — UGC Logistics",
+      title_id: "Blockspace & Charter Pesawat Kargo  - UGC Logistics",
+      title_en: "Blockspace & Aircraft Charter  - UGC Logistics",
       description_id: "Layanan blockspace dan charter pesawat kargo UGC Logistics. Kapasitas terjamin, charter darurat, pengiriman ke bandara terpencil. Dari 5 hingga 100+ ton.",
       description_en: "UGC Logistics blockspace and cargo aircraft charter services. Guaranteed capacity, emergency charters, delivery to remote airports. From 5 to 100+ tons.",
     },
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // 05 — WAREHOUSING & FULFILLMENT 3PL
+  // 05  - WAREHOUSING & FULFILLMENT 3PL
   // ═══════════════════════════════════════════════════════════════
   warehouse: {
     key: "warehouse",
@@ -787,13 +787,13 @@ export const serviceDetails: Record<string, ServiceDetail> = {
 
 <p>Layanan 3PL kami mencakup seluruh rantai fulfillment: penerimaan barang (inbound), quality check, putaway ke lokasi penyimpanan yang tepat, manajemen inventaris dengan FIFO/FEFO sesuai kebutuhan, pick-and-pack untuk pesanan individual maupun bulk, pelabelan, kitting, co-packing, hingga pengiriman keluar (outbound) baik via kurir untuk e-commerce maupun via truk untuk distribusi B2B. Kami mendukung integrasi langsung dengan platform e-commerce dan marketplace untuk automasi proses order fulfillment.</p>
 
-<p>Fasilitas kami memenuhi standar keamanan dan kebersihan yang diperlukan untuk berbagai jenis produk — dari consumer electronics hingga produk FMCG. Area penyimpanan dikelola dengan sistem zonasi untuk memisahkan barang berdasarkan kategori, suhu, atau persyaratan handling khusus. Untuk kebutuhan distribusi yang lebih luas, layanan pergudangan kami terintegrasi dengan layanan <a href="/id/layanan/distribusi-domestik">Distribusi Domestik</a> kami sehingga barang dapat langsung didistribusikan ke seluruh Indonesia dari gudang kami.</p>`,
+<p>Fasilitas kami memenuhi standar keamanan dan kebersihan yang diperlukan untuk berbagai jenis produk  - dari consumer electronics hingga produk FMCG. Area penyimpanan dikelola dengan sistem zonasi untuk memisahkan barang berdasarkan kategori, suhu, atau persyaratan handling khusus. Untuk kebutuhan distribusi yang lebih luas, layanan pergudangan kami terintegrasi dengan layanan <a href="/id/layanan/distribusi-domestik">Distribusi Domestik</a> kami sehingga barang dapat langsung didistribusikan ke seluruh Indonesia dari gudang kami.</p>`,
 
     overview_en: `<p>UGC Logistics operates modern warehouse facilities in strategic Jakarta locations designed to support storage, inventory management, and fulfillment needs as a third-party logistics (3PL) provider. Our warehouses are equipped with a Warehouse Management System (WMS) integrated with client systems for real-time stock visibility, batch/lot tracking, and automated reporting.</p>
 
 <p>Our 3PL services cover the entire fulfillment chain: goods receiving (inbound), quality checks, putaway to appropriate storage locations, inventory management with FIFO/FEFO as required, pick-and-pack for individual and bulk orders, labeling, kitting, co-packing, through to outbound shipping via couriers for e-commerce or trucks for B2B distribution. We support direct integration with e-commerce platforms and marketplaces for order fulfillment automation.</p>
 
-<p>Our facilities meet the safety and cleanliness standards required for various product types — from consumer electronics to FMCG products. Storage areas are managed with a zoning system to separate goods based on category, temperature, or special handling requirements. For broader distribution needs, our warehousing service integrates with our <a href="/en/services/domestic-distribution">Domestic Distribution</a> service so goods can be distributed directly across Indonesia from our warehouse.</p>`,
+<p>Our facilities meet the safety and cleanliness standards required for various product types  - from consumer electronics to FMCG products. Storage areas are managed with a zoning system to separate goods based on category, temperature, or special handling requirements. For broader distribution needs, our warehousing service integrates with our <a href="/en/services/domestic-distribution">Domestic Distribution</a> service so goods can be distributed directly across Indonesia from our warehouse.</p>`,
 
     capabilities: [
       {
@@ -877,22 +877,22 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     clientStory: {
       industry_id: "E-Commerce & Retail",
       industry_en: "E-Commerce & Retail",
-      challenge_id: "Brand e-commerce lokal yang menjual di 4 marketplace mengalami kesulitan mengelola inventaris dan fulfillment secara manual — menyebabkan overselling, pengiriman terlambat, dan tingkat retur tinggi akibat kesalahan picking.",
-      challenge_en: "A local e-commerce brand selling on 4 marketplaces struggled to manage inventory and fulfillment manually — causing overselling, late shipments, and high return rates due to picking errors.",
+      challenge_id: "Brand e-commerce lokal yang menjual di 4 marketplace mengalami kesulitan mengelola inventaris dan fulfillment secara manual  - menyebabkan overselling, pengiriman terlambat, dan tingkat retur tinggi akibat kesalahan picking.",
+      challenge_en: "A local e-commerce brand selling on 4 marketplaces struggled to manage inventory and fulfillment manually  - causing overselling, late shipments, and high return rates due to picking errors.",
       solution_id: "UGC mengimplementasikan WMS yang terintegrasi dengan 4 marketplace klien, memindahkan seluruh stok ke gudang kami, dan menerapkan proses pick-pack standar dengan barcode scanning untuk eliminasi kesalahan.",
       solution_en: "UGC implemented a WMS integrated with the client's 4 marketplaces, moved all inventory to our warehouse, and applied standardized pick-pack processes with barcode scanning to eliminate errors.",
       result_id: "Kesalahan picking turun dari 3.2% menjadi 0.3%. Waktu fulfillment dari 48 jam menjadi same-day untuk order sebelum jam 2 siang. Tingkat retur akibat kesalahan pengiriman turun 85%.",
       result_en: "Picking errors dropped from 3.2% to 0.3%. Fulfillment time improved from 48 hours to same-day for orders before 2 PM. Return rate due to shipping errors decreased by 85%.",
-      display_quote_id: "Fulfillment e-commerce di 4 marketplace — kesalahan picking turun 90% dan semua order diproses same-day.",
-      display_quote_en: "E-commerce fulfillment across 4 marketplaces — picking errors down 90% and all orders processed same-day.",
+      display_quote_id: "Fulfillment e-commerce di 4 marketplace  - kesalahan picking turun 90% dan semua order diproses same-day.",
+      display_quote_en: "E-commerce fulfillment across 4 marketplaces  - picking errors down 90% and all orders processed same-day.",
     },
 
     faq: [
       {
         question_id: "Berapa kapasitas gudang yang tersedia?",
         question_en: "How much warehouse capacity is available?",
-        answer_id: "Kapasitas bervariasi dan kami mengalokasikan area sesuai kebutuhan klien — bisa mulai dari 50 pallet position untuk volume kecil hingga ribuan posisi untuk operasi besar. Hubungi kami untuk diskusi kebutuhan spesifik Anda dan kami akan memberikan opsi yang sesuai.",
-        answer_en: "Capacity varies and we allocate space according to client needs — starting from 50 pallet positions for small volumes to thousands of positions for large operations. Contact us to discuss your specific needs and we'll provide suitable options.",
+        answer_id: "Kapasitas bervariasi dan kami mengalokasikan area sesuai kebutuhan klien  - bisa mulai dari 50 pallet position untuk volume kecil hingga ribuan posisi untuk operasi besar. Hubungi kami untuk diskusi kebutuhan spesifik Anda dan kami akan memberikan opsi yang sesuai.",
+        answer_en: "Capacity varies and we allocate space according to client needs  - starting from 50 pallet positions for small volumes to thousands of positions for large operations. Contact us to discuss your specific needs and we'll provide suitable options.",
       },
       {
         question_id: "Apakah WMS bisa diintegrasikan dengan sistem ERP kami?",
@@ -923,29 +923,29 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     relatedServices: ["domestic", "international"],
 
     seo: {
-      title_id: "Pergudangan & Fulfillment 3PL — WMS Terintegrasi — UGC Logistics",
-      title_en: "Warehousing & 3PL Fulfillment — Integrated WMS — UGC Logistics",
+      title_id: "Pergudangan & Fulfillment 3PL  - WMS Terintegrasi  - UGC Logistics",
+      title_en: "Warehousing & 3PL Fulfillment  - Integrated WMS  - UGC Logistics",
       description_id: "Layanan pergudangan dan fulfillment 3PL UGC Logistics. WMS terintegrasi, pick-and-pack, e-commerce fulfillment, manajemen inventaris real-time.",
       description_en: "UGC Logistics warehousing and 3PL fulfillment services. Integrated WMS, pick-and-pack, e-commerce fulfillment, real-time inventory management.",
     },
   },
 
   // ═══════════════════════════════════════════════════════════════
-  // 06 — PROJECT CARGO & HEAVY DUTY
+  // 06  - PROJECT CARGO & HEAVY DUTY
   // ═══════════════════════════════════════════════════════════════
   "project-cargo": {
     key: "project-cargo",
-    overview_id: `<p>Layanan Project Cargo UGC Logistics dirancang untuk menangani pengiriman kargo yang tidak dapat diakomodasi oleh layanan freight standar — barang berdimensi besar (oversize), berat berlebih (overweight), atau memerlukan penanganan khusus karena bentuk, nilai, atau sensitivitas material. Kami melayani sektor industri berat termasuk pertambangan, energi, konstruksi, minyak dan gas, serta infrastruktur telekomunikasi.</p>
+    overview_id: `<p>Layanan Project Cargo UGC Logistics dirancang untuk menangani pengiriman kargo yang tidak dapat diakomodasi oleh layanan freight standar  - barang berdimensi besar (oversize), berat berlebih (overweight), atau memerlukan penanganan khusus karena bentuk, nilai, atau sensitivitas material. Kami melayani sektor industri berat termasuk pertambangan, energi, konstruksi, minyak dan gas, serta infrastruktur telekomunikasi.</p>
 
 <p>Setiap proyek dimulai dengan survei rute (route survey) yang komprehensif: tim kami mengevaluasi kondisi jalan, kapasitas jembatan, radius belokan, overhead clearance, dan kendala fisik lainnya dari titik asal hingga tujuan. Berdasarkan survei ini, kami menyusun rencana transportasi detail yang mencakup pemilihan moda dan alat angkut (lowbed trailer, multi-axle hydraulic trailer, modular transporter), kebutuhan escort kendaraan, dan jadwal pengiriman yang memperhitungkan regulasi lalu lintas untuk kargo oversize.</p>
 
-<p>Kami mengurus seluruh perizinan yang diperlukan — Surat Izin Muatan Khusus dari Dinas Perhubungan, izin kepolisian untuk escort, dan izin dari otoritas jalan tol atau pelabuhan. Untuk kebutuhan lifting dan rigging di lokasi, kami berkoordinasi dengan penyedia crane dan heavy-lift equipment. Layanan ini sering dikombinasikan dengan <a href="/id/layanan/blockspace-charter">Blockspace & Charter</a> kami ketika komponen perlu diterbangkan dan kemudian ditransportasikan via darat ke lokasi proyek.</p>`,
+<p>Kami mengurus seluruh perizinan yang diperlukan  - Surat Izin Muatan Khusus dari Dinas Perhubungan, izin kepolisian untuk escort, dan izin dari otoritas jalan tol atau pelabuhan. Untuk kebutuhan lifting dan rigging di lokasi, kami berkoordinasi dengan penyedia crane dan heavy-lift equipment. Layanan ini sering dikombinasikan dengan <a href="/id/layanan/blockspace-charter">Blockspace & Charter</a> kami ketika komponen perlu diterbangkan dan kemudian ditransportasikan via darat ke lokasi proyek.</p>`,
 
-    overview_en: `<p>UGC Logistics' Project Cargo service is designed to handle shipments that cannot be accommodated by standard freight services — oversized, overweight, or requiring special handling due to shape, value, or material sensitivity. We serve heavy industrial sectors including mining, energy, construction, oil and gas, and telecommunications infrastructure.</p>
+    overview_en: `<p>UGC Logistics' Project Cargo service is designed to handle shipments that cannot be accommodated by standard freight services  - oversized, overweight, or requiring special handling due to shape, value, or material sensitivity. We serve heavy industrial sectors including mining, energy, construction, oil and gas, and telecommunications infrastructure.</p>
 
 <p>Every project begins with a comprehensive route survey: our team evaluates road conditions, bridge capacities, turning radii, overhead clearances, and other physical constraints from origin to destination. Based on this survey, we develop a detailed transport plan covering mode and equipment selection (lowbed trailers, multi-axle hydraulic trailers, modular transporters), vehicle escort requirements, and delivery schedules that account for traffic regulations for oversized cargo.</p>
 
-<p>We handle all required permits — Special Load Permits from the Department of Transportation, police escort permits, and authorization from toll road or port authorities. For on-site lifting and rigging needs, we coordinate with crane and heavy-lift equipment providers. This service is frequently combined with our <a href="/en/services/blockspace-charter">Blockspace & Charter</a> service when components need to be flown in and then transported overland to the project site.</p>`,
+<p>We handle all required permits  - Special Load Permits from the Department of Transportation, police escort permits, and authorization from toll road or port authorities. For on-site lifting and rigging needs, we coordinate with crane and heavy-lift equipment providers. This service is frequently combined with our <a href="/en/services/blockspace-charter">Blockspace & Charter</a> service when components need to be flown in and then transported overland to the project site.</p>`,
 
     capabilities: [
       {
@@ -983,8 +983,8 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       {
         title_id: "Multimodal Project Logistics",
         title_en: "Multimodal Project Logistics",
-        description_id: "Kombinasi moda transportasi — laut (tongkang, vessel), darat (lowbed, hydraulic trailer), dan udara (charter) — untuk pengiriman proyek yang kompleks.",
-        description_en: "Combined transport modes — sea (barge, vessel), land (lowbed, hydraulic trailer), and air (charter) — for complex project shipments.",
+        description_id: "Kombinasi moda transportasi  - laut (tongkang, vessel), darat (lowbed, hydraulic trailer), dan udara (charter)  - untuk pengiriman proyek yang kompleks.",
+        description_en: "Combined transport modes  - sea (barge, vessel), land (lowbed, hydraulic trailer), and air (charter)  - for complex project shipments.",
         metric_id: "Darat, laut, udara terintegrasi",
         metric_en: "Land, sea, air integrated",
       },
@@ -1002,8 +1002,8 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         number: "02",
         title_id: "Engineering & Transport Plan",
         title_en: "Engineering & Transport Plan",
-        description_id: "Berdasarkan survei, kami menyusun rencana transportasi detail — pemilihan alat angkut, konfigurasi securing, jadwal, dan contingency plan.",
-        description_en: "Based on the survey, we develop a detailed transport plan — equipment selection, securing configuration, schedule, and contingency planning.",
+        description_id: "Berdasarkan survei, kami menyusun rencana transportasi detail  - pemilihan alat angkut, konfigurasi securing, jadwal, dan contingency plan.",
+        description_en: "Based on the survey, we develop a detailed transport plan  - equipment selection, securing configuration, schedule, and contingency planning.",
       },
       {
         number: "03",
@@ -1044,22 +1044,22 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     clientStory: {
       industry_id: "Pertambangan & Energi",
       industry_en: "Mining & Energy",
-      challenge_id: "Perusahaan energi perlu mengirim 3 unit transformator masing-masing seberat 85 ton dari pelabuhan Tanjung Priok ke site pembangkit listrik di Jawa Barat — melewati jalan provinsi dengan beberapa jembatan berkapasitas terbatas.",
-      challenge_en: "An energy company needed to transport 3 transformer units, each weighing 85 tons, from Tanjung Priok port to a power plant site in West Java — traversing provincial roads with several weight-limited bridges.",
+      challenge_id: "Perusahaan energi perlu mengirim 3 unit transformator masing-masing seberat 85 ton dari pelabuhan Tanjung Priok ke site pembangkit listrik di Jawa Barat  - melewati jalan provinsi dengan beberapa jembatan berkapasitas terbatas.",
+      challenge_en: "An energy company needed to transport 3 transformer units, each weighing 85 tons, from Tanjung Priok port to a power plant site in West Java  - traversing provincial roads with several weight-limited bridges.",
       solution_id: "UGC melakukan survei rute selama 2 minggu, mengidentifikasi 4 jembatan yang memerlukan bypass atau penguatan sementara. Kami menggunakan multi-axle hydraulic trailer untuk mendistribusikan beban, mengurus izin dari 3 kabupaten, dan mengkoordinasikan escort polisi untuk 3 trip pengiriman malam hari.",
       solution_en: "UGC conducted a 2-week route survey, identifying 4 bridges requiring bypasses or temporary reinforcement. We used multi-axle hydraulic trailers to distribute the load, obtained permits from 3 districts, and coordinated police escorts for 3 overnight delivery trips.",
-      result_id: "Ketiga transformator tiba di site tanpa kerusakan, tepat waktu sesuai jadwal commissioning klien. Total waktu pengiriman 15 hari dari port hingga positioning — 5 hari lebih cepat dari estimasi awal.",
-      result_en: "All three transformers arrived on-site undamaged, on schedule for the client's commissioning timeline. Total delivery time was 15 days from port to positioning — 5 days ahead of the initial estimate.",
-      display_quote_id: "3 transformator 85 ton dari pelabuhan ke site pembangkit — tiba tanpa kerusakan, 5 hari lebih cepat dari target.",
-      display_quote_en: "Three 85-ton transformers from port to power plant site — delivered undamaged, 5 days ahead of target.",
+      result_id: "Ketiga transformator tiba di site tanpa kerusakan, tepat waktu sesuai jadwal commissioning klien. Total waktu pengiriman 15 hari dari port hingga positioning  - 5 hari lebih cepat dari estimasi awal.",
+      result_en: "All three transformers arrived on-site undamaged, on schedule for the client's commissioning timeline. Total delivery time was 15 days from port to positioning  - 5 days ahead of the initial estimate.",
+      display_quote_id: "3 transformator 85 ton dari pelabuhan ke site pembangkit  - tiba tanpa kerusakan, 5 hari lebih cepat dari target.",
+      display_quote_en: "Three 85-ton transformers from port to power plant site  - delivered undamaged, 5 days ahead of target.",
     },
 
     faq: [
       {
         question_id: "Berapa dimensi dan berat maksimum yang bisa ditangani?",
         question_en: "What are the maximum dimensions and weight you can handle?",
-        answer_id: "Secara teknis tidak ada batas absolut — kami menyesuaikan solusi dengan kebutuhan. Kami rutin menangani kargo hingga 200+ ton per unit via darat. Untuk berat lebih dari itu, kami menggunakan modular transporter yang kapasitasnya bisa dikonfigurasi. Dimensi tergantung pada rute — kami melakukan survei untuk menentukan feasibility.",
-        answer_en: "There is technically no absolute limit — we tailor solutions to requirements. We routinely handle cargo up to 200+ tons per unit via road. For heavier loads, we use modular transporters with configurable capacity. Dimensions depend on the route — we conduct surveys to determine feasibility.",
+        answer_id: "Secara teknis tidak ada batas absolut  - kami menyesuaikan solusi dengan kebutuhan. Kami rutin menangani kargo hingga 200+ ton per unit via darat. Untuk berat lebih dari itu, kami menggunakan modular transporter yang kapasitasnya bisa dikonfigurasi. Dimensi tergantung pada rute  - kami melakukan survei untuk menentukan feasibility.",
+        answer_en: "There is technically no absolute limit  - we tailor solutions to requirements. We routinely handle cargo up to 200+ tons per unit via road. For heavier loads, we use modular transporters with configurable capacity. Dimensions depend on the route  - we conduct surveys to determine feasibility.",
       },
       {
         question_id: "Berapa lama waktu yang dibutuhkan dari perencanaan hingga pengiriman?",
@@ -1084,8 +1084,8 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     relatedServices: ["charter", "domestic"],
 
     seo: {
-      title_id: "Project Cargo & Heavy Lift Indonesia — Kargo Berat & Oversize — UGC Logistics",
-      title_en: "Project Cargo & Heavy Lift Indonesia — Heavy & Oversized Cargo — UGC Logistics",
+      title_id: "Project Cargo & Heavy Lift Indonesia  - Kargo Berat & Oversize  - UGC Logistics",
+      title_en: "Project Cargo & Heavy Lift Indonesia  - Heavy & Oversized Cargo  - UGC Logistics",
       description_id: "Layanan project cargo dan heavy lift UGC Logistics. Pengiriman kargo oversize dan overweight, survei rute, perizinan khusus, crane dan heavy-lift equipment.",
       description_en: "UGC Logistics project cargo and heavy lift services. Oversized and overweight cargo transport, route surveys, special permits, crane and heavy-lift equipment.",
     },

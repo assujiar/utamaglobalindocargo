@@ -54,12 +54,14 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
 
   const navLinkClasses = (routeKey: string) =>
     cn(
-      "text-sm font-medium transition-colors duration-150",
+      "text-sm font-medium transition-colors duration-200",
       "hover:text-[--color-primary]",
       "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color-primary]",
       isActive(routeKey)
         ? "text-[--color-primary]"
-        : "text-[--color-text-primary]",
+        : scrolled
+          ? "text-[--color-text-primary]"
+          : "text-[--color-text-secondary]",
     );
 
   return (
@@ -67,45 +69,56 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300",
-          scrolled ? "glass-nav" : "bg-transparent",
+          scrolled
+            ? "glass-nav shadow-[0_1px_0_rgba(255,70,0,0.06)]"
+            : "bg-transparent",
         )}
       >
         <div className="mx-auto flex h-full max-w-[--max-width-layout] items-center justify-between px-5 sm:px-10">
           {/* Logo */}
           <Link
             href={getLocalizedPath("home", locale)}
-            className="flex items-center gap-2 shrink-0"
-            aria-label="UGC Logistics — Home"
+            className="flex items-center gap-2.5 shrink-0 group"
+            aria-label="UGC Logistics"
           >
-            {/* TODO: Replace with real UGC logo SVG from brand assets */}
             <svg
-              width="40"
-              height="40"
-              viewBox="0 0 40 40"
+              width="36"
+              height="36"
+              viewBox="0 0 36 36"
               fill="none"
               className="shrink-0"
               aria-hidden="true"
             >
-              <rect width="40" height="40" rx="8" fill="var(--color-primary)" />
+              <rect
+                width="36"
+                height="36"
+                rx="10"
+                fill="var(--color-primary)"
+                className="transition-shadow duration-200 group-hover:drop-shadow-[0_0_12px_rgba(255,70,0,0.4)]"
+              />
               <text
                 x="50%"
                 y="54%"
                 dominantBaseline="middle"
                 textAnchor="middle"
                 fill="white"
-                fontSize="14"
+                fontSize="12"
                 fontWeight="700"
                 fontFamily="var(--font-primary)"
+                letterSpacing="0.05em"
               >
                 UGC
               </text>
             </svg>
-            <span className="text-lg font-semibold text-[--color-text-primary] hidden sm:inline">
+            <span className={cn(
+              "text-base font-semibold hidden sm:inline transition-colors duration-200",
+              scrolled ? "text-[--color-text-primary]" : "text-[--color-text-secondary]",
+            )}>
               UGC Logistics
             </span>
           </Link>
 
-          {/* Desktop Nav — center */}
+          {/* Desktop Nav */}
           {!minimal && (
             <nav
               className="hidden sm:flex items-center gap-8"
@@ -143,9 +156,9 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
                 {dictionary.nav.about}
               </Link>
 
-              {/* Insights — Phase 2, rendered as disabled placeholder */}
+              {/* Insights: Phase 2 placeholder */}
               <span
-                className="text-sm font-medium text-[--color-text-secondary] cursor-default"
+                className="text-sm font-medium text-[--color-text-muted] cursor-default"
                 title="Coming soon"
               >
                 {dictionary.nav.insights}
@@ -154,11 +167,15 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
           )}
 
           {/* Right actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             {/* Language toggle */}
             <Link
               href={alternatePathname}
-              className="text-sm font-medium text-[--color-text-secondary] hover:text-[--color-text-primary] transition-colors duration-150 uppercase"
+              className={cn(
+                "label-text text-[11px] px-2 py-1 rounded-md transition-colors duration-200",
+                "hover:text-[--color-primary] hover:bg-[rgba(255,70,0,0.08)]",
+                scrolled ? "text-[--color-text-secondary]" : "text-[--color-text-muted]",
+              )}
               aria-label={`Switch to ${dictionary.common.switchLanguage}`}
             >
               {alternateLocale.toUpperCase()}
@@ -166,17 +183,19 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
 
             {!minimal && (
               <>
-                {/* Track — secondary utility link (desktop only) */}
+                {/* Track link: desktop */}
                 <Link
                   href={getLocalizedPath("track", locale)}
                   className={cn(
-                    "hidden sm:inline-flex text-sm font-medium text-[--color-text-secondary] hover:text-[--color-text-primary] transition-colors duration-150",
+                    "hidden sm:inline-flex text-sm font-medium transition-colors duration-200",
+                    "hover:text-[--color-primary]",
+                    scrolled ? "text-[--color-text-secondary]" : "text-[--color-text-muted]",
                   )}
                 >
                   {dictionary.nav.track}
                 </Link>
 
-                {/* Request Quote CTA (desktop only) */}
+                {/* Quote CTA: desktop */}
                 <Button
                   href={getLocalizedPath("quote", locale)}
                   size="sm"
@@ -188,7 +207,10 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
                 {/* Mobile hamburger */}
                 <button
                   type="button"
-                  className="sm:hidden flex items-center justify-center size-10 -mr-2 text-[--color-text-primary]"
+                  className={cn(
+                    "sm:hidden flex items-center justify-center size-10 -mr-2 transition-colors duration-200",
+                    scrolled ? "text-[--color-text-primary]" : "text-[--color-text-secondary]",
+                  )}
                   onClick={() => setMobileNavOpen(true)}
                   aria-label="Open menu"
                   aria-expanded={mobileNavOpen}
@@ -201,7 +223,7 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
         </div>
       </header>
 
-      {/* Spacer so content doesn't sit behind fixed header */}
+      {/* Spacer */}
       <div className="h-16" aria-hidden="true" />
 
       {/* Mobile Nav Overlay */}

@@ -138,38 +138,52 @@ lib/
 
 Full specs in `/docs/09_DESIGN_SYSTEM_RULES.md`. Key rules:
 
-**Colors:**
+**Design Direction:** Cinematic Editorial Bold. Dark-first, warm accent spectrum, glassmorphism 2.0 with glow borders.
+
+**Colors (Dark-First):**
 
 ```css
 --color-primary: #FF4600;
 --color-primary-dark: #CC3800;
---color-bg-light: #FAFAF8;
---color-bg-dark: #0A0A0C;
---color-text-primary: #1A1A1A;
---color-text-secondary: #6B6B6B;
+--color-accent-warm: #FFAB40;
+--color-accent-coral: #FF3D00;
+--color-bg-dark: #09090B;          /* default body background */
+--color-bg-dark-card: #1A1A1E;
+--color-bg-dark-elevated: #111113;
+--color-bg-light: #FAFAF8;         /* contrast sections only */
+--color-text-primary: #F5F5F5;     /* light text on dark bg */
+--color-text-secondary: #A0A0A0;
 --color-text-inverse: #FFFFFF;
---color-border: #E5E5E3;
+--color-border: rgba(255, 255, 255, 0.06);
 ```
 
-**Typography:** Inter for all UI. Instrument Serif for editorial hero headlines ONLY. JetBrains Mono for stats/codes.
+**Typography:** Inter for all UI. Instrument Serif for editorial hero headlines ONLY. JetBrains Mono Bold for stats/counters at headline scale. Label text = uppercase, tracked, 12px, semibold.
 
 **Grid:** 12-col desktop (1440px max, 24px gutter). 4-col mobile (16px gutter). Asymmetric layouts preferred.
 
-**Glassmorphism:** `backdrop-filter: blur(24px)` with `@supports` fallback. Max 2 glass layers. Never on form inputs or primary CTAs.
+**Glassmorphism 2.0:** Glass variants: `glass-dark`, `glass-tinted` (orange tint), `glass-light`, `glass-nav`. Glow borders on hover (`rgba(255,70,0,0.20)`). `backdrop-filter: blur(24px)` with `@supports` fallback. Max 2 glass layers. Never on form inputs or primary CTAs.
 
-**Buttons:** Primary = solid #FF4600, 48px height, 8px radius. Secondary = outline. Tertiary = text + arrow.
+**Buttons:** Primary = solid #FF4600, rounded-xl, glow shadow `btn-glow`. Secondary = glass-dark outline. Tertiary = text + ArrowRight icon.
 
-**Anti-patterns (FORBIDDEN):** Carousels, parallax on text, auto-playing video, icon grids without labels, body text wider than 720px, heavy drop shadows, gradient text, multiple sticky CTAs on mobile.
+**Section dividers:** Glow lines = `h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.12)] to-transparent`.
+
+**Copywriting rule:** NEVER use emdash characters in any user-facing content. Use commas, semicolons, or separate sentences instead.
+
+**Anti-patterns (FORBIDDEN):** Carousels, parallax on text, auto-playing video, icon grids without labels, body text wider than 720px, heavy drop shadows, gradient text, multiple sticky CTAs on mobile, light backgrounds as default (dark is default), flat gray cards without glass effect, emdash in copywriting.
 
 ## Motion Rules (Summary)
 
 Full specs in `/docs/10_MOTION_SYSTEM_RULES.md`. Key rules:
 
 - All animation uses easing curves, never linear
-- Reveals: 400-600ms, `cubic-bezier(0.16, 1, 0.3, 1)`, opacity + translateY(24px)
-- Hover: 150-200ms ease-out
+- Reveals: 400-600ms, `cubic-bezier(0.16, 1, 0.3, 1)`, opacity + translateY(32px desktop, 20px mobile)
+- Clip-path mask reveal: `inset(100% 0 0 0)` to `inset(0 0 0 0)`, 800ms (desktop only)
+- Text split animation: word-by-word stagger, 80ms per word
+- Hover: 150-200ms ease-out, card lift -translate-y-1.5
 - Page transitions: 500-700ms crossfade via Framer Motion
-- Mobile: 70% desktop durations, opacity + translateY only, NO parallax
+- Multi-layer parallax: deep bg (15-20%), midground (8-12%), content (0%)
+- Ambient glow orbs: 300-600px, blur 100-160px, 15-20s float cycle, opacity 3-5%
+- Mobile: 70% desktop durations, opacity + translateY only, NO parallax, NO clip-path reveals
 - IntersectionObserver for scroll triggers (threshold 0.15), disconnect after trigger
 - Only animate `opacity` and `transform`. Never width/height/margin/padding.
 - `prefers-reduced-motion` kills all non-essential animation

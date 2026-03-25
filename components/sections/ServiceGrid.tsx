@@ -8,6 +8,7 @@ import {
   Plane,
   Warehouse,
   Container,
+  ArrowRight,
 } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { services, type ServiceData } from "@/lib/content/services";
@@ -56,16 +57,16 @@ function ServiceCard({
     <Link
       href={href}
       className={cn(
-        "group relative flex flex-col bg-white border border-[--color-border] rounded-md",
-        "p-5 sm:p-6 transition-all duration-300 ease-out",
-        "hover:-translate-y-1 hover:shadow-md",
+        "group relative flex flex-col glass-dark p-6 sm:p-7",
+        "transition-all duration-250 ease-out",
+        "hover:-translate-y-1.5 hover:border-[rgba(255,70,0,0.20)] hover:shadow-[0_0_40px_rgba(255,70,0,0.06)]",
         "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color-primary]",
         large && "md:col-span-3",
       )}
     >
       {/* Number + icon row */}
-      <div className="flex items-start justify-between mb-4">
-        <span className="font-mono text-sm font-medium text-[--color-primary]">
+      <div className="flex items-start justify-between mb-5">
+        <span className="label-text text-[--color-primary]">
           {service.number}
         </span>
         {Icon && (
@@ -74,22 +75,22 @@ function ServiceCard({
       </div>
 
       {/* Name */}
-      <h3 className="text-lg font-semibold text-[--color-text-primary] mb-1">
+      <h3 className="text-lg font-semibold text-[--color-text-primary] mb-1.5">
         {name}
       </h3>
 
       {/* Tagline */}
       <p className="text-sm text-[--color-text-secondary] mb-3">{tagline}</p>
 
-      {/* Hover preview — desktop only, hidden by default */}
+      {/* Hover preview: desktop only */}
       <p className="hidden md:block text-sm text-[--color-text-secondary] leading-relaxed max-h-0 overflow-hidden opacity-0 group-hover:max-h-24 group-hover:opacity-100 transition-all duration-300 ease-out mb-auto">
         {description}
       </p>
 
       {/* Explore link */}
-      <span className="mt-auto pt-3 inline-flex items-center gap-1 text-sm font-medium text-[--color-primary] group-hover:gap-2 transition-all duration-150">
+      <span className="mt-auto pt-4 inline-flex items-center gap-2 text-sm font-semibold text-[--color-primary] group-hover:gap-3 transition-all duration-200">
         {exploreLabel}
-        <span aria-hidden="true">→</span>
+        <ArrowRight className="size-4" aria-hidden="true" />
       </span>
     </Link>
   );
@@ -102,10 +103,10 @@ function ServiceGrid({
   className,
 }: ServiceGridProps) {
   return (
-    <section className={cn("py-20 sm:py-24 bg-[--color-bg-light]", className)}>
+    <section className={cn("py-24 sm:py-32 bg-[--color-bg-dark]", className)}>
       <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
         <ScrollReveal>
-          <h2 className="text-heading-lg sm:text-heading-xl font-bold text-[--color-text-primary] text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <h2 className="text-heading-lg sm:text-heading-xl font-bold text-[--color-text-primary] text-center max-w-3xl mx-auto mb-14 sm:mb-20 tracking-[-0.02em]">
             {heading}
           </h2>
         </ScrollReveal>
