@@ -1,0 +1,74 @@
+/*
+ * UGC Logistics — Design Tokens
+ * Source of truth: /docs/09_DESIGN_SYSTEM_RULES.md
+ */
+
+:root {
+  /* ─── Primary ─── */
+  --color-primary: #FF4600;
+  --color-primary-dark: #CC3800;
+  --color-primary-light: #FF6B33;
+  --color-primary-subtle: rgba(255, 70, 0, 0.08);
+
+  /* ─── Neutrals ─── */
+  --color-bg-light: #FAFAF8;
+  --color-bg-dark: #0A0A0C;
+  --color-bg-dark-elevated: #141416;
+  --color-text-primary: #1A1A1A;
+  --color-text-secondary: #6B6B6B;
+  --color-text-inverse: #FFFFFF;
+  --color-border: #E5E5E3;
+  --color-border-dark: rgba(255, 255, 255, 0.12);
+
+  /* ─── Semantic ─── */
+  --color-success: #00875A;
+  --color-warning: #FFAB00;
+  --color-error: #DE350B;
+
+  /* ─── Typography ─── */
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* ─── Spacing (8px base) ─── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-30: 120px;
+  --space-40: 160px;
+
+  /* ─── Border Radius ─── */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  /* ─── Layout ─── */
+  --max-width-text: 720px;
+  --max-width-layout: 1440px;
+  --gutter-desktop: 24px;
+  --gutter-tablet: 20px;
+  --gutter-mobile: 16px;
+  --margin-desktop: 80px;
+  --margin-tablet: 40px;
+  --margin-mobile: 20px;
+
+  /* ─── Shadows ─── */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.08);
+
+  /* ─── Motion ─── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-reveal: 600ms;
+}

@@ -48,7 +48,7 @@ When building a specific page, read its blueprint:
 
 ## Tech Stack
 
-- **Framework:** Next.js 15 (App Router), TypeScript, React 19
+- **Framework:** Next.js 16 (App Router), TypeScript, React 19
 - **Styling:** Tailwind CSS v4 + CSS custom properties for design tokens
 - **Animation:** Framer Motion (tree-shaken, lazy-loaded, max 15KB gzipped per page)
 - **Icons:** Lucide React (24px grid, 1.5px stroke)

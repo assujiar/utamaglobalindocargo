@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang Kami",
+    "services": "Layanan",
+    "insights": "Wawasan",
+    "contact": "Kontak",
+    "track": "Lacak Kiriman",
+    "quote": "Minta Penawaran"
+  },
+  "buttons": {
+    "submit": "Kirim",
+    "next": "Selanjutnya",
+    "back": "Kembali",
+    "learnMore": "Pelajari Lebih Lanjut",
+    "explore": "Jelajahi",
+    "readMore": "Baca Selengkapnya",
+    "download": "Unduh",
+    "requestQuote": "Minta Penawaran",
+    "trackShipment": "Lacak Kiriman",
+    "whatsapp": "Hubungi via WhatsApp"
+  },
+  "form": {
+    "name": "Nama",
+    "email": "Email",
+    "phone": "Telepon",
+    "company": "Perusahaan",
+    "message": "Pesan",
+    "serviceType": "Jenis Layanan",
+    "origin": "Asal",
+    "destination": "Tujuan",
+    "required": "Wajib diisi"
+  },
+  "footer": {
+    "copyright": "© {year} PT Utama Globalindo Cargo. Hak cipta dilindungi.",
+    "tagline": "Mitra logistik terpercaya sejak 1995",
+    "address": "Jakarta, Indonesia"
+  },
+  "common": {
+    "yearsExperience": "Tahun Pengalaman",
+    "countries": "Negara",
+    "onTimeRate": "Ketepatan Waktu",
+    "provinces": "Provinsi",
+    "switchLanguage": "English"
+  }
+}

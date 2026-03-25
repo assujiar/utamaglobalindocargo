@@ -4,7 +4,7 @@
 
 | Layer | Technology | Role |
 |-------|-----------|------|
-| Framework | Next.js 15 (App Router) | Routing, SSR/SSG, i18n, API routes |
+| Framework | Next.js 16 (App Router) | Routing, SSR/SSG, i18n, API routes |
 | Language | TypeScript | Type safety |
 | Styling | Tailwind CSS + CSS custom properties | Utility-first with design tokens |
 | Animation | Framer Motion (confirmed T1) | Scroll choreography, page transitions, layout animations |

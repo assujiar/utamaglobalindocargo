@@ -1,0 +1,106 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+/*
+ * UGC Logistics — Global Styles
+ * Design tokens defined in theme.css, Tailwind extensions in tailwind.config.ts
+ */
+
+/* ─── Base Typography ─── */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-light);
+}
+
+/* ─── Typography Scale ─── */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* ─── Body Text Constraint ─── */
+
+.prose {
+  max-width: 720px;
+}
+
+/* ─── Glassmorphism Utilities ─── */
+
+.glass-dark {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.60);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.80);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+}
+
+.glass-nav {
+  background: rgba(250, 250, 248, 0.80);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Glassmorphism fallback for browsers without backdrop-filter */
+@supports not (backdrop-filter: blur(24px)) {
+  .glass-dark {
+    background: rgba(20, 20, 22, 0.95);
+  }
+
+  .glass-light {
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .glass-nav {
+    background: rgba(250, 250, 248, 0.97);
+  }
+}
+
+/* ─── Reduced Motion ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Selection ─── */
+
+::selection {
+  background-color: rgba(255, 70, 0, 0.15);
+  color: var(--color-text-primary);
+}
+
+/* ─── Focus Visible ─── */
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
