@@ -1,0 +1,211 @@
+{
+  "pages": [
+    {
+      "id": "home",
+      "title": { "id": "Beranda", "en": "Home" },
+      "phase": 1,
+      "priority": "P0",
+      "layout": "marketing",
+      "ssg": true,
+      "seoKeywords": {
+        "id": ["jasa ekspedisi indonesia", "cargo jakarta", "freight forwarder jakarta"],
+        "en": ["freight forwarder indonesia", "logistics company jakarta", "cargo service indonesia"]
+      },
+      "schema": ["Organization", "LocalBusiness"],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "blueprint-ready"
+    },
+    {
+      "id": "about",
+      "title": { "id": "Tentang Kami", "en": "About Us" },
+      "phase": 1,
+      "priority": "P0",
+      "layout": "marketing",
+      "ssg": true,
+      "seoKeywords": {
+        "id": ["profil perusahaan ekspedisi", "tentang ugc logistics"],
+        "en": ["about ugc logistics", "freight forwarder company profile"]
+      },
+      "schema": ["BreadcrumbList"],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "blueprint-ready"
+    },
+    {
+      "id": "services",
+      "title": { "id": "Layanan", "en": "Services" },
+      "phase": 1,
+      "priority": "P0",
+      "layout": "marketing",
+      "ssg": true,
+      "seoKeywords": {
+        "id": ["jasa logistik indonesia", "layanan ekspedisi lengkap"],
+        "en": ["logistics services indonesia", "one stop logistics solution"]
+      },
+      "schema": ["BreadcrumbList"],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "blueprint-ready"
+    },
+    {
+      "id": "service-domestic",
+      "title": { "id": "Distribusi Domestik", "en": "Domestic Distribution" },
+      "phase": 1,
+      "priority": "P0",
+      "layout": "marketing",
+      "ssg": true,
+      "seoKeywords": {
+        "id": ["ekspedisi domestik indonesia", "pengiriman antar pulau", "jasa kirim darat laut udara"],
+        "en": ["domestic freight indonesia", "inter-island shipping", "indonesia land sea air freight"]
+      },
+      "schema": ["Service", "FAQ", "BreadcrumbList"],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "blueprint-ready",
+      "relatedServices": ["service-international", "service-warehouse"]
+    },
+    {
+      "id": "service-international",
+      "title": { "id": "Freight Internasional", "en": "International Freight" },
+      "phase": 1,
+      "priority": "P0",
+      "layout": "marketing",
+      "ssg": true,
+      "seoKeywords": {
+        "id": ["freight forwarding internasional", "jasa ekspor impor jakarta", "pengiriman luar negeri"],
+        "en": ["international freight forwarding indonesia", "export import jakarta", "overseas shipping service"]
+      },
+      "schema": ["Service", "FAQ", "BreadcrumbList"],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "blueprint-ready",
+      "relatedServices": ["service-domestic", "service-import-dtd"]
+    },
+    {
+      "id": "service-import-dtd",
+      "title": { "id": "Import DTD & Kepabeanan", "en": "Import DTD & Customs" },
+      "phase": 1,
+      "priority": "P0",
+      "layout": "marketing",
+      "ssg": true,
+      "seoKeywords": {
+        "id": ["jasa import door to door", "customs clearance jakarta", "kepabeanan indonesia"],
+        "en": ["import door to door indonesia", "customs clearance service indonesia", "indonesia customs broker"]
+      },
+      "schema": ["Service", "FAQ", "BreadcrumbList"],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "blueprint-ready",
+      "relatedServices": ["service-international", "service-domestic"]
+    },
+    {
+      "id": "service-charter",
+      "title": { "id": "Blockspace & Charter", "en": "Blockspace & Charter" },
+      "phase": 1,
+      "priority": "P0",
+      "layout": "marketing",
+      "ssg": true,
+      "seoKeywords": {
+        "id": ["sewa pesawat cargo", "blockspace cargo indonesia", "charter cargo udara"],
+        "en": ["aircraft charter cargo indonesia", "blockspace freight", "air cargo charter"]
+      },
+      "schema": ["Service", "FAQ", "BreadcrumbList"],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "blueprint-ready",
+      "relatedServices": ["service-domestic", "service-project-cargo"]
+    },
+    {
+      "id": "service-warehouse",
+      "title": { "id": "Pergudangan & 3PL", "en": "Warehousing & 3PL" },
+      "phase": 1,
+      "priority": "P0",
+      "layout": "marketing",
+      "ssg": true,
+      "seoKeywords": {
+        "id": ["jasa gudang fulfillment jakarta", "3PL indonesia", "warehouse logistics"],
+        "en": ["warehousing fulfillment jakarta", "3PL logistics indonesia", "warehouse service jakarta"]
+      },
+      "schema": ["Service", "FAQ", "BreadcrumbList"],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "blueprint-ready",
+      "relatedServices": ["service-domestic", "service-international"]
+    },
+    {
+      "id": "service-project-cargo",
+      "title": { "id": "Kargo Proyek", "en": "Project Cargo" },
+      "phase": 1,
+      "priority": "P0",
+      "layout": "marketing",
+      "ssg": true,
+      "seoKeywords": {
+        "id": ["kargo proyek indonesia", "pengiriman alat berat", "heavy lift cargo"],
+        "en": ["project cargo indonesia", "heavy lift shipping", "oversized cargo transport"]
+      },
+      "schema": ["Service", "FAQ", "BreadcrumbList"],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "blueprint-ready",
+      "relatedServices": ["service-charter", "service-domestic"]
+    },
+    {
+      "id": "quote",
+      "title": { "id": "Minta Penawaran", "en": "Request Quote" },
+      "phase": 1,
+      "priority": "P0",
+      "layout": "conversion",
+      "ssg": false,
+      "schema": [],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "blueprint-ready"
+    },
+    {
+      "id": "contact",
+      "title": { "id": "Kontak", "en": "Contact" },
+      "phase": 1,
+      "priority": "P0",
+      "layout": "marketing",
+      "ssg": true,
+      "schema": ["LocalBusiness", "BreadcrumbList"],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "blueprint-ready"
+    },
+    {
+      "id": "track",
+      "title": { "id": "Lacak Kiriman", "en": "Track Shipment" },
+      "phase": 1,
+      "priority": "P1",
+      "layout": "marketing",
+      "ssg": false,
+      "schema": [],
+      "contentStatus": "partial",
+      "designStatus": "blueprint-ready"
+    },
+    {
+      "id": "insights",
+      "title": { "id": "Wawasan", "en": "Insights" },
+      "phase": 2,
+      "priority": "P1",
+      "layout": "marketing",
+      "ssg": true,
+      "schema": ["BreadcrumbList"],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "blueprint-ready"
+    },
+    {
+      "id": "privacy",
+      "title": { "id": "Kebijakan Privasi", "en": "Privacy Policy" },
+      "phase": 1,
+      "priority": "P2",
+      "layout": "utility",
+      "ssg": true,
+      "schema": [],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "standard"
+    },
+    {
+      "id": "terms",
+      "title": { "id": "Syarat & Ketentuan", "en": "Terms of Service" },
+      "phase": 1,
+      "priority": "P2",
+      "layout": "utility",
+      "ssg": true,
+      "schema": [],
+      "contentStatus": "TODO-COPY",
+      "designStatus": "standard"
+    }
+  ]
+}
