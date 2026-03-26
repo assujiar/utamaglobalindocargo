@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
+import { AnimatedLink } from "@/components/ui/AnimatedLink";
 import { getLocalizedPath } from "@/lib/utils/routes";
 import { services } from "@/lib/content/services";
 import type { Locale } from "@/lib/i18n/config";
@@ -112,12 +113,12 @@ function Footer({ locale, dictionary }: FooterProps) {
                   locale === "id" ? "layanan" : "services";
                 return (
                   <li key={service.key}>
-                    <Link
+                    <AnimatedLink
                       href={`/${locale}/${servicesPath}/${slug}`}
-                      className={footerLinkClasses}
+                      className="text-sm"
                     >
                       {name}
-                    </Link>
+                    </AnimatedLink>
                   </li>
                 );
               })}
@@ -131,20 +132,20 @@ function Footer({ locale, dictionary }: FooterProps) {
             </h3>
             <ul className="flex flex-col gap-2.5">
               <li>
-                <Link
+                <AnimatedLink
                   href={getLocalizedPath("about", locale)}
-                  className={footerLinkClasses}
+                  className="text-sm"
                 >
                   {dictionary.nav.about}
-                </Link>
+                </AnimatedLink>
               </li>
               <li>
-                <Link
+                <AnimatedLink
                   href={getLocalizedPath("contact", locale)}
-                  className={footerLinkClasses}
+                  className="text-sm"
                 >
                   {dictionary.nav.contact}
-                </Link>
+                </AnimatedLink>
               </li>
               <li>
                 {/* Insights — Phase 2 placeholder */}
@@ -168,20 +169,20 @@ function Footer({ locale, dictionary }: FooterProps) {
             </h3>
             <ul className="flex flex-col gap-2.5">
               <li>
-                <Link
+                <AnimatedLink
                   href={getLocalizedPath("track", locale)}
-                  className={footerLinkClasses}
+                  className="text-sm"
                 >
                   {dictionary.nav.track}
-                </Link>
+                </AnimatedLink>
               </li>
               <li>
-                <Link
+                <AnimatedLink
                   href={getLocalizedPath("quote", locale)}
-                  className={footerLinkClasses}
+                  className="text-sm"
                 >
                   {dictionary.nav.quote}
-                </Link>
+                </AnimatedLink>
               </li>
               <li>
                 {/* Download Company Profile — placeholder until admin upload */}

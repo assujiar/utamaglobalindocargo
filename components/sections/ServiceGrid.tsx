@@ -90,8 +90,8 @@ function ServiceCard({
           href={href}
           className={cn(
             "group relative flex flex-col glass-dark card-shine p-6 sm:p-7",
-            "[transition:transform_200ms_ease-out,border-color_300ms_ease-out,box-shadow_300ms_ease-out,background_300ms_ease-out]",
-            "hover:border-[rgba(255,70,0,0.35)] hover:shadow-[0_0_60px_rgba(255,70,0,0.15),0_0_120px_rgba(255,70,0,0.05)] hover:bg-[rgba(255,255,255,0.07)]",
+            "[transition:transform_250ms_ease-out,border-color_300ms_ease-out,box-shadow_300ms_ease-out,background_300ms_ease-out]",
+            "hover:-translate-y-1.5 hover:border-[rgba(255,70,0,0.35)] hover:shadow-[0_0_60px_rgba(255,70,0,0.15),0_8px_40px_rgba(255,70,0,0.08)] hover:bg-[rgba(255,255,255,0.07)]",
             "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color-primary]",
             "h-full",
           )}
@@ -126,10 +126,10 @@ function ServiceCard({
           {/* Tagline */}
           <p className="relative z-10 text-sm text-[--color-text-secondary] mb-auto group-hover:text-[--color-text-primary] transition-colors duration-300">{tagline}</p>
 
-          {/* Explore link with arrow */}
-          <span className="relative z-10 mt-5 pt-4 border-t border-[rgba(255,255,255,0.06)] group-hover:border-[rgba(255,70,0,0.15)] inline-flex items-center gap-2 text-sm font-semibold text-[--color-primary] group-hover:gap-3.5 transition-all duration-300 w-full">
+          {/* Explore link with arrow slide-in */}
+          <span className="relative z-10 mt-5 pt-4 border-t border-[rgba(255,255,255,0.06)] group-hover:border-[rgba(255,70,0,0.15)] inline-flex items-center gap-2 text-sm font-semibold text-[--color-primary] transition-all duration-300 w-full">
             {exploreLabel}
-            <ArrowRight className="size-4 ml-auto group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true" />
+            <ArrowRight className="size-4 ml-auto opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out" aria-hidden="true" />
           </span>
         </Link>
       </MagneticElement>

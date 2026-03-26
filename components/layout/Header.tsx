@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { getLocalizedPath, getAlternatePathFromUrl } from "@/lib/utils/routes";
 import { services } from "@/lib/content/services";
@@ -201,7 +200,7 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
                   {dictionary.nav.quote}
                 </Button>
 
-                {/* Mobile hamburger */}
+                {/* Mobile hamburger with morph animation */}
                 <button
                   type="button"
                   className={cn(
@@ -212,7 +211,23 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
                   aria-label="Open menu"
                   aria-expanded={mobileNavOpen}
                 >
-                  <Menu className="size-6" />
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+                    <line
+                      x1="4" y1="7" x2="20" y2="7"
+                      className="transition-all duration-300 origin-center"
+                      style={mobileNavOpen ? { transform: "translateY(5px) rotate(45deg)" } : undefined}
+                    />
+                    <line
+                      x1="4" y1="12" x2="20" y2="12"
+                      className="transition-all duration-300"
+                      style={mobileNavOpen ? { opacity: 0 } : undefined}
+                    />
+                    <line
+                      x1="4" y1="17" x2="20" y2="17"
+                      className="transition-all duration-300 origin-center"
+                      style={mobileNavOpen ? { transform: "translateY(-5px) rotate(-45deg)" } : undefined}
+                    />
+                  </svg>
                 </button>
               </>
             )}

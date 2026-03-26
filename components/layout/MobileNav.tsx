@@ -76,24 +76,40 @@ function MobileNav({
             </button>
           </div>
 
-          {/* Nav content — slide in from right */}
+          {/* Nav content — staggered link entrance */}
           <motion.nav
             className="flex flex-col flex-1 overflow-y-auto pb-8"
-            initial={{ x: 40, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 40, opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={{
+              open: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } },
+              closed: { transition: { staggerChildren: 0.03, staggerDirection: -1 } },
+            }}
             aria-label="Mobile navigation"
           >
-            <Link
-              href={getLocalizedPath("home", locale)}
-              className={linkClasses}
-              onClick={onClose}
+            <motion.div
+              variants={{
+                open: { opacity: 1, x: 0, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } },
+                closed: { opacity: 0, x: 30, transition: { duration: 0.15 } },
+              }}
             >
-              {dictionary.nav.home}
-            </Link>
+              <Link
+                href={getLocalizedPath("home", locale)}
+                className={linkClasses}
+                onClick={onClose}
+              >
+                {dictionary.nav.home}
+              </Link>
+            </motion.div>
 
             {/* Services with expandable sub-items */}
+            <motion.div
+              variants={{
+                open: { opacity: 1, x: 0, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } },
+                closed: { opacity: 0, x: 30, transition: { duration: 0.15 } },
+              }}
+            >
             <button
               type="button"
               onClick={() => setServicesExpanded(!servicesExpanded)}
@@ -151,41 +167,76 @@ function MobileNav({
                 </motion.div>
               )}
             </AnimatePresence>
+            </motion.div>
 
-            <Link
-              href={getLocalizedPath("about", locale)}
-              className={linkClasses}
-              onClick={onClose}
+            <motion.div
+              variants={{
+                open: { opacity: 1, x: 0, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } },
+                closed: { opacity: 0, x: 30, transition: { duration: 0.15 } },
+              }}
             >
-              {dictionary.nav.about}
-            </Link>
+              <Link
+                href={getLocalizedPath("about", locale)}
+                className={linkClasses}
+                onClick={onClose}
+              >
+                {dictionary.nav.about}
+              </Link>
+            </motion.div>
 
-            {/* Insights — Phase 2 placeholder */}
-            <span className={cn(linkClasses, "text-[--color-text-secondary] cursor-default")}>
-              {dictionary.nav.insights}
-            </span>
-
-            <Link
-              href={getLocalizedPath("track", locale)}
-              className={linkClasses}
-              onClick={onClose}
+            <motion.div
+              variants={{
+                open: { opacity: 1, x: 0, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } },
+                closed: { opacity: 0, x: 30, transition: { duration: 0.15 } },
+              }}
             >
-              {dictionary.nav.track}
-            </Link>
+              {/* Insights — Phase 2 placeholder */}
+              <span className={cn(linkClasses, "text-[--color-text-secondary] cursor-default")}>
+                {dictionary.nav.insights}
+              </span>
+            </motion.div>
 
-            <Link
-              href={getLocalizedPath("contact", locale)}
-              className={linkClasses}
-              onClick={onClose}
+            <motion.div
+              variants={{
+                open: { opacity: 1, x: 0, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } },
+                closed: { opacity: 0, x: 30, transition: { duration: 0.15 } },
+              }}
             >
-              {dictionary.nav.contact}
-            </Link>
+              <Link
+                href={getLocalizedPath("track", locale)}
+                className={linkClasses}
+                onClick={onClose}
+              >
+                {dictionary.nav.track}
+              </Link>
+            </motion.div>
+
+            <motion.div
+              variants={{
+                open: { opacity: 1, x: 0, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } },
+                closed: { opacity: 0, x: 30, transition: { duration: 0.15 } },
+              }}
+            >
+              <Link
+                href={getLocalizedPath("contact", locale)}
+                className={linkClasses}
+                onClick={onClose}
+              >
+                {dictionary.nav.contact}
+              </Link>
+            </motion.div>
 
             {/* Spacer */}
             <div className="flex-1 min-h-8" />
 
             {/* Quote CTA — prominent at bottom */}
-            <div className="px-6 pt-4">
+            <motion.div
+              className="px-6 pt-4"
+              variants={{
+                open: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } },
+                closed: { opacity: 0, y: 20, transition: { duration: 0.15 } },
+              }}
+            >
               <Button
                 href={getLocalizedPath("quote", locale)}
                 size="lg"
@@ -194,7 +245,7 @@ function MobileNav({
               >
                 {dictionary.buttons.requestQuote}
               </Button>
-            </div>
+            </motion.div>
           </motion.nav>
         </motion.div>
       )}

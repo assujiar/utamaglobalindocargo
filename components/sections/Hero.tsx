@@ -11,6 +11,7 @@ import {
 import { ArrowRight, Globe, Truck, Plane, Container } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { Button } from "@/components/ui/Button";
+import { MagneticElement } from "@/components/motion/MagneticElement";
 import type { Locale } from "@/lib/i18n/config";
 
 interface HeroProps {
@@ -327,9 +328,11 @@ function Hero({
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: EASE_OUT_EXPO, delay: isMobile ? 0.6 : 1.0 }}
         >
-          <Button href={ctaHref} size="lg">
-            {ctaLabel}
-          </Button>
+          <MagneticElement strength={0.35}>
+            <Button href={ctaHref} size="lg">
+              {ctaLabel}
+            </Button>
+          </MagneticElement>
           <Button
             href={`/${locale}/${locale === "id" ? "layanan" : "services"}`}
             variant="tertiary"
