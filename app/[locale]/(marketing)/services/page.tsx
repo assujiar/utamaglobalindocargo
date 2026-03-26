@@ -17,27 +17,27 @@ const content = {
       "All UGC logistics services: domestic distribution, international freight, import & customs, blockspace & charter, 3PL warehousing, and project cargo.",
   },
   hero: {
-    headline: "One Partner for All Your Supply Chain Needs",
+    headline: "You Focus on Sales. We Handle the Shipping.",
     subline:
-      "From domestic distribution across 34 provinces to international freight to 150+ countries. UGC Logistics manages your entire logistics chain through a single point of contact.",
+      "Every business has different logistics challenges. Some need to reach remote Papua, others import raw materials from China. Tell us your situation, and we will find the right solution.",
   },
   serviceGrid: {
-    heading: "Six Integrated Services",
+    heading: "Pick What You Need",
     exploreLabel: "Learn More",
   },
   crossValue: {
-    heading: "Why One Logistics Partner?",
+    heading: "Why Deal with Five Vendors When One Will Do?",
     points: [
-      "A single point of contact for all needs, no multi-vendor coordination overhead",
-      "Coordinated schedules and documentation across services, reducing delay risks",
-      "Consistent quality standards from first mile to last mile",
-      "End-to-end visibility over all your cargo movements",
+      "One number, one contact person. No more calling different vendors for a single shipment",
+      "Schedules sync automatically across services. Cargo clears the port, goes to warehouse, ships out. Seamlessly",
+      "When something goes wrong, one person takes ownership. No finger-pointing between parties",
+      "Track all your cargo movements from one dashboard, not five different platforms",
     ],
   },
   ctaBand: {
-    heading: "Not Sure Which Service Fits Your Needs?",
-    ctaLabel: "Talk to Our Team",
-    trustLine: "We respond within 2 business hours.",
+    heading: "Not Sure Where to Start?",
+    ctaLabel: "Tell Us What You Need",
+    trustLine: "Free consultation. Our team responds within 2 business hours.",
   },
 };
 

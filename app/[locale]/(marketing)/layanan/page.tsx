@@ -17,27 +17,27 @@ const content = {
       "Seluruh layanan logistik UGC: distribusi domestik, freight internasional, import & kepabeanan, blockspace & charter, pergudangan 3PL, dan project cargo.",
   },
   hero: {
-    headline: "Satu Mitra untuk Seluruh Kebutuhan Rantai Pasok Anda",
+    headline: "Anda Fokus Jualan, Kami Urus Pengirimannya",
     subline:
-      "Dari distribusi domestik ke 34 provinsi hingga freight internasional ke 150+ negara. UGC Logistics mengelola seluruh rantai logistik Anda dengan satu titik kontak.",
+      "Setiap bisnis punya tantangan logistik yang berbeda. Ada yang butuh kirim ke pelosok Papua, ada yang impor bahan baku dari China. Ceritakan kebutuhan Anda, kami carikan solusinya.",
   },
   serviceGrid: {
-    heading: "Enam Layanan Terintegrasi",
-    exploreLabel: "Pelajari Lebih Lanjut",
+    heading: "Pilih yang Anda Butuhkan",
+    exploreLabel: "Selengkapnya",
   },
   crossValue: {
-    heading: "Mengapa Satu Mitra Logistik?",
+    heading: "Kenapa Repot Koordinasi Banyak Vendor?",
     points: [
-      "Satu titik kontak untuk seluruh kebutuhan, tidak perlu koordinasi antar vendor",
-      "Jadwal dan dokumentasi terkoordinasi antar layanan, mengurangi risiko keterlambatan",
-      "Standar kualitas konsisten dari pengiriman pertama hingga terakhir",
-      "Visibilitas end-to-end atas seluruh pergerakan barang Anda",
+      "Satu nomor, satu PIC. Tidak perlu telepon 5 vendor berbeda untuk satu pengiriman",
+      "Jadwal otomatis sinkron antar layanan. Barang dari pelabuhan langsung masuk gudang, langsung distribusi",
+      "Kalau ada masalah, satu orang yang bertanggung jawab. Bukan lempar-lemparan antar pihak",
+      "Anda bisa pantau semua pergerakan barang dari satu dashboard, bukan dari 5 platform berbeda",
     ],
   },
   ctaBand: {
-    heading: "Belum Yakin Layanan Mana yang Tepat?",
-    ctaLabel: "Konsultasi dengan Tim Kami",
-    trustLine: "Kami merespons dalam 2 jam kerja.",
+    heading: "Bingung Mulai dari Mana?",
+    ctaLabel: "Ceritakan Kebutuhan Anda",
+    trustLine: "Konsultasi gratis. Tim kami merespons dalam 2 jam kerja.",
   },
 };
 

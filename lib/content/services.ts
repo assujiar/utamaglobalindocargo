@@ -77,12 +77,12 @@ export const services: ServiceData[] = [
     number: "01",
     name_id: "Distribusi Domestik",
     name_en: "Domestic Distribution",
-    tagline_id: "Menjangkau 34 provinsi di seluruh Indonesia",
-    tagline_en: "Reaching all 34 provinces across Indonesia",
+    tagline_id: "Barang Anda harus sampai ke Jayapura besok?",
+    tagline_en: "Need your goods in Jayapura by tomorrow?",
     description_id:
-      "Jaringan distribusi terintegrasi untuk pengiriman darat, laut, dan udara ke seluruh pelosok Indonesia dengan pelacakan real-time dan jaminan ketepatan waktu.",
+      "Klien kami mengirim ke 34 provinsi setiap hari. Dari paket kecil sampai muatan penuh truk, via darat, laut, atau udara. Anda tinggal kasih alamat tujuan, kami yang atur sisanya.",
     description_en:
-      "Integrated distribution network for land, sea, and air delivery to every corner of Indonesia with real-time tracking and on-time guarantees.",
+      "Our clients ship to all 34 provinces every day. From small parcels to full truckloads, by land, sea, or air. Just give us the destination, and we handle the rest.",
     slug_id: "distribusi-domestik",
     slug_en: "domestic-distribution",
     icon: "Truck",
@@ -92,12 +92,12 @@ export const services: ServiceData[] = [
     number: "02",
     name_id: "Freight Internasional",
     name_en: "International Freight",
-    tagline_id: "Koneksi ke 150+ negara melalui jalur udara dan laut",
-    tagline_en: "Connecting to 150+ countries via air and ocean",
+    tagline_id: "Ekspor ke Eropa? Impor dari China? Kami sudah hapal rutenya.",
+    tagline_en: "Exporting to Europe? Importing from China? We know the routes.",
     description_id:
-      "Layanan freight forwarding internasional melalui jalur udara dan laut dengan jaringan agen global, konsolidasi kargo, dan pengelolaan dokumen ekspor-impor.",
+      "Sudah 25+ tahun kami mengirim kargo ke 150+ negara. Dokumen ekspor-impor, konsolidasi, dangerous goods. Anda tidak perlu pusing soal regulasi, itu bagian kami.",
     description_en:
-      "International freight forwarding via air and ocean with a global agent network, cargo consolidation, and export-import documentation management.",
+      "For over 25 years, we have shipped cargo to 150+ countries. Export-import docs, consolidation, dangerous goods. You do not need to worry about regulations, that is our job.",
     slug_id: "freight-internasional",
     slug_en: "international-freight",
     icon: "Globe",
@@ -107,12 +107,12 @@ export const services: ServiceData[] = [
     number: "03",
     name_id: "Import DTD & Kepabeanan",
     name_en: "Import DTD & Customs",
-    tagline_id: "Door-to-door import dengan pengurusan kepabeanan penuh",
-    tagline_en: "Door-to-door import with full customs clearance",
+    tagline_id: "Barang tertahan di Bea Cukai? Kami bisa bantu sekarang.",
+    tagline_en: "Cargo stuck at Customs? We can help right now.",
     description_id:
-      "Layanan import door-to-door lengkap termasuk pengurusan kepabeanan, perizinan, undername import, dan koordinasi pengiriman dari negara asal hingga gudang tujuan.",
+      "Impor itu ribet: HS Code, bea masuk, BPOM, SNI, jalur merah. Tapi itu urusan kami sehari-hari. Dari pintu supplier di luar negeri sampai pintu gudang Anda, satu PIC yang pegang semuanya.",
     description_en:
-      "Complete door-to-door import services including customs clearance, licensing, undername import, and delivery coordination from origin country to destination warehouse.",
+      "Importing is complicated: HS Codes, duties, permits, red lane inspections. But that is what we do every day. From your supplier's door overseas to your warehouse door, one contact handles everything.",
     slug_id: "import-dtd-kepabeanan",
     slug_en: "import-dtd-customs",
     icon: "FileCheck",
@@ -122,12 +122,12 @@ export const services: ServiceData[] = [
     number: "04",
     name_id: "Blockspace & Charter",
     name_en: "Blockspace & Charter",
-    tagline_id: "Kapasitas kargo terjamin untuk kebutuhan volume besar",
-    tagline_en: "Guaranteed cargo capacity for high-volume needs",
+    tagline_id: "Pabrik shutdown dan butuh spare part besok pagi?",
+    tagline_en: "Factory down and need spare parts by morning?",
     description_id:
-      "Alokasi ruang kargo tetap (blockspace) dan layanan charter pesawat untuk kebutuhan pengiriman volume besar, barang sensitif waktu, atau rute khusus.",
+      "Ketika penerbangan reguler tidak cukup, kami sewakan pesawat kargo untuk Anda. Dari 5 ton sampai 100+ ton. Pernah kami atur charter darurat Jakarta-Timika dalam 6 jam.",
     description_en:
-      "Fixed cargo space allocation (blockspace) and aircraft charter services for high-volume shipments, time-sensitive goods, or specialized routes.",
+      "When regular flights are not enough, we charter a cargo aircraft for you. From 5 tons to 100+ tons. We once arranged an emergency Jakarta-Timika charter in just 6 hours.",
     slug_id: "blockspace-charter",
     slug_en: "blockspace-charter",
     icon: "Plane",
@@ -137,12 +137,12 @@ export const services: ServiceData[] = [
     number: "05",
     name_id: "Pergudangan & 3PL",
     name_en: "Warehousing & 3PL",
-    tagline_id: "Gudang modern dengan sistem manajemen inventaris terintegrasi",
-    tagline_en: "Modern warehouses with integrated inventory management",
+    tagline_id: "Gudang penuh? Fulfillment kewalahan? Serahkan ke kami.",
+    tagline_en: "Warehouse overflowing? Fulfillment overwhelmed? Hand it to us.",
     description_id:
-      "Fasilitas pergudangan modern dengan WMS terintegrasi, layanan pick-and-pack, fulfillment e-commerce, dan distribusi last-mile sebagai solusi logistik pihak ketiga.",
+      "Klien e-commerce kami memproses ribuan order per hari dari satu gudang kami. WMS terintegrasi dengan Tokopedia, Shopee, Lazada. Anda terima order, kami yang pick, pack, dan kirim.",
     description_en:
-      "Modern warehouse facilities with integrated WMS, pick-and-pack services, e-commerce fulfillment, and last-mile distribution as a third-party logistics solution.",
+      "Our e-commerce clients process thousands of orders daily from our warehouse. WMS integrated with major marketplaces. You take the order, we pick, pack, and ship.",
     slug_id: "pergudangan-3pl",
     slug_en: "warehousing-3pl",
     icon: "Warehouse",
@@ -152,12 +152,12 @@ export const services: ServiceData[] = [
     number: "06",
     name_id: "Kargo Proyek",
     name_en: "Project Cargo",
-    tagline_id: "Pengiriman kargo berat dan berdimensi khusus",
-    tagline_en: "Heavy and oversized cargo transportation",
+    tagline_id: "Transformator 85 ton harus sampai ke site minggu depan?",
+    tagline_en: "85-ton transformer needs to reach the site next week?",
     description_id:
-      "Penanganan khusus untuk kargo berat, berdimensi besar, dan proyek industri termasuk survei rute, perizinan khusus, dan peralatan angkut spesialis.",
+      "Kami mengantarkan alat berat, komponen pembangkit, dan kargo oversize yang forwarder lain tolak. Survei rute, izin khusus, escort polisi, crane 500 ton. Semua kami koordinasikan.",
     description_en:
-      "Specialized handling for heavy, oversized, and industrial project cargo including route surveys, special permits, and specialist transport equipment.",
+      "We deliver heavy equipment, power plant components, and oversized cargo that other forwarders turn down. Route surveys, special permits, police escorts, 500-ton cranes. We coordinate it all.",
     slug_id: "kargo-proyek",
     slug_en: "project-cargo",
     icon: "Container",
@@ -172,56 +172,56 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   // ═══════════════════════════════════════════════════════════════
   domestic: {
     key: "domestic",
-    overview_id: `<p>UGC Logistics mengoperasikan jaringan distribusi domestik yang mencakup seluruh 34 provinsi di Indonesia melalui kombinasi moda transportasi darat, laut, dan udara. Kami menangani pengiriman mulai dari dokumen dan paket kecil hingga muatan penuh truk (FTL) dan kontainer (FCL), dengan kapabilitas konsolidasi untuk pengiriman parsial (LTL dan LCL) yang memungkinkan efisiensi biaya tanpa mengorbankan kecepatan.</p>
+    overview_id: `<p>Bayangkan Anda punya pelanggan di Makassar yang butuh stok minggu depan, distributor di Medan yang menunggu kiriman bulanan, dan toko retail di Jayapura yang sudah kehabisan barang. Semuanya harus sampai tepat waktu, dalam kondisi sempurna, dan Anda harus bisa memantau semuanya tanpa harus menelepon satu per satu.</p>
 
-<p>Untuk jalur darat di Pulau Jawa, Sumatera, dan Kalimantan, kami mengoperasikan armada truk yang dikelola langsung maupun mitra transportasi terverifikasi  - mencakup truk box, wingbox, trailer, hingga kendaraan khusus berpendingin untuk produk cold chain. Pengiriman antar-pulau dilayani melalui jaringan pelayaran reguler ke pelabuhan-pelabuhan utama seperti Makassar, Balikpapan, Jayapura, Ambon, dan Sorong, serta jalur udara untuk kargo sensitif waktu ke seluruh bandara komersial di Indonesia.</p>
+<p>Itulah yang kami kerjakan setiap hari untuk ratusan perusahaan di Indonesia. Jaringan kami mencakup seluruh 34 provinsi, via darat (truk box, wingbox, trailer, kendaraan berpendingin), laut (kontainer FCL dan LCL ke pelabuhan Makassar, Balikpapan, Jayapura, Ambon, Sorong), dan udara (ke seluruh bandara komersial). Mau kirim satu paket atau satu truk penuh, kami punya solusinya.</p>
 
-<p>Setiap pengiriman dilengkapi nomor tracking yang dapat dipantau secara real-time melalui portal pelanggan kami. Tim operasional kami tersebar di hub-hub strategis  - Jakarta, Surabaya, Medan, Makassar, dan Balikpapan  - memastikan koordinasi pengambilan dan pengantaran yang responsif. Untuk kebutuhan distribusi reguler, kami menawarkan skema kontrak dengan jadwal pickup terjadwal, tarif tetap, dan dedicated account manager.</p>`,
+<p>Yang membedakan kami: Anda punya satu account manager yang tahu persis situasi pengiriman Anda. Bukan call center, tapi orang yang bisa Anda hubungi langsung. Ditambah tracking real-time di setiap titik, dan tim operasional di 5 hub strategis (Jakarta, Surabaya, Medan, Makassar, Balikpapan) yang siap merespons kalau ada perubahan mendadak. Untuk pengiriman rutin, kami tawarkan kontrak dengan jadwal pickup tetap dan tarif yang sudah disepakati, supaya Anda bisa fokus ke bisnis, bukan logistik.</p>`,
 
-    overview_en: `<p>UGC Logistics operates a domestic distribution network spanning all 34 provinces of Indonesia through a combination of land, sea, and air transport modes. We handle shipments ranging from documents and small parcels to full truckloads (FTL) and full container loads (FCL), with consolidation capabilities for partial shipments (LTL and LCL) that enable cost efficiency without compromising speed.</p>
+    overview_en: `<p>Picture this: you have a client in Makassar who needs stock next week, a distributor in Medan waiting for a monthly shipment, and a retail store in Jayapura that just ran out of inventory. Everything has to arrive on time, in perfect condition, and you need to track it all without making a dozen phone calls.</p>
 
-<p>For overland routes across Java, Sumatra, and Kalimantan, we operate a fleet of directly managed trucks and verified transport partners  - including box trucks, wingbox trailers, flatbed trailers, and refrigerated vehicles for cold chain products. Inter-island shipments are served through regular shipping lines to major ports such as Makassar, Balikpapan, Jayapura, Ambon, and Sorong, as well as air freight for time-sensitive cargo to all commercial airports in Indonesia.</p>
+<p>That is what we do every day for hundreds of companies across Indonesia. Our network covers all 34 provinces via land (box trucks, wingbox trailers, flatbed trailers, refrigerated vehicles), sea (FCL and LCL containers to ports like Makassar, Balikpapan, Jayapura, Ambon, Sorong), and air (to every commercial airport in the country). Whether you are shipping a single parcel or a full truckload, we have the solution.</p>
 
-<p>Every shipment is assigned a tracking number that can be monitored in real time through our customer portal. Our operations teams are based at strategic hubs  - Jakarta, Surabaya, Medan, Makassar, and Balikpapan  - ensuring responsive pickup and delivery coordination. For recurring distribution needs, we offer contract arrangements with scheduled pickups, fixed rates, and a dedicated account manager.</p>`,
+<p>What sets us apart: you get one dedicated account manager who actually knows your shipping situation. Not a call center, but a real person you can reach directly. Add real-time tracking at every checkpoint, plus operations teams at 5 strategic hubs (Jakarta, Surabaya, Medan, Makassar, Balikpapan) ready to respond if anything changes. For recurring shipments, we offer contracts with fixed pickup schedules and agreed-upon rates, so you can focus on your business instead of logistics.</p>`,
 
     capabilities: [
       {
         title_id: "Air Freight (AF)",
         title_en: "Air Freight (AF)",
-        description_id: "Pengiriman udara domestik ke seluruh bandara komersial di Indonesia. Cocok untuk kargo sensitif waktu, dokumen penting, dan barang bernilai tinggi.",
-        description_en: "Domestic air freight to all commercial airports in Indonesia. Ideal for time-sensitive cargo, critical documents, and high-value goods.",
+        description_id: "Pelanggan Anda butuh barangnya besok? Kirim via udara ke seluruh bandara komersial Indonesia. Paling sering dipakai untuk spare part mendesak, dokumen kontrak, dan barang bernilai tinggi.",
+        description_en: "Your customer needs it tomorrow? Ship by air to any commercial airport in Indonesia. Most commonly used for urgent spare parts, contract documents, and high-value goods.",
         metric_id: "Transit 1-2 hari ke kota besar",
         metric_en: "1-2 day transit to major cities",
       },
       {
         title_id: "Full Container Load (FCL)",
         title_en: "Full Container Load (FCL)",
-        description_id: "Pengiriman kontainer penuh via laut antar pulau. Tersedia kontainer 20' dan 40' standar maupun high-cube untuk volume besar.",
-        description_en: "Full container shipments via inter-island sea freight. Available in 20' and 40' standard and high-cube containers for large volumes.",
+        description_id: "Volume besar, satu kontainer sendiri. Barang Anda tidak dicampur dengan siapapun. Tersedia 20' dan 40' (standar dan high-cube) untuk pengiriman antar pulau.",
+        description_en: "Large volume, your own container. Your goods are not mixed with anyone else's. Available in 20' and 40' (standard and high-cube) for inter-island shipping.",
         metric_id: "20' & 40' HC tersedia",
         metric_en: "20' & 40' HC available",
       },
       {
         title_id: "Less than Container Load (LCL)",
         title_en: "Less than Container Load (LCL)",
-        description_id: "Konsolidasi kargo parsial untuk pengiriman laut yang tidak memerlukan kontainer penuh. Hemat biaya untuk volume menengah.",
-        description_en: "Consolidated partial cargo for sea shipments that don't require a full container. Cost-effective for medium volumes.",
+        description_id: "Belum cukup banyak untuk satu kontainer? Tidak masalah. Kami konsolidasikan barang Anda dengan pengirim lain supaya biaya kirim tetap masuk akal.",
+        description_en: "Not enough to fill a container? No problem. We consolidate your goods with other shippers so the shipping cost stays reasonable.",
         metric_id: "Konsolidasi mingguan",
         metric_en: "Weekly consolidation",
       },
       {
         title_id: "Full Truckload (FTL)",
         title_en: "Full Truckload (FTL)",
-        description_id: "Truk dedikasi untuk muatan penuh  - box, wingbox, trailer, hingga kendaraan berpendingin. Pickup dan delivery langsung tanpa transit.",
-        description_en: "Dedicated trucks for full loads  - box trucks, wingbox, trailers, and refrigerated vehicles. Direct pickup and delivery without transit.",
+        description_id: "Satu truk khusus untuk Anda. Dari box truck 4 ton sampai trailer 32 ton, termasuk kendaraan berpendingin untuk cold chain. Langsung jemput, langsung antar, tanpa transit.",
+        description_en: "A dedicated truck just for you. From 4-ton box trucks to 32-ton trailers, including refrigerated vehicles for cold chain. Picked up and delivered directly, no transit stops.",
         metric_id: "Armada dari 4 hingga 32 ton",
         metric_en: "Fleet from 4 to 32 tons",
       },
       {
         title_id: "Less than Truckload (LTL)",
         title_en: "Less than Truckload (LTL)",
-        description_id: "Konsolidasi muatan darat untuk pengiriman yang tidak memenuhi kapasitas truk penuh. Jadwal reguler untuk rute-rute utama di Jawa dan Sumatera.",
-        description_en: "Overland cargo consolidation for shipments below full truck capacity. Regular schedules for major routes across Java and Sumatra.",
+        description_id: "Kiriman Anda tidak cukup satu truk penuh? Gabung dengan muatan lain di rute yang sama. Jadwal harian untuk Jawa, reguler untuk Sumatera dan rute utama lainnya.",
+        description_en: "Your shipment does not fill a full truck? Share space with other cargo on the same route. Daily schedules for Java, regular runs for Sumatra and other main routes.",
         metric_id: "Jadwal harian rute Jawa",
         metric_en: "Daily schedule for Java routes",
       },
@@ -230,38 +230,38 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     process: [
       {
         number: "01",
-        title_id: "Konsultasi & Penawaran",
-        title_en: "Consultation & Quotation",
-        description_id: "Tim kami menganalisis kebutuhan pengiriman Anda  - volume, tujuan, jenis barang  - dan memberikan penawaran harga beserta rekomendasi moda terbaik.",
-        description_en: "Our team analyzes your shipping needs  - volume, destination, cargo type  - and provides a quotation with the best mode recommendation.",
+        title_id: "Ceritakan Kebutuhan Anda",
+        title_en: "Tell Us What You Need",
+        description_id: "Hubungi kami, jelaskan mau kirim apa, ke mana, dan kapan. Kami carikan moda terbaik dan kasih penawaran harga. Biasanya dalam hitungan jam.",
+        description_en: "Reach out, tell us what you are shipping, where, and when. We find the best mode and send you a quote. Usually within hours.",
       },
       {
         number: "02",
-        title_id: "Penjemputan Barang",
-        title_en: "Cargo Pickup",
-        description_id: "Armada kami menjemput barang di lokasi Anda sesuai jadwal yang disepakati. Untuk kontrak reguler, jadwal pickup otomatis.",
-        description_en: "Our fleet picks up cargo at your location on the agreed schedule. For regular contracts, pickup schedules are automated.",
+        title_id: "Kami Jemput di Tempat Anda",
+        title_en: "We Pick Up at Your Location",
+        description_id: "Armada kami datang ke gudang atau kantor Anda sesuai jadwal. Untuk pelanggan kontrak, pickup-nya otomatis tanpa perlu telepon lagi.",
+        description_en: "Our fleet comes to your warehouse or office on schedule. For contract clients, pickups are automatic, no need to call each time.",
       },
       {
         number: "03",
-        title_id: "Konsolidasi & Sortir",
-        title_en: "Consolidation & Sorting",
-        description_id: "Barang dikonsolidasi di hub terdekat, disortir berdasarkan tujuan, dan dimuat ke moda transportasi yang sesuai.",
-        description_en: "Cargo is consolidated at the nearest hub, sorted by destination, and loaded onto the appropriate transport mode.",
+        title_id: "Kami Sortir & Konsolidasi",
+        title_en: "We Sort & Consolidate",
+        description_id: "Di hub kami, barang disortir berdasarkan tujuan dan dimuat ke truk, kontainer, atau pesawat yang tepat. Proses ini yang bikin pengiriman efisien.",
+        description_en: "At our hub, cargo is sorted by destination and loaded onto the right truck, container, or aircraft. This is what makes shipping efficient.",
       },
       {
         number: "04",
-        title_id: "Transit & Pelacakan",
-        title_en: "Transit & Tracking",
-        description_id: "Selama transit, Anda dapat memantau status pengiriman secara real-time melalui nomor tracking di portal kami.",
-        description_en: "During transit, you can monitor shipment status in real time via the tracking number on our portal.",
+        title_id: "Anda Pantau dari HP",
+        title_en: "You Track from Your Phone",
+        description_id: "Setiap pengiriman punya nomor tracking. Anda bisa cek status real-time di portal kami. Atau tanya langsung ke account manager Anda.",
+        description_en: "Every shipment gets a tracking number. Check real-time status on our portal. Or just ask your account manager directly.",
       },
       {
         number: "05",
-        title_id: "Pengantaran & POD",
-        title_en: "Delivery & POD",
-        description_id: "Barang diantarkan ke alamat tujuan. Proof of delivery (POD) ditandatangani penerima dan tersedia secara digital.",
-        description_en: "Cargo is delivered to the destination address. Proof of delivery (POD) is signed by the recipient and available digitally.",
+        title_id: "Sampai & Terbukti",
+        title_en: "Delivered & Confirmed",
+        description_id: "Barang sampai di tujuan, penerima tanda tangan POD (Proof of Delivery), dan buktinya langsung tersedia secara digital di sistem kami.",
+        description_en: "Cargo arrives at destination, recipient signs POD (Proof of Delivery), and the confirmation is immediately available digitally in our system.",
       },
     ],
 
@@ -274,14 +274,14 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     clientStory: {
       industry_id: "FMCG & Distribusi",
       industry_en: "FMCG & Distribution",
-      challenge_id: "Perusahaan FMCG membutuhkan distribusi rutin ke 28 provinsi dengan jadwal yang konsisten dan kerusakan barang yang minimal, terutama untuk produk consumer goods yang sensitif terhadap suhu dan penanganan.",
-      challenge_en: "An FMCG company needed routine distribution to 28 provinces with consistent schedules and minimal product damage, especially for consumer goods sensitive to temperature and handling.",
-      solution_id: "UGC menerapkan skema distribusi multi-moda dengan jadwal pickup terjadwal di 3 gudang klien, konsolidasi di hub Jakarta dan Surabaya, serta pengiriman via darat (Jawa-Sumatera) dan laut (Indonesia Timur) dengan cold chain monitoring.",
-      solution_en: "UGC implemented a multi-modal distribution scheme with scheduled pickups from 3 client warehouses, consolidation at Jakarta and Surabaya hubs, and delivery via land (Java-Sumatra) and sea (Eastern Indonesia) with cold chain monitoring.",
-      result_id: "Efisiensi distribusi meningkat 40%, waktu transit berkurang dari rata-rata 5 hari menjadi 3 hari, dan tingkat kerusakan barang turun di bawah 0,1%.",
-      result_en: "Distribution efficiency improved by 40%, average transit time reduced from 5 days to 3 days, and product damage rate fell below 0.1%.",
-      display_quote_id: "Distribusi multi-pulau ke 28 provinsi dalam 72 jam  - dengan zero damage rate dan pelacakan real-time di setiap titik.",
-      display_quote_en: "Multi-island distribution to 28 provinces within 72 hours  - with near-zero damage rate and real-time tracking at every point.",
+      challenge_id: "Sebuah perusahaan FMCG kehilangan pelanggan di Indonesia Timur karena pengiriman yang tidak konsisten. Produk mereka sensitif terhadap suhu, dan setiap keterlambatan berarti stok expired di toko.",
+      challenge_en: "An FMCG company was losing customers in Eastern Indonesia due to inconsistent delivery. Their products were temperature-sensitive, and every delay meant expired stock on store shelves.",
+      solution_id: "Kami rancang jadwal distribusi tetap: pickup terjadwal dari 3 gudang mereka, konsolidasi di hub Jakarta dan Surabaya, lalu kirim via darat (Jawa-Sumatera) dan laut (Indonesia Timur) dengan cold chain monitoring di setiap titik.",
+      solution_en: "We designed a fixed distribution schedule: scheduled pickups from their 3 warehouses, consolidation at our Jakarta and Surabaya hubs, then delivery via land (Java-Sumatra) and sea (Eastern Indonesia) with cold chain monitoring at every point.",
+      result_id: "Transit turun dari 5 hari jadi 3 hari. Kerusakan barang turun di bawah 0,1%. Dan yang paling penting, pelanggan mereka di 28 provinsi mulai pesan lebih banyak karena stok selalu tersedia.",
+      result_en: "Transit dropped from 5 days to 3 days. Product damage fell below 0.1%. And most importantly, their customers across 28 provinces started ordering more because stock was always available.",
+      display_quote_id: "Dari 5 hari jadi 3 hari ke 28 provinsi. Kerusakan nyaris nol. Pelanggan mereka mulai pesan lebih banyak.",
+      display_quote_en: "From 5 days down to 3 across 28 provinces. Near-zero damage. Their customers started ordering more.",
     },
 
     faq: [
@@ -332,17 +332,17 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   // ═══════════════════════════════════════════════════════════════
   international: {
     key: "international",
-    overview_id: `<p>Sebagai freight forwarder berlisensi IATA dan anggota WCA (World Cargo Alliance), UGC Logistics menyediakan layanan freight forwarding internasional yang mencakup ekspor dan impor melalui jalur udara dan laut ke lebih dari 150 negara. Kami bekerja dengan jaringan agen global yang terverifikasi untuk memastikan kelancaran pengiriman dari titik asal hingga tujuan akhir, termasuk pengurusan dokumen perdagangan internasional.</p>
+    overview_id: `<p>Klien kami ada yang rutin ekspor komponen mesin ke 5 negara di Eropa. Ada yang impor bahan baku dari China setiap bulan. Ada juga yang baru pertama kali kirim barang ke luar negeri dan bingung mulai dari mana. Tiga situasi berbeda, tapi semuanya butuh satu hal yang sama: partner freight yang benar-benar paham rutenya.</p>
 
-<p>Untuk ekspor, kami menangani seluruh proses mulai dari pengambilan barang di gudang pengirim, pengurusan dokumen PEB (Pemberitahuan Ekspor Barang), stuffing kontainer atau konsolidasi kargo udara, hingga pengiriman ke pelabuhan atau bandara muat. Untuk impor, kami berkoordinasi dengan agen asal untuk memastikan pengiriman tepat waktu dan mendukung proses customs clearance di Indonesia (lihat juga layanan <a href="/id/layanan/import-dtd-kepabeanan">Import DTD & Kepabeanan</a> kami untuk penanganan impor door-to-door).</p>
+<p>Dengan lisensi IATA dan keanggotaan WCA (World Cargo Alliance), kami punya jaringan agen terverifikasi di 150+ negara. Artinya: di negara tujuan ada orang kami yang memastikan barang Anda tidak stuck. Untuk ekspor, kami urus semuanya dari pickup di gudang Anda, dokumen PEB, stuffing kontainer, sampai barang naik ke kapal atau pesawat. Untuk impor, kami koordinasi dengan agen asal supaya pengiriman tepat waktu (butuh handling sampai gudang Anda? Lihat layanan <a href="/id/layanan/import-dtd-kepabeanan">Import DTD & Kepabeanan</a> kami).</p>
 
-<p>Kami menawarkan fleksibilitas moda: FCL dan LCL untuk kargo laut, serta general cargo dan dangerous goods (DG) handling untuk kargo udara. Tim freight kami memahami regulasi ekspor-impor Indonesia, klasifikasi HS Code, persyaratan Letter of Credit, dan ketentuan incoterms (FOB, CIF, EXW, DDP, dll.) untuk memastikan pengiriman Anda sesuai dengan ketentuan perdagangan internasional yang berlaku.</p>`,
+<p>Yang sering bikin pusing soal pengiriman internasional itu bukan kirimnya, tapi dokumennya. HS Code, Letter of Credit, Certificate of Origin, incoterms (FOB, CIF, EXW, DDP). Tim kami mengurus ini setiap hari, jadi Anda tidak perlu jadi ahli perdagangan internasional. Anda mau kirim apa, ke mana, dan kapan. Sisanya kami yang pegang.</p>`,
 
-    overview_en: `<p>As an IATA-licensed freight forwarder and WCA (World Cargo Alliance) member, UGC Logistics provides international freight forwarding services covering exports and imports via air and ocean to over 150 countries. We work with a verified global agent network to ensure smooth shipments from origin to final destination, including handling of international trade documentation.</p>
+    overview_en: `<p>One of our clients regularly exports machine components to 5 countries in Europe. Another imports raw materials from China every month. A third was shipping internationally for the first time and had no idea where to start. Three different situations, but all of them needed the same thing: a freight partner who genuinely knows the routes.</p>
 
-<p>For exports, we manage the entire process from cargo pickup at the shipper's warehouse, preparation of export documentation (PEB  - Pemberitahuan Ekspor Barang), container stuffing or air cargo consolidation, through to delivery at the loading port or airport. For imports, we coordinate with origin agents to ensure timely shipping and support the customs clearance process in Indonesia (see also our <a href="/en/services/import-dtd-customs">Import DTD & Customs</a> service for door-to-door import handling).</p>
+<p>With our IATA license and WCA (World Cargo Alliance) membership, we have verified agents in 150+ countries. That means: there is someone on our side in the destination country making sure your cargo does not get stuck. For exports, we handle everything from pickup at your warehouse, export documentation (PEB), container stuffing, all the way to the cargo boarding the vessel or aircraft. For imports, we coordinate with origin agents for timely shipping (need handling all the way to your warehouse? See our <a href="/en/services/import-dtd-customs">Import DTD & Customs</a> service).</p>
 
-<p>We offer mode flexibility: FCL and LCL for ocean freight, as well as general cargo and dangerous goods (DG) handling for air freight. Our freight team understands Indonesian export-import regulations, HS Code classifications, Letter of Credit requirements, and incoterms provisions (FOB, CIF, EXW, DDP, etc.) to ensure your shipments comply with applicable international trade standards.</p>`,
+<p>The headache with international shipping is rarely the shipping itself. It is the paperwork. HS Codes, Letters of Credit, Certificates of Origin, incoterms (FOB, CIF, EXW, DDP). Our team processes these daily, so you do not need to become an international trade expert. Just tell us what you are shipping, where, and when. We take care of the rest.</p>`,
 
     capabilities: [
       {
@@ -433,14 +433,14 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     clientStory: {
       industry_id: "Manufaktur & Ekspor",
       industry_en: "Manufacturing & Export",
-      challenge_id: "Produsen manufaktur membutuhkan pengiriman rutin komponen mesin ke 5 negara di Asia Tenggara dan Eropa dengan jadwal ketat untuk mendukung lini produksi pelanggan mereka di luar negeri.",
-      challenge_en: "A manufacturer needed regular shipments of machine components to 5 countries across Southeast Asia and Europe on tight schedules to support their overseas customers' production lines.",
-      solution_id: "UGC menyusun jadwal konsolidasi LCL mingguan ke 3 pelabuhan utama dan booking FCL bulanan ke 2 tujuan bervolume tinggi, dengan pengelolaan dokumen ekspor dan koordinasi agen tujuan secara terpusat.",
-      solution_en: "UGC arranged weekly LCL consolidation schedules to 3 major ports and monthly FCL bookings to 2 high-volume destinations, with centralized export documentation management and destination agent coordination.",
-      result_id: "Lead time pengiriman berkurang 30% berkat konsolidasi terjadwal, dan biaya freight turun 18% dibanding pengiriman per-shipment sebelumnya.",
-      result_en: "Shipping lead time was reduced by 30% through scheduled consolidation, and freight costs decreased by 18% compared to the previous per-shipment approach.",
-      display_quote_id: "Konsolidasi terjadwal ke 5 negara tujuan  - lead time turun 30% dan biaya freight lebih efisien 18%.",
-      display_quote_en: "Scheduled consolidation to 5 destination countries  - lead time down 30% and freight costs 18% more efficient.",
+      challenge_id: "Produsen komponen mesin ini ekspor ke 5 negara, tapi setiap pengiriman diarrange terpisah. Hasilnya: lead time panjang, biaya freight tinggi, dan pelanggan di luar negeri komplain karena jadwal produksi mereka terganggu.",
+      challenge_en: "This machine component manufacturer exported to 5 countries, but every shipment was arranged separately. Result: long lead times, high freight costs, and overseas customers complaining about disrupted production schedules.",
+      solution_id: "Kami susun jadwal konsolidasi LCL mingguan ke 3 pelabuhan utama dan FCL bulanan ke 2 tujuan bervolume tinggi. Semua dokumen ekspor kami kelola terpusat, dan agen di setiap negara tujuan sudah kami briefing.",
+      solution_en: "We built a weekly LCL consolidation schedule to 3 major ports and monthly FCL bookings to 2 high-volume destinations. All export documentation managed centrally, with destination agents fully briefed.",
+      result_id: "Lead time turun 30%. Biaya freight turun 18%. Dan pelanggan mereka di luar negeri berhenti komplain karena suku cadang selalu datang tepat waktu.",
+      result_en: "Lead time dropped 30%. Freight costs fell 18%. And their overseas customers stopped complaining because parts always arrived on schedule.",
+      display_quote_id: "Lead time turun 30%, biaya freight turun 18%. Pelanggan mereka di 5 negara berhenti komplain.",
+      display_quote_en: "Lead time down 30%, freight costs down 18%. Their customers in 5 countries stopped complaining.",
     },
 
     faq: [
@@ -485,17 +485,17 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   // ═══════════════════════════════════════════════════════════════
   "import-dtd": {
     key: "import-dtd",
-    overview_id: `<p>Layanan Import Door-to-Door (DTD) UGC Logistics menangani seluruh rangkaian proses impor barang dari negara asal hingga tiba di gudang Anda di Indonesia. Kami memposisikan diri sebagai satu-satunya titik kontak yang Anda butuhkan  - mulai dari koordinasi pengambilan barang di supplier luar negeri, pengiriman internasional (laut atau udara), customs clearance di pelabuhan/bandara Indonesia, hingga pengantaran ke alamat tujuan akhir.</p>
+    overview_id: `<p>Anda tahu yang paling bikin stres soal impor? Bukan menunggu kapalnya. Tapi menunggu barang keluar dari pelabuhan. HS Code salah? Kena denda. Izin kurang? Barang ditahan berminggu-minggu. Bea masuk dihitung lebih? Uang Anda yang terbuang. Ini bukan teori, ini yang kami lihat terjadi pada importir yang mencoba urus sendiri.</p>
 
-<p>Tim kepabeanan kami berpengalaman menangani klasifikasi tarif (HS Code), perhitungan bea masuk dan pajak impor (BM, PPN, PPh 22), pengurusan PIB (Pemberitahuan Impor Barang), serta perizinan khusus yang mungkin diperlukan seperti izin BPOM untuk produk farmasi, SNI untuk produk elektronik, atau izin dari Kementerian Perdagangan untuk barang tertentu. Kami juga menyediakan layanan undername import bagi perusahaan yang belum memiliki Angka Pengenal Importir (API).</p>
+<p>Tim kepabeanan kami sudah menangani ribuan PIB (Pemberitahuan Impor Barang). Kami tahu persis HS Code mana yang sering jadi masalah, izin apa yang dibutuhkan untuk produk farmasi (BPOM), elektronik (SNI), atau barang tertentu (izin Kemendag), dan bagaimana menghitung bea masuk supaya Anda tidak overpay. Belum punya API? Kami sediakan layanan undername import.</p>
 
-<p>Untuk barang yang memerlukan pemeriksaan fisik oleh Bea Cukai (jalur merah), tim kami mendampingi seluruh proses di lapangan untuk meminimalkan waktu tertahan. Kami beroperasi di seluruh pelabuhan utama Indonesia  - Tanjung Priok (Jakarta), Tanjung Perak (Surabaya), Belawan (Medan), Soekarno-Hatta (bandara), serta pelabuhan lainnya sesuai kebutuhan. Setiap impor dilengkapi dengan laporan status yang transparan sehingga Anda selalu mengetahui posisi barang dan estimasi waktu tiba.</p>`,
+<p>Yang kami janjikan: dari pintu supplier di luar negeri sampai pintu gudang Anda, satu orang yang pegang. Supplier di China dispatch barang? Kami yang koordinasi. Barang kena jalur merah di pelabuhan? Tim kami yang dampingi pemeriksaan fisiknya langsung. Kami beroperasi di Tanjung Priok, Tanjung Perak, Belawan, Soekarno-Hatta, dan pelabuhan lain sesuai kebutuhan. Setiap tahap ada update status, jadi Anda selalu tahu barang ada di mana.</p>`,
 
-    overview_en: `<p>UGC Logistics' Import Door-to-Door (DTD) service handles the entire import process from the origin country through to delivery at your warehouse in Indonesia. We position ourselves as the single point of contact you need  - from coordinating cargo pickup at your overseas supplier, international shipping (ocean or air), customs clearance at Indonesian ports/airports, through to final-mile delivery to your designated address.</p>
+    overview_en: `<p>You know what is most stressful about importing? It is not waiting for the ship. It is waiting for your goods to clear the port. Wrong HS Code? You get fined. Missing permit? Your cargo sits for weeks. Overpaid duties? That is money you will never get back. This is not theory. This is what we see happen to importers who try to handle it themselves.</p>
 
-<p>Our customs team has extensive experience in tariff classification (HS Codes), calculation of import duties and taxes (BM, PPN, PPh 22), preparation of PIB (Import Declaration), and obtaining special permits that may be required  - such as BPOM licenses for pharmaceutical products, SNI certifications for electronics, or Ministry of Trade permits for regulated goods. We also provide undername import services for companies that do not yet hold an Importer Identification Number (API).</p>
+<p>Our customs team has processed thousands of PIB (Import Declarations). We know exactly which HS Codes cause problems, what permits are needed for pharmaceuticals (BPOM), electronics (SNI), or regulated goods (Ministry of Trade), and how to calculate duties so you do not overpay. Do not have an API (Importer Identification Number) yet? We offer undername import services.</p>
 
-<p>For goods subject to physical inspection by Customs (red lane), our team accompanies the entire process on-site to minimize dwell time. We operate across all major Indonesian ports  - Tanjung Priok (Jakarta), Tanjung Perak (Surabaya), Belawan (Medan), Soekarno-Hatta (airport), and other ports as needed. Every import is accompanied by transparent status reports so you always know the position of your goods and the estimated arrival time.</p>`,
+<p>Our promise: from your supplier's door overseas to your warehouse door in Indonesia, one person owns the entire process. Supplier in China dispatches goods? We coordinate it. Cargo gets assigned red lane at the port? Our team is there in person for the physical inspection. We operate at Tanjung Priok, Tanjung Perak, Belawan, Soekarno-Hatta, and other ports as needed. Every step comes with a status update, so you always know where your goods are.</p>`,
 
     capabilities: [
       {
@@ -579,14 +579,14 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     clientStory: {
       industry_id: "Farmasi & Kesehatan",
       industry_en: "Pharmaceutical & Healthcare",
-      challenge_id: "Importir farmasi membutuhkan impor rutin bahan baku obat dari India dan China yang memerlukan izin BPOM, sertifikat analisa, dan penanganan cold chain  - dengan deadline ketat untuk mendukung jadwal produksi.",
-      challenge_en: "A pharmaceutical importer needed regular imports of raw drug materials from India and China requiring BPOM permits, certificates of analysis, and cold chain handling  - under tight deadlines to support production schedules.",
-      solution_id: "UGC mengelola seluruh proses DTD termasuk pre-clearance preparation selama barang dalam perjalanan, pengurusan izin BPOM secara paralel, dan penggunaan kontainer reefer untuk menjaga suhu. Tim kepabeanan kami memastikan klasifikasi HS Code yang tepat untuk menghindari over-payment bea masuk.",
-      solution_en: "UGC managed the entire DTD process including pre-clearance preparation during transit, parallel BPOM permit processing, and reefer container usage for temperature control. Our customs team ensured accurate HS Code classification to avoid duty overpayment.",
-      result_id: "Waktu total dari supplier door ke gudang klien berkurang dari 28 hari menjadi 18 hari. Tidak ada satu pun shipment yang tertahan lebih dari 48 jam di pelabuhan selama 12 bulan berturut-turut.",
-      result_en: "Total time from supplier door to client warehouse was reduced from 28 days to 18 days. Not a single shipment was held at port for more than 48 hours over 12 consecutive months.",
-      display_quote_id: "Impor bahan baku farmasi dari 2 negara  - total waktu impor turun dari 28 menjadi 18 hari dengan zero port detention.",
-      display_quote_en: "Pharmaceutical raw material imports from 2 countries  - total import time reduced from 28 to 18 days with zero port detention.",
+      challenge_id: "Importir farmasi ini impor bahan baku obat dari India dan China. Masalahnya: izin BPOM lama, barang harus cold chain, dan setiap hari keterlambatan berarti lini produksi mereka berhenti. Sebelumnya, rata-rata 28 hari dari supplier sampai gudang.",
+      challenge_en: "This pharmaceutical importer brought in drug raw materials from India and China. The problem: BPOM permits took forever, goods needed cold chain, and every day of delay meant their production line stopped. Previously, it took an average of 28 days from supplier to warehouse.",
+      solution_id: "Kami mulai urus dokumen clearance dan izin BPOM selagi barang masih di perjalanan, bukan setelah barang sampai. Kontainer reefer untuk jaga suhu. Dan yang paling penting: kami pastikan klasifikasi HS Code-nya tepat supaya mereka tidak bayar bea masuk lebih dari seharusnya.",
+      solution_en: "We started processing clearance documents and BPOM permits while goods were still in transit, not after arrival. Reefer containers for temperature control. And most importantly: we ensured accurate HS Code classification so they would not overpay on import duties.",
+      result_id: "28 hari jadi 18 hari. Selama 12 bulan berturut-turut, tidak ada satu pun shipment yang stuck di pelabuhan lebih dari 48 jam. Lini produksi mereka tidak pernah berhenti lagi karena keterlambatan bahan baku.",
+      result_en: "28 days down to 18 days. For 12 consecutive months, not a single shipment was held at port for more than 48 hours. Their production line never stopped again due to raw material delays.",
+      display_quote_id: "28 hari jadi 18 hari. 12 bulan tanpa satu pun shipment tertahan. Produksi tidak pernah terganggu lagi.",
+      display_quote_en: "28 days down to 18. 12 months with zero port delays. Production never disrupted again.",
     },
 
     faq: [
@@ -637,17 +637,17 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   // ═══════════════════════════════════════════════════════════════
   charter: {
     key: "charter",
-    overview_id: `<p>Untuk kebutuhan pengiriman bervolume besar atau bersifat mendesak yang tidak dapat diakomodasi oleh jadwal penerbangan reguler, UGC Logistics menawarkan layanan blockspace dan charter pesawat. Blockspace adalah alokasi ruang kargo tetap pada penerbangan reguler yang kami amankan secara kontraktual dengan maskapai  - memberikan Anda jaminan kapasitas di rute-rute dengan permintaan tinggi tanpa harus menyewa seluruh pesawat.</p>
+    overview_id: `<p>Ceritanya selalu mirip: pabrik Anda shutdown karena satu komponen mesin rusak. Suku cadang ada di Jakarta, tapi site Anda di Timika. Penerbangan kargo reguler? Kapasitasnya tidak cukup, jadwalnya tidak cocok. Setiap jam yang lewat, kerugiannya bertambah. Di sinilah kami masuk.</p>
 
-<p>Untuk kebutuhan yang lebih besar atau rute yang tidak terlayani penerbangan kargo reguler, kami mengatur charter pesawat penuh. Kami bekerja sama dengan operator kargo udara untuk menyediakan pesawat mulai dari turboprop berkapasitas 5-8 ton hingga freighter widebody seperti B747F dengan kapasitas hingga 100+ ton. Charter cocok untuk: pengiriman darurat (mesin pengganti untuk pabrik yang shutdown), pengiriman massal musiman (produk menjelang Ramadan/Natal), atau pengiriman ke bandara terpencil yang tidak memiliki penerbangan kargo reguler.</p>
+<p>Blockspace berarti kami sudah mengamankan ruang kargo di penerbangan reguler secara kontraktual. Jadi di rute-rute padat, kapasitas Anda sudah terjamin tanpa harus sewa seluruh pesawat. Tapi kalau volumenya besar atau rutenya tidak dilayani penerbangan reguler, kami arrangekan charter pesawat penuh. Mulai dari turboprop (5-8 ton) untuk rute pendek, sampai B747F (100+ ton) untuk volume masif. Klien tambang kami pernah butuh kirim komponen crusher 12 ton ke Timika, dan kami atur charter B737F dalam 6 jam setelah telepon pertama.</p>
 
-<p>Tim charter kami menangani seluruh koordinasi  - negosiasi tarif dengan operator, pengurusan slot bandara, perizinan penerbangan khusus jika diperlukan, ground handling di origin dan destination, serta monitoring kargo dari loading hingga unloading. Layanan ini sering digunakan bersamaan dengan layanan <a href="/id/layanan/kargo-proyek">Kargo Proyek</a> kami untuk pengiriman peralatan industri yang mendesak.</p>`,
+<p>Kami urus semuanya: negosiasi tarif operator, slot bandara, izin penerbangan khusus, ground handling di kedua sisi, dan monitoring real-time dari loading sampai unloading. Layanan ini sering dikombinasikan dengan <a href="/id/layanan/kargo-proyek">Kargo Proyek</a> kami kalau barangnya perlu handling khusus di darat setelah mendarat.</p>`,
 
-    overview_en: `<p>For high-volume or urgent shipments that cannot be accommodated by regular flight schedules, UGC Logistics offers blockspace and aircraft charter services. Blockspace is a fixed cargo space allocation on regular flights that we secure contractually with airlines  - giving you guaranteed capacity on high-demand routes without having to charter an entire aircraft.</p>
+    overview_en: `<p>The story is always similar: your factory is shut down because one machine component broke. The replacement part is in Jakarta, but your site is in Timika. Regular cargo flights? Not enough capacity, wrong schedule. Every hour that passes, the losses add up. This is where we come in.</p>
 
-<p>For larger needs or routes not served by regular cargo flights, we arrange full aircraft charters. We work with air cargo operators to provide aircraft ranging from turboprops with 5-8 ton capacity to widebody freighters such as the B747F with capacity exceeding 100 tons. Charters are suitable for: emergency shipments (replacement machinery for a shut-down factory), seasonal bulk shipments (products ahead of Ramadan/Christmas), or deliveries to remote airports without regular cargo flights.</p>
+<p>Blockspace means we have already secured cargo space on regular flights through contracts with airlines. So on high-demand routes, your capacity is guaranteed without chartering an entire aircraft. But when the volume is large or the route is not served by regular flights, we arrange a full aircraft charter. From turboprops (5-8 tons) for short routes to B747F (100+ tons) for massive volumes. One of our mining clients needed to send a 12-ton crusher component to Timika, and we arranged a B737F charter within 6 hours of the first phone call.</p>
 
-<p>Our charter team handles all coordination  - rate negotiation with operators, airport slot arrangement, special flight permits when needed, ground handling at origin and destination, and cargo monitoring from loading through unloading. This service is frequently combined with our <a href="/en/services/project-cargo">Project Cargo</a> service for urgent industrial equipment deliveries.</p>`,
+<p>We handle everything: operator rate negotiation, airport slots, special flight permits, ground handling on both ends, and real-time monitoring from loading to unloading. This service is frequently combined with our <a href="/en/services/project-cargo">Project Cargo</a> service when cargo needs specialized ground handling after landing.</p>`,
 
     capabilities: [
       {
@@ -731,14 +731,14 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     clientStory: {
       industry_id: "Pertambangan & Energi",
       industry_en: "Mining & Energy",
-      challenge_id: "Perusahaan tambang di Papua membutuhkan pengiriman darurat komponen crusher seberat 12 ton yang harus tiba dalam 48 jam karena shutdown produksi. Tidak ada penerbangan kargo reguler ke lokasi dengan kapasitas memadai.",
-      challenge_en: "A mining company in Papua needed emergency delivery of a 12-ton crusher component within 48 hours due to a production shutdown. No regular cargo flight to the location had sufficient capacity.",
-      solution_id: "UGC mengaransir charter B737F dari Jakarta ke Timika dalam waktu 6 jam setelah permintaan diterima. Tim kami mengkoordinasikan ground handling khusus di kedua bandara dan pengangkutan darat dari bandara Timika ke lokasi tambang.",
-      solution_en: "UGC arranged a B737F charter from Jakarta to Timika within 6 hours of receiving the request. Our team coordinated specialized ground handling at both airports and overland transport from Timika airport to the mine site.",
-      result_id: "Komponen tiba di lokasi tambang dalam 36 jam sejak permintaan  - 12 jam lebih cepat dari target. Downtime produksi diminimalkan, menghindari kerugian estimasi Rp 2 miliar per hari.",
-      result_en: "The component arrived at the mine site within 36 hours of the request  - 12 hours ahead of target. Production downtime was minimized, avoiding estimated losses of IDR 2 billion per day.",
-      display_quote_id: "Charter darurat Jakarta-Timika dalam 36 jam  - komponen 12 ton tiba 12 jam lebih cepat dari target, menghindari kerugian produksi.",
-      display_quote_en: "Emergency charter Jakarta-Timika in 36 hours  - 12-ton component arrived 12 hours ahead of target, avoiding production losses.",
+      challenge_id: "Crusher di site tambang Papua tiba-tiba rusak. Produksi berhenti total. Kerugiannya? Rp 2 miliar per hari. Komponen pengganti seberat 12 ton ada di Jakarta, tapi tidak ada penerbangan kargo reguler yang kapasitasnya cukup ke Timika.",
+      challenge_en: "The crusher at a Papua mining site suddenly broke. Production halted completely. The cost? IDR 2 billion per day in losses. A 12-ton replacement component sat in Jakarta, but no regular cargo flight to Timika had enough capacity.",
+      solution_id: "Enam jam setelah telepon pertama, pesawat B737F sudah di-booking. Tim kami urus ground handling di kedua bandara dan transportasi darat dari bandara Timika ke lokasi tambang.",
+      solution_en: "Six hours after the first phone call, a B737F was booked. Our team arranged ground handling at both airports and overland transport from Timika airport to the mine site.",
+      result_id: "Komponen sampai di site dalam 36 jam, 12 jam lebih cepat dari deadline. Pabrik kembali beroperasi, dan klien menghindari kerugian miliaran rupiah.",
+      result_en: "The component reached the site in 36 hours, 12 hours ahead of the deadline. The plant was back up, and the client avoided billions in losses.",
+      display_quote_id: "Telepon jam 8 pagi. Pesawat B737F ter-booking jam 2 siang. Komponen 12 ton sampai di Papua dalam 36 jam.",
+      display_quote_en: "Call at 8 AM. B737F booked by 2 PM. 12-ton component delivered to Papua in 36 hours.",
     },
 
     faq: [
@@ -783,17 +783,17 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   // ═══════════════════════════════════════════════════════════════
   warehouse: {
     key: "warehouse",
-    overview_id: `<p>UGC Logistics mengoperasikan fasilitas pergudangan modern di area strategis Jakarta yang dirancang untuk mendukung kebutuhan penyimpanan, pengelolaan inventaris, dan fulfillment sebagai penyedia layanan logistik pihak ketiga (3PL). Gudang kami dilengkapi Warehouse Management System (WMS) yang terintegrasi dengan sistem klien untuk visibilitas stok real-time, pelacakan batch/lot, dan pelaporan otomatis.</p>
+    overview_id: `<p>Kalau Anda jualan di Tokopedia, Shopee, dan Lazada sekaligus, Anda pasti tahu pusingnya: stok harus sinkron di 3 platform, order harus diproses same-day, dan satu kesalahan picking bisa berujung retur dan review buruk. Salah satu klien kami pernah di posisi ini. Sekarang, semua fulfillment-nya jalan otomatis dari gudang kami.</p>
 
-<p>Layanan 3PL kami mencakup seluruh rantai fulfillment: penerimaan barang (inbound), quality check, putaway ke lokasi penyimpanan yang tepat, manajemen inventaris dengan FIFO/FEFO sesuai kebutuhan, pick-and-pack untuk pesanan individual maupun bulk, pelabelan, kitting, co-packing, hingga pengiriman keluar (outbound) baik via kurir untuk e-commerce maupun via truk untuk distribusi B2B. Kami mendukung integrasi langsung dengan platform e-commerce dan marketplace untuk automasi proses order fulfillment.</p>
+<p>Begini cara kerjanya: barang Anda masuk ke gudang kami, dicek kualitasnya, dan dicatat di WMS (Warehouse Management System) yang langsung terhubung ke marketplace dan sistem Anda. Order masuk otomatis dari Tokopedia, Shopee, atau Lazada. Tim gudang kami pick, pack, label, dan serahkan ke kurir. Anda tidak perlu sentuh satu kardus pun. Untuk order B2B, kami juga handle muat truk dan distribusi langsung.</p>
 
-<p>Fasilitas kami memenuhi standar keamanan dan kebersihan yang diperlukan untuk berbagai jenis produk  - dari consumer electronics hingga produk FMCG. Area penyimpanan dikelola dengan sistem zonasi untuk memisahkan barang berdasarkan kategori, suhu, atau persyaratan handling khusus. Untuk kebutuhan distribusi yang lebih luas, layanan pergudangan kami terintegrasi dengan layanan <a href="/id/layanan/distribusi-domestik">Distribusi Domestik</a> kami sehingga barang dapat langsung didistribusikan ke seluruh Indonesia dari gudang kami.</p>`,
+<p>Gudang kami di Jakarta dilengkapi sistem zonasi: barang consumer electronics terpisah dari FMCG, produk yang butuh suhu terkontrol punya area sendiri. Picking accuracy kami 99.7% (itu artinya dari 1000 order, rata-rata hanya 3 yang salah). Dan karena gudang kami terintegrasi langsung dengan layanan <a href="/id/layanan/distribusi-domestik">Distribusi Domestik</a>, barang bisa langsung didistribusikan ke seluruh Indonesia tanpa perlu pindah-pindah gudang.</p>`,
 
-    overview_en: `<p>UGC Logistics operates modern warehouse facilities in strategic Jakarta locations designed to support storage, inventory management, and fulfillment needs as a third-party logistics (3PL) provider. Our warehouses are equipped with a Warehouse Management System (WMS) integrated with client systems for real-time stock visibility, batch/lot tracking, and automated reporting.</p>
+    overview_en: `<p>If you sell on multiple marketplaces, you know the pain: inventory has to sync across platforms, orders need same-day processing, and one picking mistake leads to returns and bad reviews. One of our clients was stuck in exactly this situation. Now, their entire fulfillment runs automatically from our warehouse.</p>
 
-<p>Our 3PL services cover the entire fulfillment chain: goods receiving (inbound), quality checks, putaway to appropriate storage locations, inventory management with FIFO/FEFO as required, pick-and-pack for individual and bulk orders, labeling, kitting, co-packing, through to outbound shipping via couriers for e-commerce or trucks for B2B distribution. We support direct integration with e-commerce platforms and marketplaces for order fulfillment automation.</p>
+<p>Here is how it works: your goods arrive at our warehouse, get quality-checked, and are logged into our WMS (Warehouse Management System) which connects directly to your marketplaces and systems. Orders flow in automatically from Tokopedia, Shopee, Lazada, or wherever you sell. Our warehouse team picks, packs, labels, and hands off to the courier. You do not need to touch a single box. For B2B orders, we also handle truck loading and direct distribution.</p>
 
-<p>Our facilities meet the safety and cleanliness standards required for various product types  - from consumer electronics to FMCG products. Storage areas are managed with a zoning system to separate goods based on category, temperature, or special handling requirements. For broader distribution needs, our warehousing service integrates with our <a href="/en/services/domestic-distribution">Domestic Distribution</a> service so goods can be distributed directly across Indonesia from our warehouse.</p>`,
+<p>Our Jakarta warehouse uses a zoning system: consumer electronics are separated from FMCG, temperature-sensitive products have their own area. Our picking accuracy is 99.7% (that means out of 1,000 orders, only about 3 have errors on average). And because our warehouse integrates directly with our <a href="/en/services/domestic-distribution">Domestic Distribution</a> service, goods can be distributed across Indonesia without needing to move between warehouses.</p>`,
 
     capabilities: [
       {
@@ -877,14 +877,14 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     clientStory: {
       industry_id: "E-Commerce & Retail",
       industry_en: "E-Commerce & Retail",
-      challenge_id: "Brand e-commerce lokal yang menjual di 4 marketplace mengalami kesulitan mengelola inventaris dan fulfillment secara manual  - menyebabkan overselling, pengiriman terlambat, dan tingkat retur tinggi akibat kesalahan picking.",
-      challenge_en: "A local e-commerce brand selling on 4 marketplaces struggled to manage inventory and fulfillment manually  - causing overselling, late shipments, and high return rates due to picking errors.",
-      solution_id: "UGC mengimplementasikan WMS yang terintegrasi dengan 4 marketplace klien, memindahkan seluruh stok ke gudang kami, dan menerapkan proses pick-pack standar dengan barcode scanning untuk eliminasi kesalahan.",
-      solution_en: "UGC implemented a WMS integrated with the client's 4 marketplaces, moved all inventory to our warehouse, and applied standardized pick-pack processes with barcode scanning to eliminate errors.",
-      result_id: "Kesalahan picking turun dari 3.2% menjadi 0.3%. Waktu fulfillment dari 48 jam menjadi same-day untuk order sebelum jam 2 siang. Tingkat retur akibat kesalahan pengiriman turun 85%.",
-      result_en: "Picking errors dropped from 3.2% to 0.3%. Fulfillment time improved from 48 hours to same-day for orders before 2 PM. Return rate due to shipping errors decreased by 85%.",
-      display_quote_id: "Fulfillment e-commerce di 4 marketplace  - kesalahan picking turun 90% dan semua order diproses same-day.",
-      display_quote_en: "E-commerce fulfillment across 4 marketplaces  - picking errors down 90% and all orders processed same-day.",
+      challenge_id: "Brand e-commerce ini jualan di 4 marketplace sekaligus. Masalahnya: stok sering overselling, order diproses 48 jam, dan 3 dari 100 paket isinya salah. Review buruk mulai menumpuk, dan retur naik terus.",
+      challenge_en: "This e-commerce brand sold on 4 marketplaces simultaneously. The problem: frequent overselling, 48-hour order processing, and 3 out of every 100 packages shipped with wrong items. Bad reviews piled up, and returns kept climbing.",
+      solution_id: "Kami pindahkan semua stok ke gudang kami, hubungkan WMS langsung ke 4 marketplace mereka, dan terapkan barcode scanning di setiap tahap pick-and-pack. Order masuk otomatis, diproses tanpa sentuhan manual.",
+      solution_en: "We moved all their inventory to our warehouse, connected our WMS directly to their 4 marketplaces, and implemented barcode scanning at every pick-and-pack stage. Orders flow in automatically, processed without manual intervention.",
+      result_id: "Kesalahan picking turun dari 3.2% jadi 0.3%. Semua order sebelum jam 2 siang diproses same-day. Retur karena salah kirim turun 85%. Dan pemiliknya akhirnya bisa fokus ke marketing, bukan packing.",
+      result_en: "Picking errors dropped from 3.2% to 0.3%. Every order before 2 PM ships same-day. Returns from wrong shipments fell 85%. And the owner finally had time to focus on marketing instead of packing.",
+      display_quote_id: "Dari 48 jam jadi same-day. Kesalahan turun 90%. Pemiliknya sekarang fokus ke marketing, bukan packing.",
+      display_quote_en: "From 48 hours to same-day. Errors down 90%. The owner now focuses on marketing, not packing.",
     },
 
     faq: [
@@ -935,17 +935,17 @@ export const serviceDetails: Record<string, ServiceDetail> = {
   // ═══════════════════════════════════════════════════════════════
   "project-cargo": {
     key: "project-cargo",
-    overview_id: `<p>Layanan Project Cargo UGC Logistics dirancang untuk menangani pengiriman kargo yang tidak dapat diakomodasi oleh layanan freight standar  - barang berdimensi besar (oversize), berat berlebih (overweight), atau memerlukan penanganan khusus karena bentuk, nilai, atau sensitivitas material. Kami melayani sektor industri berat termasuk pertambangan, energi, konstruksi, minyak dan gas, serta infrastruktur telekomunikasi.</p>
+    overview_id: `<p>Forwarder biasa menolak barang Anda karena terlalu berat, terlalu besar, atau terlalu ribet? Itu justru spesialisasi kami. Transformator 85 ton, boiler pembangkit listrik, tower section telekomunikasi, pipa 20 meter. Kalau forwarder standar bilang "tidak bisa", kemungkinan besar kami bisa.</p>
 
-<p>Setiap proyek dimulai dengan survei rute (route survey) yang komprehensif: tim kami mengevaluasi kondisi jalan, kapasitas jembatan, radius belokan, overhead clearance, dan kendala fisik lainnya dari titik asal hingga tujuan. Berdasarkan survei ini, kami menyusun rencana transportasi detail yang mencakup pemilihan moda dan alat angkut (lowbed trailer, multi-axle hydraulic trailer, modular transporter), kebutuhan escort kendaraan, dan jadwal pengiriman yang memperhitungkan regulasi lalu lintas untuk kargo oversize.</p>
+<p>Setiap pengiriman project cargo dimulai dari survei rute yang detail: tim kami cek langsung kondisi jalan, kapasitas setiap jembatan di rute, radius belokan, overhead clearance, dan semua kendala fisik yang mungkin terjadi. Salah satu proyek kami melibatkan 3 unit transformator 85 ton dari Tanjung Priok ke Jawa Barat. Kami menemukan 4 jembatan yang kapasitasnya kurang, dan menyiapkan solusi bypass untuk masing-masing. Ketiga transformator sampai tanpa kerusakan, 5 hari lebih cepat dari target.</p>
 
-<p>Kami mengurus seluruh perizinan yang diperlukan  - Surat Izin Muatan Khusus dari Dinas Perhubungan, izin kepolisian untuk escort, dan izin dari otoritas jalan tol atau pelabuhan. Untuk kebutuhan lifting dan rigging di lokasi, kami berkoordinasi dengan penyedia crane dan heavy-lift equipment. Layanan ini sering dikombinasikan dengan <a href="/id/layanan/blockspace-charter">Blockspace & Charter</a> kami ketika komponen perlu diterbangkan dan kemudian ditransportasikan via darat ke lokasi proyek.</p>`,
+<p>Kami urus semua yang Anda tidak mau pusing: izin muatan khusus dari Dishub, escort polisi, izin tol dan pelabuhan, sewa crane sampai 500 ton untuk loading dan unloading. Tim kami sudah terbiasa beroperasi di lokasi tambang terpencil, site pembangkit listrik, dan proyek konstruksi di seluruh Indonesia. Butuh komponen diterbangkan dulu sebelum ditransportasikan darat? Kombinasikan dengan layanan <a href="/id/layanan/blockspace-charter">Blockspace & Charter</a> kami.</p>`,
 
-    overview_en: `<p>UGC Logistics' Project Cargo service is designed to handle shipments that cannot be accommodated by standard freight services  - oversized, overweight, or requiring special handling due to shape, value, or material sensitivity. We serve heavy industrial sectors including mining, energy, construction, oil and gas, and telecommunications infrastructure.</p>
+    overview_en: `<p>Other forwarders turn down your cargo because it is too heavy, too big, or too complicated? That is exactly our specialty. 85-ton transformers, power plant boilers, telecom tower sections, 20-meter pipes. If a standard forwarder says "we cannot do it," chances are we can.</p>
 
-<p>Every project begins with a comprehensive route survey: our team evaluates road conditions, bridge capacities, turning radii, overhead clearances, and other physical constraints from origin to destination. Based on this survey, we develop a detailed transport plan covering mode and equipment selection (lowbed trailers, multi-axle hydraulic trailers, modular transporters), vehicle escort requirements, and delivery schedules that account for traffic regulations for oversized cargo.</p>
+<p>Every project cargo shipment starts with a detailed route survey: our team physically checks road conditions, bridge capacities along the route, turning radii, overhead clearances, and every possible physical constraint. One of our projects involved 3 transformer units weighing 85 tons each, from Tanjung Priok to West Java. We found 4 bridges with insufficient capacity and prepared bypass solutions for each one. All three transformers arrived undamaged, 5 days ahead of schedule.</p>
 
-<p>We handle all required permits  - Special Load Permits from the Department of Transportation, police escort permits, and authorization from toll road or port authorities. For on-site lifting and rigging needs, we coordinate with crane and heavy-lift equipment providers. This service is frequently combined with our <a href="/en/services/blockspace-charter">Blockspace & Charter</a> service when components need to be flown in and then transported overland to the project site.</p>`,
+<p>We handle everything you do not want to deal with: special load permits from the Department of Transportation, police escorts, toll road and port authorizations, crane rental up to 500 tons for loading and unloading. Our team routinely operates at remote mining sites, power plant locations, and construction projects across Indonesia. Need the component flown in first before ground transport? Combine this with our <a href="/en/services/blockspace-charter">Blockspace & Charter</a> service.</p>`,
 
     capabilities: [
       {
@@ -1044,14 +1044,14 @@ export const serviceDetails: Record<string, ServiceDetail> = {
     clientStory: {
       industry_id: "Pertambangan & Energi",
       industry_en: "Mining & Energy",
-      challenge_id: "Perusahaan energi perlu mengirim 3 unit transformator masing-masing seberat 85 ton dari pelabuhan Tanjung Priok ke site pembangkit listrik di Jawa Barat  - melewati jalan provinsi dengan beberapa jembatan berkapasitas terbatas.",
-      challenge_en: "An energy company needed to transport 3 transformer units, each weighing 85 tons, from Tanjung Priok port to a power plant site in West Java  - traversing provincial roads with several weight-limited bridges.",
-      solution_id: "UGC melakukan survei rute selama 2 minggu, mengidentifikasi 4 jembatan yang memerlukan bypass atau penguatan sementara. Kami menggunakan multi-axle hydraulic trailer untuk mendistribusikan beban, mengurus izin dari 3 kabupaten, dan mengkoordinasikan escort polisi untuk 3 trip pengiriman malam hari.",
-      solution_en: "UGC conducted a 2-week route survey, identifying 4 bridges requiring bypasses or temporary reinforcement. We used multi-axle hydraulic trailers to distribute the load, obtained permits from 3 districts, and coordinated police escorts for 3 overnight delivery trips.",
-      result_id: "Ketiga transformator tiba di site tanpa kerusakan, tepat waktu sesuai jadwal commissioning klien. Total waktu pengiriman 15 hari dari port hingga positioning  - 5 hari lebih cepat dari estimasi awal.",
-      result_en: "All three transformers arrived on-site undamaged, on schedule for the client's commissioning timeline. Total delivery time was 15 days from port to positioning  - 5 days ahead of the initial estimate.",
-      display_quote_id: "3 transformator 85 ton dari pelabuhan ke site pembangkit  - tiba tanpa kerusakan, 5 hari lebih cepat dari target.",
-      display_quote_en: "Three 85-ton transformers from port to power plant site  - delivered undamaged, 5 days ahead of target.",
+      challenge_id: "Tiga transformator, masing-masing 85 ton, harus sampai dari Tanjung Priok ke site pembangkit di Jawa Barat. Masalahnya: rute melewati jalan provinsi dengan beberapa jembatan yang kapasitasnya di bawah 85 ton. Forwarder sebelumnya mundur setelah melihat rutenya.",
+      challenge_en: "Three transformers, 85 tons each, had to get from Tanjung Priok port to a power plant site in West Java. The problem: the route crossed provincial roads with several bridges rated below 85 tons. The previous forwarder backed out after seeing the route.",
+      solution_id: "Tim kami survei rute 2 minggu, temukan 4 jembatan bermasalah, dan siapkan solusi bypass untuk masing-masing. Pakai multi-axle hydraulic trailer untuk distribusi beban, urus izin dari 3 kabupaten, dan koordinasi escort polisi untuk 3 trip pengiriman malam.",
+      solution_en: "Our team spent 2 weeks surveying the route, found 4 problematic bridges, and prepared bypass solutions for each. Used multi-axle hydraulic trailers to distribute the load, secured permits from 3 districts, and coordinated police escorts for 3 overnight delivery trips.",
+      result_id: "Ketiga transformator sampai tanpa goresan, 5 hari lebih cepat dari jadwal commissioning. Forwarder yang mundur tadi sekarang merujuk klien project cargo-nya ke kami.",
+      result_en: "All three transformers arrived without a scratch, 5 days ahead of the commissioning schedule. The forwarder who backed out now refers their project cargo clients to us.",
+      display_quote_id: "3 x 85 ton. 4 jembatan bermasalah. Forwarder lain mundur. Kami selesaikan 5 hari lebih cepat.",
+      display_quote_en: "3 x 85 tons. 4 problematic bridges. Other forwarder backed out. We finished 5 days early.",
     },
 
     faq: [
