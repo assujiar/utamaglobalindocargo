@@ -49,7 +49,13 @@ function Footer({ locale, dictionary }: FooterProps) {
     "text-sm text-[--color-text-secondary] hover:text-[--color-text-inverse] transition-colors duration-150";
 
   return (
-    <footer className="bg-[--color-bg-dark] text-[--color-text-inverse]">
+    <motion.footer
+      className="bg-[--color-bg-dark] text-[--color-text-inverse]"
+      initial={prefersReduced ? undefined : { clipPath: "inset(8% 0 0 0)", opacity: 0.8 }}
+      whileInView={{ clipPath: "inset(0% 0 0 0)", opacity: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
+    >
       {/* Main footer grid */}
       <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10 pt-16 pb-12">
         <motion.div
@@ -225,7 +231,7 @@ function Footer({ locale, dictionary }: FooterProps) {
           </div>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 }
 
