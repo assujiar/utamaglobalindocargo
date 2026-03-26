@@ -97,11 +97,9 @@ export default async function ServicesPage({
       <BreadcrumbSchema />
 
       {/* Hero */}
-      <section className="pt-8 pb-20 sm:pt-12 sm:pb-28 bg-[--color-bg-dark] relative overflow-hidden">
-        {/* Ambient glow */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute -top-20 right-1/4 w-[500px] h-[500px] rounded-full bg-[--color-primary] opacity-[0.04] blur-[160px]" />
-        </div>
+      <section className="pt-8 pb-24 sm:pt-12 sm:pb-32 bg-[--color-bg-dark] relative overflow-hidden">
+        <div className="absolute inset-0 gradient-mesh-intense pointer-events-none" aria-hidden="true" />
+        <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <Breadcrumb
@@ -112,7 +110,7 @@ export default async function ServicesPage({
           />
           <ScrollReveal>
             <div className="mt-8 max-w-3xl mx-auto text-center">
-              <h1 className="font-serif text-heading-xl sm:text-display-sm font-bold text-[--color-text-primary] mb-5 tracking-[-0.02em]">
+              <h1 className="font-display text-heading-xl sm:text-display-sm font-bold gradient-text-vivid mb-5 tracking-[-0.03em]">
                 {content.hero.headline}
               </h1>
               <p className="text-lg sm:text-xl text-[--color-text-secondary] leading-relaxed">
@@ -122,8 +120,7 @@ export default async function ServicesPage({
           </ScrollReveal>
         </div>
 
-        {/* Bottom glow divider */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.12)] to-transparent" aria-hidden="true" />
+        <div className="absolute bottom-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
       </section>
 
       {/* Service Grid */}
@@ -134,23 +131,27 @@ export default async function ServicesPage({
       />
 
       {/* Cross-Service Value Statement */}
-      <section className="py-20 sm:py-28 bg-[--color-bg-dark-elevated] relative">
-        {/* Top glow divider */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.08)] to-transparent" aria-hidden="true" />
+      <section className="py-24 sm:py-32 relative overflow-hidden"
+        style={{ background: "linear-gradient(180deg, #09090B 0%, #0f0805 50%, #09090B 100%)" }}
+      >
+        <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/2 right-0 w-[400px] h-[600px] rounded-full bg-[--color-primary] opacity-[0.06] blur-[160px]" />
+        </div>
 
-        <div className="mx-auto max-w-[720px] px-5 sm:px-10">
+        <div className="relative z-10 mx-auto max-w-[720px] px-5 sm:px-10">
           <ScrollReveal>
             <p className="label-text text-[--color-primary] text-center mb-4">
               Keunggulan
             </p>
-            <h2 className="text-heading-md sm:text-heading-lg font-bold text-[--color-text-primary] text-center mb-10 tracking-[-0.02em]">
+            <h2 className="text-heading-md sm:text-heading-lg font-bold gradient-text text-center mb-12 tracking-[-0.02em]">
               {content.crossValue.heading}
             </h2>
             <ul className="space-y-5">
               {content.crossValue.points.map((point, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <span className="mt-2 size-1.5 rounded-full bg-[--color-primary] shrink-0" />
-                  <p className="text-[--color-text-secondary] leading-relaxed">
+                  <span className="mt-2 size-2 rounded-full bg-[--color-primary] shrink-0 shadow-[0_0_10px_rgba(255,70,0,0.4)]" />
+                  <p className="text-[--color-text-secondary] leading-relaxed text-lg">
                     {point}
                   </p>
                 </li>

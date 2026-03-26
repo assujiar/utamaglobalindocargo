@@ -1,5 +1,7 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
@@ -21,28 +23,48 @@ function CTABand({
   trustLine,
   className,
 }: CTABandProps) {
+  const sectionRef = useRef<HTMLElement>(null);
+  const prefersReduced = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+
   return (
     <section
+      ref={sectionRef}
       className={cn(
-        "py-24 sm:py-32 bg-[--color-bg-dark] text-center relative overflow-hidden",
+        "py-28 sm:py-36 text-center relative overflow-hidden",
         className,
       )}
+      style={{
+        background: "linear-gradient(135deg, #09090B 0%, #1a0a00 30%, #09090B 60%, #0d0502 100%)",
+      }}
     >
-      {/* Gradient mesh background */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[--color-primary] opacity-[0.04] blur-[200px]" />
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full bg-[--color-accent-warm] opacity-[0.03] blur-[160px]" />
-      </div>
+      {/* Animated gradient orbs */}
+      {!prefersReduced && (
+        <motion.div className="absolute inset-0 pointer-events-none" style={{ y: bgY }} aria-hidden="true">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full bg-[--color-primary] opacity-[0.12] blur-[200px] animate-[glow-pulse-intense_4s_ease-in-out_infinite]" />
+          <div className="absolute top-0 right-1/4 w-[500px] h-[500px] rounded-full bg-[--color-accent-warm] opacity-[0.08] blur-[160px]" />
+          <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] rounded-full bg-[--color-accent-coral] opacity-[0.06] blur-[140px]" />
+        </motion.div>
+      )}
+
+      {/* Grain overlay */}
+      <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
 
       {/* Top glow divider */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.15)] to-transparent" aria-hidden="true" />
+      <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
         <ScrollReveal>
-          <h2 className="text-heading-lg sm:text-heading-xl font-bold text-[--color-text-inverse] mb-4 tracking-[-0.02em]">
+          <h2 className="text-heading-lg sm:text-heading-xl md:text-display-sm font-bold gradient-text-vivid mb-6 tracking-[-0.03em]">
             {heading}
           </h2>
-          <p className="text-base sm:text-lg text-[--color-text-secondary] mb-10 max-w-xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-[--color-text-secondary] mb-12 max-w-xl mx-auto leading-relaxed">
             {trustLine}
           </p>
           <Button href={ctaHref} size="lg">
