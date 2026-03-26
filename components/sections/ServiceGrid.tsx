@@ -9,6 +9,8 @@ import { services, type ServiceData } from "@/lib/content/services";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
+import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -131,10 +133,17 @@ function ServiceGrid({
   return (
     <GSAPProvider>
       <section className={cn(
-        "relative",
+        "relative overflow-hidden",
         variant === "rows" ? "py-28 sm:py-40 section-elevated" : "py-28 sm:py-36 section-deep",
         className,
       )}>
+        <ScrollDrivenText
+          text="SERVICES"
+          className="absolute top-[35%] -translate-y-1/2 z-[1]"
+          speed={0.2}
+          direction="left"
+        />
+        <ScrollPattern variant={variant === "rows" ? "grid" : "dots"} count={12} speed={0.07} />
         {variant === "cards" && (
           <div className="absolute top-0 left-0 right-0 divider-subtle" aria-hidden="true" />
         )}

@@ -9,6 +9,8 @@ import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { FloatingOrb } from "@/components/motion/FloatingOrb";
+import { ScrollCharReveal } from "@/components/motion/ScrollCharReveal";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -32,6 +34,7 @@ function CTACentered({ heading, ctaLabel, ctaHref, trustLine, className }: Omit<
 
   return (
     <section className={cn("py-36 sm:py-52 relative overflow-hidden section-gradient-mesh", className)}>
+      <ScrollPattern variant="dots" count={15} speed={0.1} />
       <FloatingOrb
         className="absolute top-[10%] left-[5%] z-[1]"
         size={400}
@@ -145,6 +148,7 @@ function CTAImmersive({ heading, ctaLabel, ctaHref, trustLine, className }: Omit
 
   return (
     <section className={cn("py-32 sm:py-48 relative overflow-hidden section-glass-intense", className)}>
+      <ScrollPattern variant="lines" count={8} speed={0.06} />
       <div className="absolute top-0 left-0 right-0 divider-center-fade" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-3xl px-5 sm:px-10">

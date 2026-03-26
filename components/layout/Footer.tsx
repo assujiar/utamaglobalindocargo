@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils/cn";
 import { AnimatedLink } from "@/components/ui/AnimatedLink";
 import { MagneticElement } from "@/components/motion/MagneticElement";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import { Button } from "@/components/ui/Button";
 import { getLocalizedPath } from "@/lib/utils/routes";
@@ -44,6 +45,13 @@ function Footer({ locale, dictionary }: FooterProps) {
 
   return (
     <footer className="section-dark text-[--color-text-inverse] relative overflow-hidden">
+      {/* Scroll-driven oversized background text */}
+      <ScrollDrivenText
+        text="UGC LOGISTICS"
+        className="absolute top-[20%] -translate-y-1/2 z-[1]"
+        speed={0.15}
+        direction="right"
+      />
       {/* LET'S TALK CTA — dramatic full-width display text */}
       <GSAPProvider>
         <div className="relative border-t border-[rgba(255,255,255,0.06)]">

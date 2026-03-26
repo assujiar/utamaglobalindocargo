@@ -13,6 +13,7 @@ import { MagneticElement } from "@/components/motion/MagneticElement";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
 import { FloatingOrb } from "@/components/motion/FloatingOrb";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
 import type { Locale } from "@/lib/i18n/config";
 
 interface HeroProps {
@@ -106,6 +107,9 @@ function Hero({
         scale={{ from: 0.6, to: 1.0 }}
         opacity={{ from: 0.4, to: 0.8 }}
       />
+
+      {/* Scroll-driven decorative pattern */}
+      <ScrollPattern variant="dots" count={16} speed={0.12} />
 
       {/* Grain */}
       <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />

@@ -6,6 +6,9 @@ import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
+import { FloatingOrb } from "@/components/motion/FloatingOrb";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 
 // ─── Services Hero Section ───
@@ -24,6 +27,21 @@ export function ServicesHero({
   return (
     <GSAPProvider>
       <section className="pt-8 pb-24 sm:pt-12 sm:pb-32 bg-[--color-bg-dark] relative overflow-hidden">
+        <ScrollDrivenText
+          text="OUR SERVICES"
+          className="absolute top-[40%] -translate-y-1/2 z-[1]"
+          speed={0.3}
+          direction="left"
+        />
+        <FloatingOrb
+          className="absolute top-[10%] right-[-8%] z-[1]"
+          size={400}
+          color="rgba(255, 70, 0, 0.1)"
+          speed={0.2}
+          scale={{ from: 0.6, to: 1.1 }}
+          opacity={{ from: 0.3, to: 0.7 }}
+        />
+        <ScrollPattern variant="dots" count={14} speed={0.1} />
         <div
           className="absolute inset-0 gradient-mesh-intense pointer-events-none"
           aria-hidden="true"

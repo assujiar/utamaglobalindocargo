@@ -4,6 +4,8 @@ import { cn } from "@/lib/utils/cn";
 import { motion, useReducedMotion } from "framer-motion";
 import { CounterAnimation } from "@/components/motion/CounterAnimation";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
+import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
 import type { Locale } from "@/lib/i18n/config";
 
 interface StatItem {
@@ -54,6 +56,16 @@ function StatsBar({ locale, className }: StatsBarProps) {
       className={cn("py-32 sm:py-44 bg-[#080604] relative overflow-hidden", className)}
       style={{ backgroundImage: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,70,0,0.06) 0%, transparent 70%)" }}
     >
+      {/* Scroll-driven background text */}
+      <ScrollDrivenText
+        text="NUMBERS"
+        className="absolute top-[40%] -translate-y-1/2 z-[1]"
+        speed={0.2}
+        direction="left"
+      />
+      {/* Scroll-driven pattern */}
+      <ScrollPattern variant="grid" count={14} speed={0.09} />
+
       {/* Top divider — amber glow, unique */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[rgba(255,171,64,0.2)] to-transparent" aria-hidden="true" />
 

@@ -16,6 +16,8 @@ import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
 import { FloatingOrb } from "@/components/motion/FloatingOrb";
+import { ScrollCharReveal } from "@/components/motion/ScrollCharReveal";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
 import { Button } from "@/components/ui/Button";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 
@@ -244,16 +246,18 @@ function ValuePillars({ heading, values }: ValuePillarsProps) {
           scale={{ from: 0.9, to: 1.3 }}
           opacity={{ from: 0.4, to: 0.8 }}
         />
+        <ScrollPattern variant="dots" count={12} speed={0.08} />
         <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-12 lg:px-24 py-20 md:py-28">
           <div className="mb-12 md:mb-16 max-w-2xl">
-            <SplitTextReveal
+            <ScrollCharReveal
               as="h2"
-              type="words"
               className="font-serif text-3xl md:text-5xl text-[--color-text-primary] tracking-tight"
-              stagger={0.06}
+              colorFrom="rgba(245,245,245,0.15)"
+              colorTo="rgba(245,245,245,1)"
+              yOffset={30}
             >
               {heading}
-            </SplitTextReveal>
+            </ScrollCharReveal>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">

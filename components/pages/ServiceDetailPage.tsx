@@ -10,6 +10,8 @@ import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
 import { FloatingOrb } from "@/components/motion/FloatingOrb";
+import { ScrollCharReveal } from "@/components/motion/ScrollCharReveal";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import { ProcessFlow } from "@/components/sections/ProcessFlow";
 import { FAQSection } from "@/components/sections/FAQSection";
@@ -167,16 +169,19 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
       {/* ── 3. Capability Breakdown (dark elevated) ── */}
       <section className="py-28 sm:py-40 section-elevated relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent to-[rgba(255,255,255,0.06)]" aria-hidden="true" />
+        <ScrollPattern variant="dots" count={10} speed={0.07} />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <div className="mb-14 sm:mb-20">
-            <TextRevealByLine
+            <ScrollCharReveal
               as="h2"
-              staggerDelay={0.07}
               className="text-heading-xl sm:text-display-sm font-bold text-[--color-text-primary] tracking-[-0.03em]"
+              colorFrom="rgba(245,245,245,0.15)"
+              colorTo="rgba(245,245,245,1)"
+              yOffset={25}
             >
               {isId ? "Cakupan Layanan" : "Service Scope"}
-            </TextRevealByLine>
+            </ScrollCharReveal>
           </div>
 
           {/* Capabilities — rows with border separators */}

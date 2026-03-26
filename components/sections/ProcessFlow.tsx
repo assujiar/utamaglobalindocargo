@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 
 interface ProcessStep {
@@ -27,6 +28,7 @@ function ProcessFlow({ heading, steps, className }: ProcessFlowProps) {
   return (
     <GSAPProvider>
       <section className={cn("py-28 sm:py-40 bg-[#08080E] relative overflow-hidden", className)}>
+        <ScrollPattern variant="lines" count={8} speed={0.06} />
         {/* Unique divider: vertical left-side accent */}
         <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[rgba(255,70,0,0.2)] to-transparent" aria-hidden="true" />
 

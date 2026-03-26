@@ -6,6 +6,10 @@ import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ScrollVelocityText } from "@/components/motion/ScrollVelocityText";
 import { MagneticElement } from "@/components/motion/MagneticElement";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { ScrollCharReveal } from "@/components/motion/ScrollCharReveal";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
+import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
+import { FloatingOrb } from "@/components/motion/FloatingOrb";
 import { Button } from "@/components/ui/Button";
 import { getLocalizedPath } from "@/lib/utils/routes";
 import type { Locale } from "@/lib/i18n/config";
@@ -136,6 +140,24 @@ export function EditorialSection({
   return (
     <GSAPProvider>
       <section className="py-28 sm:py-40 bg-[#0A0810] relative overflow-hidden">
+        {/* Scroll-driven decorative background text */}
+        <ScrollDrivenText
+          text="GLOBAL REACH"
+          className="absolute top-[30%] -translate-y-1/2 z-[1]"
+          speed={0.25}
+          direction="right"
+        />
+        {/* Scroll-driven pattern overlay */}
+        <ScrollPattern variant="lines" count={10} speed={0.08} />
+        {/* Floating orb */}
+        <FloatingOrb
+          className="absolute top-[20%] left-[-10%] z-[1]"
+          size={350}
+          color="rgba(255, 70, 0, 0.08)"
+          speed={0.2}
+          scale={{ from: 0.6, to: 1.0 }}
+          opacity={{ from: 0.3, to: 0.7 }}
+        />
         {/* Parallax gradient orb — unique depth layer */}
         <ParallaxDepth speed={-0.15} className="absolute inset-0 pointer-events-none" disabled={false}>
           <div
@@ -191,7 +213,15 @@ export function EditorialSection({
 
             <div className="md:col-span-7 md:col-start-6 order-1 md:order-2">
               <ParallaxDepth speed={0.08} direction="down" scrubSmooth={0.5}>
-                <EditorialHeading heading={heading} />
+                <ScrollCharReveal
+                  as="h2"
+                  className="text-display-md sm:text-display-lg font-bold text-[--color-text-inverse] tracking-[-0.04em]"
+                  colorFrom="rgba(255,255,255,0.15)"
+                  colorTo="rgba(255,255,255,1)"
+                  yOffset={40}
+                >
+                  {heading}
+                </ScrollCharReveal>
               </ParallaxDepth>
             </div>
           </div>
