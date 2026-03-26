@@ -48,14 +48,42 @@ export function ScrollCharReveal({
     ).matches;
     if (prefersReduced) return;
 
+    const isMobile = window.innerWidth < 768;
+
     gsap.registerPlugin(ScrollTrigger);
 
     const chars = containerRef.current.querySelectorAll<HTMLElement>(".sc-char");
     if (!chars.length) return;
 
+    // Mobile: simple opacity fade-in only, no per-char offsets
+    if (isMobile) {
+      gsap.set(chars, { opacity: 0.3, color: colorFrom });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 85%",
+          end: "top 40%",
+          scrub: 0.4,
+        },
+      });
+
+      tl.to(chars, {
+        opacity: 1,
+        color: colorTo,
+        stagger: stagger,
+        duration: 1,
+        ease: "power2.out",
+      });
+
+      return () => {
+        tl.kill();
+      };
+    }
+
+    // Desktop: full per-character scroll-driven animation
     const totalChars = chars.length;
 
-    // Set initial state — each char starts offset, scaled down, and dim
     chars.forEach((char, i) => {
       const progress = i / totalChars;
       gsap.set(char, {
@@ -66,7 +94,6 @@ export function ScrollCharReveal({
       });
     });
 
-    // Create a timeline that scrubs through the entire viewport pass
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
@@ -76,7 +103,6 @@ export function ScrollCharReveal({
       },
     });
 
-    // Stagger each character's reveal across the scroll range
     tl.to(chars, {
       y: 0,
       scale: scaleRange.to,
@@ -87,7 +113,7 @@ export function ScrollCharReveal({
       ease: "power2.out",
     });
 
-    // Second phase: gentle continuous parallax after reveal
+    // Second phase: gentle continuous parallax after reveal (desktop only)
     chars.forEach((char, i) => {
       const speed = 0.02 + (i % 3) * 0.01;
       gsap.to(char, {
