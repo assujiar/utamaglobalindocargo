@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils/cn";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { ScrollPattern } from "@/components/motion/ScrollPattern";
+import { AnimatedDivider } from "@/components/motion/AnimatedDivider";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 
 interface ProcessStep {
@@ -29,7 +30,11 @@ function ProcessFlow({ heading, steps, className }: ProcessFlowProps) {
     <GSAPProvider>
       <section className={cn("py-28 sm:py-40 bg-[#08080E] relative overflow-hidden", className)}>
         <ScrollPattern variant="lines" count={8} speed={0.06} />
-        {/* Unique divider: vertical left-side accent */}
+        {/* Animated top divider with cross endpoints */}
+        <div className="absolute top-4 left-0 right-0 px-8 sm:px-16">
+          <AnimatedDivider color="rgba(255,70,0,0.15)" endpointShape="cross" />
+        </div>
+        {/* Vertical left-side accent */}
         <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[rgba(255,70,0,0.2)] to-transparent" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">

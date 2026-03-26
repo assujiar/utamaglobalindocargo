@@ -6,6 +6,7 @@ import { CounterAnimation } from "@/components/motion/CounterAnimation";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { ScrollPattern } from "@/components/motion/ScrollPattern";
 import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
+import { AnimatedDivider } from "@/components/motion/AnimatedDivider";
 import type { Locale } from "@/lib/i18n/config";
 
 interface StatItem {
@@ -66,8 +67,10 @@ function StatsBar({ locale, className }: StatsBarProps) {
       {/* Scroll-driven pattern */}
       <ScrollPattern variant="grid" count={14} speed={0.09} />
 
-      {/* Top divider — amber glow, unique */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[rgba(255,171,64,0.2)] to-transparent" aria-hidden="true" />
+      {/* Top divider — animated line with diamond endpoints */}
+      <div className="absolute top-0 left-0 right-0 px-10 sm:px-20">
+        <AnimatedDivider color="rgba(255,171,64,0.25)" endpointShape="diamond" />
+      </div>
 
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
         {/* Stats — massive numbers in a horizontal flex row */}

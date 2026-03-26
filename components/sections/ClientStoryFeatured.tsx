@@ -2,8 +2,11 @@
 
 import { cn } from "@/lib/utils/cn";
 import { motion, useReducedMotion } from "framer-motion";
+import { TrendingUp, TrendingDown } from "lucide-react";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { AnimatedDivider } from "@/components/motion/AnimatedDivider";
+import { CounterAnimation } from "@/components/motion/CounterAnimation";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -27,8 +30,24 @@ const placeholder = {
   resultLabel_en: "Result",
 };
 
+// Client stats — Buzzworthy-style increase/decrease indicators
+const clientStats = {
+  id: [
+    { value: 40, suffix: "%", label: "Efisiensi Distribusi", trend: "up" as const },
+    { value: 72, suffix: "jam", label: "Waktu Transit Rata-rata", trend: "down" as const },
+    { value: 98, suffix: "%", label: "Ketepatan Waktu", trend: "up" as const },
+    { value: 0, suffix: "%", label: "Damage Rate", trend: "down" as const },
+  ],
+  en: [
+    { value: 40, suffix: "%", label: "Distribution Efficiency", trend: "up" as const },
+    { value: 72, suffix: "hrs", label: "Avg Transit Time", trend: "down" as const },
+    { value: 98, suffix: "%", label: "On-Time Rate", trend: "up" as const },
+    { value: 0, suffix: "%", label: "Damage Rate", trend: "down" as const },
+  ],
+};
+
 // UNIQUE: Warm tinted bg (#F5F0EB), centered pull-quote, SplitTextReveal on quote,
-//         divider-dots separator, typography-as-design layout
+//         divider-dots separator, client stats bar with trend indicators
 
 function ClientStoryFeatured({
   locale,
@@ -101,6 +120,38 @@ function ClientStoryFeatured({
                 </div>
               </motion.div>
             </ParallaxDepth>
+          </div>
+
+          {/* Client Stats Bar — Buzzworthy-style with trend indicators */}
+          <div className="mt-16 sm:mt-24">
+            <AnimatedDivider color="rgba(255,70,0,0.12)" endpointShape="dot" />
+            <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+              {clientStats[locale].map((stat, i) => (
+                <ParallaxDepth key={stat.label} speed={0.03 + i * 0.015} direction="up" scrubSmooth={0.4}>
+                  <motion.div
+                    className="text-center"
+                    initial={prefersReduced ? undefined : { opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
+                  >
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <span className="stat-number text-3xl sm:text-4xl text-[--color-primary] leading-none">
+                        <CounterAnimation target={stat.value} suffix={stat.suffix} />
+                      </span>
+                      {stat.trend === "up" ? (
+                        <TrendingUp className="size-4 text-emerald-500" />
+                      ) : (
+                        <TrendingDown className="size-4 text-emerald-500" />
+                      )}
+                    </div>
+                    <span className="text-xs text-[--color-text-muted] tracking-wide uppercase">
+                      {stat.label}
+                    </span>
+                  </motion.div>
+                </ParallaxDepth>
+              ))}
+            </div>
           </div>
         </div>
       </section>

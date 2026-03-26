@@ -14,7 +14,26 @@ import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
 import { FloatingOrb } from "@/components/motion/FloatingOrb";
 import { ScrollPattern } from "@/components/motion/ScrollPattern";
+import { RotatingText } from "@/components/motion/RotatingText";
+import { BlurCircle } from "@/components/motion/BlurCircle";
 import type { Locale } from "@/lib/i18n/config";
+
+const USP_PHRASES = {
+  id: [
+    "Ketepatan Waktu",
+    "Jangkauan Global",
+    "Solusi Terpadu",
+    "Keamanan Kiriman",
+    "Mitra Terpercaya",
+  ],
+  en: [
+    "On-Time Delivery",
+    "Global Reach",
+    "Integrated Solutions",
+    "Cargo Security",
+    "Trusted Partnership",
+  ],
+} as const;
 
 interface HeroProps {
   locale: Locale;
@@ -108,6 +127,15 @@ function Hero({
         opacity={{ from: 0.4, to: 0.8 }}
       />
 
+      {/* Buzzworthy-style blur circle — atmospheric background element */}
+      <BlurCircle
+        className="absolute top-[-10%] left-[30%] z-[2]"
+        size={700}
+        color="rgba(255, 70, 0, 0.08)"
+        floatDuration={22}
+        scrollSpeed={0.2}
+      />
+
       {/* Scroll-driven decorative pattern */}
       <ScrollPattern variant="dots" count={16} speed={0.12} />
 
@@ -123,15 +151,20 @@ function Hero({
             : { opacity: contentOpacity, y: contentY }
         }
       >
-        {/* Label */}
-        <motion.p
-          className="label-text text-[--color-primary] mb-6 sm:mb-8"
+        {/* USP Rotating Text — Buzzworthy-style rotating value propositions */}
+        <motion.div
+          className="mb-6 sm:mb-8"
           initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          {locale === "id" ? "Freight Forwarder Sejak 1995" : "Freight Forwarder Since 1995"}
-        </motion.p>
+          <RotatingText
+            prefix={locale === "id" ? "Kami Hadirkan" : "We Deliver"}
+            phrases={USP_PHRASES[locale] as unknown as string[]}
+            className="label-text text-[--color-primary]"
+            interval={2800}
+          />
+        </motion.div>
 
         {/* Headline — clip-path word reveal */}
         <h1 className="text-display-xl max-w-[1000px]">
