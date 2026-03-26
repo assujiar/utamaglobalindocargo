@@ -10,7 +10,6 @@ interface ClientStoryFeaturedProps {
 }
 
 // TODO: Replace with Supabase query when client_stories table is seeded
-// Query: select * from client_stories where featured = true and status = 'published' limit 1
 const placeholder = {
   industry_id: "FMCG & Distribusi",
   industry_en: "FMCG & Distribution",
@@ -41,24 +40,30 @@ function ClientStoryFeatured({
     <ScrollReveal>
       <div
         className={cn(
-          "glass-dark p-6 sm:p-8 rounded-lg max-w-xl",
+          "glass-tinted p-8 sm:p-10 max-w-xl relative overflow-hidden",
           className,
         )}
       >
+        {/* Glow accent behind quote */}
+        <div className="absolute top-0 right-0 w-[200px] h-[200px] rounded-full bg-[--color-primary] opacity-[0.06] blur-[80px] pointer-events-none" aria-hidden="true" />
+
         {/* Industry tag */}
-        <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-[--color-primary]/15 text-[--color-primary] mb-4">
+        <span className="relative z-10 label-text text-[--color-primary] mb-5 block">
           {industry}
         </span>
 
         {/* Pull quote */}
-        <blockquote className="text-lg sm:text-xl font-medium text-[--color-text-inverse] leading-snug mb-4">
+        <blockquote className="relative z-10 text-lg sm:text-xl font-medium text-[--color-text-inverse] leading-snug mb-5">
           &ldquo;{quote}&rdquo;
         </blockquote>
 
         {/* Result */}
-        <p className="text-sm text-[--color-text-secondary] leading-relaxed">
-          {result}
-        </p>
+        <div className="relative z-10 flex items-start gap-2">
+          <span className="label-text text-[--color-primary] shrink-0 mt-0.5">Result</span>
+          <p className="text-sm text-[--color-text-secondary] leading-relaxed">
+            {result}
+          </p>
+        </div>
       </div>
     </ScrollReveal>
   );

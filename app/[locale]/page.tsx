@@ -197,17 +197,15 @@ export default async function HomePage({
       />
 
       {/* 2. Value Proposition Strip */}
-      <section className="py-20 sm:py-28 bg-[--color-bg-dark] relative overflow-hidden">
-        {/* Subtle glow */}
+      <section className="py-24 sm:py-32 bg-[--color-bg-dark] relative overflow-hidden">
+        <div className="absolute inset-0 dot-grid-subtle pointer-events-none" aria-hidden="true" />
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[--color-accent-warm] opacity-[0.03] blur-[160px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[--color-accent-warm] opacity-[0.05] blur-[160px]" />
         </div>
-        {/* Top glow divider */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.10)] to-transparent" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <ScrollReveal>
-            <p className="text-lg sm:text-xl text-[--color-text-secondary] text-center max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl sm:text-2xl md:text-3xl text-[--color-text-secondary] text-center max-w-3xl mx-auto leading-relaxed font-light">
               {c.valueProp}
             </p>
           </ScrollReveal>
@@ -222,21 +220,18 @@ export default async function HomePage({
       />
 
       {/* 4. Proof Section (Stats + Client Story) */}
-      <section className="py-24 sm:py-32 bg-[--color-bg-dark] relative overflow-hidden">
-        {/* Ambient glow */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] rounded-full bg-[--color-primary] opacity-[0.03] blur-[180px]" />
-        </div>
-        {/* Top glow divider */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.10)] to-transparent" aria-hidden="true" />
+      <section className="py-28 sm:py-36 bg-[--color-bg-dark] relative overflow-hidden">
+        <div className="absolute inset-0 radial-burst pointer-events-none" aria-hidden="true" />
+        <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
+        <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           {/* Stats */}
-          <StatsBar locale={typedLocale} className="mb-16" />
+          <StatsBar locale={typedLocale} className="mb-20" />
 
           {/* Badges area */}
           <ScrollReveal>
-            <div className="text-center mb-12">
+            <div className="text-center mb-14">
               <p className="label-text text-[--color-text-secondary]">
                 {c.proof.badgesLabel}
               </p>
@@ -251,17 +246,24 @@ export default async function HomePage({
       </section>
 
       {/* 5. Featured Editorial / Service Spotlight */}
-      <section className="py-24 sm:py-32 bg-[--color-bg-dark-elevated] relative">
-        {/* Top glow divider */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.08)] to-transparent" aria-hidden="true" />
+      <section className="py-28 sm:py-36 relative overflow-hidden"
+        style={{ background: "linear-gradient(180deg, #09090B 0%, #0f0805 50%, #09090B 100%)" }}
+      >
+        <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[--color-primary] opacity-[0.06] blur-[180px]" />
+        </div>
 
-        <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
+        <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <ScrollReveal>
-            <div className="glass-tinted p-8 sm:p-12 max-w-2xl mx-auto text-center">
-              <h2 className="text-heading-md sm:text-heading-lg font-bold text-[--color-text-primary] mb-4 tracking-[-0.02em]">
+            <div className="glass-tinted p-10 sm:p-14 max-w-2xl mx-auto text-center">
+              <p className="label-text text-[--color-primary] mb-4">
+                {typedLocale === "id" ? "Spotlight" : "Spotlight"}
+              </p>
+              <h2 className="text-heading-md sm:text-heading-lg font-bold gradient-text mb-5 tracking-[-0.02em]">
                 {c.editorial.heading}
               </h2>
-              <p className="text-[--color-text-secondary] mb-8 leading-relaxed">
+              <p className="text-[--color-text-secondary] mb-8 leading-relaxed text-lg">
                 {c.editorial.description}
               </p>
               <Button
