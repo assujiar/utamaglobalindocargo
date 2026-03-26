@@ -14,6 +14,7 @@ import { ClientStoryFeatured } from "@/components/sections/ClientStoryFeatured";
 import { CTABand } from "@/components/sections/CTABand";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { Button } from "@/components/ui/Button";
+import { Shield, Compass, Package } from "lucide-react";
 
 // ─── Bilingual content ───
 
@@ -198,6 +199,11 @@ export default async function HomePage({
 
       {/* 2. Value Proposition Strip with visual metrics */}
       <section className="py-24 sm:py-32 bg-[--color-bg-dark] relative overflow-hidden">
+        {/* Giant watermark */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true">
+          <Package className="size-[300px] sm:size-[450px] text-[--color-primary] opacity-[0.015]" strokeWidth={0.3} />
+        </div>
+
         <div className="absolute inset-0 dot-grid-subtle pointer-events-none" aria-hidden="true" />
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[--color-accent-warm] opacity-[0.05] blur-[160px]" />
@@ -239,6 +245,11 @@ export default async function HomePage({
 
       {/* 4. Proof Section (Stats + Client Story) */}
       <section className="py-28 sm:py-36 bg-[--color-bg-dark] relative overflow-hidden">
+        {/* Giant watermark */}
+        <div className="absolute top-[5%] right-[-3%] pointer-events-none" aria-hidden="true">
+          <Shield className="size-[240px] sm:size-[380px] text-[--color-primary] opacity-[0.02] rotate-[-8deg]" strokeWidth={0.4} />
+        </div>
+
         <div className="absolute inset-0 radial-burst pointer-events-none" aria-hidden="true" />
         <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
         <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
@@ -267,6 +278,11 @@ export default async function HomePage({
       <section className="py-28 sm:py-36 relative overflow-hidden"
         style={{ background: "linear-gradient(180deg, #09090B 0%, #0f0805 50%, #09090B 100%)" }}
       >
+        {/* Giant watermark */}
+        <div className="absolute bottom-[5%] left-[3%] pointer-events-none" aria-hidden="true">
+          <Compass className="size-[200px] sm:size-[300px] text-[--color-accent-warm] opacity-[0.02] rotate-[15deg]" strokeWidth={0.4} />
+        </div>
+
         <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[--color-primary] opacity-[0.06] blur-[180px]" />
