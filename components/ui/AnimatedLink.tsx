@@ -10,13 +10,14 @@ interface AnimatedLinkProps {
   external?: boolean;
 }
 
+/**
+ * Link with Buzzworthy-style scaleX underline animation.
+ * Uses hoverIn/hoverOut keyframes with different transform-origins
+ * for a sliding underline effect (enters from left, exits to right).
+ */
 function AnimatedLink({ href, className, children, external }: AnimatedLinkProps) {
   const classes = cn(
-    "relative inline-block text-[--color-text-secondary] hover:text-[--color-primary] transition-colors duration-200",
-    "after:absolute after:bottom-0 after:left-0 after:h-px after:w-full",
-    "after:bg-[--color-primary] after:origin-left",
-    "after:scale-x-0 hover:after:scale-x-100",
-    "after:transition-transform after:duration-200 after:ease-out",
+    "text-link",
     className,
   );
 

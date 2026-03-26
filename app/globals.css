@@ -2,12 +2,12 @@
 @import "./theme.css";
 
 /*
- * UGC Logistics - Global Styles
- * Premium Cinematic Design System v4
- * Rich ambient depth, viewport frame, elevated cards
+ * UGC Logistics - Global Styles v5
+ * Buzzworthy-grade interaction patterns
+ * Real hover effects, clip-path reveals, choreographed motion
  */
 
-/* ─── Base Typography ─── */
+/* ─── Base ─── */
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -21,6 +21,7 @@ body {
   line-height: 1.65;
   color: var(--color-text-primary);
   background-color: var(--color-bg-frame);
+  transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1), background 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -30,7 +31,7 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.035em;
 }
 
-/* ─── Viewport Frame (Buzzworthy signature) ─── */
+/* ─── Viewport Frame (Buzzworthy #smooth-wrapper) ─── */
 
 .viewport-frame {
   position: relative;
@@ -39,6 +40,8 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--radius-frame);
   overflow: hidden;
   background-color: var(--color-bg-dark);
+  z-index: 5;
+  transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 @media (max-width: 768px) {
@@ -99,11 +102,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 
-/* ─── Body Text Constraint ─── */
-
-.prose {
-  max-width: var(--max-width-text);
-}
+.prose { max-width: var(--max-width-text); }
 
 /* ─── Label Style ─── */
 
@@ -115,7 +114,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.4;
 }
 
-/* ─── Stat Number Style ─── */
+/* ─── Stat Number ─── */
 
 .stat-number {
   font-family: var(--font-mono);
@@ -151,32 +150,124 @@ h1, h2, h3, h4, h5, h6 {
   50% { background-position: 100% 50%; }
 }
 
-/* ─── Ambient Blur Circle (Buzzworthy-inspired, color-dodge) ─── */
+/* ═══════════════════════════════════════
+   HOVER INTERACTIONS (Buzzworthy-grade)
+   ═══════════════════════════════════════ */
 
-.blur-circle {
+/* ─── Text Link Underline (scaleX in/out with separate origins) ─── */
+
+.text-link {
+  position: relative;
+  display: inline-block;
+  color: var(--color-text-secondary);
+  transition: color 0.3s ease;
+}
+
+.text-link::before {
+  content: '';
   position: absolute;
-  border-radius: 50%;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-primary);
+  transform: scaleX(0);
+  animation: hoverOut 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.text-link:hover {
+  color: var(--color-text-primary);
+}
+
+.text-link:hover::before {
+  animation: hoverIn 0.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+@keyframes hoverIn {
+  0% { transform: scaleX(0); transform-origin: 0 0; }
+  1% { transform: scaleX(0); }
+  100% { transform: scaleX(1); transform-origin: 0 0; }
+}
+
+@keyframes hoverOut {
+  0% { transform: scaleX(1); transform-origin: 100% 0; }
+  1% { transform: scaleX(1); }
+  100% { transform: scaleX(0); transform-origin: 100% 0; }
+}
+
+/* ─── Arrow Link (padding shift + arrow rotate-in) ─── */
+
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  position: relative;
+  padding: 0.75em 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  transition: padding-left 0.5s cubic-bezier(0.86, 0, 0.07, 1), color 0.3s ease, margin-right 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+  margin-right: 2em;
+}
+
+.arrow-link:hover {
+  color: var(--color-primary);
+  padding-left: 2em;
+  margin-right: 0;
+}
+
+.arrow-link .arrow-icon {
+  position: absolute;
+  left: 0;
+  transform: translateX(-2em) rotate(45deg) scale(0);
+  transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.arrow-link:hover .arrow-icon {
+  transform: translateX(0) rotate(0deg) scale(1);
+}
+
+/* ─── Mask Link (clip-path color reveal on hover) ─── */
+
+.mask-link {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+.mask-link::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: var(--color-primary);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.5s cubic-bezier(1, 0, 0, 1);
+  z-index: 2;
   pointer-events: none;
-  background: radial-gradient(var(--color-primary) 0, rgba(255, 70, 0, 0) 70%);
-  opacity: 0.12;
-  filter: blur(0px);
-  mix-blend-mode: color-dodge;
 }
 
-.blur-circle-warm {
-  background: radial-gradient(var(--color-accent-warm) 0, rgba(255, 171, 64, 0) 70%);
-  opacity: 0.08;
-  mix-blend-mode: color-dodge;
+.mask-link:hover::before {
+  clip-path: inset(0 0 0 0);
+  transition-delay: 0.05s;
 }
 
-/* ─── Elevated Card (Buzzworthy .boxed style) ─── */
+/* ═══════════════════════════════════════
+   CARDS & SURFACES
+   ═══════════════════════════════════════ */
+
+/* ─── Elevated Card (Buzzworthy .boxed) ─── */
 
 .card-elevated {
   background-color: var(--color-bg-dark-card);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
   padding: 30px;
-  transition: box-shadow 400ms var(--ease-smooth), transform 400ms var(--ease-smooth), background-color 400ms ease;
+  position: relative;
+  transition: box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1), transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.3s ease;
 }
 
 .card-elevated:hover {
@@ -185,7 +276,34 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color-bg-dark-hover);
 }
 
-/* ─── Glassmorphism Utilities ─── */
+/* ─── Card Shine (mouse-tracking highlight) ─── */
+
+.card-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, -50%),
+    rgba(255, 70, 0, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 2;
+}
+
+.card-shine:hover::after {
+  opacity: 1;
+}
+
+/* ─── Glass panels ─── */
 
 .glass-dark {
   background: rgba(255, 255, 255, 0.04);
@@ -193,7 +311,7 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
-  transition: border-color 300ms ease-out, background 300ms ease-out, box-shadow 300ms ease-out, transform 300ms ease-out;
+  transition: border-color 0.3s ease-out, background 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 
 .glass-dark:hover {
@@ -208,21 +326,12 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 70, 0, 0.15);
   border-radius: var(--radius-lg);
-  transition: border-color 300ms ease-out, box-shadow 300ms ease-out, transform 300ms ease-out;
+  transition: border-color 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 
 .glass-tinted:hover {
   border-color: rgba(255, 70, 0, 0.30);
   box-shadow: 0 0 50px rgba(255, 70, 0, 0.12);
-}
-
-.glass-light {
-  background: rgba(255, 255, 255, 0.60);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.80);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.06);
 }
 
 .glass-nav {
@@ -235,11 +344,97 @@ h1, h2, h3, h4, h5, h6 {
 @supports not (backdrop-filter: blur(20px)) {
   .glass-dark { background: rgba(20, 20, 22, 0.97); }
   .glass-tinted { background: rgba(30, 15, 10, 0.97); }
-  .glass-light { background: rgba(255, 255, 255, 0.97); }
   .glass-nav { background: rgba(12, 12, 15, 0.97); }
 }
 
-/* ─── Animated Gradient Border ─── */
+/* ═══════════════════════════════════════
+   AMBIENT EFFECTS
+   ═══════════════════════════════════════ */
+
+/* ─── Blur Circle (Buzzworthy: starts hidden, JS-controlled) ─── */
+
+.blur-circle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(var(--color-primary) 0, rgba(255, 70, 0, 0) 70%);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.25);
+  z-index: -1;
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.blur-circle.active {
+  opacity: 0.15;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Static ambient version (for sections that always show it) */
+.blur-circle-ambient {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(var(--color-primary) 0, rgba(255, 70, 0, 0) 70%);
+  opacity: 0.08;
+  z-index: -1;
+}
+
+.blur-circle-warm {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(var(--color-accent-warm) 0, rgba(255, 171, 64, 0) 70%);
+  opacity: 0.06;
+  z-index: -1;
+}
+
+/* ─── WebGL-style Cursor Glow (Buzzworthy #webglBlur) ─── */
+
+.cursor-glow {
+  position: fixed;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  background-color: var(--color-text-primary);
+  filter: blur(50px);
+  mix-blend-mode: color-dodge;
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+}
+
+@media (hover: none) {
+  .cursor-glow { display: none; }
+}
+
+/* ─── Grain Overlay ─── */
+
+.grain-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Glow Dividers ─── */
+
+.glow-divider-full {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 70, 0, 0.20) 20%, rgba(255, 171, 64, 0.15) 50%, rgba(255, 70, 0, 0.20) 80%, transparent 100%);
+}
+
+/* ═══════════════════════════════════════
+   ANIMATED GRADIENT BORDER
+   ═══════════════════════════════════════ */
 
 .gradient-border {
   position: relative;
@@ -284,55 +479,15 @@ h1, h2, h3, h4, h5, h6 {
   inherits: false;
 }
 
-/* ─── Noise / Grain Overlay ─── */
-
-.grain-overlay::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.4;
-  mix-blend-mode: overlay;
-}
-
-/* ─── Glow Line Section Divider ─── */
-
-.glow-divider {
-  height: 1px;
-  max-width: 60%;
-  margin: 0 auto;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 70, 0, 0.35) 50%,
-    transparent 100%
-  );
-}
-
-.glow-divider-full {
-  height: 1px;
-  width: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 70, 0, 0.20) 20%,
-    rgba(255, 171, 64, 0.15) 50%,
-    rgba(255, 70, 0, 0.20) 80%,
-    transparent 100%
-  );
-}
-
-/* ─── Button Glow ─── */
+/* ═══════════════════════════════════════
+   BUTTONS
+   ═══════════════════════════════════════ */
 
 .btn-glow {
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 24px rgba(255, 70, 0, 0.20);
-  transition: box-shadow 300ms ease-out, transform 300ms var(--ease-out-expo);
+  transition: box-shadow 0.3s ease-out, transform 0.3s var(--ease-out-expo);
 }
 
 .btn-glow::before {
@@ -342,15 +497,8 @@ h1, h2, h3, h4, h5, h6 {
   left: -100%;
   width: 60%;
   height: 100%;
-  background: linear-gradient(
-    105deg,
-    transparent 20%,
-    rgba(255, 255, 255, 0.18) 45%,
-    rgba(255, 255, 255, 0.25) 50%,
-    rgba(255, 255, 255, 0.18) 55%,
-    transparent 80%
-  );
-  transition: left 600ms var(--ease-out-expo);
+  background: linear-gradient(105deg, transparent 20%, rgba(255, 255, 255, 0.18) 45%, rgba(255, 255, 255, 0.25) 50%, rgba(255, 255, 255, 0.18) 55%, transparent 80%);
+  transition: left 0.6s var(--ease-out-expo);
   pointer-events: none;
   z-index: 1;
 }
@@ -360,36 +508,65 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-2px);
 }
 
-.btn-glow:hover::before {
-  left: 120%;
-}
+.btn-glow:hover::before { left: 120%; }
 
 .btn-glow:active {
   box-shadow: 0 2px 12px rgba(255, 70, 0, 0.15);
   transform: translateY(0) scale(0.98);
 }
 
-/* ─── Circle CTA Button ─── */
+/* ─── Circle CTA ─── */
 
 .circle-cta {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
   border-radius: 50%;
   background-color: var(--color-primary);
-  box-shadow: 0 0 40px rgba(255, 70, 0, 0.30);
-  transition: transform 400ms var(--ease-smooth), box-shadow 400ms var(--ease-smooth);
-  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
 }
 
 .circle-cta:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 60px rgba(255, 70, 0, 0.40), 0 0 120px rgba(255, 70, 0, 0.15);
+  box-shadow: 0 0 40px rgba(255, 70, 0, 0.35);
 }
 
-/* ─── Animated Underline (scaleX, Buzzworthy-style) ─── */
+/* ─── Parallax Image Container (Buzzworthy .parallax-img) ─── */
+
+.parallax-img {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+
+.parallax-img img {
+  width: 100%;
+  height: 140%;
+  object-fit: cover;
+  position: relative;
+  bottom: 0;
+  will-change: transform;
+}
+
+/* ─── Section Background Classes ─── */
+
+.section-dark { background-color: var(--color-bg-dark); }
+.section-elevated { background-color: var(--color-bg-dark-elevated); }
+
+/* ─── Scroll Progress ─── */
+
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transform-origin: left;
+  z-index: 9999;
+}
+
+/* ─── Animated Underline (simple version for nav) ─── */
 
 .animated-underline {
   position: relative;
@@ -406,174 +583,21 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-primary);
   transform: scaleX(0);
   transform-origin: 0 0;
-  transition: transform 500ms var(--ease-smooth);
+  animation: hoverOut 0.4s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
 .animated-underline:hover::after {
-  transform: scaleX(1);
+  animation: hoverIn 0.4s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
-/* ─── Mask Link (Buzzworthy clip-path hover) ─── */
-
-.mask-link {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-}
-
-.mask-link::before {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  color: var(--color-primary);
-  clip-path: inset(0 100% 0 0);
-  transition: clip-path 500ms var(--ease-mask);
-}
-
-.mask-link:hover::before {
-  clip-path: inset(0 0 0 0);
-}
-
-/* ─── Card Shine Effect ─── */
-
-.card-shine {
-  position: relative;
-  overflow: hidden;
-}
-
-.card-shine::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    circle at var(--mouse-x, 50%) var(--mouse-y, -50%),
-    rgba(255, 70, 0, 0.10) 0%,
-    rgba(255, 255, 255, 0.03) 25%,
-    transparent 60%
-  );
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 300ms ease-out;
-  z-index: 2;
-}
-
-.card-shine:hover::after {
-  opacity: 1;
-}
-
-/* ─── Ambient Glow Orbs ─── */
-
-.glow-orb {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(120px);
-  opacity: 0.10;
-  background: var(--color-primary);
-  animation: float-orbit 20s ease-in-out infinite;
-}
-
-.glow-orb-warm {
-  background: var(--color-accent-warm);
-  opacity: 0.08;
-  animation: float-orbit-reverse 25s ease-in-out infinite;
-}
-
-/* ─── Motion Keyframes ─── */
-
-@keyframes float-orbit {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  33% { transform: translateY(-40px) translateX(30px); }
-  66% { transform: translateY(20px) translateX(-30px); }
-}
-
-@keyframes float-orbit-reverse {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  33% { transform: translateY(30px) translateX(-25px); }
-  66% { transform: translateY(-25px) translateX(35px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.10; transform: scale(1); }
-  50% { opacity: 0.20; transform: scale(1.08); }
-}
-
-@keyframes float-slow {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(40px, -30px) scale(1.05); }
-  50% { transform: translate(-20px, -50px) scale(0.95); }
-  75% { transform: translate(-40px, 20px) scale(1.02); }
-}
-
-/* ─── Section Background Variants ─── */
-
-.section-dark {
-  background-color: var(--color-bg-dark);
-}
-
-.section-elevated {
-  background-color: var(--color-bg-dark-elevated);
-}
-
-.section-gradient {
-  background: linear-gradient(180deg, var(--color-bg-dark) 0%, var(--color-bg-dark-elevated) 50%, var(--color-bg-dark) 100%);
-}
-
-/* ─── Dot Grid Background ─── */
-
-.dot-grid-subtle {
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.04) 1px,
-    transparent 1px
-  );
-  background-size: 48px 48px;
-}
-
-/* ─── Scroll Progress Indicator ─── */
-
-.scroll-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  background: var(--color-primary);
-  transform-origin: left;
-  z-index: 9999;
-}
-
-/* ─── Fixed Circle CTA (bottom-right) ─── */
-
-.fixed-cta {
-  position: fixed;
-  bottom: calc(var(--frame-inset) + 24px);
-  right: calc(var(--frame-inset) + 24px);
-  z-index: 40;
-}
-
-@media (max-width: 768px) {
-  .fixed-cta {
-    bottom: 80px;
-    right: 16px;
-  }
-}
-
-/* ─── Mobile Touch Feedback ─── */
+/* ─── Mobile ─── */
 
 @media (hover: none) and (pointer: coarse) {
-  button:active,
-  a:active,
-  [role="button"]:active {
+  button:active, a:active, [role="button"]:active {
     transform: scale(0.97) !important;
     transition: transform 100ms ease-out !important;
   }
-
-  .hover\:-translate-y-1\.5:hover {
-    transform: none !important;
-  }
 }
-
-/* ─── Reduced Motion ─── */
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
