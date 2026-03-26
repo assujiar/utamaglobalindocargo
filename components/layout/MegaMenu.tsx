@@ -106,7 +106,7 @@ function MegaMenu({
                   {service.number}
                 </span>
                 <div className="min-w-0">
-                  <span className="text-sm font-semibold text-white block">
+                  <span className="text-sm font-semibold text-white block mask-link" data-text={name}>
                     {name}
                   </span>
                   <span className="text-xs text-[rgba(255,255,255,0.55)] line-clamp-1">
