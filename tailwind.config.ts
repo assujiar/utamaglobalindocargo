@@ -40,9 +40,10 @@ const config: Config = {
         error: "var(--color-error)",
       },
       fontFamily: {
-        primary: ["var(--font-inter)", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
-        display: ["var(--font-instrument-serif)", "Georgia", "serif"],
-        mono: ["var(--font-jetbrains-mono)", "monospace"],
+        primary: ["var(--font-lufga)", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+        display: ["var(--font-arkhip)", "Georgia", "sans-serif"],
+        mono: ["var(--font-velocity)", "monospace"],
+        highway: ["var(--font-fhwa)", "monospace"],
       },
       spacing: {
         "1": "4px",

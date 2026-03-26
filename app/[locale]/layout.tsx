@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { inter, instrumentSerif, jetbrainsMono } from "@/lib/fonts";
+import { lufga, arkhip, velocity, fhwaSeries } from "@/lib/fonts";
 import { i18nConfig, isValidLocale } from "@/lib/i18n/config";
 import type { Locale } from "@/lib/i18n/config";
 import { notFound } from "next/navigation";
@@ -38,7 +38,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={typedLocale}
-      className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
+      className={`${lufga.variable} ${arkhip.variable} ${velocity.variable} ${fhwaSeries.variable}`}
     >
       <body className="font-primary bg-bg-light text-text-primary antialiased">
         {children}

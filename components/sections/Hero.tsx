@@ -351,18 +351,15 @@ function Hero({
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - animated line only */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center"
         initial={prefersReduced ? undefined : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 1.5 }}
       >
-        <span className="label-text text-[--color-text-secondary] text-[10px]">
-          Scroll
-        </span>
         <motion.div
-          className="w-px h-8 bg-gradient-to-b from-[--color-primary] via-[--color-accent-warm] to-transparent"
+          className="w-px h-10 bg-gradient-to-b from-[--color-primary] via-[--color-accent-warm] to-transparent"
           animate={prefersReduced ? undefined : { scaleY: [0, 1, 0], opacity: [0.3, 1, 0.3] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
         />

@@ -59,9 +59,10 @@
   --color-error: #EF4444;
 
   /* ─── Typography ─── */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: 'Instrument Serif', Georgia, serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-primary: var(--font-lufga), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: var(--font-arkhip), Georgia, sans-serif;
+  --font-mono: var(--font-velocity), monospace;
+  --font-highway: var(--font-fhwa), monospace;
 
   /* ─── Spacing (8px base) ─── */
   --space-1: 4px;

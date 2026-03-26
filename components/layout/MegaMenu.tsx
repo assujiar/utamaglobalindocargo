@@ -41,10 +41,15 @@ function MegaMenu({
     <div
       className={cn(
         "absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[640px]",
-        "rounded-lg bg-white border border-[--color-border] shadow-md",
+        "rounded-xl border border-[rgba(255,255,255,0.08)] shadow-[0_8px_32px_rgba(0,0,0,0.5)]",
         "p-6 grid grid-cols-2 gap-4",
         "animate-in fade-in duration-150",
       )}
+      style={{
+        background: "rgba(20, 20, 24, 0.85)",
+        backdropFilter: "blur(24px)",
+        WebkitBackdropFilter: "blur(24px)",
+      }}
       role="menu"
       onMouseLeave={onClose}
     >
@@ -64,8 +69,8 @@ function MegaMenu({
             key={service.key}
             href={href}
             className={cn(
-              "flex gap-3 rounded-sm p-3 -m-1 transition-colors duration-150",
-              "hover:bg-[--color-primary-subtle]",
+              "flex gap-3 rounded-lg p-3 -m-1 transition-all duration-150",
+              "hover:bg-[rgba(255,70,0,0.08)] hover:border-[rgba(255,70,0,0.12)]",
               "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color-primary]",
             )}
             role="menuitem"
@@ -87,10 +92,10 @@ function MegaMenu({
       })}
 
       {/* View all services link */}
-      <div className="col-span-2 pt-3 mt-2 border-t border-[--color-border]">
+      <div className="col-span-2 pt-3 mt-2 border-t border-[rgba(255,255,255,0.06)]">
         <Link
           href={`/${locale}/${locale === "id" ? "layanan" : "services"}`}
-          className="text-sm font-medium text-[--color-primary] hover:underline"
+          className="text-sm font-medium text-[--color-primary] hover:text-[--color-accent-warm] transition-colors duration-150"
           role="menuitem"
           onClick={onClose}
         >
