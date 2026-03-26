@@ -17,27 +17,27 @@ const content = {
       "All UGC logistics services: domestic distribution, international freight, import & customs, blockspace & charter, 3PL warehousing, and project cargo.",
   },
   hero: {
-    headline: "One Partner for All Your Supply Chain Needs",
+    headline: "Six Integrated Services, One Strategic Partner",
     subline:
-      "From domestic distribution across 34 provinces to international freight to 150+ countries. UGC Logistics manages your entire logistics chain through a single point of contact.",
+      "Every company faces distinct logistics challenges. Distribution across 34 provinces, cross-border raw material imports, or large-scale project cargo. Share your requirements, and we will design the solution.",
   },
   serviceGrid: {
-    heading: "Six Integrated Services",
+    heading: "Services Tailored to Your Requirements",
     exploreLabel: "Learn More",
   },
   crossValue: {
-    heading: "Why One Logistics Partner?",
+    heading: "The Advantage of a Single Logistics Partner",
     points: [
-      "A single point of contact for all needs, no multi-vendor coordination overhead",
-      "Coordinated schedules and documentation across services, reducing delay risks",
-      "Consistent quality standards from first mile to last mile",
-      "End-to-end visibility over all your cargo movements",
+      "One contact person for all requirements. No cross-vendor coordination slowing down your operations",
+      "Schedules synchronize automatically across services. Cargo clears the port, enters the warehouse, and ships out seamlessly",
+      "Full accountability under one roof. Every issue is resolved directly, without multi-party escalation",
+      "Complete visibility over all cargo movements through a single integrated system",
     ],
   },
   ctaBand: {
     heading: "Not Sure Which Service Fits Your Needs?",
-    ctaLabel: "Talk to Our Team",
-    trustLine: "We respond within 2 business hours.",
+    ctaLabel: "Consult with Our Team",
+    trustLine: "Complimentary consultation. Our team responds within 2 business hours.",
   },
 };
 

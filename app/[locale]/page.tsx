@@ -14,36 +14,37 @@ import { ClientStoryFeatured } from "@/components/sections/ClientStoryFeatured";
 import { CTABand } from "@/components/sections/CTABand";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { Button } from "@/components/ui/Button";
+import { Shield, Compass, Package } from "lucide-react";
 
 // ─── Bilingual content ───
 
 const content = {
   id: {
     hero: {
-      headline: "Menggerakkan Niaga Indonesia Melintasi Samudera dan Kepulauan",
+      headline: "Ketepatan Waktu Bukan Opsi. Itu Standar Kami.",
       subline:
-        "Freight forwarding, kepabeanan, pergudangan, dan distribusi yang dikelola oleh satu mitra yang memahami kompleksitas logistik Indonesia.",
-      ctaLabel: "Diskusikan Kebutuhan Anda",
+        "Freight forwarding, kepabeanan, pergudangan, dan distribusi dalam satu pengelolaan terpadu. Satu mitra strategis untuk seluruh kebutuhan logistik perusahaan Anda.",
+      ctaLabel: "Konsultasi Kebutuhan Anda",
     },
     valueProp:
-      "Sejak 1995, menghubungkan bisnis Indonesia ke pasar global dengan presisi kelas enterprise dan responsivitas mitra yang berdedikasi.",
+      "Sejak 1995, kami menjadi perpanjangan tim logistik ratusan perusahaan Indonesia. Bukan sekadar penyedia jasa, melainkan mitra operasional yang memahami bahwa setiap keterlambatan pengiriman berdampak langsung pada bisnis Anda.",
     serviceGrid: {
-      heading: "Satu Mitra untuk Seluruh Kebutuhan Rantai Pasok Anda",
-      exploreLabel: "Jelajahi",
+      heading: "Solusi untuk Setiap Kebutuhan Rantai Pasok",
+      exploreLabel: "Selengkapnya",
     },
     proof: {
-      badgesLabel: "Anggota resmi WCA dan IATA",
+      badgesLabel: "Tersertifikasi WCA dan IATA",
     },
     editorial: {
-      heading: "Layanan Unggulan",
+      heading: "34 Provinsi, Satu Sistem Terpadu",
       description:
-        "Jaringan distribusi terintegrasi menjangkau 34 provinsi. Darat, laut, dan udara dengan pelacakan real-time.",
-      ctaLabel: "Pelajari Lebih Lanjut",
+        "Klien kami mendistribusikan ke seluruh Indonesia setiap hari. Darat, laut, dan udara dengan pelacakan real-time di setiap titik perjalanan.",
+      ctaLabel: "Lihat Cara Kerjanya",
     },
     ctaBand: {
-      heading: "Siap Mengirim?",
-      ctaLabel: "Minta Penawaran Gratis",
-      trustLine: "Kami merespons dalam 2 jam kerja.",
+      heading: "Ada Kebutuhan Pengiriman yang Perlu Didiskusikan?",
+      ctaLabel: "Hubungi Tim Kami",
+      trustLine: "Tim kami merespons dalam 2 jam kerja dengan penanganan langsung.",
     },
     seo: {
       title: "UGC Logistics | Freight Forwarder & Ekspedisi Terpercaya Sejak 1995",
@@ -53,30 +54,30 @@ const content = {
   },
   en: {
     hero: {
-      headline: "Moving Indonesia's Commerce Across Oceans and Islands",
+      headline: "On-Time Delivery Is Not Optional. It Is Our Standard.",
       subline:
-        "Freight forwarding, customs clearance, warehousing, and distribution managed by one partner who understands the complexity of Indonesian logistics.",
+        "Freight forwarding, customs clearance, warehousing, and distribution under one integrated management. One strategic partner for your entire logistics operation.",
       ctaLabel: "Discuss Your Requirements",
     },
     valueProp:
-      "Since 1995, connecting Indonesian businesses to global markets with enterprise-grade precision and the responsiveness of a dedicated partner.",
+      "Since 1995, we have served as the logistics arm of hundreds of Indonesian companies. Not simply a service provider, but an operational partner who understands that every delayed shipment has a direct impact on your business.",
     serviceGrid: {
-      heading: "One Partner for All Your Supply Chain Needs",
-      exploreLabel: "Explore",
+      heading: "Solutions for Every Supply Chain Requirement",
+      exploreLabel: "Learn More",
     },
     proof: {
-      badgesLabel: "Official WCA and IATA member",
+      badgesLabel: "WCA and IATA certified",
     },
     editorial: {
-      heading: "Featured Service",
+      heading: "34 Provinces, One Integrated System",
       description:
-        "Integrated distribution network reaching 34 provinces. Land, sea, and air with real-time tracking.",
-      ctaLabel: "Learn More",
+        "Our clients distribute across Indonesia every day. Land, sea, and air with real-time tracking at every point of the journey.",
+      ctaLabel: "See How It Works",
     },
     ctaBand: {
-      heading: "Ready to Move?",
-      ctaLabel: "Request a Free Quote",
-      trustLine: "We respond within 2 business hours.",
+      heading: "Have a Shipping Requirement to Discuss?",
+      ctaLabel: "Speak with Our Team",
+      trustLine: "Our team responds within 2 business hours with direct, personal handling.",
     },
     seo: {
       title: "UGC Logistics | Trusted Freight Forwarder Since 1995",
@@ -196,8 +197,13 @@ export default async function HomePage({
         ctaHref={getLocalizedPath("quote", typedLocale)}
       />
 
-      {/* 2. Value Proposition Strip */}
+      {/* 2. Value Proposition Strip with visual metrics */}
       <section className="py-24 sm:py-32 bg-[--color-bg-dark] relative overflow-hidden">
+        {/* Giant watermark */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true">
+          <Package className="size-[300px] sm:size-[450px] text-[--color-primary] opacity-[0.015]" strokeWidth={0.3} />
+        </div>
+
         <div className="absolute inset-0 dot-grid-subtle pointer-events-none" aria-hidden="true" />
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[--color-accent-warm] opacity-[0.05] blur-[160px]" />
@@ -205,10 +211,28 @@ export default async function HomePage({
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <ScrollReveal>
-            <p className="text-xl sm:text-2xl md:text-3xl text-[--color-text-secondary] text-center max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-xl sm:text-2xl md:text-3xl text-[--color-text-secondary] text-center max-w-3xl mx-auto leading-relaxed font-light mb-16">
               {c.valueProp}
             </p>
           </ScrollReveal>
+
+          {/* Visual metric cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { icon: "🌏", value: "150+", label: typedLocale === "id" ? "Negara Tujuan" : "Countries" },
+              { icon: "🏝️", value: "34", label: typedLocale === "id" ? "Provinsi" : "Provinces" },
+              { icon: "📦", value: "25+", label: typedLocale === "id" ? "Tahun" : "Years" },
+              { icon: "✈️", value: "6", label: typedLocale === "id" ? "Layanan" : "Services" },
+            ].map((item, i) => (
+              <ScrollReveal key={i} delay={i * 80}>
+                <div className="glass-dark p-4 sm:p-5 text-center">
+                  <span className="text-2xl mb-2 block">{item.icon}</span>
+                  <span className="stat-number text-2xl sm:text-3xl gradient-text block">{item.value}</span>
+                  <span className="label-text text-[--color-text-secondary] text-[10px] mt-1 block">{item.label}</span>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -221,6 +245,11 @@ export default async function HomePage({
 
       {/* 4. Proof Section (Stats + Client Story) */}
       <section className="py-28 sm:py-36 bg-[--color-bg-dark] relative overflow-hidden">
+        {/* Giant watermark */}
+        <div className="absolute top-[5%] right-[-3%] pointer-events-none" aria-hidden="true">
+          <Shield className="size-[240px] sm:size-[380px] text-[--color-primary] opacity-[0.02] rotate-[-8deg]" strokeWidth={0.4} />
+        </div>
+
         <div className="absolute inset-0 radial-burst pointer-events-none" aria-hidden="true" />
         <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
         <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
@@ -249,6 +278,11 @@ export default async function HomePage({
       <section className="py-28 sm:py-36 relative overflow-hidden"
         style={{ background: "linear-gradient(180deg, #09090B 0%, #0f0805 50%, #09090B 100%)" }}
       >
+        {/* Giant watermark */}
+        <div className="absolute bottom-[5%] left-[3%] pointer-events-none" aria-hidden="true">
+          <Compass className="size-[200px] sm:size-[300px] text-[--color-accent-warm] opacity-[0.02] rotate-[15deg]" strokeWidth={0.4} />
+        </div>
+
         <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[--color-primary] opacity-[0.06] blur-[180px]" />

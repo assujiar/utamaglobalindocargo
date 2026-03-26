@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { GitBranch } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 
@@ -34,6 +35,11 @@ function ProcessFlow({ heading, steps, className }: ProcessFlowProps) {
     <section ref={sectionRef} className={cn("py-28 sm:py-36 bg-[--color-bg-dark-elevated] relative overflow-hidden", className)}>
       {/* Radial burst background */}
       <div className="absolute inset-0 radial-burst pointer-events-none" aria-hidden="true" />
+
+      {/* Giant watermark icon */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true">
+        <GitBranch className="size-[280px] sm:size-[400px] text-[--color-primary] opacity-[0.02] -rotate-90" strokeWidth={0.5} />
+      </div>
 
       {/* Top glow divider */}
       <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />

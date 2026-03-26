@@ -1,5 +1,6 @@
 "use client";
 
+import { HelpCircle } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { Accordion } from "@/components/ui/Accordion";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
@@ -51,6 +52,11 @@ function FAQSection({ heading, items, className }: FAQSectionProps) {
           background: "linear-gradient(180deg, #111113 0%, #0f0805 50%, #111113 100%)",
         }}
       >
+        {/* Giant watermark icon */}
+        <div className="absolute top-1/2 left-[8%] -translate-y-1/2 pointer-events-none" aria-hidden="true">
+          <HelpCircle className="size-[240px] sm:size-[360px] text-[--color-primary] opacity-[0.02]" strokeWidth={0.5} />
+        </div>
+
         {/* Side glow accents */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[600px] rounded-full bg-[--color-primary] opacity-[0.05] blur-[160px]" />

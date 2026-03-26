@@ -57,7 +57,8 @@ function MobileNav({
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[60] bg-[--color-bg-dark] flex flex-col"
+          className="fixed inset-0 z-[60] bg-[#09090B] flex flex-col"
+          style={{ backgroundColor: "#09090B" }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

@@ -8,6 +8,7 @@ import {
   useTransform,
   useSpring,
 } from "framer-motion";
+import { ArrowRight, Globe, Truck, Plane, Container } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { Button } from "@/components/ui/Button";
 import type { Locale } from "@/lib/i18n/config";
@@ -23,7 +24,20 @@ interface HeroProps {
 
 const EASE_OUT_EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
+// Hook to detect mobile
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  return isMobile;
+}
+
 function Hero({
+  locale,
   headline,
   subline,
   ctaLabel,
@@ -31,10 +45,11 @@ function Hero({
   className,
 }: HeroProps) {
   const prefersReduced = useReducedMotion();
+  const isMobile = useIsMobile();
   const sectionRef = useRef<HTMLElement>(null);
   const [mousePos, setMousePos] = useState({ x: 0.5, y: 0.5 });
 
-  // Scroll-linked transforms: content zooms out + fades as user scrolls
+  // Scroll-linked transforms
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -43,18 +58,15 @@ function Hero({
   const contentScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.92]);
   const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.6], [0, -80]);
-
-  // Parallax layers: different speeds
-  const bgLayer = useTransform(scrollYProgress, [0, 1], [0, 150]); // background moves DOWN (parallax)
+  const bgLayer = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const midLayer = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const shapeLayer = useTransform(scrollYProgress, [0, 1], [0, -120]);
 
-  // Spring for smooth mouse tracking
+  // Mouse spring
   const springConfig = { stiffness: 50, damping: 20, mass: 0.5 };
   const mouseXSpring = useSpring(0, springConfig);
   const mouseYSpring = useSpring(0, springConfig);
 
-  // Mouse-follow gradient spotlight
   const handleMouseMove = useCallback((e: MouseEvent) => {
     if (!sectionRef.current) return;
     const rect = sectionRef.current.getBoundingClientRect();
@@ -67,14 +79,13 @@ function Hero({
 
   useEffect(() => {
     const el = sectionRef.current;
-    if (!el || prefersReduced) return;
+    if (!el || prefersReduced || isMobile) return;
     el.addEventListener("mousemove", handleMouseMove);
     return () => el.removeEventListener("mousemove", handleMouseMove);
-  }, [handleMouseMove, prefersReduced]);
+  }, [handleMouseMove, prefersReduced, isMobile]);
 
-  // Split headline into characters for character-by-character reveal
+  // Word-based animation for mobile, character-based for desktop
   const words = headline.split(" ");
-  let charIndex = 0;
 
   return (
     <section
@@ -84,24 +95,24 @@ function Hero({
         className,
       )}
     >
-      {/* Gradient mesh background - intense, parallax */}
+      {/* Gradient mesh background with parallax */}
       {!prefersReduced ? (
         <motion.div
           className="absolute inset-0 gradient-mesh-intense pointer-events-none"
-          style={{ y: bgLayer }}
+          style={isMobile ? undefined : { y: bgLayer }}
           aria-hidden="true"
         />
       ) : (
         <div className="absolute inset-0 gradient-mesh pointer-events-none" aria-hidden="true" />
       )}
 
-      {/* Grain overlay for cinematic feel */}
+      {/* Grain overlay */}
       <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
 
-      {/* Mouse-follow gradient spotlight */}
-      {!prefersReduced && (
+      {/* Mouse-follow gradient spotlight (desktop only) */}
+      {!prefersReduced && !isMobile && (
         <div
-          className="absolute inset-0 pointer-events-none transition-opacity duration-500"
+          className="absolute inset-0 pointer-events-none"
           style={{
             background: `radial-gradient(600px circle at ${mousePos.x * 100}% ${mousePos.y * 100}%, rgba(255, 70, 0, 0.12), rgba(255, 171, 64, 0.05) 40%, transparent 70%)`,
           }}
@@ -109,13 +120,13 @@ function Hero({
         />
       )}
 
-      {/* Ambient glow orbs with heavy parallax + orbit */}
+      {/* Glow orbs with parallax */}
       {!prefersReduced ? (
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <motion.div
-            className="absolute top-[5%] left-[5%] w-[600px] h-[600px] rounded-full bg-[--color-primary] opacity-[0.20] blur-[120px]"
-            style={{ y: midLayer }}
-            animate={{
+            className="absolute top-[5%] left-[5%] w-[400px] md:w-[600px] h-[400px] md:h-[600px] rounded-full bg-[--color-primary] opacity-[0.20] blur-[120px]"
+            style={isMobile ? undefined : { y: midLayer }}
+            animate={isMobile ? undefined : {
               x: [0, 60, -40, 20, 0],
               y: [0, -50, 30, -20, 0],
               scale: [1, 1.15, 0.9, 1.1, 1],
@@ -123,69 +134,88 @@ function Hero({
             transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] rounded-full bg-[--color-accent-warm] opacity-[0.15] blur-[100px]"
-            style={{ y: shapeLayer }}
-            animate={{
+            className="absolute bottom-[10%] right-[5%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full bg-[--color-accent-warm] opacity-[0.15] blur-[100px]"
+            style={isMobile ? undefined : { y: shapeLayer }}
+            animate={isMobile ? undefined : {
               x: [0, -50, 40, -30, 0],
               y: [0, 40, -30, 50, 0],
-              scale: [1, 0.9, 1.12, 0.95, 1],
             }}
             transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute top-[35%] right-[25%] w-[350px] h-[350px] rounded-full bg-[--color-accent-coral] opacity-[0.12] blur-[90px]"
-            style={{ y: midLayer }}
-            animate={{
-              x: [0, 30, -20, 0],
-              rotate: [0, 5, -3, 0],
-            }}
-            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
       ) : (
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-[5%] left-[5%] w-[600px] h-[600px] rounded-full bg-[--color-primary] opacity-[0.15] blur-[120px]" />
-          <div className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] rounded-full bg-[--color-accent-warm] opacity-[0.10] blur-[100px]" />
+          <div className="absolute top-[5%] left-[5%] w-[400px] h-[400px] rounded-full bg-[--color-primary] opacity-[0.15] blur-[120px]" />
         </div>
       )}
 
-      {/* Floating geometric shapes with parallax */}
-      {!prefersReduced && (
+      {/* Floating visual icons (desktop only) - breaks "all text" monotony */}
+      {!prefersReduced && !isMobile && (
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          {/* Floating circle */}
           <motion.div
-            className="absolute top-[15%] right-[18%] w-20 h-20 rounded-full border border-[rgba(255,70,0,0.15)]"
+            className="absolute top-[18%] right-[12%] p-3 rounded-xl bg-[rgba(255,70,0,0.08)] border border-[rgba(255,70,0,0.15)]"
             style={{ y: shapeLayer, x: mouseXSpring }}
+            animate={{ rotate: [0, 5, -5, 0], y: [-10, 10, -10] }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Globe className="size-6 text-[--color-primary] opacity-60" />
+          </motion.div>
+          <motion.div
+            className="absolute bottom-[28%] left-[8%] p-3 rounded-xl bg-[rgba(255,171,64,0.06)] border border-[rgba(255,171,64,0.12)]"
+            style={{ y: midLayer }}
+            animate={{ rotate: [0, -3, 3, 0], y: [5, -15, 5] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Truck className="size-6 text-[--color-accent-warm] opacity-50" />
+          </motion.div>
+          <motion.div
+            className="absolute top-[55%] right-[20%] p-2.5 rounded-lg bg-[rgba(255,61,0,0.06)] border border-[rgba(255,61,0,0.10)]"
+            style={{ y: shapeLayer, x: mouseYSpring }}
+            animate={{ rotate: [0, 8, -4, 0] }}
+            transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Plane className="size-5 text-[--color-accent-coral] opacity-50" />
+          </motion.div>
+          <motion.div
+            className="absolute top-[30%] left-[18%] p-2 rounded-lg bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.06)]"
+            style={{ y: bgLayer }}
+            animate={{ scale: [1, 1.1, 1], rotate: [-3, 3, -3] }}
+            transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Container className="size-5 text-[--color-text-secondary] opacity-30" />
+          </motion.div>
+
+          {/* Geometric shapes */}
+          <motion.div
+            className="absolute top-[15%] right-[35%] w-16 h-16 rounded-full border border-[rgba(255,70,0,0.12)]"
             animate={{ rotate: 360 }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
           />
-          {/* Floating line */}
           <motion.div
-            className="absolute bottom-[25%] left-[15%] w-32 h-px bg-gradient-to-r from-transparent via-[rgba(255,171,64,0.30)] to-transparent"
-            style={{ y: midLayer }}
-            animate={{ x: [-20, 20, -20], rotate: [0, 5, 0] }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-          />
-          {/* Floating diamond */}
-          <motion.div
-            className="absolute top-[60%] right-[10%] w-8 h-8 border border-[rgba(255,70,0,0.12)] rotate-45"
-            style={{ y: shapeLayer, x: mouseYSpring }}
-            animate={{ rotate: [45, 135, 225, 315, 405], scale: [1, 1.2, 1, 0.9, 1] }}
+            className="absolute bottom-[20%] right-[30%] w-6 h-6 border border-[rgba(255,70,0,0.10)] rotate-45"
+            animate={{ rotate: [45, 135, 225, 315, 405], scale: [1, 1.2, 1] }}
             transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
           />
-          {/* Floating dot */}
+        </div>
+      )}
+
+      {/* Mobile: simpler floating accents */}
+      {!prefersReduced && isMobile && (
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <motion.div
-            className="absolute top-[25%] left-[30%] w-3 h-3 rounded-full bg-[--color-primary] opacity-30"
-            animate={{ y: [-10, 10, -10], x: [-5, 5, -5] }}
+            className="absolute top-[12%] right-[8%] p-2.5 rounded-xl bg-[rgba(255,70,0,0.08)] border border-[rgba(255,70,0,0.15)]"
+            animate={{ y: [-8, 8, -8] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <Globe className="size-5 text-[--color-primary] opacity-50" />
+          </motion.div>
+          <motion.div
+            className="absolute bottom-[22%] left-[6%] p-2 rounded-lg bg-[rgba(255,171,64,0.06)] border border-[rgba(255,171,64,0.12)]"
+            animate={{ y: [5, -10, 5] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          {/* Large ring */}
-          <motion.div
-            className="absolute top-[50%] left-[70%] w-40 h-40 rounded-full border border-[rgba(255,255,255,0.04)]"
-            style={{ y: bgLayer }}
-            animate={{ scale: [1, 1.1, 1], rotate: [-5, 5, -5] }}
-            transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
-          />
+          >
+            <Truck className="size-4 text-[--color-accent-warm] opacity-40" />
+          </motion.div>
         </div>
       )}
 
@@ -193,7 +223,7 @@ function Hero({
       <motion.div
         className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10 text-center"
         style={
-          prefersReduced
+          prefersReduced || isMobile
             ? undefined
             : { scale: contentScale, opacity: contentOpacity, y: contentY }
         }
@@ -201,72 +231,129 @@ function Hero({
         {/* Label */}
         <motion.p
           className="label-text text-[--color-primary] mb-6"
-          initial={prefersReduced ? undefined : { opacity: 0, y: 20, filter: "blur(8px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
+          initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: EASE_OUT_EXPO }}
         >
           PT Utama Globalindo Cargo
         </motion.p>
 
-        {/* Headline with character-by-character reveal */}
-        <h1 className="font-display text-[44px] leading-[0.95] sm:text-[72px] md:text-[96px] lg:text-[112px] max-w-5xl mx-auto tracking-[-0.03em]">
+        {/* Headline - word-by-word on mobile, character-by-character on desktop */}
+        <h1 className="font-display text-[40px] leading-[0.95] sm:text-[64px] md:text-[88px] lg:text-[112px] max-w-5xl mx-auto tracking-[-0.03em]">
           {prefersReduced ? (
             <span className="gradient-text-vivid">{headline}</span>
+          ) : isMobile ? (
+            // Mobile: word-by-word (fast, no lag)
+            words.map((word, i) => (
+              <motion.span
+                key={i}
+                className="inline-block mr-[0.25em] last:mr-0 gradient-text-vivid"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.4,
+                  ease: EASE_OUT_EXPO,
+                  delay: 0.1 + i * 0.06,
+                }}
+              >
+                {word}
+              </motion.span>
+            ))
           ) : (
-            words.map((word, wi) => {
-              const chars = word.split("");
-              const wordElement = (
-                <span key={wi} className="inline-block mr-[0.25em] last:mr-0">
-                  {chars.map((char, ci) => {
-                    const currentCharIndex = charIndex++;
-                    return (
-                      <motion.span
-                        key={ci}
-                        className="inline-block gradient-text-vivid"
-                        initial={{ opacity: 0, y: 50, filter: "blur(12px)", scale: 0.8 }}
-                        animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-                        transition={{
-                          duration: 0.5,
-                          ease: EASE_OUT_EXPO,
-                          delay: 0.2 + currentCharIndex * 0.025,
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    );
-                  })}
-                </span>
-              );
-              if (wi < words.length - 1) charIndex++; // account for space
-              return wordElement;
-            })
+            // Desktop: character-by-character with blur
+            (() => {
+              let charIdx = 0;
+              return words.map((word, wi) => {
+                const chars = word.split("");
+                const el = (
+                  <span key={wi} className="inline-block mr-[0.25em] last:mr-0">
+                    {chars.map((char, ci) => {
+                      const idx = charIdx++;
+                      return (
+                        <motion.span
+                          key={ci}
+                          className="inline-block gradient-text-vivid"
+                          initial={{ opacity: 0, y: 40, filter: "blur(10px)", scale: 0.85 }}
+                          animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+                          transition={{
+                            duration: 0.45,
+                            ease: EASE_OUT_EXPO,
+                            delay: 0.15 + idx * 0.02,
+                          }}
+                        >
+                          {char}
+                        </motion.span>
+                      );
+                    })}
+                  </span>
+                );
+                charIdx++; // space
+                return el;
+              });
+            })()
           )}
         </h1>
 
         <motion.p
-          className="mt-8 text-lg sm:text-xl text-[--color-text-secondary] max-w-2xl mx-auto leading-relaxed"
-          initial={prefersReduced ? undefined : { opacity: 0, y: 30, filter: "blur(6px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.7, ease: EASE_OUT_EXPO, delay: 0.8 }}
+          className="mt-7 text-base sm:text-lg md:text-xl text-[--color-text-secondary] max-w-2xl mx-auto leading-relaxed"
+          initial={prefersReduced ? undefined : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: EASE_OUT_EXPO, delay: isMobile ? 0.5 : 0.8 }}
         >
           {subline}
         </motion.p>
 
         <motion.div
-          className="mt-10"
-          initial={prefersReduced ? undefined : { opacity: 0, y: 24, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.6, ease: EASE_OUT_EXPO, delay: 1.0 }}
+          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
+          initial={prefersReduced ? undefined : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: EASE_OUT_EXPO, delay: isMobile ? 0.6 : 1.0 }}
         >
           <Button href={ctaHref} size="lg">
             {ctaLabel}
           </Button>
+          <Button
+            href={`/${locale}/${locale === "id" ? "layanan" : "services"}`}
+            variant="tertiary"
+            size="lg"
+          >
+            {locale === "id" ? "Lihat Layanan" : "View Services"}
+          </Button>
+        </motion.div>
+
+        {/* Trust badges inline */}
+        <motion.div
+          className="mt-12 flex items-center justify-center gap-6 sm:gap-8"
+          initial={prefersReduced ? undefined : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: isMobile ? 0.8 : 1.3 }}
+        >
+          <div className="flex items-center gap-2">
+            <div className="size-2 rounded-full bg-[--color-success] shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
+            <span className="text-xs text-[--color-text-secondary]">
+              {locale === "id" ? "Sejak 1995" : "Since 1995"}
+            </span>
+          </div>
+          <div className="w-px h-3 bg-[rgba(255,255,255,0.10)]" />
+          <div className="flex items-center gap-2">
+            <div className="size-2 rounded-full bg-[--color-primary] shadow-[0_0_8px_rgba(255,70,0,0.4)]" />
+            <span className="text-xs text-[--color-text-secondary]">
+              {locale === "id" ? "150+ Negara" : "150+ Countries"}
+            </span>
+          </div>
+          <div className="w-px h-3 bg-[rgba(255,255,255,0.10)] hidden sm:block" />
+          <div className="hidden sm:flex items-center gap-2">
+            <div className="size-2 rounded-full bg-[--color-accent-warm] shadow-[0_0_8px_rgba(255,171,64,0.4)]" />
+            <span className="text-xs text-[--color-text-secondary]">
+              WCA & IATA
+            </span>
+          </div>
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator - pulsing line */}
+      {/* Scroll indicator */}
       <motion.div
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-3"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
         initial={prefersReduced ? undefined : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 1.5 }}
@@ -275,7 +362,7 @@ function Hero({
           Scroll
         </span>
         <motion.div
-          className="w-px h-10 bg-gradient-to-b from-[--color-primary] via-[--color-accent-warm] to-transparent"
+          className="w-px h-8 bg-gradient-to-b from-[--color-primary] via-[--color-accent-warm] to-transparent"
           animate={prefersReduced ? undefined : { scaleY: [0, 1, 0], opacity: [0.3, 1, 0.3] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -284,7 +371,7 @@ function Hero({
       {/* Bottom glow divider */}
       <div className="absolute bottom-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
-      {/* Sentinel for MobileBottomBar IntersectionObserver */}
+      {/* Sentinel for MobileBottomBar */}
       <div data-hero-sentinel className="absolute bottom-0 h-px w-full" aria-hidden="true" />
     </section>
   );

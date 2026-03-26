@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { Send } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { Button } from "@/components/ui/Button";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
@@ -52,6 +53,11 @@ function CTABand({
           <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] rounded-full bg-[--color-accent-coral] opacity-[0.06] blur-[140px]" />
         </motion.div>
       )}
+
+      {/* Giant watermark icon */}
+      <div className="absolute top-1/2 right-[5%] -translate-y-1/2 pointer-events-none" aria-hidden="true">
+        <Send className="size-[200px] sm:size-[320px] text-[--color-primary] opacity-[0.03] rotate-[-15deg]" strokeWidth={0.5} />
+      </div>
 
       {/* Grain overlay */}
       <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />

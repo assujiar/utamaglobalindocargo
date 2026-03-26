@@ -2,6 +2,7 @@
 
 import { useRef, useCallback } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { Truck, Globe, FileCheck, Plane, Warehouse, Container, Layers, Award } from "lucide-react";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { CounterAnimation } from "@/components/motion/CounterAnimation";
@@ -13,6 +14,10 @@ import { CTABand } from "@/components/sections/CTABand";
 import type { Locale } from "@/lib/i18n/config";
 import type { ServiceData, ServiceDetail } from "@/lib/content/services";
 
+const serviceIconMap: Record<string, React.ComponentType<{ className?: string; strokeWidth?: number }>> = {
+  Truck, Globe, FileCheck, Plane, Warehouse, Container,
+};
+
 interface ServiceDetailPageProps {
   locale: Locale;
   service: ServiceData;
@@ -23,6 +28,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
   const isId = locale === "id";
   const prefersReduced = useReducedMotion();
   const heroRef = useRef<HTMLElement>(null);
+  const ServiceIcon = serviceIconMap[service.icon];
 
   // Hero parallax: content fades + scales on scroll
   const { scrollYProgress: heroScroll } = useScroll({
@@ -85,6 +91,13 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
     <>
       {/* ── 1. Hero ── */}
       <section ref={heroRef} className="pt-8 pb-24 sm:pt-12 sm:pb-32 bg-[--color-bg-dark] relative overflow-hidden min-h-[50vh] flex flex-col justify-end">
+        {/* Giant watermark service icon */}
+        {ServiceIcon && (
+          <div className="absolute top-[10%] right-[-5%] pointer-events-none" aria-hidden="true">
+            <ServiceIcon className="size-[250px] sm:size-[400px] md:size-[500px] text-[--color-primary] opacity-[0.03]" strokeWidth={0.4} />
+          </div>
+        )}
+
         {/* Gradient mesh with parallax */}
         {!prefersReduced ? (
           <motion.div className="absolute inset-0 pointer-events-none" style={{ y: heroBgY }} aria-hidden="true">
@@ -165,6 +178,11 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
       <section className="py-28 sm:py-36 relative overflow-hidden"
         style={{ background: "linear-gradient(180deg, #111113 0%, #09090B 100%)" }}
       >
+        {/* Watermark */}
+        <div className="absolute bottom-[5%] left-[-3%] pointer-events-none" aria-hidden="true">
+          <Layers className="size-[220px] sm:size-[350px] text-[--color-primary] opacity-[0.02] rotate-12" strokeWidth={0.5} />
+        </div>
+
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[--color-primary] opacity-[0.05] blur-[180px]" />
         </div>
@@ -176,7 +194,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
               {isId ? "Kapabilitas" : "Capabilities"}
             </p>
             <h2 className="text-heading-md sm:text-heading-lg font-bold gradient-text text-center mb-14 sm:mb-20 tracking-[-0.02em]">
-              {isId ? "Apa yang Kami Tawarkan" : "What We Offer"}
+              {isId ? "Cakupan Layanan" : "Service Scope"}
             </h2>
           </ScrollReveal>
 
@@ -211,12 +229,16 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
 
       {/* ── 4. How It Works (ProcessFlow) ── */}
       <ProcessFlow
-        heading={isId ? "Bagaimana Prosesnya" : "How It Works"}
+        heading={isId ? "Alur Kerja Kami" : "How We Work"}
         steps={processSteps}
       />
 
       {/* ── 5. Proof (Stats + Client Story) ── */}
       <section className="py-28 sm:py-36 bg-[--color-bg-dark] relative overflow-hidden">
+        {/* Watermark */}
+        <div className="absolute top-[10%] right-[-2%] pointer-events-none" aria-hidden="true">
+          <Award className="size-[200px] sm:size-[320px] text-[--color-accent-warm] opacity-[0.02] -rotate-12" strokeWidth={0.5} />
+        </div>
         <div className="absolute inset-0 radial-burst pointer-events-none" aria-hidden="true" />
         <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
         <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
@@ -225,7 +247,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
           {/* Stats */}
           <ScrollReveal>
             <p className="label-text text-[--color-primary] text-center mb-6">
-              {isId ? "Data & Bukti" : "Data & Proof"}
+              {isId ? "Rekam Jejak" : "Track Record"}
             </p>
           </ScrollReveal>
 
@@ -266,7 +288,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
 
       {/* ── 6. FAQ ── */}
       <FAQSection
-        heading={isId ? "Pertanyaan Umum" : "Frequently Asked Questions"}
+        heading={isId ? "Pertanyaan yang Sering Diajukan" : "Frequently Asked Questions"}
         items={faqItems}
       />
 
@@ -291,7 +313,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
       {/* ── 8. CTA Band ── */}
       <CTABand
         locale={locale}
-        heading={isId ? "Siap Mengirim?" : "Ready to Ship?"}
+        heading={isId ? "Diskusikan Kebutuhan Anda" : "Discuss Your Requirements"}
         ctaLabel={
           isId
             ? `Minta Penawaran untuk ${serviceName}`
@@ -300,8 +322,8 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
         ctaHref={quoteHref}
         trustLine={
           isId
-            ? "Kami merespons dalam 2 jam kerja."
-            : "We respond within 2 business hours."
+            ? "Tim kami merespons dalam 2 jam kerja."
+            : "Our team responds within 2 business hours."
         }
       />
     </>
