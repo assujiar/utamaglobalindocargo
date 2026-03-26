@@ -18,7 +18,6 @@ import {
   VelocityMarquee,
   EditorialSection,
 } from "@/components/sections/HomeMotionSections";
-import { SectionTransition } from "@/components/motion/SectionTransition";
 
 // ─── Bilingual content ───
 
@@ -223,19 +222,15 @@ export default async function HomePage({
       {/* 3. Velocity Marquee (GSAP: ScrollVelocityText) */}
       <VelocityMarquee locale={typedLocale} />
 
-      {/* 4. Service Grid — scale reveal transition */}
-      <SectionTransition type="scale">
-        <ServiceGrid
-          locale={typedLocale}
-          heading={c.serviceGrid.heading}
-          exploreLabel={c.serviceGrid.exploreLabel}
-        />
-      </SectionTransition>
+      {/* 4. Service Grid */}
+      <ServiceGrid
+        locale={typedLocale}
+        heading={c.serviceGrid.heading}
+        exploreLabel={c.serviceGrid.exploreLabel}
+      />
 
-      {/* 5. Proof Section (Stats + Client Story) — overlap transition */}
-      <SectionTransition type="overlap">
-        <StatsBar locale={typedLocale} badgesLabel={c.proof.badgesLabel} />
-      </SectionTransition>
+      {/* 5. Proof Section (Stats) */}
+      <StatsBar locale={typedLocale} badgesLabel={c.proof.badgesLabel} />
 
       {/* 6. Featured Client Story */}
       <ClientStoryFeatured locale={typedLocale} />
@@ -243,15 +238,13 @@ export default async function HomePage({
       {/* 6.5. Testimonials Carousel */}
       <TestimonialsCarousel locale={typedLocale} />
 
-      {/* 7. Editorial Spotlight — gradient transition */}
-      <SectionTransition type="gradient">
-        <EditorialSection
+      {/* 7. Editorial Spotlight */}
+      <EditorialSection
         locale={typedLocale}
         heading={c.editorial.heading}
         description={c.editorial.description}
         ctaLabel={c.editorial.ctaLabel}
       />
-      </SectionTransition>
 
       {/* 8. CTA Band */}
       <CTABand

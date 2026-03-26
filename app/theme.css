@@ -1,6 +1,7 @@
 /*
  * UGC Logistics - Design Tokens
- * Cinematic Editorial Bold Design System v2
+ * Cinematic Editorial Bold Design System v3
+ * Inspired by buzzworthystudio.com editorial approach
  * Source of truth: /docs/09_DESIGN_SYSTEM_RULES.md
  */
 
@@ -15,43 +16,43 @@
   --color-accent-rose: #FF6B6B;
 
   /* ─── Dark Backgrounds (Default) ─── */
-  --color-bg-dark: #09090B;
+  --color-bg-dark: #0A0A0C;
   --color-bg-dark-elevated: #111113;
-  --color-bg-dark-card: #1A1A1E;
-  --color-bg-dark-hover: #222226;
+  --color-bg-dark-card: #151517;
+  --color-bg-dark-hover: #1C1C1F;
 
   /* ─── Light Backgrounds (Contrast Breaks) ─── */
   --color-bg-light: #FAF9F6;
   --color-bg-light-elevated: #FFFFFF;
 
   /* ─── Text ─── */
-  --color-text-primary: #F5F5F5;
+  --color-text-primary: #EDEDEF;
   --color-text-primary-light: #1A1A1A;
-  --color-text-secondary: #8A8A8A;
+  --color-text-secondary: #737378;
   --color-text-inverse: #FFFFFF;
-  --color-text-muted: #5A5A5A;
+  --color-text-muted: #4A4A4F;
 
   /* ─── Borders ─── */
-  --color-border-dark: rgba(255, 255, 255, 0.10);
+  --color-border-dark: rgba(255, 255, 255, 0.08);
   --color-border-light: #E8E5E0;
-  --color-border-glow: rgba(255, 70, 0, 0.25);
+  --color-border-glow: rgba(255, 70, 0, 0.20);
 
-  /* ─── Glow Effects (HIGH INTENSITY) ─── */
-  --glow-primary: rgba(255, 70, 0, 0.60);
-  --glow-primary-soft: rgba(255, 70, 0, 0.25);
-  --glow-primary-intense: rgba(255, 70, 0, 0.80);
-  --glow-ambient: rgba(255, 70, 0, 0.15);
-  --glow-warm: rgba(255, 171, 64, 0.20);
-  --glow-coral: rgba(255, 61, 0, 0.15);
+  /* ─── Glow Effects (RESTRAINED) ─── */
+  --glow-primary: rgba(255, 70, 0, 0.40);
+  --glow-primary-soft: rgba(255, 70, 0, 0.15);
+  --glow-primary-intense: rgba(255, 70, 0, 0.60);
+  --glow-ambient: rgba(255, 70, 0, 0.08);
+  --glow-warm: rgba(255, 171, 64, 0.12);
+  --glow-coral: rgba(255, 61, 0, 0.10);
 
   /* ─── Gradient Definitions ─── */
-  --gradient-text: linear-gradient(135deg, #FF4600 0%, #FF6B35 40%, #FFAB40 100%);
-  --gradient-text-vivid: linear-gradient(135deg, #FF4600 0%, #FF3D00 30%, #FFAB40 60%, #FF6B6B 100%);
-  --gradient-mesh-primary: radial-gradient(ellipse at 20% 50%, rgba(255, 70, 0, 0.20) 0%, transparent 60%);
-  --gradient-mesh-warm: radial-gradient(ellipse at 80% 20%, rgba(255, 171, 64, 0.15) 0%, transparent 50%);
-  --gradient-mesh-coral: radial-gradient(ellipse at 50% 80%, rgba(255, 61, 0, 0.12) 0%, transparent 50%);
+  --gradient-text: linear-gradient(135deg, #FF4600 0%, #FF6B35 50%, #FFAB40 100%);
+  --gradient-text-vivid: linear-gradient(135deg, #FF4600 0%, #FF3D00 35%, #FFAB40 65%, #FF6B6B 100%);
+  --gradient-mesh-primary: radial-gradient(ellipse at 20% 50%, rgba(255, 70, 0, 0.12) 0%, transparent 60%);
+  --gradient-mesh-warm: radial-gradient(ellipse at 80% 20%, rgba(255, 171, 64, 0.08) 0%, transparent 50%);
+  --gradient-mesh-coral: radial-gradient(ellipse at 50% 80%, rgba(255, 61, 0, 0.06) 0%, transparent 50%);
   --gradient-cta: linear-gradient(135deg, #FF4600 0%, #FF3D00 50%, #CC3800 100%);
-  --gradient-section: linear-gradient(180deg, #09090B 0%, #141416 50%, #09090B 100%);
+  --gradient-section: linear-gradient(180deg, #0A0A0C 0%, #111113 50%, #0A0A0C 100%);
 
   /* ─── Semantic ─── */
   --color-success: #10B981;
@@ -64,7 +65,7 @@
   --font-mono: var(--font-velocity), monospace;
   --font-highway: var(--font-fhwa), monospace;
 
-  /* ─── Spacing (8px base) ─── */
+  /* ─── Spacing (8px base, generous for editorial feel) ─── */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -81,15 +82,15 @@
   --space-40: 160px;
 
   /* ─── Border Radius ─── */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --radius-2xl: 32px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
 
   /* ─── Layout ─── */
-  --max-width-text: 720px;
-  --max-width-layout: 1440px;
+  --max-width-text: 680px;
+  --max-width-layout: 1400px;
   --gutter-desktop: 24px;
   --gutter-tablet: 20px;
   --gutter-mobile: 16px;
@@ -97,16 +98,16 @@
   --margin-tablet: 40px;
   --margin-mobile: 20px;
 
-  /* ─── Shadows & Glows (INTENSE) ─── */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
-  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.20);
-  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.25);
-  --shadow-glow-sm: 0 2px 12px rgba(255, 70, 0, 0.10), 0 0 0 1px rgba(255, 70, 0, 0.06);
-  --shadow-glow-md: 0 4px 20px rgba(255, 70, 0, 0.15), 0 0 0 1px rgba(255, 70, 0, 0.10);
-  --shadow-glow-lg: 0 6px 32px rgba(255, 70, 0, 0.20), 0 0 0 1px rgba(255, 70, 0, 0.12);
-  --shadow-glow-xl: 0 8px 48px rgba(255, 70, 0, 0.25), 0 0 0 1px rgba(255, 70, 0, 0.15);
-  --shadow-glow-ambient: 0 0 120px rgba(255, 70, 0, 0.12);
-  --shadow-warm: 0 8px 32px rgba(255, 70, 0, 0.12);
+  /* ─── Shadows & Glows (SUBTLE) ─── */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.20);
+  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.30);
+  --shadow-glow-sm: 0 0 20px rgba(255, 70, 0, 0.08);
+  --shadow-glow-md: 0 0 40px rgba(255, 70, 0, 0.10);
+  --shadow-glow-lg: 0 0 60px rgba(255, 70, 0, 0.12);
+  --shadow-glow-xl: 0 0 80px rgba(255, 70, 0, 0.15);
+  --shadow-glow-ambient: 0 0 120px rgba(255, 70, 0, 0.06);
+  --shadow-warm: 0 8px 32px rgba(255, 70, 0, 0.08);
 
   /* ─── Motion ─── */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);

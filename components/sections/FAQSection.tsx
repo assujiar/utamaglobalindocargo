@@ -1,6 +1,5 @@
 "use client";
 
-import { HelpCircle } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { Accordion } from "@/components/ui/Accordion";
@@ -39,28 +38,6 @@ function FAQSchemaJsonLd({ items }: { items: FAQItem[] }) {
   );
 }
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
-const itemVariant = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
-    },
-  },
-};
-
 function FAQSection({ heading, items, className }: FAQSectionProps) {
   const prefersReduced = useReducedMotion();
   const accordionItems = items.map((item) => ({
@@ -71,38 +48,19 @@ function FAQSection({ heading, items, className }: FAQSectionProps) {
   return (
     <>
       <FAQSchemaJsonLd items={items} />
-      <section className={cn("py-28 sm:py-36 relative overflow-hidden", className)}
-        style={{
-          background: "linear-gradient(180deg, #111113 0%, #0f0805 50%, #111113 100%)",
-        }}
-      >
-        {/* Giant watermark icon */}
-        <div className="absolute top-1/2 left-[8%] -translate-y-1/2 pointer-events-none" aria-hidden="true">
-          <HelpCircle className="size-[240px] sm:size-[360px] text-[--color-primary] opacity-[0.02]" strokeWidth={0.5} />
-        </div>
-
-        {/* Side glow accents */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[400px] h-[600px] rounded-full bg-[--color-primary] opacity-[0.05] blur-[160px]" />
-          <div className="absolute top-1/3 right-0 w-[300px] h-[400px] rounded-full bg-[--color-accent-warm] opacity-[0.04] blur-[120px]" />
-        </div>
-
-        {/* Top glow divider */}
-        <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
-
-        <div className="relative z-10 mx-auto max-w-[720px] px-5 sm:px-10">
+      <section className={cn("py-28 sm:py-36 bg-[--color-bg-dark]", className)}>
+        <div className="mx-auto max-w-[720px] px-5 sm:px-10">
           <ScrollReveal>
-            <p className="label-text text-[--color-primary] text-center mb-4">FAQ</p>
-            <h2 className="text-heading-md sm:text-heading-lg font-bold gradient-text text-center mb-14 sm:mb-18 tracking-[-0.02em]">
+            <p className="label-text text-[--color-primary] mb-4">FAQ</p>
+            <h2 className="text-heading-lg sm:text-heading-xl font-bold text-[--color-text-primary] mb-14 sm:mb-18 tracking-[-0.03em]">
               {heading}
             </h2>
           </ScrollReveal>
           <motion.div
-            className="glass-tinted p-6 sm:p-8"
-            variants={prefersReduced ? undefined : containerVariants}
-            initial="hidden"
-            whileInView="visible"
+            initial={prefersReduced ? undefined : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
             <Accordion items={accordionItems} defaultOpen={0} />
           </motion.div>

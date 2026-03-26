@@ -39,7 +39,7 @@ function ClientStoryCard({ story, locale, className }: ClientStoryCardProps) {
     <ScrollReveal>
       <div
         className={cn(
-          "glass-tinted p-6 sm:p-8",
+          "border-l-2 border-[--color-primary] pl-6 sm:pl-8",
           className,
         )}
       >
@@ -49,12 +49,12 @@ function ClientStoryCard({ story, locale, className }: ClientStoryCardProps) {
         </span>
 
         {/* Pull quote */}
-        <blockquote className="text-lg sm:text-xl font-medium text-[--color-text-inverse] leading-snug mb-6">
+        <blockquote className="text-lg sm:text-xl font-medium text-[--color-text-primary] leading-snug mb-6">
           &ldquo;{quote}&rdquo;
         </blockquote>
 
         {/* Challenge / Solution / Result */}
-        <div className="space-y-4 text-sm">
+        <div className="space-y-3 text-sm">
           <div>
             <span className="font-semibold text-[--color-text-primary]">
               {challengeLabel}:
