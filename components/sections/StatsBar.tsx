@@ -73,7 +73,7 @@ function StatsBar({ locale, className }: StatsBarProps) {
             aria-hidden="true"
           />
 
-          <div className="relative stat-number text-5xl sm:text-6xl md:text-[80px] lg:text-[96px] gradient-text-vivid">
+          <div className="relative stat-number text-5xl sm:text-6xl md:text-[80px] lg:text-[96px] gradient-text-vivid overflow-visible">
             <CounterAnimation
               target={stat.value}
               suffix={stat.suffix}
