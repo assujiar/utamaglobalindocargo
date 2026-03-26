@@ -21,6 +21,16 @@ All animations use easing curves. No linear transitions ever.
 | Gradient shift | 20000-30000ms | linear (exception) | Gradient mesh hue rotation |
 | Magnetic cursor | continuous | spring(0.15) | Button attraction |
 
+## Smooth Scroll (Lenis)
+
+Lenis provides butter-smooth scroll behavior synced with GSAP ScrollTrigger.
+
+- **Configuration:** `lerp: 0.1`, `smoothWheel: true`, `autoRaf: false` (GSAP ticker drives the RAF loop)
+- **GSAP sync:** `lenis.on("scroll", ScrollTrigger.update)` + `gsap.ticker.add((time) => lenis.raf(time * 1000))` + `gsap.ticker.lagSmoothing(0)`
+- **Scrollable children:** Lenis natively respects `[data-lenis-prevent]` on scrollable areas (dropdowns, modals, scrollable containers). Add this attribute to any element that needs native scroll.
+- **Reduced motion:** If `prefers-reduced-motion: reduce` is active, Lenis is not initialized (native scroll behavior).
+- **Cleanup:** `lenis.destroy()` on unmount.
+
 ## Parallax System
 
 Desktop only. Creates cinematic depth by moving layers at different scroll rates.
@@ -35,12 +45,16 @@ Desktop only. Creates cinematic depth by moving layers at different scroll rates
 
 ### Implementation Rules
 
-- Use `transform: translateY()` driven by scroll position via Framer Motion `useScroll` + `useTransform`
+- Use `transform: translateY()` driven by scroll position via GSAP ScrollTrigger scrub or Framer Motion `useScroll` + `useTransform`
 - Only animate `transform` and `opacity`, never layout properties
-- Parallax is applied to **decorative elements only**: glow orbs, gradient backgrounds, floating accent shapes
+- Parallax is applied to **decorative elements and images**: glow orbs, gradient backgrounds, floating accent shapes, hero/feature images
 - NEVER parallax: text content, interactive elements, glass surfaces, images with text overlays
 - Disable entirely on mobile and when `prefers-reduced-motion` is active
 - Maximum parallax displacement: 120px total travel per element
+
+### Image Parallax (ParallaxImage)
+
+For hero and feature images. Container has `overflow: hidden` with the target aspect ratio. Image canvas is 120% height. GSAP ScrollTrigger scrub drives `translateY` from `-range%` to `+range%` (default ±10%). Optional `zoomOut` scales from 1.15 to 1.0 during scroll. Desktop only; mobile renders static image at center crop.
 
 ### Ambient Glow Orbs
 
@@ -64,7 +78,7 @@ Primary: `opacity: 0 to 1` combined with `translateY(32px) to 0`. Trigger: eleme
 
 ### Clip-Path Mask Reveal (Premium)
 
-For hero headlines and section titles. Content is clipped with `inset(100% 0 0 0)` and animates to `inset(0 0 0 0)` combined with a subtle `translateY(20px) to 0`. Duration: 800ms with `cubic-bezier(0.77, 0, 0.175, 1)`. Use sparingly: max 2 clip-path reveals per page.
+For hero headlines and section titles. Content is clipped with `inset(100% 0 0 0)` and animates to `inset(0 0 0 0)` combined with a subtle `translateY(20px) to 0`. Duration: 800ms with `cubic-bezier(0.77, 0, 0.175, 1)`. Use sparingly: max 4 clip-path reveals per page. Desktop only; falls back to opacity + translateY on mobile.
 
 ### Text Split Animation (Hero Only)
 
@@ -86,9 +100,9 @@ When a section enters the viewport:
 
 Numbers count from 0 to target value. Duration: 1500ms. Easing: ease-out (fast start, slow finish). Trigger: element enters viewport. Count once only; re-scroll does not re-trigger. Display in JetBrains Mono Bold at stat scale. Suffix (+, %, etc.) appears with the number, no separate animation.
 
-### Marquee / Ticker (Social Proof)
+### Marquee / Velocity Ticker
 
-Continuous horizontal scroll of trust badges, certifications, or key stats. Speed: ~40px/second. Pause on hover. Duplicate content for seamless loop. Separator between items: vertical glow line or dot. Used on: home page proof section. Max 1 marquee per page.
+GSAP-powered continuous horizontal scroll with scroll-velocity boost. Two rows: primary (left direction, faster) + secondary (right direction, slower, accent color). Speed responds to scroll velocity (clamped 1x-5x desktop, 1x-2x mobile). Mobile: 40% of desktop base velocity. Duplicate content for seamless loop. Max 1 marquee section per page.
 
 ## Hover Interactions
 
@@ -120,14 +134,54 @@ Color transitions to `--color-primary`. Active indicator is a small glow dot or 
 
 ## Page Transitions
 
-Route changes use a **dark overlay wipe**:
+Route changes use a **multi-step cinematic transition**:
 
-1. Current page fades out: opacity 1 to 0, 300ms
-2. Brief dark frame: 50ms hold at `#09090B`
-3. New page fades in: opacity 0 to 1, 400ms
-4. New page content uses standard reveal choreography triggered on entry
+1. **Exit phase:** Current content fades out (`opacity 0`) + scales down (`scale 0.97`), 300ms
+2. **Overlay wipe:** Dark overlay (`#09090B`) wipes up via `clip-path: inset(100% 0 0 0)` to `inset(0 0 0 0)`, 400ms with `cubic-bezier(0.77, 0, 0.175, 1)`
+3. **Glow hold:** Primary color glow pulse in center of overlay, 150ms
+4. **Reveal:** Overlay slides away via `clip-path: inset(0 0 100% 0)`, 350ms
+5. **Enter phase:** New content fades in (`opacity 1`) + scales up (`scale 1.0`), 400ms
 
-Service-to-service navigation: same transition. No horizontal slide (adds complexity without clear benefit).
+Scroll-to-top on pathname change. `prefers-reduced-motion` bypasses all animation (instant cut). Service-to-service navigation: same transition.
+
+## Preloader
+
+First-visit preloader with UGC branding:
+
+- **Content:** UGC logo SVG with scale entrance (`scale 0.8 → 1.0`), glow pulse animation, horizontal progress line
+- **Timing:** Minimum 1.2s, maximum 2s. Actual duration follows `document.readyState`
+- **Exit:** Clip-path reveal `inset(0 0 0 0)` to `inset(0 0 100% 0)`, 600ms
+- **Return visits:** Skip via `sessionStorage` flag
+- **Reduced motion:** Skip entirely
+
+## Custom Cursor
+
+GSAP-powered custom cursor for desktop:
+
+- **Default state:** 8px dot, `mix-blend-mode: difference`
+- **Interactive state:** Expands to 40px ring on hover over links, buttons, interactive elements
+- **Contextual text:** Elements with `data-cursor-text="TEXT"` show label inside the cursor ring
+- **Performance:** Uses `gsap.quickTo()` for smooth lerp follow (no RAF loop)
+- **Dynamic elements:** `MutationObserver` watches for dynamically added interactive elements
+- **Disabled on:** Touch devices, `prefers-reduced-motion`, mobile viewports
+
+## Section Transitions
+
+Scroll-linked transitions between sections using Framer Motion `useScroll` + `useTransform`:
+
+- **Scale type:** Section scales from `0.95 → 1.0` as it enters viewport. Best for feature sections.
+- **Overlap type:** Section translates from `translateY(80px) → 0` creating an overlap-slide effect. Best for contrasting sections.
+- **Gradient type:** Section fades from `opacity 0.6 → 1.0`. Best for editorial/text-heavy sections.
+- **Scroll offset:** `["start end", "start 0.3"]` for natural pacing.
+
+## Orchestrated Entrance Timing
+
+Within each section, elements enter in a choreographed sequence:
+
+1. **Section label** (0ms delay): `opacity + translateY(16px)`, 500ms
+2. **Heading** (150ms delay): SplitTextReveal word-by-word or clip-path reveal
+3. **Body text** (300ms delay): `opacity + translateY(20px)`, 600ms
+4. **CTA / interactive** (450ms delay): `opacity + translateY(16px)` or scale entrance
 
 ## Mobile Motion Behavior
 
@@ -159,7 +213,7 @@ All mobile durations are 70% of desktop values. Example: 600ms desktop reveal be
 
 ### Budget
 
-Animation JS (Framer Motion): max 35KB gzipped total. Prefer CSS transitions where possible (hover states, focus rings). Framer Motion for: scroll-linked parallax, staggered reveals, page transitions, counter animations.
+Animation JS (Framer Motion + GSAP + Lenis): budget accordingly. Prefer CSS transitions where possible (hover states, focus rings, underline slide-ins). GSAP for: scroll-linked parallax, velocity marquee, scrub animations, magnetic interactions, custom cursor. Framer Motion for: staggered reveals, page transitions, counter animations, AnimatePresence. Lenis for: smooth scroll.
 
 ### GPU Rules
 
@@ -167,7 +221,7 @@ Only animate `opacity` and `transform` (translate, scale, rotate). Never: `width
 
 ### Intersection Observer
 
-All scroll-triggered animations use `IntersectionObserver` (threshold 0.15). Elements marked "revealed" once, observer disconnects. No scroll-event listeners except for parallax (use Framer Motion `useScroll` which is optimized).
+All scroll-triggered reveal animations use `IntersectionObserver` (threshold 0.15). Elements marked "revealed" once, observer disconnects. Scroll-linked animations (parallax, velocity marquee, scrub) use GSAP ScrollTrigger synced with Lenis. Framer Motion `useScroll` used for section transitions and hero parallax effects.
 
 ### Reduced Motion
 
