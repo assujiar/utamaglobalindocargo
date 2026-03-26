@@ -6,12 +6,13 @@ import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ScrollVelocityText } from "@/components/motion/ScrollVelocityText";
 import { MagneticElement } from "@/components/motion/MagneticElement";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { Button } from "@/components/ui/Button";
 import { getLocalizedPath } from "@/lib/utils/routes";
 import type { Locale } from "@/lib/i18n/config";
 
-// ─── Value Proposition Section (LIGHT BACKGROUND — contrast break) ───
+// ─── Value Proposition Section ───
+// UNIQUE: Light cream bg, NO label, line-by-line scroll-scrub, horizontal metrics
 
 export function ValuePropSection({
   locale,
@@ -27,8 +28,10 @@ export function ValuePropSection({
   return (
     <GSAPProvider>
       <section className="py-32 sm:py-44 section-light relative overflow-hidden">
+        {/* NO divider — clean edge from Hero */}
+
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          {/* Full-width editorial text — no label, just massive text */}
+          {/* Full-width editorial text — no label, just text */}
           <TextRevealByLine
             as="p"
             className="text-heading-xl sm:text-display-sm font-light leading-[1.2] tracking-[-0.02em] max-w-5xl"
@@ -37,12 +40,11 @@ export function ValuePropSection({
             {valueProp}
           </TextRevealByLine>
 
-          {/* Metrics row — clean horizontal layout */}
+          {/* Metrics — horizontal pill layout */}
           <div className="mt-20 sm:mt-28 flex flex-wrap gap-x-12 sm:gap-x-20 gap-y-10">
             {metrics.map((item, i) => (
               <motion.div
                 key={i}
-                className="relative"
                 initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -64,6 +66,7 @@ export function ValuePropSection({
 }
 
 // ─── Velocity Marquee ───
+// UNIQUE: Only section with infinite scroll motion, dark band with border-y
 
 export function VelocityMarquee({ locale }: { locale: Locale }) {
   const text =
@@ -87,7 +90,8 @@ export function VelocityMarquee({ locale }: { locale: Locale }) {
   );
 }
 
-// ─── Editorial Section (reversed layout, dark) ───
+// ─── Editorial Section ───
+// UNIQUE: Reversed asymmetric with parallax depth layers, no divider
 
 export function EditorialSection({
   locale,
@@ -103,21 +107,22 @@ export function EditorialSection({
   return (
     <GSAPProvider>
       <section className="py-28 sm:py-40 section-dark relative overflow-hidden">
-        {/* Subtle gradient mesh */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        {/* Parallax gradient orb — unique depth layer */}
+        <ParallaxDepth speed={-0.15} className="absolute inset-0 pointer-events-none" disabled={false}>
           <div
-            className="absolute w-[60vw] h-[60vw] top-[10%] right-[-20%] rounded-full"
+            className="absolute w-[50vw] h-[50vw] top-[10%] right-[-15%] rounded-full"
             style={{
               background: "radial-gradient(var(--color-primary) 0, transparent 70%)",
-              opacity: 0.04,
+              opacity: 0.05,
             }}
           />
-        </div>
+        </ParallaxDepth>
+
+        {/* NO divider — clean transition from testimonials */}
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          {/* Reversed asymmetric — description left, heading right */}
+          {/* Reversed asymmetric — desc left 4col, heading right 7col */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
-            {/* Left: description + CTA (narrower) */}
             <div className="md:col-span-4 flex flex-col justify-between order-2 md:order-1">
               <div>
                 <motion.p
@@ -137,21 +142,24 @@ export function EditorialSection({
                   {description}
                 </TextRevealByLine>
               </div>
-              <ScrollReveal delay={200}>
-                <div className="mt-8">
-                  <MagneticElement strength={0.2}>
-                    <Button
-                      href={getLocalizedPath("services", locale)}
-                      variant="secondary"
-                    >
-                      {ctaLabel}
-                    </Button>
-                  </MagneticElement>
-                </div>
-              </ScrollReveal>
+              <motion.div
+                className="mt-8"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <MagneticElement strength={0.2}>
+                  <Button
+                    href={getLocalizedPath("services", locale)}
+                    variant="secondary"
+                  >
+                    {ctaLabel}
+                  </Button>
+                </MagneticElement>
+              </motion.div>
             </div>
 
-            {/* Right: big heading (wider) */}
             <div className="md:col-span-7 md:col-start-6 order-1 md:order-2">
               <SplitTextReveal
                 as="h2"

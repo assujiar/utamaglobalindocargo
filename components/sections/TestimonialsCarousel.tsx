@@ -83,7 +83,8 @@ function TestimonialsCarousel({ locale, className }: TestimonialsCarouselProps) 
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
+      {/* Unique divider: shimmer line (different from glow-divider-full) */}
+      <div className="absolute top-0 left-0 right-0 h-px shimmer-line" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
         {/* Full-width centered testimonial */}

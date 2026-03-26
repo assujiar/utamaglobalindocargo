@@ -144,7 +144,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
 
       {/* ── 3. Capability Breakdown (dark elevated) ── */}
       <section className="py-28 sm:py-40 section-elevated relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
+        <div className="absolute top-0 left-0 right-0 divider-subtle" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <div className="mb-14 sm:mb-20">
@@ -270,6 +270,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
             ? "Tim kami merespons dalam 2 jam kerja."
             : "Our team responds within 2 business hours."
         }
+        variant="immersive"
       />
     </GSAPProvider>
   );

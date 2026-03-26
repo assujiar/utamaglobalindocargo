@@ -48,9 +48,9 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
     return pathname.startsWith(path);
   };
 
-  const navLinkClasses = (routeKey: string) =>
+  const navLinkClasses = (routeKey: string, label?: string) =>
     cn(
-      "text-link text-sm font-medium",
+      "mask-link text-sm font-medium",
       "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color-primary]",
       isActive(routeKey)
         ? "!text-[--color-primary]"
@@ -128,6 +128,7 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
                 <Link
                   href={getLocalizedPath("services", locale)}
                   className={navLinkClasses("services")}
+                  data-text={dictionary.nav.services}
                 >
                   {dictionary.nav.services}
                 </Link>
@@ -147,6 +148,7 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
               <Link
                 href={getLocalizedPath("about", locale)}
                 className={navLinkClasses("about")}
+                data-text={dictionary.nav.about}
               >
                 {dictionary.nav.about}
               </Link>
@@ -182,10 +184,10 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
                 <Link
                   href={getLocalizedPath("track", locale)}
                   className={cn(
-                    "hidden sm:inline-flex text-sm font-medium transition-colors duration-200",
-                    "hover:text-[--color-primary]",
+                    "hidden sm:inline-flex mask-link text-sm font-medium",
                     scrolled ? "text-[--color-text-secondary]" : "text-[--color-text-muted]",
                   )}
+                  data-text={dictionary.nav.track}
                 >
                   {dictionary.nav.track}
                 </Link>

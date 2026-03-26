@@ -6,8 +6,6 @@ import type { Locale } from "@/lib/i18n/config";
 import { notFound } from "next/navigation";
 import { LenisProvider } from "@/components/motion/LenisProvider";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
-import { CustomCursor } from "@/components/motion/CustomCursor";
-import { CursorGlow } from "@/components/motion/CursorGlow";
 import { Preloader } from "@/components/motion/Preloader";
 import "../globals.css";
 
@@ -53,8 +51,6 @@ export default async function LocaleLayout({
             <div className="viewport-frame">
               {children}
             </div>
-            <CustomCursor />
-            <CursorGlow />
           </GSAPProvider>
         </LenisProvider>
 

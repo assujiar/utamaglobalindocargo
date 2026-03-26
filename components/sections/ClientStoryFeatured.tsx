@@ -26,6 +26,9 @@ const placeholder = {
   resultLabel_en: "Result",
 };
 
+// UNIQUE: Warm tinted bg (#F5F0EB), centered pull-quote, SplitTextReveal on quote,
+//         divider-dots separator, typography-as-design layout
+
 function ClientStoryFeatured({
   locale,
   className,
@@ -44,11 +47,13 @@ function ClientStoryFeatured({
 
   return (
     <GSAPProvider>
-      <section className={cn("py-32 sm:py-48 section-light relative overflow-hidden", className)}>
+      <section className={cn("py-32 sm:py-48 section-warm relative overflow-hidden", className)}>
+        {/* Unique: dot divider at top */}
+        <div className="absolute top-8 left-0 right-0 divider-dots" aria-hidden="true" />
+
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          {/* Centered pull-quote layout — massive typography */}
           <div className="max-w-4xl mx-auto text-center">
-            {/* Industry label */}
+            {/* Industry tag */}
             <motion.div
               className="mb-10 sm:mb-14"
               initial={prefersReduced ? undefined : { opacity: 0 }}
@@ -65,7 +70,7 @@ function ClientStoryFeatured({
               </span>
             </motion.div>
 
-            {/* Big pull-quote */}
+            {/* Big pull-quote — SplitTextReveal */}
             <SplitTextReveal
               as="p"
               type="words"
@@ -75,7 +80,7 @@ function ClientStoryFeatured({
               {`\u201C${quote}\u201D`}
             </SplitTextReveal>
 
-            {/* Result — below with accent divider */}
+            {/* Result with accent line */}
             <motion.div
               className="mt-12 sm:mt-16 inline-flex items-center gap-4 text-left"
               initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}

@@ -128,6 +128,7 @@ export default async function LayananPage({
         locale={typedLocale}
         heading={c.serviceGrid.heading}
         exploreLabel={c.serviceGrid.exploreLabel}
+        variant="cards"
       />
 
       <CrossValueSection
@@ -142,6 +143,7 @@ export default async function LayananPage({
         ctaLabel={c.ctaBand.ctaLabel}
         ctaHref={getLocalizedPath("quote", typedLocale)}
         trustLine={c.ctaBand.trustLine}
+        variant="split"
       />
 
       <Footer locale={typedLocale} dictionary={dict} />
