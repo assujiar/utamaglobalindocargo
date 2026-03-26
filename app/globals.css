@@ -10,7 +10,7 @@
 /* ─── Base Typography ─── */
 
 html {
-  scroll-behavior: smooth;
+  /* Lenis handles smooth scrolling — no CSS scroll-behavior needed */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -354,7 +354,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-glow:hover {
-  box-shadow: 0 4px 24px rgba(255, 70, 0, 0.22), 0 0 0 1px rgba(255, 70, 0, 0.18);
+  box-shadow: 0 4px 24px rgba(255, 70, 0, 0.25), 0 0 60px rgba(255, 70, 0, 0.15), 0 0 0 1px rgba(255, 70, 0, 0.22);
   transform: translateY(-2px);
 }
 
@@ -520,6 +520,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── Reduced Motion ─── */
+
+/* ─── Mobile Touch Feedback ─── */
+
+@media (hover: none) and (pointer: coarse) {
+  button:active,
+  a:active,
+  [role="button"]:active {
+    transform: scale(0.97) !important;
+    transition: transform 100ms ease-out !important;
+  }
+
+  /* Disable card lift hover on touch devices */
+  .hover\:-translate-y-1\.5:hover {
+    transform: none !important;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,

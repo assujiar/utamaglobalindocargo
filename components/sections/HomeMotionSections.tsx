@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
@@ -106,15 +107,29 @@ export function VelocityMarquee({ locale }: { locale: Locale }) {
       ? "FREIGHT FORWARDING \u2022 KEPABEANAN \u2022 PERGUDANGAN \u2022 DISTRIBUSI \u2022 KARGO PROYEK \u2022 CHARTER \u2022"
       : "FREIGHT FORWARDING \u2022 CUSTOMS CLEARANCE \u2022 WAREHOUSING \u2022 DISTRIBUTION \u2022 PROJECT CARGO \u2022 CHARTER \u2022";
 
+  const textSecondary =
+    locale === "id"
+      ? "IMPOR \u2022 EKSPOR \u2022 DOOR-TO-DOOR \u2022 SEWA GUDANG \u2022 HEAVY LIFT \u2022 BERSERTIFIKASI WCA & IATA \u2022"
+      : "IMPORT \u2022 EXPORT \u2022 DOOR-TO-DOOR \u2022 WAREHOUSE LEASE \u2022 HEAVY LIFT \u2022 WCA & IATA CERTIFIED \u2022";
+
   return (
     <GSAPProvider>
-      <div className="py-8 bg-[--color-bg-dark] border-y border-[rgba(255,255,255,0.04)] overflow-hidden">
+      <div className="py-6 bg-[--color-bg-dark] border-y border-[rgba(255,255,255,0.04)] overflow-hidden space-y-2">
         <ScrollVelocityText
           baseVelocity={60}
           repeat={5}
+          direction="left"
           className="text-[80px] sm:text-[120px] md:text-[160px] font-black text-[rgba(255,255,255,0.025)] leading-none select-none font-display tracking-tight"
         >
           {text}
+        </ScrollVelocityText>
+        <ScrollVelocityText
+          baseVelocity={40}
+          repeat={5}
+          direction="right"
+          className="text-[48px] sm:text-[72px] md:text-[96px] font-black text-[rgba(255,70,0,0.03)] leading-none select-none font-display tracking-tight"
+        >
+          {textSecondary}
         </ScrollVelocityText>
       </div>
     </GSAPProvider>
@@ -171,9 +186,15 @@ export function EditorialSection({
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <MagneticElement strength={0.08}>
             <div className="glass-tinted p-10 sm:p-14 max-w-2xl mx-auto text-center">
-              <p className="label-text text-[--color-primary] mb-4">
+              <motion.p
+                className="label-text text-[--color-primary] mb-4"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+              >
                 Spotlight
-              </p>
+              </motion.p>
               <SplitTextReveal
                 as="h2"
                 type="words"

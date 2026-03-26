@@ -1,6 +1,6 @@
 "use client";
 
-import { Children, type ReactNode } from "react";
+import { Children, useState, useEffect, type ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 
@@ -34,6 +34,8 @@ const itemVariants = {
   },
 };
 
+const MOBILE_MAX_STAGGER = 3;
+
 function StaggeredReveal({
   children,
   staggerDelay = 80,
@@ -41,7 +43,14 @@ function StaggeredReveal({
   className,
 }: StaggeredRevealProps) {
   const prefersReduced = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
   const items = Children.toArray(children);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  const effectiveMaxStagger = isMobile ? Math.min(maxStagger, MOBILE_MAX_STAGGER) : maxStagger;
 
   if (prefersReduced) {
     return <div className={className}>{children}</div>;
@@ -60,11 +69,11 @@ function StaggeredReveal({
           key={i}
           variants={itemVariants}
           transition={
-            i >= maxStagger
+            i >= effectiveMaxStagger
               ? {
                   duration: 0.4,
                   ease: EASE_OUT_EXPO,
-                  delay: (maxStagger * staggerDelay) / 1000,
+                  delay: (effectiveMaxStagger * staggerDelay) / 1000,
                 }
               : undefined
           }

@@ -12,6 +12,18 @@ export type { PageTransitionProps } from "./PageTransition";
 
 // GSAP-powered premium motion components
 export { GSAPProvider } from "./GSAPProvider";
+export { LenisProvider } from "./LenisProvider";
+export { ImageReveal } from "./ImageReveal";
+export type { ImageRevealProps } from "./ImageReveal";
+
+export { ParallaxImage } from "./ParallaxImage";
+export type { ParallaxImageProps } from "./ParallaxImage";
+
+export { SectionTransition } from "./SectionTransition";
+export type { SectionTransitionProps } from "./SectionTransition";
+
+export { CustomCursor } from "./CustomCursor";
+export { Preloader } from "./Preloader";
 export { MagneticElement } from "./MagneticElement";
 export { TextRevealByLine } from "./TextRevealByLine";
 export { SplitTextReveal } from "./SplitTextReveal";

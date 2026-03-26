@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { cn } from "@/lib/utils/cn";
 
@@ -20,10 +20,17 @@ export function MagneticElement({
   as: Tag = "div",
 }: MagneticElementProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    setIsTouchDevice(
+      window.matchMedia("(hover: none) and (pointer: coarse)").matches,
+    );
+  }, []);
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent) => {
-      if (disabled || !ref.current) return;
+      if (disabled || isTouchDevice || !ref.current) return;
 
       const prefersReduced = window.matchMedia(
         "(prefers-reduced-motion: reduce)",
@@ -48,7 +55,7 @@ export function MagneticElement({
   );
 
   const handleMouseLeave = useCallback(() => {
-    if (disabled || !ref.current) return;
+    if (disabled || isTouchDevice || !ref.current) return;
     gsap.to(ref.current, {
       x: 0,
       y: 0,

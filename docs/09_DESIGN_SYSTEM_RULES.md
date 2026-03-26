@@ -222,14 +222,18 @@ Photography style: documentary realism, natural light, warm grading, shallow DoF
 
 When photography is unavailable: bold typographic treatments over gradient mesh backgrounds (warm orange to charcoal radial gradients), or abstract warm gradient fields. Never use generic stock.
 
+**Image Motion Treatments:** Use `ImageReveal` component for hero/feature images with clip-path reveal (5 directions: top, bottom, left, right, center). Combine with `scale(1.1 → 1.0)` for cinematic depth. Use `ParallaxImage` for scroll-linked depth (120% height canvas, ±10% translateY via GSAP ScrollTrigger scrub). Desktop only; static on mobile.
+
+**Visual Density Rule:** Sections should contain at least one of: ambient glow orb, grain overlay, dot grid pattern, watermark icon, or gradient mesh. Empty dark backgrounds feel flat; layer at least 2 atmospheric elements per section.
+
 ## Icon Rules
 
 24px grid, 1.5px stroke, rounded caps/joins. Always paired with text. On dark backgrounds: `#8A8A8A` default, `#FF4600` active/hover. On light backgrounds: `#6B6B6B` default, `#FF4600` active/hover. Transition: 200ms ease-out.
 
 ## Anti-Patterns (Explicitly Forbidden)
 
-- Carousel/slider for hero content
-- Auto-playing video backgrounds
+- Carousel/slider for hero content (testimonial crossfade with dots is allowed, not a slider)
+- Auto-playing video backgrounds (short looping ambient video with user controls is acceptable)
 - Icon grids without text labels
 - Full-width text exceeding 720px max-width
 - Pure black (`#000000`) or pure white (`#FFFFFF`) as background
@@ -240,5 +244,7 @@ When photography is unavailable: bold typographic treatments over gradient mesh 
 - More than one sticky/floating CTA on mobile
 - Emdash characters in any user-facing copywriting
 - Light/white as the default page background (dark-first rule)
-- Parallax on text content or interactive elements
+- Parallax on text content or interactive elements (parallax on background layers and images is encouraged)
 - More than 3 ambient glow orbs per viewport
+- More than 4 clip-path reveals per page (performance)
+- Empty dark sections without atmospheric layering (see visual density rule)

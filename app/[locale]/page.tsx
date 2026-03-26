@@ -11,12 +11,14 @@ import { Hero } from "@/components/sections/Hero";
 import { ServiceGrid } from "@/components/sections/ServiceGrid";
 import { StatsBar } from "@/components/sections/StatsBar";
 import { ClientStoryFeatured } from "@/components/sections/ClientStoryFeatured";
+import { TestimonialsCarousel } from "@/components/sections/TestimonialsCarousel";
 import { CTABand } from "@/components/sections/CTABand";
 import {
   ValuePropSection,
   VelocityMarquee,
   EditorialSection,
 } from "@/components/sections/HomeMotionSections";
+import { SectionTransition } from "@/components/motion/SectionTransition";
 
 // ─── Bilingual content ───
 
@@ -221,26 +223,35 @@ export default async function HomePage({
       {/* 3. Velocity Marquee (GSAP: ScrollVelocityText) */}
       <VelocityMarquee locale={typedLocale} />
 
-      {/* 4. Service Grid */}
-      <ServiceGrid
-        locale={typedLocale}
-        heading={c.serviceGrid.heading}
-        exploreLabel={c.serviceGrid.exploreLabel}
-      />
+      {/* 4. Service Grid — scale reveal transition */}
+      <SectionTransition type="scale">
+        <ServiceGrid
+          locale={typedLocale}
+          heading={c.serviceGrid.heading}
+          exploreLabel={c.serviceGrid.exploreLabel}
+        />
+      </SectionTransition>
 
-      {/* 5. Proof Section (Stats + Client Story) */}
-      <StatsBar locale={typedLocale} badgesLabel={c.proof.badgesLabel} />
+      {/* 5. Proof Section (Stats + Client Story) — overlap transition */}
+      <SectionTransition type="overlap">
+        <StatsBar locale={typedLocale} badgesLabel={c.proof.badgesLabel} />
+      </SectionTransition>
 
       {/* 6. Featured Client Story */}
       <ClientStoryFeatured locale={typedLocale} />
 
-      {/* 7. Editorial Spotlight (GSAP: SplitTextReveal, ParallaxDepth, MagneticElement) */}
-      <EditorialSection
+      {/* 6.5. Testimonials Carousel */}
+      <TestimonialsCarousel locale={typedLocale} />
+
+      {/* 7. Editorial Spotlight — gradient transition */}
+      <SectionTransition type="gradient">
+        <EditorialSection
         locale={typedLocale}
         heading={c.editorial.heading}
         description={c.editorial.description}
         ctaLabel={c.editorial.ctaLabel}
       />
+      </SectionTransition>
 
       {/* 8. CTA Band */}
       <CTABand

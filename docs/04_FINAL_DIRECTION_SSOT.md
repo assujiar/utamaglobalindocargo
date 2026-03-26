@@ -216,7 +216,7 @@ GTM + GA4. Supabase captures form submissions with full UTM attribution. Event t
 
 ## Technical Guardrails
 
-Stack: React + Next.js 16 (App Router) + Supabase + Vercel. Framer Motion for animation. Nodemailer + Supabase triggers for email notifications. Dynamic content (articles, SEO metadata, client stories, site settings, UTM tracking, inquiries) managed in Supabase with admin portal CRUD from Phase 1. Static page structure in code.
+Stack: React + Next.js 16 (App Router) + Supabase + Vercel. Framer Motion for declarative UI animation. GSAP + ScrollTrigger as the primary scroll-linked animation engine (parallax, velocity marquee, scrub-based reveals, magnetic interactions). Lenis for smooth scroll (synced with GSAP ticker, `autoRaf: false`). Nodemailer + Supabase triggers for email notifications. Dynamic content (articles, SEO metadata, client stories, site settings, UTM tracking, inquiries) managed in Supabase with admin portal CRUD from Phase 1. Static page structure in code.
 
 ---
 

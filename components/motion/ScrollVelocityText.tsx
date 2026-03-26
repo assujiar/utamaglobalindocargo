@@ -59,13 +59,18 @@ export function ScrollVelocityText({
     ).matches;
     if (prefersReduced) return;
 
+    // Reduce marquee speed on mobile (70% of desktop)
+    const isMobile = window.innerWidth < 768;
+    const effectiveVelocity = isMobile ? baseVelocity * 0.4 : baseVelocity;
+    targetVelocity.current = effectiveVelocity;
+
     gsap.registerPlugin(ScrollTrigger);
 
     const velocityTracker = ScrollTrigger.create({
       onUpdate: (self) => {
         const scrollVelocity = Math.abs(self.getVelocity());
-        const boost = gsap.utils.clamp(1, 5, scrollVelocity / 500);
-        targetVelocity.current = baseVelocity * boost;
+        const boost = gsap.utils.clamp(1, isMobile ? 2 : 5, scrollVelocity / 500);
+        targetVelocity.current = effectiveVelocity * boost;
       },
     });
 

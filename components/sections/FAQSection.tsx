@@ -1,6 +1,7 @@
 "use client";
 
 import { HelpCircle } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { Accordion } from "@/components/ui/Accordion";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
@@ -38,7 +39,30 @@ function FAQSchemaJsonLd({ items }: { items: FAQItem[] }) {
   );
 }
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariant = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
+  },
+};
+
 function FAQSection({ heading, items, className }: FAQSectionProps) {
+  const prefersReduced = useReducedMotion();
   const accordionItems = items.map((item) => ({
     question: item.question,
     answer: item.answer,
@@ -73,11 +97,15 @@ function FAQSection({ heading, items, className }: FAQSectionProps) {
               {heading}
             </h2>
           </ScrollReveal>
-          <ScrollReveal>
-            <div className="glass-tinted p-6 sm:p-8">
-              <Accordion items={accordionItems} defaultOpen={0} />
-            </div>
-          </ScrollReveal>
+          <motion.div
+            className="glass-tinted p-6 sm:p-8"
+            variants={prefersReduced ? undefined : containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            <Accordion items={accordionItems} defaultOpen={0} />
+          </motion.div>
         </div>
       </section>
     </>

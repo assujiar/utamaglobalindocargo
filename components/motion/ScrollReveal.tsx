@@ -19,7 +19,7 @@ interface ScrollRevealProps {
 const EASE_OUT_EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const EASE_IN_OUT_EXPO: [number, number, number, number] = [0.77, 0, 0.175, 1];
 const DESKTOP_OFFSET = 32;
-const MOBILE_OFFSET = 20;
+const MOBILE_OFFSET = 16;
 
 function getInitialTransform(direction: Direction, offset: number) {
   switch (direction) {

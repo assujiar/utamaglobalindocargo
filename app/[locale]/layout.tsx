@@ -4,6 +4,10 @@ import { lufga, arkhip, velocity, fhwaSeries } from "@/lib/fonts";
 import { i18nConfig, isValidLocale } from "@/lib/i18n/config";
 import type { Locale } from "@/lib/i18n/config";
 import { notFound } from "next/navigation";
+import { LenisProvider } from "@/components/motion/LenisProvider";
+import { GSAPProvider } from "@/components/motion/GSAPProvider";
+import { CustomCursor } from "@/components/motion/CustomCursor";
+import { Preloader } from "@/components/motion/Preloader";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -41,7 +45,13 @@ export default async function LocaleLayout({
       className={`${lufga.variable} ${arkhip.variable} ${velocity.variable} ${fhwaSeries.variable}`}
     >
       <body className="font-primary bg-bg-light text-text-primary antialiased">
-        {children}
+        <LenisProvider>
+          <GSAPProvider>
+            <Preloader />
+            {children}
+            <CustomCursor />
+          </GSAPProvider>
+        </LenisProvider>
 
         {/* Google Tag Manager — loaded after interactive */}
         {process.env.NEXT_PUBLIC_GTM_ID && (
