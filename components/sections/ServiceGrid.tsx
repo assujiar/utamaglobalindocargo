@@ -155,9 +155,15 @@ function ServiceGrid({
         </div>
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          <p className="label-text text-[--color-primary] text-center mb-4">
+          <motion.p
+            className="label-text text-[--color-primary] text-center mb-4"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+          >
             {locale === "id" ? "Layanan Kami" : "Our Services"}
-          </p>
+          </motion.p>
           <SplitTextReveal
             as="h2"
             type="words"

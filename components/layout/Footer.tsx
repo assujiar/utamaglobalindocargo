@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { getLocalizedPath } from "@/lib/utils/routes";
 import { services } from "@/lib/content/services";
@@ -13,9 +16,31 @@ interface FooterProps {
   };
 }
 
+const columnVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const columnItemVariant = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+    },
+  },
+};
+
 function Footer({ locale, dictionary }: FooterProps) {
   const year = new Date().getFullYear();
   const alternateLocale: Locale = locale === "id" ? "en" : "id";
+  const prefersReduced = useReducedMotion();
 
   const copyright = dictionary.footer.copyright.replace("{year}", String(year));
 
@@ -26,9 +51,15 @@ function Footer({ locale, dictionary }: FooterProps) {
     <footer className="bg-[--color-bg-dark] text-[--color-text-inverse]">
       {/* Main footer grid */}
       <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10 pt-16 pb-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 md:gap-8"
+          variants={prefersReduced ? undefined : columnVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {/* Col 1: Brand */}
-          <div className="sm:col-span-2 md:col-span-1">
+          <motion.div className="sm:col-span-2 md:col-span-1" variants={columnItemVariant}>
             {/* TODO: Replace with real UGC logo SVG (white variant) */}
             <div className="flex items-center gap-2 mb-4">
               <svg
@@ -64,10 +95,10 @@ function Footer({ locale, dictionary }: FooterProps) {
             <div className="flex gap-3">
               {/* TODO: Add real social media links */}
             </div>
-          </div>
+          </motion.div>
 
           {/* Col 2: Services */}
-          <div>
+          <motion.div variants={columnItemVariant}>
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 text-[--color-text-secondary]">
               {dictionary.nav.services}
             </h3>
@@ -91,10 +122,10 @@ function Footer({ locale, dictionary }: FooterProps) {
                 );
               })}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Col 3: Company */}
-          <div>
+          <motion.div variants={columnItemVariant}>
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 text-[--color-text-secondary]">
               {locale === "id" ? "Perusahaan" : "Company"}
             </h3>
@@ -128,10 +159,10 @@ function Footer({ locale, dictionary }: FooterProps) {
                 </span>
               </li>
             </ul>
-          </div>
+          </motion.div>
 
           {/* Col 4: Resources */}
-          <div>
+          <motion.div variants={columnItemVariant}>
             <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 text-[--color-text-secondary]">
               {locale === "id" ? "Sumber Daya" : "Resources"}
             </h3>
@@ -161,8 +192,8 @@ function Footer({ locale, dictionary }: FooterProps) {
                 </span>
               </li>
             </ul>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
 
       {/* Bottom bar */}

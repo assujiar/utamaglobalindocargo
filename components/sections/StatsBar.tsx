@@ -61,6 +61,17 @@ function StatsBar({ locale, badgesLabel, className }: StatsBarProps) {
       <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
+        {/* Section label with entrance animation */}
+        <motion.p
+          className="label-text text-[--color-primary] text-center mb-12"
+          initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {locale === "id" ? "Rekam Jejak Kami" : "Our Track Record"}
+        </motion.p>
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8 mb-20">
           {stats.map((stat, i) => (
             <motion.div

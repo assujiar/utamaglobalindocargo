@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
@@ -171,9 +172,15 @@ export function EditorialSection({
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <MagneticElement strength={0.08}>
             <div className="glass-tinted p-10 sm:p-14 max-w-2xl mx-auto text-center">
-              <p className="label-text text-[--color-primary] mb-4">
+              <motion.p
+                className="label-text text-[--color-primary] mb-4"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+              >
                 Spotlight
-              </p>
+              </motion.p>
               <SplitTextReveal
                 as="h2"
                 type="words"

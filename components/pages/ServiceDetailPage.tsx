@@ -121,22 +121,32 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
           style={prefersReduced ? undefined : { y: heroContentY, opacity: heroContentOpacity }}
         >
           <Breadcrumb items={breadcrumbItems} />
-          <motion.div
-            className="mt-8 max-w-3xl"
-            initial={prefersReduced ? undefined : { opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="label-text text-[--color-primary] mb-4 block">
+          <div className="mt-8 max-w-3xl">
+            <motion.span
+              className="label-text text-[--color-primary] mb-4 block"
+              initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+            >
               {service.number}
-            </span>
-            <h1 className="font-display text-heading-xl sm:text-display-sm font-bold gradient-text-vivid mb-5 tracking-[-0.03em]">
+            </motion.span>
+            <SplitTextReveal
+              as="h1"
+              type="words"
+              stagger={0.05}
+              className="font-display text-heading-xl sm:text-display-sm font-bold gradient-text-vivid mb-5 tracking-[-0.03em]"
+            >
               {serviceName}
-            </h1>
-            <p className="text-lg sm:text-xl text-[--color-text-secondary] leading-relaxed max-w-2xl">
+            </SplitTextReveal>
+            <motion.p
+              className="text-lg sm:text-xl text-[--color-text-secondary] leading-relaxed max-w-2xl"
+              initial={prefersReduced ? undefined : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            >
               {serviceTagline}
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
         </motion.div>
 
         {/* Bottom glow divider */}
@@ -192,9 +202,15 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
         <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          <p className="label-text text-[--color-primary] text-center mb-4">
+          <motion.p
+            className="label-text text-[--color-primary] text-center mb-4"
+            initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+          >
             {isId ? "Kapabilitas" : "Capabilities"}
-          </p>
+          </motion.p>
           <SplitTextReveal
             as="h2"
             type="words"

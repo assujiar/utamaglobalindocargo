@@ -43,7 +43,7 @@ function ClientStoryFeatured({
   return (
     <section className={cn("py-16 bg-[--color-bg-dark] relative", className)}>
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10 flex justify-center">
-        <ScrollReveal>
+        <ScrollReveal variant="clip">
           <div className="glass-tinted p-8 sm:p-10 max-w-xl relative overflow-hidden">
             {/* Glow accent behind quote */}
             <div className="absolute top-0 right-0 w-[200px] h-[200px] rounded-full bg-[--color-primary] opacity-[0.06] blur-[80px] pointer-events-none" aria-hidden="true" />
