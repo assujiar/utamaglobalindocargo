@@ -50,11 +50,16 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
 
   const navLinkClasses = (routeKey: string) =>
     cn(
-      "text-sm font-medium transition-colors duration-200",
+      "relative text-sm font-medium transition-colors duration-200",
       "hover:text-[--color-primary]",
       "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color-primary]",
+      // Animated underline slide-in
+      "after:absolute after:bottom-[-4px] after:left-0 after:h-px after:w-full",
+      "after:bg-[--color-primary] after:origin-left",
+      "after:scale-x-0 hover:after:scale-x-100",
+      "after:transition-transform after:duration-200 after:ease-out",
       isActive(routeKey)
-        ? "text-[--color-primary]"
+        ? "text-[--color-primary] after:scale-x-100"
         : scrolled
           ? "text-[--color-text-primary]"
           : "text-[--color-text-secondary]",

@@ -88,6 +88,7 @@ function ServiceCard({
         <Link
           ref={cardRef}
           href={href}
+          data-cursor-text="VIEW"
           className={cn(
             "group relative flex flex-col glass-dark card-shine p-6 sm:p-7",
             "[transition:transform_250ms_ease-out,border-color_300ms_ease-out,box-shadow_300ms_ease-out,background_300ms_ease-out]",
