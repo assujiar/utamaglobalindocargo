@@ -31,6 +31,9 @@ export function ScrollPattern({
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // Skip animations on mobile — decorative only
+    if (window.innerWidth < 768) return;
+
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;

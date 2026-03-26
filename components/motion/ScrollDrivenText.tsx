@@ -33,6 +33,9 @@ export function ScrollDrivenText({
   useEffect(() => {
     if (!containerRef.current || !textRef.current) return;
 
+    // Skip on mobile — oversized text causes overflow and visual noise
+    if (window.innerWidth < 768) return;
+
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -125,7 +128,7 @@ export function ScrollDrivenText({
     <div
       ref={containerRef}
       className={cn(
-        "pointer-events-none select-none overflow-hidden absolute inset-0",
+        "pointer-events-none select-none overflow-hidden absolute inset-0 hidden md:block",
         className,
       )}
       aria-hidden="true"

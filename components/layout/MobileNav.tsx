@@ -95,8 +95,8 @@ function MobileNav({
             {/* Light background — like Buzzworthy's menu */}
             <div className="absolute inset-0 bg-[#FAFAF8]" />
 
-            {/* SVG wave bottom edge — organic transition shape */}
-            <div className="absolute bottom-0 left-0 right-0 translate-y-[calc(100%-2px)] z-[1]">
+            {/* SVG wave bottom edge — organic transition shape (desktop only, skip on small screens to avoid leak) */}
+            <div className="absolute bottom-0 left-0 right-0 translate-y-[calc(100%-2px)] z-[1] hidden sm:block">
               <motion.svg
                 viewBox="0 0 100 20"
                 preserveAspectRatio="none"

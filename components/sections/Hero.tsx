@@ -85,8 +85,8 @@ function Hero({
         className,
       )}
     >
-      {/* Ambient blur circles with scroll-linked parallax */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+      {/* Ambient blur circles with scroll-linked parallax (desktop only) */}
+      <div className="absolute inset-0 pointer-events-none hidden md:block" aria-hidden="true">
         <ParallaxDepth speed={0.15} direction="down" scrubSmooth={0.6}>
           <div
             className="absolute w-[70vw] h-[70vw] top-[-20%] left-[-15%] rounded-full"

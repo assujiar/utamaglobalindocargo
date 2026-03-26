@@ -34,6 +34,9 @@ export function BlurCircle({
   useEffect(() => {
     if (!ref.current) return;
 
+    // Hide on mobile — too large and causes visual artifacts
+    if (window.innerWidth < 768) return;
+
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -74,7 +77,7 @@ export function BlurCircle({
     <div
       ref={ref}
       className={cn(
-        "pointer-events-none will-change-transform",
+        "pointer-events-none will-change-transform hidden md:block",
         className,
       )}
       aria-hidden="true"

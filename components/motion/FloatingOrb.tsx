@@ -32,6 +32,9 @@ export function FloatingOrb({
   useEffect(() => {
     if (!ref.current) return;
 
+    // Hide on mobile — too large and causes overflow/visual artifacts
+    if (window.innerWidth < 768) return;
+
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -69,7 +72,7 @@ export function FloatingOrb({
     <div
       ref={ref}
       className={cn(
-        "pointer-events-none will-change-transform",
+        "pointer-events-none will-change-transform hidden md:block",
         className,
       )}
       aria-hidden="true"
