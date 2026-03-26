@@ -6,6 +6,8 @@ import type { Locale } from "@/lib/i18n/config";
 import { notFound } from "next/navigation";
 import { LenisProvider } from "@/components/motion/LenisProvider";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
+import { CustomCursor } from "@/components/motion/CustomCursor";
+import { Preloader } from "@/components/motion/Preloader";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -45,7 +47,9 @@ export default async function LocaleLayout({
       <body className="font-primary bg-bg-light text-text-primary antialiased">
         <LenisProvider>
           <GSAPProvider>
+            <Preloader />
             {children}
+            <CustomCursor />
           </GSAPProvider>
         </LenisProvider>
 

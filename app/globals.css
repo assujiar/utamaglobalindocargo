@@ -10,7 +10,7 @@
 /* ─── Base Typography ─── */
 
 html {
-  scroll-behavior: smooth;
+  /* Lenis handles smooth scrolling — no CSS scroll-behavior needed */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -520,6 +520,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ─── Reduced Motion ─── */
+
+/* ─── Mobile Touch Feedback ─── */
+
+@media (hover: none) and (pointer: coarse) {
+  button:active,
+  a:active,
+  [role="button"]:active {
+    transform: scale(0.97) !important;
+    transition: transform 100ms ease-out !important;
+  }
+
+  /* Disable card lift hover on touch devices */
+  .hover\:-translate-y-1\.5:hover {
+    transform: none !important;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,

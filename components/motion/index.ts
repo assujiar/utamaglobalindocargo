@@ -21,6 +21,9 @@ export type { ParallaxImageProps } from "./ParallaxImage";
 
 export { SectionTransition } from "./SectionTransition";
 export type { SectionTransitionProps } from "./SectionTransition";
+
+export { CustomCursor } from "./CustomCursor";
+export { Preloader } from "./Preloader";
 export { MagneticElement } from "./MagneticElement";
 export { TextRevealByLine } from "./TextRevealByLine";
 export { SplitTextReveal } from "./SplitTextReveal";

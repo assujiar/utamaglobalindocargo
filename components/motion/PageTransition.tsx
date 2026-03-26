@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode } from "react";
+import { type ReactNode, useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
@@ -10,31 +10,109 @@ interface PageTransitionProps {
   className?: string;
 }
 
-const PAGE_EASE: [number, number, number, number] = [0.4, 0, 0.2, 1];
+const EASE_EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const EASE_QUART: [number, number, number, number] = [0.77, 0, 0.175, 1];
 
-const variants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
+const contentVariants = {
+  initial: {
+    opacity: 0,
+    scale: 0.98,
+    y: 20,
+  },
+  animate: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: EASE_EXPO,
+      delay: 0.1,
+    },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.97,
+    transition: {
+      duration: 0.3,
+      ease: EASE_QUART,
+    },
+  },
 };
 
 function PageTransition({ children, className }: PageTransitionProps) {
   const pathname = usePathname();
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [prefersReduced, setPrefersReduced] = useState(false);
+
+  useEffect(() => {
+    setPrefersReduced(
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    );
+  }, []);
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  if (prefersReduced) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={pathname}
-        className={cn(className)}
-        variants={variants}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-        transition={{ duration: 0.4, ease: PAGE_EASE }}
+    <>
+      {/* Dark overlay wipe */}
+      <AnimatePresence>
+        {isTransitioning && (
+          <motion.div
+            className="fixed inset-0 z-[9998] bg-[--color-bg-dark] pointer-events-none"
+            initial={{ clipPath: "inset(100% 0 0 0)" }}
+            animate={{
+              clipPath: "inset(0% 0 0 0)",
+              transition: { duration: 0.4, ease: EASE_QUART },
+            }}
+            exit={{
+              clipPath: "inset(0 0 100% 0)",
+              transition: { duration: 0.4, ease: EASE_QUART, delay: 0.15 },
+            }}
+          >
+            {/* Brand glow pulse during hold */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <motion.div
+                className="w-[200px] h-[200px] rounded-full bg-[--color-primary] opacity-[0.15] blur-[80px]"
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.1, 0.2, 0.1],
+                }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Page content */}
+      <AnimatePresence
+        mode="wait"
+        onExitComplete={() => setIsTransitioning(false)}
       >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+        <motion.div
+          key={pathname}
+          className={cn("will-change-[opacity,transform]", className)}
+          variants={contentVariants}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          onAnimationStart={(definition) => {
+            if (definition === "exit") {
+              setIsTransitioning(true);
+            }
+          }}
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
+    </>
   );
 }
 
