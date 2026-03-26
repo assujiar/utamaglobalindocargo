@@ -32,8 +32,15 @@ function RecirculationModule({
     .filter(Boolean);
 
   return (
-    <section className={cn("py-28 sm:py-36 bg-[--color-bg-dark-elevated]", className)}>
-      <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
+    <section className={cn("py-28 sm:py-36 section-elevated relative overflow-hidden", className)}>
+      {/* Ambient depth */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="blur-circle absolute w-[35vw] h-[35vw] bottom-[-10%] left-[20%] opacity-[0.05]" />
+      </div>
+
+      <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
+
+      <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
         <ScrollReveal>
           <p className="label-text text-[--color-primary] mb-4">
             {locale === "id" ? "Jelajahi Lainnya" : "Explore More"}
@@ -43,8 +50,8 @@ function RecirculationModule({
           </h2>
         </ScrollReveal>
 
-        {/* Editorial list layout for related services */}
-        <div className="border-t border-[rgba(255,255,255,0.06)] mb-14">
+        {/* Related service cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mb-14">
           {relatedServices.map((service, i) => {
             if (!service) return null;
             const name = locale === "id" ? service.name_id : service.name_en;
@@ -54,30 +61,24 @@ function RecirculationModule({
             const href = `/${locale}/${servicesPath}/${slug}`;
 
             return (
-              <ScrollReveal key={service.key} delay={i * 60}>
+              <ScrollReveal key={service.key} delay={i * 80}>
                 <Link
                   href={href}
-                  className="group block py-6 sm:py-8 border-b border-[rgba(255,255,255,0.06)] hover:border-[rgba(255,70,0,0.15)] transition-colors duration-300"
+                  className="group block card-elevated card-shine h-full"
                 >
-                  <div className="flex items-start sm:items-center justify-between gap-4">
-                    <div className="flex items-baseline gap-4 sm:gap-6 min-w-0">
-                      <span className="label-text text-[--color-text-muted] shrink-0 tabular-nums">
-                        {service.number}
-                      </span>
-                      <div className="min-w-0">
-                        <h3 className="text-base sm:text-lg font-semibold text-[--color-text-primary] group-hover:text-white transition-colors duration-200">
-                          {name}
-                        </h3>
-                        <p className="text-sm text-[--color-text-secondary] mt-1 hidden sm:block">
-                          {tagline}
-                        </p>
-                      </div>
-                    </div>
+                  <div className="relative z-10 flex items-start justify-between gap-3 mb-3">
+                    <span className="label-text text-[--color-primary]">{service.number}</span>
                     <ArrowRight
-                      className="size-5 text-[--color-text-muted] group-hover:text-[--color-primary] group-hover:translate-x-1 transition-all duration-300 shrink-0"
-                      aria-hidden="true"
+                      className="size-4 text-[--color-text-muted] group-hover:text-[--color-primary] group-hover:translate-x-1 transition-all duration-300"
+                      strokeWidth={1.5}
                     />
                   </div>
+                  <h3 className="relative z-10 text-base font-semibold text-[--color-text-primary] group-hover:text-white transition-colors duration-200 mb-2">
+                    {name}
+                  </h3>
+                  <p className="relative z-10 text-sm text-[--color-text-muted] group-hover:text-[--color-text-secondary] transition-colors duration-300 leading-relaxed">
+                    {tagline}
+                  </p>
                 </Link>
               </ScrollReveal>
             );

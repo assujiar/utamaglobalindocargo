@@ -24,25 +24,31 @@ export function ValuePropSection({
 }) {
   return (
     <GSAPProvider>
-      <section className="py-24 sm:py-36 bg-[--color-bg-dark] relative">
+      <section className="py-28 sm:py-40 section-dark relative overflow-hidden">
+        {/* Ambient depth */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="blur-circle-warm absolute w-[60vw] h-[60vw] top-[-20%] right-[-20%]" />
+        </div>
+        <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
+
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          {/* Large editorial quote-style text */}
+          {/* Large editorial text with word reveal */}
           <TextRevealByLine
             as="p"
-            className="text-heading-lg sm:text-display-sm text-[--color-text-primary] max-w-4xl leading-[1.15] font-light tracking-[-0.02em]"
+            className="text-heading-xl sm:text-display-sm text-[--color-text-primary] max-w-4xl leading-[1.15] font-light tracking-[-0.02em]"
           >
             {valueProp}
           </TextRevealByLine>
 
-          {/* Inline metrics — horizontal, separated by lines */}
-          <div className="mt-16 sm:mt-20 flex flex-wrap gap-x-10 sm:gap-x-14 gap-y-6">
+          {/* Metrics — elevated card row */}
+          <div className="mt-16 sm:mt-24 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
             {metrics.map((item, i) => (
-              <ScrollReveal key={i} delay={i * 60}>
-                <div className="flex items-baseline gap-3">
-                  <span className="stat-number text-3xl sm:text-4xl text-[--color-text-inverse]">
+              <ScrollReveal key={i} delay={i * 80}>
+                <div className="card-elevated !p-5 sm:!p-6">
+                  <span className="stat-number text-3xl sm:text-4xl gradient-text-vivid block">
                     {item.value}
                   </span>
-                  <span className="text-sm text-[--color-text-muted]">
+                  <span className="text-xs text-[--color-text-muted] mt-2 block">
                     {item.label}
                   </span>
                 </div>
@@ -65,12 +71,16 @@ export function VelocityMarquee({ locale }: { locale: Locale }) {
 
   return (
     <GSAPProvider>
-      <div className="py-4 bg-[--color-bg-dark] border-y border-[rgba(255,255,255,0.04)] overflow-hidden">
+      <div className="py-6 section-dark border-y border-[rgba(255,255,255,0.06)] overflow-hidden relative">
+        {/* Subtle glow on track */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="blur-circle absolute w-[30vw] h-[30vw] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04]" />
+        </div>
         <ScrollVelocityText
           baseVelocity={50}
           repeat={5}
           direction="left"
-          className="text-[64px] sm:text-[100px] md:text-[140px] font-bold text-[rgba(255,255,255,0.03)] leading-none select-none font-display tracking-tighter"
+          className="text-[64px] sm:text-[100px] md:text-[140px] font-bold text-[rgba(255,255,255,0.04)] leading-none select-none font-display tracking-tighter"
         >
           {text}
         </ScrollVelocityText>
@@ -94,11 +104,16 @@ export function EditorialSection({
 }) {
   return (
     <GSAPProvider>
-      <section className="py-28 sm:py-40 bg-[--color-bg-dark] relative overflow-hidden">
-        {/* Single subtle ambient glow */}
+      <section className="py-28 sm:py-40 section-dark relative overflow-hidden">
+        {/* Rich ambient blur */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[--color-primary] opacity-[0.03] blur-[180px]" />
+          <div className="blur-circle absolute w-[50vw] h-[50vw] top-[20%] left-[-10%] opacity-[0.08]" />
+          <div className="blur-circle-warm absolute w-[30vw] h-[30vw] bottom-[10%] right-[5%] opacity-[0.05]" />
         </div>
+        <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
+
+        {/* Top glow divider */}
+        <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           {/* Two-column editorial layout */}
@@ -118,7 +133,7 @@ export function EditorialSection({
                 as="h2"
                 type="words"
                 stagger={0.05}
-                className="text-display-sm font-bold text-[--color-text-inverse] tracking-[-0.03em]"
+                className="text-display-sm sm:text-display-md font-bold text-[--color-text-inverse] tracking-[-0.03em]"
               >
                 {heading}
               </SplitTextReveal>

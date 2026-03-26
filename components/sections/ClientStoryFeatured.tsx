@@ -43,8 +43,13 @@ function ClientStoryFeatured({
     locale === "id" ? placeholder.resultLabel_id : placeholder.resultLabel_en;
 
   return (
-    <section className={cn("py-20 sm:py-28 bg-[--color-bg-dark] relative", className)}>
-      <div className="absolute top-0 left-0 right-0 h-px bg-[rgba(255,255,255,0.06)]" aria-hidden="true" />
+    <section className={cn("py-24 sm:py-32 section-dark relative overflow-hidden", className)}>
+      {/* Ambient glow */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="blur-circle-warm absolute w-[35vw] h-[35vw] top-[10%] right-[-5%] opacity-[0.05]" />
+      </div>
+
+      <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
@@ -74,20 +79,20 @@ function ClientStoryFeatured({
           <div className="md:col-span-8 md:col-start-5">
             <motion.blockquote
               className="text-xl sm:text-2xl md:text-3xl text-[--color-text-primary] leading-snug font-light tracking-[-0.01em]"
-              initial={prefersReduced ? undefined : { opacity: 0, y: 20 }}
+              initial={prefersReduced ? undefined : { opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
+              transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
             >
               &ldquo;{quote}&rdquo;
             </motion.blockquote>
 
             <motion.div
-              className="mt-8 pt-6 border-t border-[rgba(255,255,255,0.06)]"
+              className="mt-8 pt-6 border-t border-[rgba(255,70,0,0.12)]"
               initial={prefersReduced ? undefined : { opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: EASE, delay: 0.25 }}
+              transition={{ duration: 0.5, ease: EASE, delay: 0.3 }}
             >
               <span className="label-text text-[--color-primary] mr-3">{resultLabel}</span>
               <span className="text-sm text-[--color-text-secondary]">

@@ -3,8 +3,8 @@
 
 /*
  * UGC Logistics - Global Styles
- * Editorial Design System v3
- * Less noise, more typography. Less glow, more whitespace.
+ * Premium Cinematic Design System v4
+ * Rich ambient depth, viewport frame, elevated cards
  */
 
 /* ─── Base Typography ─── */
@@ -20,7 +20,7 @@ body {
   font-size: 16px;
   line-height: 1.65;
   color: var(--color-text-primary);
-  background-color: var(--color-bg-dark);
+  background-color: var(--color-bg-frame);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -30,33 +30,51 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.035em;
 }
 
+/* ─── Viewport Frame (Buzzworthy signature) ─── */
+
+.viewport-frame {
+  position: relative;
+  min-height: 100vh;
+  margin: var(--frame-inset);
+  border-radius: var(--radius-frame);
+  overflow: hidden;
+  background-color: var(--color-bg-dark);
+}
+
+@media (max-width: 768px) {
+  .viewport-frame {
+    margin: 0;
+    border-radius: 0;
+  }
+}
+
 /* ─── Editorial Typography Scale ─── */
 
 .text-display-xl {
-  font-size: clamp(3.5rem, 8vw, 8rem);
+  font-size: clamp(3.5rem, 9vw, 9rem);
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  font-weight: 700;
+}
+
+.text-display-lg {
+  font-size: clamp(3rem, 7vw, 7rem);
   line-height: 0.95;
   letter-spacing: -0.045em;
   font-weight: 700;
 }
 
-.text-display-lg {
-  font-size: clamp(3rem, 6vw, 6rem);
-  line-height: 0.98;
+.text-display-md {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 1.0;
   letter-spacing: -0.04em;
   font-weight: 700;
 }
 
-.text-display-md {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  line-height: 1.0;
-  letter-spacing: -0.035em;
-  font-weight: 700;
-}
-
 .text-display-sm {
-  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-size: clamp(2rem, 4vw, 3.5rem);
   line-height: 1.05;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
   font-weight: 700;
 }
 
@@ -133,35 +151,69 @@ h1, h2, h3, h4, h5, h6 {
   50% { background-position: 100% 50%; }
 }
 
-/* ─── Glassmorphism Utilities (REFINED) ─── */
+/* ─── Ambient Blur Circle (Buzzworthy-inspired, color-dodge) ─── */
+
+.blur-circle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(var(--color-primary) 0, rgba(255, 70, 0, 0) 70%);
+  opacity: 0.12;
+  filter: blur(0px);
+  mix-blend-mode: color-dodge;
+}
+
+.blur-circle-warm {
+  background: radial-gradient(var(--color-accent-warm) 0, rgba(255, 171, 64, 0) 70%);
+  opacity: 0.08;
+  mix-blend-mode: color-dodge;
+}
+
+/* ─── Elevated Card (Buzzworthy .boxed style) ─── */
+
+.card-elevated {
+  background-color: var(--color-bg-dark-card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 30px;
+  transition: box-shadow 400ms var(--ease-smooth), transform 400ms var(--ease-smooth), background-color 400ms ease;
+}
+
+.card-elevated:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+  background-color: var(--color-bg-dark-hover);
+}
+
+/* ─── Glassmorphism Utilities ─── */
 
 .glass-dark {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-lg);
   transition: border-color 300ms ease-out, background 300ms ease-out, box-shadow 300ms ease-out, transform 300ms ease-out;
 }
 
 .glass-dark:hover {
-  border-color: rgba(255, 70, 0, 0.20);
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 40px rgba(255, 70, 0, 0.06);
+  border-color: rgba(255, 70, 0, 0.25);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 50px rgba(255, 70, 0, 0.10);
 }
 
 .glass-tinted {
-  background: rgba(255, 70, 0, 0.03);
+  background: rgba(255, 70, 0, 0.04);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 70, 0, 0.12);
+  border: 1px solid rgba(255, 70, 0, 0.15);
   border-radius: var(--radius-lg);
   transition: border-color 300ms ease-out, box-shadow 300ms ease-out, transform 300ms ease-out;
 }
 
 .glass-tinted:hover {
-  border-color: rgba(255, 70, 0, 0.25);
-  box-shadow: 0 0 40px rgba(255, 70, 0, 0.08);
+  border-color: rgba(255, 70, 0, 0.30);
+  box-shadow: 0 0 50px rgba(255, 70, 0, 0.12);
 }
 
 .glass-light {
@@ -174,18 +226,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glass-nav {
-  background: rgba(10, 10, 12, 0.85);
+  background: rgba(12, 12, 15, 0.88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
-/* Glassmorphism fallback */
 @supports not (backdrop-filter: blur(20px)) {
   .glass-dark { background: rgba(20, 20, 22, 0.97); }
   .glass-tinted { background: rgba(30, 15, 10, 0.97); }
   .glass-light { background: rgba(255, 255, 255, 0.97); }
-  .glass-nav { background: rgba(10, 10, 12, 0.97); }
+  .glass-nav { background: rgba(12, 12, 15, 0.97); }
 }
 
 /* ─── Animated Gradient Border ─── */
@@ -205,12 +256,12 @@ h1, h2, h3, h4, h5, h6 {
   background: conic-gradient(
     from var(--gradient-angle, 0deg),
     transparent 0%,
-    rgba(255, 70, 0, 0.35) 15%,
-    rgba(255, 171, 64, 0.25) 30%,
+    rgba(255, 70, 0, 0.40) 15%,
+    rgba(255, 171, 64, 0.30) 30%,
     transparent 45%,
     transparent 55%,
-    rgba(255, 61, 0, 0.25) 70%,
-    rgba(255, 70, 0, 0.35) 85%,
+    rgba(255, 61, 0, 0.30) 70%,
+    rgba(255, 70, 0, 0.40) 85%,
     transparent 100%
   );
   mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -233,7 +284,7 @@ h1, h2, h3, h4, h5, h6 {
   inherits: false;
 }
 
-/* ─── Noise / Grain Overlay (SUBTLE) ─── */
+/* ─── Noise / Grain Overlay ─── */
 
 .grain-overlay::after {
   content: '';
@@ -244,18 +295,8 @@ h1, h2, h3, h4, h5, h6 {
   background-size: 256px 256px;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.35;
+  opacity: 0.4;
   mix-blend-mode: overlay;
-}
-
-/* ─── Dot Grid Background ─── */
-
-.dot-grid-subtle {
-  background-image: radial-gradient(
-    rgba(255, 255, 255, 0.04) 1px,
-    transparent 1px
-  );
-  background-size: 48px 48px;
 }
 
 /* ─── Glow Line Section Divider ─── */
@@ -267,7 +308,7 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 70, 0, 0.30) 50%,
+    rgba(255, 70, 0, 0.35) 50%,
     transparent 100%
   );
 }
@@ -278,9 +319,9 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 70, 0, 0.15) 20%,
-    rgba(255, 171, 64, 0.12) 50%,
-    rgba(255, 70, 0, 0.15) 80%,
+    rgba(255, 70, 0, 0.20) 20%,
+    rgba(255, 171, 64, 0.15) 50%,
+    rgba(255, 70, 0, 0.20) 80%,
     transparent 100%
   );
 }
@@ -290,7 +331,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-glow {
   position: relative;
   overflow: hidden;
-  box-shadow: 0 2px 20px rgba(255, 70, 0, 0.12);
+  box-shadow: 0 4px 24px rgba(255, 70, 0, 0.20);
   transition: box-shadow 300ms ease-out, transform 300ms var(--ease-out-expo);
 }
 
@@ -304,9 +345,9 @@ h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(
     105deg,
     transparent 20%,
-    rgba(255, 255, 255, 0.15) 45%,
-    rgba(255, 255, 255, 0.20) 50%,
-    rgba(255, 255, 255, 0.15) 55%,
+    rgba(255, 255, 255, 0.18) 45%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0.18) 55%,
     transparent 80%
   );
   transition: left 600ms var(--ease-out-expo);
@@ -315,7 +356,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-glow:hover {
-  box-shadow: 0 4px 30px rgba(255, 70, 0, 0.20), 0 0 60px rgba(255, 70, 0, 0.08);
+  box-shadow: 0 8px 40px rgba(255, 70, 0, 0.30), 0 0 80px rgba(255, 70, 0, 0.12);
   transform: translateY(-2px);
 }
 
@@ -324,11 +365,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-glow:active {
-  box-shadow: 0 1px 8px rgba(255, 70, 0, 0.10);
+  box-shadow: 0 2px 12px rgba(255, 70, 0, 0.15);
   transform: translateY(0) scale(0.98);
 }
 
-/* ─── Animated Underline ─── */
+/* ─── Circle CTA Button ─── */
+
+.circle-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  box-shadow: 0 0 40px rgba(255, 70, 0, 0.30);
+  transition: transform 400ms var(--ease-smooth), box-shadow 400ms var(--ease-smooth);
+  cursor: pointer;
+}
+
+.circle-cta:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 60px rgba(255, 70, 0, 0.40), 0 0 120px rgba(255, 70, 0, 0.15);
+}
+
+/* ─── Animated Underline (scaleX, Buzzworthy-style) ─── */
 
 .animated-underline {
   position: relative;
@@ -340,14 +401,38 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   bottom: -2px;
   left: 0;
-  width: 0;
+  width: 100%;
   height: 1px;
   background: var(--color-primary);
-  transition: width 400ms var(--ease-out-expo);
+  transform: scaleX(0);
+  transform-origin: 0 0;
+  transition: transform 500ms var(--ease-smooth);
 }
 
 .animated-underline:hover::after {
-  width: 100%;
+  transform: scaleX(1);
+}
+
+/* ─── Mask Link (Buzzworthy clip-path hover) ─── */
+
+.mask-link {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.mask-link::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--color-primary);
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 500ms var(--ease-mask);
+}
+
+.mask-link:hover::before {
+  clip-path: inset(0 0 0 0);
 }
 
 /* ─── Card Shine Effect ─── */
@@ -363,8 +448,8 @@ h1, h2, h3, h4, h5, h6 {
   inset: 0;
   background: radial-gradient(
     circle at var(--mouse-x, 50%) var(--mouse-y, -50%),
-    rgba(255, 70, 0, 0.08) 0%,
-    rgba(255, 255, 255, 0.02) 25%,
+    rgba(255, 70, 0, 0.10) 0%,
+    rgba(255, 255, 255, 0.03) 25%,
     transparent 60%
   );
   pointer-events: none;
@@ -377,21 +462,21 @@ h1, h2, h3, h4, h5, h6 {
   opacity: 1;
 }
 
-/* ─── Ambient Glow Orbs (REDUCED) ─── */
+/* ─── Ambient Glow Orbs ─── */
 
 .glow-orb {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
   filter: blur(120px);
-  opacity: 0.08;
+  opacity: 0.10;
   background: var(--color-primary);
   animation: float-orbit 20s ease-in-out infinite;
 }
 
 .glow-orb-warm {
   background: var(--color-accent-warm);
-  opacity: 0.06;
+  opacity: 0.08;
   animation: float-orbit-reverse 25s ease-in-out infinite;
 }
 
@@ -409,9 +494,40 @@ h1, h2, h3, h4, h5, h6 {
   66% { transform: translateY(-25px) translateX(35px); }
 }
 
-@keyframes glow-pulse-intense {
-  0%, 100% { opacity: 0.08; transform: scale(1); }
-  50% { opacity: 0.15; transform: scale(1.05); }
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.10; transform: scale(1); }
+  50% { opacity: 0.20; transform: scale(1.08); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(40px, -30px) scale(1.05); }
+  50% { transform: translate(-20px, -50px) scale(0.95); }
+  75% { transform: translate(-40px, 20px) scale(1.02); }
+}
+
+/* ─── Section Background Variants ─── */
+
+.section-dark {
+  background-color: var(--color-bg-dark);
+}
+
+.section-elevated {
+  background-color: var(--color-bg-dark-elevated);
+}
+
+.section-gradient {
+  background: linear-gradient(180deg, var(--color-bg-dark) 0%, var(--color-bg-dark-elevated) 50%, var(--color-bg-dark) 100%);
+}
+
+/* ─── Dot Grid Background ─── */
+
+.dot-grid-subtle {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.04) 1px,
+    transparent 1px
+  );
+  background-size: 48px 48px;
 }
 
 /* ─── Scroll Progress Indicator ─── */
@@ -426,6 +542,22 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 9999;
 }
 
+/* ─── Fixed Circle CTA (bottom-right) ─── */
+
+.fixed-cta {
+  position: fixed;
+  bottom: calc(var(--frame-inset) + 24px);
+  right: calc(var(--frame-inset) + 24px);
+  z-index: 40;
+}
+
+@media (max-width: 768px) {
+  .fixed-cta {
+    bottom: 80px;
+    right: 16px;
+  }
+}
+
 /* ─── Mobile Touch Feedback ─── */
 
 @media (hover: none) and (pointer: coarse) {
@@ -438,5 +570,15 @@ h1, h2, h3, h4, h5, h6 {
 
   .hover\:-translate-y-1\.5:hover {
     transform: none !important;
+  }
+}
+
+/* ─── Reduced Motion ─── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

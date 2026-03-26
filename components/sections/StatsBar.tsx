@@ -49,9 +49,14 @@ function StatsBar({ locale, className }: StatsBarProps) {
   const prefersReduced = useReducedMotion();
 
   return (
-    <section className={cn("py-24 sm:py-32 bg-[--color-bg-dark] relative", className)}>
-      {/* Subtle top border */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-[rgba(255,255,255,0.06)]" aria-hidden="true" />
+    <section className={cn("py-28 sm:py-36 section-dark relative overflow-hidden", className)}>
+      {/* Ambient blur circle */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="blur-circle absolute w-[50vw] h-[50vw] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.08]" />
+      </div>
+
+      {/* Top glow divider */}
+      <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
         <motion.p
@@ -64,26 +69,41 @@ function StatsBar({ locale, className }: StatsBarProps) {
           {locale === "id" ? "Dalam Angka" : "In Numbers"}
         </motion.p>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-14 sm:gap-y-16 gap-x-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-16 sm:gap-y-20 gap-x-6">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label_en}
-              initial={prefersReduced ? undefined : { opacity: 0, y: 20 }}
+              className="relative"
+              initial={prefersReduced ? undefined : { opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-30px" }}
               transition={{
-                duration: 0.5,
+                duration: 0.6,
                 ease: [0.16, 1, 0.3, 1],
-                delay: i * 0.08,
+                delay: i * 0.1,
               }}
             >
-              <div className="stat-number text-display-lg gradient-text-vivid">
+              {/* Glow behind number */}
+              <div
+                className="absolute -top-4 -left-4 w-32 h-32 rounded-full bg-[--color-primary] opacity-[0.06] blur-[60px] pointer-events-none"
+                aria-hidden="true"
+              />
+              <div className="relative stat-number text-display-lg gradient-text-vivid">
                 <CounterAnimation
                   target={stat.value}
                   suffix={stat.suffix}
                 />
               </div>
-              <p className="mt-3 text-sm text-[--color-text-muted]">
+              {/* Accent line */}
+              <motion.div
+                className="mt-4 mb-3 h-px w-10 bg-gradient-to-r from-[--color-primary] to-transparent"
+                initial={prefersReduced ? undefined : { scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 + i * 0.1 }}
+                style={{ transformOrigin: "left" }}
+              />
+              <p className="text-sm text-[--color-text-muted]">
                 {locale === "id" ? stat.label_id : stat.label_en}
               </p>
             </motion.div>
