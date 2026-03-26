@@ -20,6 +20,9 @@ import {
   Plane,
   Warehouse,
   ArrowRight,
+  MapPin,
+  Clock,
+  Layers,
 } from "lucide-react";
 import { services } from "@/lib/content/services";
 import { getLocalizedPath } from "@/lib/utils/routes";
@@ -104,40 +107,43 @@ export function ValuePropSection({
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
               {
-                icon: "🌏",
+                icon: Globe,
                 value: "150+",
                 label: locale === "id" ? "Negara Tujuan" : "Countries",
               },
               {
-                icon: "🏝️",
+                icon: MapPin,
                 value: "34",
                 label: locale === "id" ? "Provinsi" : "Provinces",
               },
               {
-                icon: "📦",
+                icon: Clock,
                 value: "25+",
                 label: locale === "id" ? "Tahun" : "Years",
               },
               {
-                icon: "✈️",
+                icon: Layers,
                 value: "6",
                 label: locale === "id" ? "Layanan" : "Services",
               },
-            ].map((item, i) => (
-              <ScrollReveal key={i} delay={i * 80}>
-                <MagneticElement strength={0.2}>
-                  <div className="glass-dark p-4 sm:p-5 text-center">
-                    <span className="text-2xl mb-2 block">{item.icon}</span>
-                    <span className="stat-number text-2xl sm:text-3xl gradient-text block">
-                      {item.value}
-                    </span>
-                    <span className="label-text text-[--color-text-secondary] text-[10px] mt-1 block">
-                      {item.label}
-                    </span>
-                  </div>
-                </MagneticElement>
-              </ScrollReveal>
-            ))}
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <ScrollReveal key={i} delay={i * 80}>
+                  <MagneticElement strength={0.2}>
+                    <div className="glass-dark p-5 sm:p-6 text-center">
+                      <Icon className="size-5 text-[--color-primary] mx-auto mb-3" strokeWidth={1.5} />
+                      <span className="stat-number text-3xl sm:text-4xl gradient-text block mb-1">
+                        {item.value}
+                      </span>
+                      <span className="label-text text-[--color-text-secondary] text-[10px] block">
+                        {item.label}
+                      </span>
+                    </div>
+                  </MagneticElement>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>

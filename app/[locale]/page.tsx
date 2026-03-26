@@ -14,7 +14,7 @@ import { ClientStoryFeatured } from "@/components/sections/ClientStoryFeatured";
 import { CTABand } from "@/components/sections/CTABand";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { Button } from "@/components/ui/Button";
-import { Shield, Compass, Package } from "lucide-react";
+import { Shield, Compass, Package, Globe, MapPin, Clock, Layers } from "lucide-react";
 
 // ─── Bilingual content ───
 
@@ -219,19 +219,22 @@ export default async function HomePage({
           {/* Visual metric cards */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {[
-              { icon: "🌏", value: "150+", label: typedLocale === "id" ? "Negara Tujuan" : "Countries" },
-              { icon: "🏝️", value: "34", label: typedLocale === "id" ? "Provinsi" : "Provinces" },
-              { icon: "📦", value: "25+", label: typedLocale === "id" ? "Tahun" : "Years" },
-              { icon: "✈️", value: "6", label: typedLocale === "id" ? "Layanan" : "Services" },
-            ].map((item, i) => (
-              <ScrollReveal key={i} delay={i * 80}>
-                <div className="glass-dark p-4 sm:p-5 text-center">
-                  <span className="text-2xl mb-2 block">{item.icon}</span>
-                  <span className="stat-number text-2xl sm:text-3xl gradient-text block">{item.value}</span>
-                  <span className="label-text text-[--color-text-secondary] text-[10px] mt-1 block">{item.label}</span>
-                </div>
-              </ScrollReveal>
-            ))}
+              { icon: Globe, value: "150+", label: typedLocale === "id" ? "Negara Tujuan" : "Countries" },
+              { icon: MapPin, value: "34", label: typedLocale === "id" ? "Provinsi" : "Provinces" },
+              { icon: Clock, value: "25+", label: typedLocale === "id" ? "Tahun" : "Years" },
+              { icon: Layers, value: "6", label: typedLocale === "id" ? "Layanan" : "Services" },
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <ScrollReveal key={i} delay={i * 80}>
+                  <div className="glass-dark p-5 sm:p-6 text-center">
+                    <Icon className="size-5 text-[--color-primary] mx-auto mb-3" strokeWidth={1.5} />
+                    <span className="stat-number text-3xl sm:text-4xl gradient-text block mb-1">{item.value}</span>
+                    <span className="label-text text-[--color-text-secondary] text-[10px] block">{item.label}</span>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>
