@@ -5,25 +5,13 @@ import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ScrollVelocityText } from "@/components/motion/ScrollVelocityText";
-import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { MagneticElement } from "@/components/motion/MagneticElement";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { Button } from "@/components/ui/Button";
-import {
-  Package,
-  Compass,
-  Globe,
-  MapPin,
-  Clock,
-  Layers,
-} from "lucide-react";
 import { getLocalizedPath } from "@/lib/utils/routes";
 import type { Locale } from "@/lib/i18n/config";
 
-// ─── Icon map for metric cards ───
-const metricIcons = [Globe, MapPin, Clock, Layers];
-
-// ─── Value Proposition Section (GSAP: TextRevealByLine + MagneticElement) ───
+// ─── Value Proposition Section ───
 
 export function ValuePropSection({
   locale,
@@ -36,62 +24,30 @@ export function ValuePropSection({
 }) {
   return (
     <GSAPProvider>
-      <section className="py-24 sm:py-32 bg-[--color-bg-dark] relative overflow-hidden">
-        <ParallaxDepth speed={0.15} direction="down">
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-            aria-hidden="true"
-          >
-            <Package
-              className="size-[300px] sm:size-[450px] text-[--color-primary] opacity-[0.015]"
-              strokeWidth={0.3}
-            />
-          </div>
-        </ParallaxDepth>
-
-        <div
-          className="absolute inset-0 dot-grid-subtle pointer-events-none"
-          aria-hidden="true"
-        />
-        <ParallaxDepth speed={0.1} direction="up">
-          <div
-            className="absolute inset-0 pointer-events-none"
-            aria-hidden="true"
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[--color-accent-warm] opacity-[0.05] blur-[160px]" />
-          </div>
-        </ParallaxDepth>
-
+      <section className="py-24 sm:py-36 bg-[--color-bg-dark] relative">
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
+          {/* Large editorial quote-style text */}
           <TextRevealByLine
             as="p"
-            className="text-xl sm:text-2xl md:text-3xl text-[--color-text-secondary] text-center max-w-3xl mx-auto leading-relaxed font-light mb-16"
+            className="text-heading-lg sm:text-display-sm text-[--color-text-primary] max-w-4xl leading-[1.15] font-light tracking-[-0.02em]"
           >
             {valueProp}
           </TextRevealByLine>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {metrics.map((item, i) => {
-              const Icon = metricIcons[i] || Globe;
-              return (
-                <ScrollReveal key={i} delay={i * 80}>
-                  <MagneticElement strength={0.2}>
-                    <div className="glass-dark p-5 sm:p-6 text-center">
-                      <Icon
-                        className="size-5 text-[--color-primary] mx-auto mb-3"
-                        strokeWidth={1.5}
-                      />
-                      <span className="stat-number text-3xl sm:text-4xl gradient-text block mb-1">
-                        {item.value}
-                      </span>
-                      <span className="label-text text-[--color-text-secondary] text-[10px] block">
-                        {item.label}
-                      </span>
-                    </div>
-                  </MagneticElement>
-                </ScrollReveal>
-              );
-            })}
+          {/* Inline metrics — horizontal, separated by lines */}
+          <div className="mt-16 sm:mt-20 flex flex-wrap gap-x-10 sm:gap-x-14 gap-y-6">
+            {metrics.map((item, i) => (
+              <ScrollReveal key={i} delay={i * 60}>
+                <div className="flex items-baseline gap-3">
+                  <span className="stat-number text-3xl sm:text-4xl text-[--color-text-inverse]">
+                    {item.value}
+                  </span>
+                  <span className="text-sm text-[--color-text-muted]">
+                    {item.label}
+                  </span>
+                </div>
+              </ScrollReveal>
+            ))}
           </div>
         </div>
       </section>
@@ -99,7 +55,7 @@ export function ValuePropSection({
   );
 }
 
-// ─── Velocity Marquee (GSAP: ScrollVelocityText) ───
+// ─── Velocity Marquee ───
 
 export function VelocityMarquee({ locale }: { locale: Locale }) {
   const text =
@@ -107,36 +63,23 @@ export function VelocityMarquee({ locale }: { locale: Locale }) {
       ? "FREIGHT FORWARDING \u2022 KEPABEANAN \u2022 PERGUDANGAN \u2022 DISTRIBUSI \u2022 KARGO PROYEK \u2022 CHARTER \u2022"
       : "FREIGHT FORWARDING \u2022 CUSTOMS CLEARANCE \u2022 WAREHOUSING \u2022 DISTRIBUTION \u2022 PROJECT CARGO \u2022 CHARTER \u2022";
 
-  const textSecondary =
-    locale === "id"
-      ? "IMPOR \u2022 EKSPOR \u2022 DOOR-TO-DOOR \u2022 SEWA GUDANG \u2022 HEAVY LIFT \u2022 BERSERTIFIKASI WCA & IATA \u2022"
-      : "IMPORT \u2022 EXPORT \u2022 DOOR-TO-DOOR \u2022 WAREHOUSE LEASE \u2022 HEAVY LIFT \u2022 WCA & IATA CERTIFIED \u2022";
-
   return (
     <GSAPProvider>
-      <div className="py-6 bg-[--color-bg-dark] border-y border-[rgba(255,255,255,0.04)] overflow-hidden space-y-2">
+      <div className="py-4 bg-[--color-bg-dark] border-y border-[rgba(255,255,255,0.04)] overflow-hidden">
         <ScrollVelocityText
-          baseVelocity={60}
+          baseVelocity={50}
           repeat={5}
           direction="left"
-          className="text-[80px] sm:text-[120px] md:text-[160px] font-black text-[rgba(255,255,255,0.025)] leading-none select-none font-display tracking-tight"
+          className="text-[64px] sm:text-[100px] md:text-[140px] font-bold text-[rgba(255,255,255,0.03)] leading-none select-none font-display tracking-tighter"
         >
           {text}
-        </ScrollVelocityText>
-        <ScrollVelocityText
-          baseVelocity={40}
-          repeat={5}
-          direction="right"
-          className="text-[48px] sm:text-[72px] md:text-[96px] font-black text-[rgba(255,70,0,0.03)] leading-none select-none font-display tracking-tight"
-        >
-          {textSecondary}
         </ScrollVelocityText>
       </div>
     </GSAPProvider>
   );
 }
 
-// ─── Editorial Section (GSAP: SplitTextReveal, ParallaxDepth, MagneticElement) ───
+// ─── Editorial Section ───
 
 export function EditorialSection({
   locale,
@@ -151,75 +94,57 @@ export function EditorialSection({
 }) {
   return (
     <GSAPProvider>
-      <section
-        className="py-28 sm:py-36 relative overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(180deg, #09090B 0%, #0f0805 50%, #09090B 100%)",
-        }}
-      >
-        <ParallaxDepth speed={0.2} direction="up" rotate={{ from: 10, to: 25 }}>
-          <div
-            className="absolute bottom-[5%] left-[3%] pointer-events-none"
-            aria-hidden="true"
-          >
-            <Compass
-              className="size-[200px] sm:size-[300px] text-[--color-accent-warm] opacity-[0.02]"
-              strokeWidth={0.4}
-            />
-          </div>
-        </ParallaxDepth>
-
-        <div
-          className="absolute top-0 left-0 right-0 glow-divider-full"
-          aria-hidden="true"
-        />
-        <ParallaxDepth speed={0.12} direction="down">
-          <div
-            className="absolute inset-0 pointer-events-none"
-            aria-hidden="true"
-          >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[--color-primary] opacity-[0.06] blur-[180px]" />
-          </div>
-        </ParallaxDepth>
+      <section className="py-28 sm:py-40 bg-[--color-bg-dark] relative overflow-hidden">
+        {/* Single subtle ambient glow */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[--color-primary] opacity-[0.03] blur-[180px]" />
+        </div>
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          <MagneticElement strength={0.08}>
-            <div className="glass-tinted p-10 sm:p-14 max-w-2xl mx-auto text-center">
+          {/* Two-column editorial layout */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
+            {/* Left: heading */}
+            <div className="md:col-span-5">
               <motion.p
-                className="label-text text-[--color-primary] mb-4"
+                className="label-text text-[--color-primary] mb-5"
                 initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
-                Spotlight
+                {locale === "id" ? "Jangkauan" : "Coverage"}
               </motion.p>
               <SplitTextReveal
                 as="h2"
                 type="words"
-                stagger={0.06}
-                className="text-heading-md sm:text-heading-lg font-bold gradient-text mb-5 tracking-[-0.02em]"
+                stagger={0.05}
+                className="text-display-sm font-bold text-[--color-text-inverse] tracking-[-0.03em]"
               >
                 {heading}
               </SplitTextReveal>
+            </div>
+
+            {/* Right: description + CTA */}
+            <div className="md:col-span-6 md:col-start-7 flex flex-col justify-end">
               <TextRevealByLine
                 as="p"
-                className="text-[--color-text-secondary] mb-8 leading-relaxed text-lg"
-                staggerDelay={0.08}
+                className="text-lg text-[--color-text-secondary] leading-relaxed mb-8"
+                staggerDelay={0.06}
               >
                 {description}
               </TextRevealByLine>
-              <ScrollReveal delay={300}>
-                <Button
-                  href={getLocalizedPath("services", locale)}
-                  variant="secondary"
-                >
-                  {ctaLabel}
-                </Button>
+              <ScrollReveal delay={200}>
+                <MagneticElement strength={0.2}>
+                  <Button
+                    href={getLocalizedPath("services", locale)}
+                    variant="secondary"
+                  >
+                    {ctaLabel}
+                  </Button>
+                </MagneticElement>
               </ScrollReveal>
             </div>
-          </MagneticElement>
+          </div>
         </div>
       </section>
     </GSAPProvider>

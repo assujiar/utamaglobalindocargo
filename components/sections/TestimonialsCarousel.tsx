@@ -2,7 +2,6 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Quote } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -63,7 +62,6 @@ function TestimonialsCarousel({ locale, className }: TestimonialsCarouselProps) 
     setActiveIndex(index);
   }, []);
 
-  // Auto-advance
   useEffect(() => {
     if (isPaused || prefersReduced) return;
     timerRef.current = setInterval(() => {
@@ -81,76 +79,65 @@ function TestimonialsCarousel({ locale, className }: TestimonialsCarouselProps) 
 
   return (
     <section
-      className={cn("py-28 sm:py-36 bg-[--color-bg-dark] relative overflow-hidden", className)}
+      className={cn("py-24 sm:py-32 bg-[--color-bg-dark] relative", className)}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Ambient glow */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[--color-primary] opacity-[0.04] blur-[160px]" />
-      </div>
-
-      {/* Top glow divider */}
-      <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-[rgba(255,255,255,0.06)]" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-        <motion.p
-          className="label-text text-[--color-primary] text-center mb-4"
-          initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        >
-          {locale === "id" ? "Kata Klien Kami" : "Client Testimonials"}
-        </motion.p>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
+          {/* Left: label + navigation */}
+          <div className="md:col-span-3">
+            <p className="label-text text-[--color-primary] mb-6">
+              {locale === "id" ? "Kata Klien" : "Testimonials"}
+            </p>
 
-        {/* Quote icon */}
-        <div className="flex justify-center mb-8">
-          <Quote className="size-10 text-[--color-primary] opacity-20" strokeWidth={1} />
-        </div>
+            {/* Navigation dots — vertical on desktop */}
+            <div className="flex md:flex-col items-start gap-3">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => goTo(i)}
+                  className={cn(
+                    "h-px md:h-px w-8 md:w-12 transition-all duration-300",
+                    i === activeIndex
+                      ? "bg-[--color-primary]"
+                      : "bg-[rgba(255,255,255,0.12)] hover:bg-[rgba(255,255,255,0.25)]",
+                  )}
+                  aria-label={`Testimonial ${i + 1}`}
+                  aria-current={i === activeIndex ? "true" : undefined}
+                />
+              ))}
+            </div>
+          </div>
 
-        {/* Testimonial content with crossfade */}
-        <div className="max-w-2xl mx-auto text-center min-h-[200px] flex items-center justify-center">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeIndex}
-              initial={prefersReduced ? undefined : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <blockquote className="text-lg sm:text-xl md:text-2xl text-[--color-text-inverse] font-medium leading-relaxed mb-8">
-                &ldquo;{quote}&rdquo;
-              </blockquote>
-              <div className="flex flex-col items-center gap-1">
-                <span className="text-sm font-semibold text-[--color-text-primary]">
-                  {role}
-                </span>
-                <span className="label-text text-[--color-primary] text-xs">
-                  {industry}
-                </span>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Navigation dots */}
-        <div className="flex items-center justify-center gap-3 mt-10">
-          {testimonials.map((_, i) => (
-            <button
-              key={i}
-              type="button"
-              onClick={() => goTo(i)}
-              className={cn(
-                "size-2.5 rounded-full transition-all duration-300",
-                i === activeIndex
-                  ? "bg-[--color-primary] shadow-[0_0_12px_rgba(255,70,0,0.5)] scale-125"
-                  : "bg-[rgba(255,255,255,0.15)] hover:bg-[rgba(255,255,255,0.3)]",
-              )}
-              aria-label={`Go to testimonial ${i + 1}`}
-              aria-current={i === activeIndex ? "true" : undefined}
-            />
-          ))}
+          {/* Right: quote content */}
+          <div className="md:col-span-8 md:col-start-5 min-h-[180px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeIndex}
+                initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <blockquote className="text-xl sm:text-2xl md:text-3xl text-[--color-text-primary] font-light leading-snug tracking-[-0.01em] mb-8">
+                  &ldquo;{quote}&rdquo;
+                </blockquote>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-medium text-[--color-text-primary]">
+                    {role}
+                  </span>
+                  <span className="w-4 h-px bg-[rgba(255,255,255,0.15)]" />
+                  <span className="text-sm text-[--color-text-muted]">
+                    {industry}
+                  </span>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>
