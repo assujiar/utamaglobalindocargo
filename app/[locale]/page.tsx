@@ -21,30 +21,30 @@ import { Shield, Compass, Package } from "lucide-react";
 const content = {
   id: {
     hero: {
-      headline: "Barang Anda Harus Sampai. Titik.",
+      headline: "Ketepatan Waktu Bukan Opsi. Itu Standar Kami.",
       subline:
-        "Anda punya bisnis yang harus jalan. Biar urusan pengiriman, kepabeanan, dan gudang kami yang tangani. Satu mitra, satu nomor telepon, semua beres.",
-      ctaLabel: "Ceritakan Kebutuhan Anda",
+        "Freight forwarding, kepabeanan, pergudangan, dan distribusi dalam satu pengelolaan terpadu. Satu mitra strategis untuk seluruh kebutuhan logistik perusahaan Anda.",
+      ctaLabel: "Konsultasi Kebutuhan Anda",
     },
     valueProp:
-      "Ketika pengiriman terlambat, bisnis Anda yang kena dampaknya. Sejak 1995, kami menjadi perpanjangan tim logistik ratusan perusahaan Indonesia. Bukan sekadar vendor, tapi mitra yang ikut pusing kalau barang Anda belum sampai.",
+      "Sejak 1995, kami menjadi perpanjangan tim logistik ratusan perusahaan Indonesia. Bukan sekadar penyedia jasa, melainkan mitra operasional yang memahami bahwa setiap keterlambatan pengiriman berdampak langsung pada bisnis Anda.",
     serviceGrid: {
-      heading: "Apapun yang Anda Kirim, Kami Sudah Pernah Tangani",
+      heading: "Solusi untuk Setiap Kebutuhan Rantai Pasok",
       exploreLabel: "Selengkapnya",
     },
     proof: {
       badgesLabel: "Tersertifikasi WCA dan IATA",
     },
     editorial: {
-      heading: "Sampai ke Pelosok, Terlacak Setiap Saat",
+      heading: "34 Provinsi, Satu Sistem Terpadu",
       description:
-        "Pelanggan kami mengirim ke 34 provinsi setiap hari. Dari Jakarta ke Jayapura, via darat, laut, atau udara. Anda tinggal pantau dari layar HP.",
+        "Klien kami mendistribusikan ke seluruh Indonesia setiap hari. Darat, laut, dan udara dengan pelacakan real-time di setiap titik perjalanan.",
       ctaLabel: "Lihat Cara Kerjanya",
     },
     ctaBand: {
-      heading: "Punya Barang yang Harus Segera Jalan?",
-      ctaLabel: "Hubungi Kami Sekarang",
-      trustLine: "Tim kami merespons dalam 2 jam kerja. Bukan bot, bukan template.",
+      heading: "Ada Kebutuhan Pengiriman yang Perlu Didiskusikan?",
+      ctaLabel: "Hubungi Tim Kami",
+      trustLine: "Tim kami merespons dalam 2 jam kerja dengan penanganan langsung.",
     },
     seo: {
       title: "UGC Logistics | Freight Forwarder & Ekspedisi Terpercaya Sejak 1995",
@@ -54,30 +54,30 @@ const content = {
   },
   en: {
     hero: {
-      headline: "Your Cargo Has to Get There. Period.",
+      headline: "On-Time Delivery Is Not Optional. It Is Our Standard.",
       subline:
-        "You have a business to run. Let us handle the shipping, customs, and warehousing. One partner, one phone call, everything handled.",
-      ctaLabel: "Tell Us What You Need",
+        "Freight forwarding, customs clearance, warehousing, and distribution under one integrated management. One strategic partner for your entire logistics operation.",
+      ctaLabel: "Discuss Your Requirements",
     },
     valueProp:
-      "When shipments are late, your business pays the price. Since 1995, we have been the logistics arm of hundreds of Indonesian companies. Not just a vendor, but a partner who stays up at night when your cargo has not arrived.",
+      "Since 1995, we have served as the logistics arm of hundreds of Indonesian companies. Not simply a service provider, but an operational partner who understands that every delayed shipment has a direct impact on your business.",
     serviceGrid: {
-      heading: "Whatever You Ship, We Have Done It Before",
+      heading: "Solutions for Every Supply Chain Requirement",
       exploreLabel: "Learn More",
     },
     proof: {
       badgesLabel: "WCA and IATA certified",
     },
     editorial: {
-      heading: "Reaching Every Corner, Tracked Every Step",
+      heading: "34 Provinces, One Integrated System",
       description:
-        "Our clients ship to all 34 provinces daily. Jakarta to Jayapura, by land, sea, or air. You just watch the progress from your phone.",
+        "Our clients distribute across Indonesia every day. Land, sea, and air with real-time tracking at every point of the journey.",
       ctaLabel: "See How It Works",
     },
     ctaBand: {
-      heading: "Got Cargo That Needs to Move Now?",
-      ctaLabel: "Talk to Us Today",
-      trustLine: "Our team responds within 2 business hours. Real people, not templates.",
+      heading: "Have a Shipping Requirement to Discuss?",
+      ctaLabel: "Speak with Our Team",
+      trustLine: "Our team responds within 2 business hours with direct, personal handling.",
     },
     seo: {
       title: "UGC Logistics | Trusted Freight Forwarder Since 1995",

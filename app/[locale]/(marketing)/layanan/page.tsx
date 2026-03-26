@@ -17,27 +17,27 @@ const content = {
       "Seluruh layanan logistik UGC: distribusi domestik, freight internasional, import & kepabeanan, blockspace & charter, pergudangan 3PL, dan project cargo.",
   },
   hero: {
-    headline: "Anda Fokus Jualan, Kami Urus Pengirimannya",
+    headline: "Enam Layanan Terintegrasi, Satu Mitra Strategis",
     subline:
-      "Setiap bisnis punya tantangan logistik yang berbeda. Ada yang butuh kirim ke pelosok Papua, ada yang impor bahan baku dari China. Ceritakan kebutuhan Anda, kami carikan solusinya.",
+      "Setiap perusahaan memiliki tantangan logistik yang berbeda. Distribusi ke 34 provinsi, impor bahan baku lintas negara, atau pengiriman kargo proyek berskala besar. Sampaikan kebutuhan Anda, kami rancang solusinya.",
   },
   serviceGrid: {
-    heading: "Pilih yang Anda Butuhkan",
+    heading: "Layanan Sesuai Kebutuhan Anda",
     exploreLabel: "Selengkapnya",
   },
   crossValue: {
-    heading: "Kenapa Repot Koordinasi Banyak Vendor?",
+    heading: "Keunggulan Satu Mitra Logistik Terpadu",
     points: [
-      "Satu nomor, satu PIC. Tidak perlu telepon 5 vendor berbeda untuk satu pengiriman",
-      "Jadwal otomatis sinkron antar layanan. Barang dari pelabuhan langsung masuk gudang, langsung distribusi",
-      "Kalau ada masalah, satu orang yang bertanggung jawab. Bukan lempar-lemparan antar pihak",
-      "Anda bisa pantau semua pergerakan barang dari satu dashboard, bukan dari 5 platform berbeda",
+      "Satu kontak person untuk seluruh kebutuhan. Tanpa koordinasi silang antar vendor yang memperlambat proses",
+      "Jadwal antar layanan tersinkronisasi otomatis. Kargo dari pelabuhan langsung masuk gudang dan terdistribusi",
+      "Satu pihak yang bertanggung jawab penuh. Setiap kendala ditangani langsung, tanpa eskalasi berbelit",
+      "Visibilitas menyeluruh atas seluruh pergerakan barang Anda dari satu sistem terpadu",
     ],
   },
   ctaBand: {
-    heading: "Bingung Mulai dari Mana?",
-    ctaLabel: "Ceritakan Kebutuhan Anda",
-    trustLine: "Konsultasi gratis. Tim kami merespons dalam 2 jam kerja.",
+    heading: "Belum Yakin Layanan Mana yang Tepat?",
+    ctaLabel: "Konsultasi dengan Tim Kami",
+    trustLine: "Konsultasi tanpa biaya. Tim kami merespons dalam 2 jam kerja.",
   },
 };
 

@@ -155,7 +155,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
               <ScrollReveal delay={100}>
                 <div className="glass-tinted p-6">
                   <h3 className="label-text text-[--color-primary] mb-5">
-                    {isId ? "Yang Anda Dapatkan" : "What You Get"}
+                    {isId ? "Ringkasan Layanan" : "Service Summary"}
                   </h3>
                   <ul className="space-y-3.5">
                     {capabilities.slice(0, 4).map((cap, i) => (
@@ -191,10 +191,10 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <ScrollReveal>
             <p className="label-text text-[--color-primary] text-center mb-4">
-              {isId ? "Opsi Pengiriman" : "Shipping Options"}
+              {isId ? "Kapabilitas" : "Capabilities"}
             </p>
             <h2 className="text-heading-md sm:text-heading-lg font-bold gradient-text text-center mb-14 sm:mb-20 tracking-[-0.02em]">
-              {isId ? "Pilih yang Sesuai Kebutuhan Anda" : "Choose What Fits Your Needs"}
+              {isId ? "Cakupan Layanan" : "Service Scope"}
             </h2>
           </ScrollReveal>
 
@@ -229,7 +229,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
 
       {/* ── 4. How It Works (ProcessFlow) ── */}
       <ProcessFlow
-        heading={isId ? "Semudah Ini Prosesnya" : "This Is How Easy It Is"}
+        heading={isId ? "Alur Kerja Kami" : "How We Work"}
         steps={processSteps}
       />
 
@@ -247,7 +247,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
           {/* Stats */}
           <ScrollReveal>
             <p className="label-text text-[--color-primary] text-center mb-6">
-              {isId ? "Bukan Janji, Ini Buktinya" : "Not Promises, Proof"}
+              {isId ? "Rekam Jejak" : "Track Record"}
             </p>
           </ScrollReveal>
 
@@ -288,7 +288,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
 
       {/* ── 6. FAQ ── */}
       <FAQSection
-        heading={isId ? "Yang Sering Ditanyakan Klien Kami" : "What Our Clients Often Ask"}
+        heading={isId ? "Pertanyaan yang Sering Diajukan" : "Frequently Asked Questions"}
         items={faqItems}
       />
 
@@ -299,10 +299,10 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
         quoteHref={quoteHref}
         quoteLabel={
           isId
-            ? `Konsultasi Gratis untuk ${serviceName}`
-            : `Free Consultation for ${serviceName}`
+            ? `Minta Penawaran untuk ${serviceName}`
+            : `Request a Quote for ${serviceName}`
         }
-        relatedHeading={isId ? "Mungkin Anda Juga Butuh" : "You Might Also Need"}
+        relatedHeading={isId ? "Layanan Terkait" : "Related Services"}
         insightPlaceholder={
           isId
             ? "Artikel terkait akan tersedia segera."
@@ -313,17 +313,17 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
       {/* ── 8. CTA Band ── */}
       <CTABand
         locale={locale}
-        heading={isId ? "Ada yang Bisa Kami Bantu?" : "How Can We Help?"}
+        heading={isId ? "Diskusikan Kebutuhan Anda" : "Discuss Your Requirements"}
         ctaLabel={
           isId
-            ? "Ceritakan Kebutuhan Anda"
-            : "Tell Us What You Need"
+            ? `Minta Penawaran untuk ${serviceName}`
+            : `Request a Quote for ${serviceName}`
         }
         ctaHref={quoteHref}
         trustLine={
           isId
-            ? "Konsultasi gratis. Tim kami merespons dalam 2 jam kerja."
-            : "Free consultation. Our team responds within 2 business hours."
+            ? "Tim kami merespons dalam 2 jam kerja."
+            : "Our team responds within 2 business hours."
         }
       />
     </>

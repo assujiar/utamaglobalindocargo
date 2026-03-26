@@ -17,27 +17,27 @@ const content = {
       "All UGC logistics services: domestic distribution, international freight, import & customs, blockspace & charter, 3PL warehousing, and project cargo.",
   },
   hero: {
-    headline: "You Focus on Sales. We Handle the Shipping.",
+    headline: "Six Integrated Services, One Strategic Partner",
     subline:
-      "Every business has different logistics challenges. Some need to reach remote Papua, others import raw materials from China. Tell us your situation, and we will find the right solution.",
+      "Every company faces distinct logistics challenges. Distribution across 34 provinces, cross-border raw material imports, or large-scale project cargo. Share your requirements, and we will design the solution.",
   },
   serviceGrid: {
-    heading: "Pick What You Need",
+    heading: "Services Tailored to Your Requirements",
     exploreLabel: "Learn More",
   },
   crossValue: {
-    heading: "Why Deal with Five Vendors When One Will Do?",
+    heading: "The Advantage of a Single Logistics Partner",
     points: [
-      "One number, one contact person. No more calling different vendors for a single shipment",
-      "Schedules sync automatically across services. Cargo clears the port, goes to warehouse, ships out. Seamlessly",
-      "When something goes wrong, one person takes ownership. No finger-pointing between parties",
-      "Track all your cargo movements from one dashboard, not five different platforms",
+      "One contact person for all requirements. No cross-vendor coordination slowing down your operations",
+      "Schedules synchronize automatically across services. Cargo clears the port, enters the warehouse, and ships out seamlessly",
+      "Full accountability under one roof. Every issue is resolved directly, without multi-party escalation",
+      "Complete visibility over all cargo movements through a single integrated system",
     ],
   },
   ctaBand: {
-    heading: "Not Sure Where to Start?",
-    ctaLabel: "Tell Us What You Need",
-    trustLine: "Free consultation. Our team responds within 2 business hours.",
+    heading: "Not Sure Which Service Fits Your Needs?",
+    ctaLabel: "Consult with Our Team",
+    trustLine: "Complimentary consultation. Our team responds within 2 business hours.",
   },
 };
 
