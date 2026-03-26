@@ -71,11 +71,6 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
         ref={heroRef}
         className="relative flex min-h-[50vh] flex-col justify-end pb-20 sm:pb-28 section-dark overflow-hidden"
       >
-        {/* Ambient blur circles */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="blur-circle absolute w-[50vw] h-[50vw] top-[-15%] right-[-10%] opacity-[0.08]" />
-          <div className="blur-circle-warm absolute w-[30vw] h-[30vw] bottom-[-5%] left-[-5%] opacity-[0.04]" />
-        </div>
         <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
 
         <motion.div
@@ -114,26 +109,26 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
         <div className="absolute bottom-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
       </section>
 
-      {/* ── 2. Service Overview ── */}
-      <section className="py-24 sm:py-32 section-dark">
+      {/* ── 2. Service Overview (light contrast break) ── */}
+      <section className="py-24 sm:py-36 section-light">
         <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
             <ScrollReveal className="md:col-span-7">
               <div
-                className="prose prose-lg prose-invert max-w-none text-[--color-text-secondary] leading-relaxed [&_p]:mb-5 [&_a]:text-[--color-primary] [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-[--color-accent-warm]"
+                className="prose prose-lg max-w-none leading-relaxed [&_p]:mb-5 [&_a]:text-[--color-primary] [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:text-[--color-primary-dark]"
                 dangerouslySetInnerHTML={{ __html: overview }}
               />
             </ScrollReveal>
-            <div className="md:col-span-5 md:pl-4">
+            <div className="md:col-span-4 md:col-start-9">
               <ScrollReveal delay={100}>
-                <div className="card-elevated !p-6">
-                  <h3 className="label-text text-[--color-primary] mb-5">
+                <div className="border-l-2 border-[--color-primary] pl-6">
+                  <h3 className="label-text text-[--color-primary-dark] mb-5">
                     {isId ? "Ringkasan Layanan" : "Service Summary"}
                   </h3>
                   <ul className="space-y-3.5">
                     {capabilities.slice(0, 4).map((cap, i) => (
                       <li key={i} className="flex items-start gap-3">
-                        <span className="mt-2 size-1.5 rounded-full bg-[--color-primary] shrink-0 shadow-[0_0_6px_rgba(255,70,0,0.4)]" />
+                        <span className="mt-2 size-1.5 rounded-full bg-[--color-primary] shrink-0" />
                         <span className="text-sm text-[--color-text-secondary]">
                           {cap.title}
                         </span>
@@ -147,41 +142,51 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
         </div>
       </section>
 
-      {/* ── 3. Capability Breakdown ── */}
-      <section className="py-28 sm:py-36 section-elevated relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="blur-circle absolute w-[45vw] h-[45vw] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.06]" />
-        </div>
+      {/* ── 3. Capability Breakdown (dark elevated) ── */}
+      <section className="py-28 sm:py-40 section-elevated relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          <ScrollReveal>
-            <p className="label-text text-[--color-primary] mb-4">
-              {isId ? "Kapabilitas" : "Capabilities"}
-            </p>
-            <h2 className="text-heading-lg sm:text-heading-xl font-bold text-[--color-text-primary] mb-14 sm:mb-20 tracking-[-0.03em]">
+          <div className="mb-14 sm:mb-20">
+            <SplitTextReveal
+              as="h2"
+              type="words"
+              stagger={0.05}
+              className="text-heading-xl sm:text-display-sm font-bold text-[--color-text-primary] tracking-[-0.03em]"
+            >
               {isId ? "Cakupan Layanan" : "Service Scope"}
-            </h2>
-          </ScrollReveal>
+            </SplitTextReveal>
+          </div>
 
-          {/* Capability cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {/* Capabilities — rows with border separators */}
+          <div>
             {capabilities.map((cap, i) => (
-              <ScrollReveal key={i} delay={i * 60}>
-                <div className="card-elevated card-shine h-full">
-                  <h3 className="relative z-10 text-base font-semibold text-[--color-text-primary] mb-2">
+              <motion.div
+                key={i}
+                className="grid grid-cols-12 gap-4 sm:gap-8 items-baseline py-6 sm:py-8 border-b border-[rgba(255,255,255,0.06)] first:border-t"
+                initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1], delay: i * 0.06 }}
+              >
+                <div className="col-span-12 sm:col-span-4">
+                  <h3 className="text-base sm:text-lg font-semibold text-[--color-text-primary]">
                     {cap.title}
                   </h3>
-                  <p className="relative z-10 text-sm text-[--color-text-secondary] leading-relaxed mb-3">
+                </div>
+                <div className="col-span-12 sm:col-span-6">
+                  <p className="text-sm text-[--color-text-secondary] leading-relaxed">
                     {cap.description}
                   </p>
+                </div>
+                <div className="col-span-12 sm:col-span-2 sm:text-right">
                   {cap.metric && (
-                    <span className="relative z-10 inline-block text-xs font-medium text-[--color-primary] bg-[rgba(255,70,0,0.10)] px-2.5 py-1 rounded-full">
+                    <span className="inline-block text-xs font-medium text-[--color-primary] bg-[rgba(255,70,0,0.10)] px-2.5 py-1 rounded-full">
                       {cap.metric}
                     </span>
                   )}
                 </div>
-              </ScrollReveal>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -194,41 +199,28 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
       />
 
       {/* ── 5. Proof (Stats + Client Story) ── */}
-      <section className="py-28 sm:py-36 section-dark relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="blur-circle absolute w-[40vw] h-[40vw] top-[10%] right-[-10%] opacity-[0.06]" />
-        </div>
+      <section className="py-28 sm:py-40 section-gradient-mesh relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          <ScrollReveal>
-            <p className="label-text text-[--color-primary] mb-6">
-              {isId ? "Rekam Jejak" : "Track Record"}
-            </p>
-          </ScrollReveal>
-
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-10 md:gap-12 mb-20">
+          {/* Stats — massive numbers horizontal */}
+          <div className="flex flex-wrap gap-x-16 gap-y-12 mb-24">
             {detail.stats.map((stat, i) => (
-              <ScrollReveal key={stat.label_en} delay={i * 80}>
-                <div className="relative">
-                  <div className="absolute -top-4 -left-4 w-28 h-28 rounded-full bg-[--color-primary] opacity-[0.06] blur-[50px] pointer-events-none" aria-hidden="true" />
-                  <div className="relative stat-number text-5xl sm:text-6xl md:text-[72px] gradient-text-vivid">
-                    <CounterAnimation target={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <motion.div
-                    className="mt-4 mb-3 h-px w-10 bg-gradient-to-r from-[--color-primary] to-transparent"
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 + i * 0.1 }}
-                    style={{ transformOrigin: "left" }}
-                  />
-                  <p className="label-text text-[--color-text-secondary]">
-                    {isId ? stat.label_id : stat.label_en}
-                  </p>
+              <motion.div
+                key={stat.label_en}
+                className="relative"
+                initial={prefersReduced ? undefined : { opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
+              >
+                <div className="stat-number gradient-text-vivid leading-none" style={{ fontSize: "clamp(3.5rem, 8vw, 6rem)" }}>
+                  <CounterAnimation target={stat.value} suffix={stat.suffix} />
                 </div>
-              </ScrollReveal>
+                <p className="mt-3 text-xs text-[--color-text-muted] tracking-wide uppercase">
+                  {isId ? stat.label_id : stat.label_en}
+                </p>
+              </motion.div>
             ))}
           </div>
 

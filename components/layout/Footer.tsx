@@ -5,7 +5,6 @@ import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { AnimatedLink } from "@/components/ui/AnimatedLink";
 import { MagneticElement } from "@/components/motion/MagneticElement";
-import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import { Button } from "@/components/ui/Button";
 import { getLocalizedPath } from "@/lib/utils/routes";
@@ -21,32 +20,58 @@ interface FooterProps {
   };
 }
 
+function MaskLink({ href, children }: { href: string; children: string }) {
+  return (
+    <Link
+      href={href}
+      className="mask-link text-sm text-[--color-text-secondary] hover:text-[--color-text-secondary]"
+      data-text={children}
+    >
+      {children}
+    </Link>
+  );
+}
+
 function Footer({ locale, dictionary }: FooterProps) {
   const year = new Date().getFullYear();
   const alternateLocale: Locale = locale === "id" ? "en" : "id";
   const prefersReduced = useReducedMotion();
   const copyright = dictionary.footer.copyright.replace("{year}", String(year));
 
+  const ctaText = locale === "id" ? "Mari Bicara." : "Let\u2019s Talk.";
+  const ctaWords = ctaText.split(" ");
+
   return (
     <footer className="section-dark text-[--color-text-inverse] relative overflow-hidden">
-      {/* LET'S TALK CTA with rich ambient */}
+      {/* LET'S TALK CTA — dramatic full-width display text */}
       <GSAPProvider>
         <div className="relative border-t border-[rgba(255,255,255,0.06)]">
-          {/* Ambient blur */}
-          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-            <div className="blur-circle absolute w-[50vw] h-[50vw] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.06]" />
-          </div>
-
-          <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10 py-24 sm:py-32">
+          <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10 py-24 sm:py-36">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
-              <SplitTextReveal
-                as="p"
-                type="words"
-                stagger={0.04}
-                className="text-display-md sm:text-display-lg font-bold text-[--color-text-inverse] tracking-[-0.04em]"
-              >
-                {locale === "id" ? "Mari Bicara." : "Let's Talk."}
-              </SplitTextReveal>
+              {/* Word-by-word reveal for CTA heading */}
+              <h2 className="text-display-lg sm:text-display-xl font-bold text-[--color-text-inverse] tracking-[-0.05em]">
+                {prefersReduced ? (
+                  <span>{ctaText}</span>
+                ) : (
+                  ctaWords.map((word, i) => (
+                    <span key={i} className="inline-block overflow-hidden mr-[0.22em] last:mr-0">
+                      <motion.span
+                        className="inline-block"
+                        initial={{ y: "100%" }}
+                        whileInView={{ y: "0%" }}
+                        viewport={{ once: true, margin: "-60px" }}
+                        transition={{
+                          duration: 0.7,
+                          ease: [0.16, 1, 0.3, 1],
+                          delay: i * 0.06,
+                        }}
+                      >
+                        {word}
+                      </motion.span>
+                    </span>
+                  ))
+                )}
+              </h2>
               <motion.div
                 initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -80,8 +105,8 @@ function Footer({ locale, dictionary }: FooterProps) {
                 {dictionary.footer.tagline}
               </p>
 
-              {/* Social links */}
-              <div className="flex gap-4 mt-5">
+              {/* Social — mask-link style */}
+              <div className="flex gap-5 mt-5">
                 {[
                   { label: "WhatsApp", href: "https://wa.me/6281284596614" },
                   { label: "LinkedIn", href: "https://linkedin.com/company/utamaglobalindocargo" },
@@ -93,7 +118,8 @@ function Footer({ locale, dictionary }: FooterProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="text-xs text-[--color-text-muted] hover:text-[--color-primary] transition-colors duration-200 animated-underline"
+                    className="mask-link text-xs text-[--color-text-muted]"
+                    data-text={social.label}
                   >
                     {social.label}
                   </a>

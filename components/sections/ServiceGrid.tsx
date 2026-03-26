@@ -1,9 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useCallback } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { services, type ServiceData } from "@/lib/content/services";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
@@ -17,7 +16,7 @@ interface ServiceGridProps {
   className?: string;
 }
 
-function ServiceItem({
+function ServiceRow({
   service,
   locale,
   index,
@@ -32,55 +31,42 @@ function ServiceItem({
   const servicesPath = locale === "id" ? "layanan" : "services";
   const href = `/${locale}/${servicesPath}/${slug}`;
   const prefersReduced = useReducedMotion();
-  const cardRef = useRef<HTMLAnchorElement>(null);
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (prefersReduced || !cardRef.current) return;
-      const rect = cardRef.current.getBoundingClientRect();
-      const x = ((e.clientX - rect.left) / rect.width) * 100;
-      const y = ((e.clientY - rect.top) / rect.height) * 100;
-      cardRef.current.style.setProperty("--mouse-x", `${x}%`);
-      cardRef.current.style.setProperty("--mouse-y", `${y}%`);
-    },
-    [prefersReduced],
-  );
 
   return (
     <motion.div
-      initial={prefersReduced ? undefined : { opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
+      initial={prefersReduced ? undefined : { opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-30px" }}
       transition={{
         duration: 0.6,
-        ease: [0.16, 1, 0.3, 1],
-        delay: index * 0.08,
+        ease: [0.23, 1, 0.32, 1],
+        delay: index * 0.06,
       }}
     >
       <Link
-        ref={cardRef}
         href={href}
         data-cursor-text="VIEW"
-        onMouseMove={handleMouseMove}
-        className="group block card-elevated card-shine p-6 sm:p-8 h-full"
+        className="service-row group"
       >
-        <div className="relative z-10 flex items-start justify-between gap-4 mb-4">
-          <span className="label-text text-[--color-primary] tabular-nums">
-            {service.number}
+        {/* Number */}
+        <span className="stat-number text-sm text-[--color-text-muted] tabular-nums w-8 shrink-0 group-hover:text-[--color-primary] transition-colors duration-300">
+          {service.number}
+        </span>
+
+        {/* Name + tagline */}
+        <div className="flex-1 min-w-0">
+          <span className="service-name text-heading-lg sm:text-heading-xl text-[--color-text-primary] block">
+            {name}
           </span>
-          <div className="circle-cta !w-10 !h-10 !shadow-none opacity-50 group-hover:opacity-100 group-hover:!shadow-[0_0_20px_rgba(255,70,0,0.25)] transition-all duration-300">
-            <ArrowRight
-              className="size-4 text-white group-hover:translate-x-0.5 transition-transform duration-300"
-              strokeWidth={2}
-            />
-          </div>
+          <span className="service-tagline text-sm text-[--color-text-secondary] block mt-1">
+            {tagline}
+          </span>
         </div>
-        <h3 className="relative z-10 text-heading-md text-[--color-text-primary] group-hover:text-white transition-colors duration-300 mb-3">
-          {name}
-        </h3>
-        <p className="relative z-10 text-sm text-[--color-text-muted] group-hover:text-[--color-text-secondary] transition-colors duration-300 leading-relaxed">
-          {tagline}
-        </p>
+
+        {/* Arrow */}
+        <div className="service-arrow shrink-0 ml-4">
+          <ArrowUpRight className="size-6" strokeWidth={1.5} />
+        </div>
       </Link>
     </motion.div>
   );
@@ -94,38 +80,39 @@ function ServiceGrid({
 }: ServiceGridProps) {
   return (
     <GSAPProvider>
-      <section className={cn("py-28 sm:py-36 section-elevated relative", className)}>
-        {/* Ambient depth */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="blur-circle absolute w-[40vw] h-[40vw] top-[10%] right-[-10%] opacity-[0.06]" />
-        </div>
-
+      <section className={cn("py-28 sm:py-40 section-elevated relative", className)}>
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          {/* Section header */}
-          <div className="mb-16 sm:mb-20">
-            <motion.p
-              className="label-text text-[--color-primary] mb-4"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            >
-              {locale === "id" ? "Layanan Kami" : "Our Services"}
-            </motion.p>
-            <SplitTextReveal
-              as="h2"
-              type="words"
-              stagger={0.05}
-              className="text-display-sm sm:text-display-md font-bold text-[--color-text-inverse] max-w-3xl tracking-[-0.03em]"
-            >
-              {heading}
-            </SplitTextReveal>
+          {/* Header — asymmetric split */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12 sm:mb-16">
+            <div className="md:col-span-7">
+              <SplitTextReveal
+                as="h2"
+                type="words"
+                stagger={0.05}
+                className="text-display-sm sm:text-display-md font-bold text-[--color-text-inverse] tracking-[-0.03em]"
+              >
+                {heading}
+              </SplitTextReveal>
+            </div>
+            <div className="md:col-span-4 md:col-start-9 flex items-end">
+              <motion.p
+                className="text-sm text-[--color-text-muted] leading-relaxed"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                {locale === "id"
+                  ? "Enam layanan terintegrasi untuk seluruh kebutuhan rantai pasok Anda."
+                  : "Six integrated services for your complete supply chain needs."}
+              </motion.p>
+            </div>
           </div>
 
-          {/* Service grid — elevated cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+          {/* Service list — editorial portfolio rows */}
+          <div>
             {services.map((service, i) => (
-              <ServiceItem
+              <ServiceRow
                 key={service.key}
                 service={service}
                 locale={locale}

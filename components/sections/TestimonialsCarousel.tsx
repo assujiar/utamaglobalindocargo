@@ -79,73 +79,67 @@ function TestimonialsCarousel({ locale, className }: TestimonialsCarouselProps) 
 
   return (
     <section
-      className={cn("py-28 sm:py-36 section-elevated relative overflow-hidden", className)}
+      className={cn("py-28 sm:py-40 section-dark relative overflow-hidden", className)}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {/* Ambient depth */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="blur-circle absolute w-[40vw] h-[40vw] bottom-[-10%] left-[-10%] opacity-[0.06]" />
-      </div>
-
       <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
-          {/* Left: label + navigation */}
-          <div className="md:col-span-3">
-            <p className="label-text text-[--color-primary] mb-6">
-              {locale === "id" ? "Kata Klien" : "Testimonials"}
-            </p>
+        {/* Full-width centered testimonial */}
+        <div className="max-w-4xl">
+          {/* Label */}
+          <p className="label-text text-[--color-text-muted] mb-10 sm:mb-14">
+            {locale === "id" ? "Kata Klien" : "Testimonials"}
+          </p>
 
-            {/* Navigation lines */}
-            <div className="flex md:flex-col items-start gap-3">
-              {testimonials.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => goTo(i)}
-                  className="relative group h-px md:h-px transition-all duration-500"
-                  aria-label={`Testimonial ${i + 1}`}
-                  aria-current={i === activeIndex ? "true" : undefined}
-                >
-                  <div
-                    className={cn(
-                      "h-px transition-all duration-500",
-                      i === activeIndex
-                        ? "w-14 bg-[--color-primary] shadow-[0_0_8px_rgba(255,70,0,0.4)]"
-                        : "w-8 bg-[rgba(255,255,255,0.12)] group-hover:bg-[rgba(255,255,255,0.30)] group-hover:w-10",
-                    )}
-                  />
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Right: quote content */}
-          <div className="md:col-span-8 md:col-start-5 min-h-[200px]">
+          {/* Quote with blur transition */}
+          <div className="min-h-[240px] sm:min-h-[200px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
-                initial={prefersReduced ? undefined : { opacity: 0, y: 24, filter: "blur(8px)" }}
+                initial={prefersReduced ? undefined : { opacity: 0, y: 30, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
-                <blockquote className="text-xl sm:text-2xl md:text-3xl text-[--color-text-primary] font-light leading-snug tracking-[-0.01em] mb-8">
+                <blockquote className="text-heading-lg sm:text-heading-xl md:text-display-sm text-[--color-text-primary] font-light leading-[1.2] tracking-[-0.02em]">
                   &ldquo;{quote}&rdquo;
                 </blockquote>
-                <div className="flex items-center gap-3">
+                <div className="mt-8 flex items-center gap-4">
+                  <div className="w-8 h-px bg-[--color-primary]" />
                   <span className="text-sm font-medium text-[--color-text-primary]">
                     {role}
                   </span>
-                  <span className="w-6 h-px bg-[--color-primary] opacity-40" />
-                  <span className="text-sm text-[--color-text-muted]">
+                  <span className="text-xs text-[--color-text-muted]">
                     {industry}
                   </span>
                 </div>
               </motion.div>
             </AnimatePresence>
+          </div>
+
+          {/* Navigation dots — minimal */}
+          <div className="mt-12 flex items-center gap-3">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => goTo(i)}
+                aria-label={`Testimonial ${i + 1}`}
+                aria-current={i === activeIndex ? "true" : undefined}
+                className="group p-1"
+              >
+                <div
+                  className={cn(
+                    "h-px transition-all duration-500",
+                    i === activeIndex
+                      ? "w-12 bg-[--color-primary] shadow-[0_0_8px_rgba(255,70,0,0.4)]"
+                      : "w-6 bg-[rgba(255,255,255,0.12)] group-hover:bg-[rgba(255,255,255,0.30)] group-hover:w-8",
+                  )}
+                />
+              </button>
+            ))}
           </div>
         </div>
       </div>
