@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import type { Locale } from "@/lib/i18n/config";
 
 interface Testimonial {
@@ -90,11 +91,14 @@ function TestimonialsCarousel({ locale, className }: TestimonialsCarouselProps) 
         {/* Full-width centered testimonial */}
         <div className="max-w-4xl">
           {/* Label */}
-          <p className="label-text text-[--color-text-muted] mb-10 sm:mb-14">
-            {locale === "id" ? "Kata Klien" : "Testimonials"}
-          </p>
+          <ParallaxDepth speed={0.05} direction="down" scrubSmooth={0.5}>
+            <p className="label-text text-[--color-text-muted] mb-10 sm:mb-14">
+              {locale === "id" ? "Kata Klien" : "Testimonials"}
+            </p>
+          </ParallaxDepth>
 
           {/* Quote with blur transition */}
+          <ParallaxDepth speed={0.07} direction="up" scrubSmooth={0.4}>
           <div className="min-h-[240px] sm:min-h-[200px]">
             <AnimatePresence mode="wait">
               <motion.div
@@ -119,6 +123,7 @@ function TestimonialsCarousel({ locale, className }: TestimonialsCarouselProps) 
               </motion.div>
             </AnimatePresence>
           </div>
+          </ParallaxDepth>
 
           {/* Navigation dots — minimal */}
           <div className="mt-12 flex items-center gap-3">

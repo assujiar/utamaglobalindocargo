@@ -13,6 +13,7 @@ import { CounterAnimation } from "@/components/motion/CounterAnimation";
 import { SectionTransition } from "@/components/motion/SectionTransition";
 import { MagneticElement } from "@/components/motion/MagneticElement";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { Button } from "@/components/ui/Button";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 
@@ -121,19 +122,21 @@ function CompanyStory({ label, paragraphs, since }: CompanyStoryProps) {
             {label}
           </span>
 
-          <StaggeredReveal
-            className="space-y-6"
-            staggerDelay={120}
-          >
-            {paragraphs.map((paragraph, i) => (
-              <p
-                key={i}
-                className="text-base md:text-lg leading-relaxed text-[#1A1A1A]/85 max-w-[720px]"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </StaggeredReveal>
+          <ParallaxDepth speed={0.05} direction="up" scrubSmooth={0.5}>
+            <StaggeredReveal
+              className="space-y-6"
+              staggerDelay={120}
+            >
+              {paragraphs.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className="text-base md:text-lg leading-relaxed text-[#1A1A1A]/85 max-w-[720px]"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </StaggeredReveal>
+          </ParallaxDepth>
         </div>
       </div>
     </section>
@@ -169,7 +172,7 @@ function MilestoneTimeline({ heading, milestones }: MilestoneTimelineProps) {
           </div>
 
           <HorizontalScroll
-            className="min-h-[400px]"
+            className="min-h-[70vh]"
             panelClassName="gap-6 px-6 md:px-12 lg:px-24 items-center"
           >
             {milestones.map((milestone, i) => (
@@ -227,30 +230,31 @@ function ValuePillars({ heading, values }: ValuePillarsProps) {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
             {values.map((value, i) => (
-              <ImageReveal
-                key={i}
-                direction="left"
-                delay={i * 0.15}
-              >
-                <div
-                  className={cn(
-                    "p-8 md:p-10 rounded-2xl",
-                    "border border-[rgba(255,255,255,0.06)]",
-                    "hover:border-[rgba(255,70,0,0.15)]",
-                    "transition-colors duration-200 ease-out"
-                  )}
+              <ParallaxDepth key={i} speed={0.03 + i * 0.025} direction="up" scrubSmooth={0.5}>
+                <ImageReveal
+                  direction="left"
+                  delay={i * 0.15}
                 >
-                  <span className="inline-block uppercase tracking-[0.2em] text-xs font-semibold text-[--color-primary] mb-4">
-                    0{i + 1}
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-semibold text-[--color-text-primary] mb-4">
-                    {value.title}
-                  </h3>
-                  <p className="text-[--color-text-secondary] text-sm md:text-base leading-relaxed">
-                    {value.description}
-                  </p>
-                </div>
-              </ImageReveal>
+                  <div
+                    className={cn(
+                      "p-8 md:p-10 rounded-2xl",
+                      "border border-[rgba(255,255,255,0.06)]",
+                      "hover:border-[rgba(255,70,0,0.15)]",
+                      "transition-colors duration-200 ease-out"
+                    )}
+                  >
+                    <span className="inline-block uppercase tracking-[0.2em] text-xs font-semibold text-[--color-primary] mb-4">
+                      0{i + 1}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-semibold text-[--color-text-primary] mb-4">
+                      {value.title}
+                    </h3>
+                    <p className="text-[--color-text-secondary] text-sm md:text-base leading-relaxed">
+                      {value.description}
+                    </p>
+                  </div>
+                </ImageReveal>
+              </ParallaxDepth>
             ))}
           </div>
         </div>
@@ -321,8 +325,8 @@ function NetworkReach({ heading, description, stats }: NetworkReachProps) {
                 {stats.map((stat, i) => {
                   const parsed = parseStatValue(stat.value);
                   return (
+                    <ParallaxDepth key={i} speed={0.04 + i * 0.02} direction="up" scrubSmooth={0.4}>
                     <motion.div
-                      key={i}
                       className="text-center md:text-left"
                       initial={
                         prefersReduced
@@ -350,6 +354,7 @@ function NetworkReach({ heading, description, stats }: NetworkReachProps) {
                         {stat.label}
                       </span>
                     </motion.div>
+                    </ParallaxDepth>
                   );
                 })}
               </div>

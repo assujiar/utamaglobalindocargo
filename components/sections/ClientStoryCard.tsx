@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils/cn";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import type { Locale } from "@/lib/i18n/config";
 
 interface ClientStoryData {
@@ -36,6 +37,7 @@ function ClientStoryCard({ story, locale, className }: ClientStoryCardProps) {
   const resultLabel = locale === "id" ? "Hasil" : "Result";
 
   return (
+    <ParallaxDepth speed={0.05} direction="up" scrubSmooth={0.5}>
     <ScrollReveal>
       <div
         className={cn(
@@ -76,6 +78,7 @@ function ClientStoryCard({ story, locale, className }: ClientStoryCardProps) {
         </div>
       </div>
     </ScrollReveal>
+    </ParallaxDepth>
   );
 }
 

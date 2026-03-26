@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 
 interface ProcessStep {
@@ -54,35 +55,36 @@ function ProcessFlow({ heading, steps, className }: ProcessFlowProps) {
 
             <div className="space-y-0">
               {steps.map((step, i) => (
-                <motion.div
-                  key={step.number}
-                  className="relative pl-14 sm:pl-20 py-8 sm:py-10"
-                  initial={prefersReduced ? undefined : { opacity: 0, scale: 0.95, x: -16 }}
-                  whileInView={{ opacity: 1, scale: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{
-                    duration: 0.7,
-                    ease: [0.34, 1.56, 0.64, 1],
-                    delay: i * 0.1,
-                  }}
-                >
-                  {/* Timeline dot */}
-                  <div
-                    className="absolute left-3 sm:left-6 top-10 sm:top-12 size-4 rounded-full border-2 border-[--color-primary] bg-[--color-bg-dark]"
-                    aria-hidden="true"
-                  />
+                <ParallaxDepth key={step.number} speed={0.03 + i * 0.015} direction="up" scrubSmooth={0.5}>
+                  <motion.div
+                    className="relative pl-14 sm:pl-20 py-8 sm:py-10"
+                    initial={prefersReduced ? undefined : { opacity: 0, scale: 0.95, x: -16 }}
+                    whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 0.7,
+                      ease: [0.34, 1.56, 0.64, 1],
+                      delay: i * 0.1,
+                    }}
+                  >
+                    {/* Timeline dot */}
+                    <div
+                      className="absolute left-3 sm:left-6 top-10 sm:top-12 size-4 rounded-full border-2 border-[--color-primary] bg-[--color-bg-dark]"
+                      aria-hidden="true"
+                    />
 
-                  {/* Step number — oversized, gradient */}
-                  <span className="stat-number text-5xl sm:text-6xl gradient-text-vivid leading-none block mb-3">
-                    {step.number}
-                  </span>
-                  <h3 className="text-lg sm:text-xl font-semibold text-[--color-text-primary] mb-2">
-                    {step.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-[--color-text-secondary] leading-relaxed max-w-xl">
-                    {step.description}
-                  </p>
-                </motion.div>
+                    {/* Step number — oversized, gradient */}
+                    <span className="stat-number text-5xl sm:text-6xl gradient-text-vivid leading-none block mb-3">
+                      {step.number}
+                    </span>
+                    <h3 className="text-lg sm:text-xl font-semibold text-[--color-text-primary] mb-2">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-[--color-text-secondary] leading-relaxed max-w-xl">
+                      {step.description}
+                    </p>
+                  </motion.div>
+                </ParallaxDepth>
               ))}
             </div>
           </div>

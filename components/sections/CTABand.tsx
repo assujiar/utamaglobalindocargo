@@ -7,6 +7,7 @@ import { MagneticElement } from "@/components/motion/MagneticElement";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -43,6 +44,7 @@ function CTACentered({ heading, ctaLabel, ctaHref, trustLine, className }: Omit<
       {/* No divider — gradient mesh bg provides enough visual separation */}
 
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10 text-center">
+        <ParallaxDepth speed={0.08} direction="up" scrubSmooth={0.5}>
         <h2 className="text-display-lg sm:text-display-xl font-bold text-[--color-text-inverse] tracking-[-0.05em] max-w-5xl mx-auto">
           {prefersReduced ? (
             <span>{heading}</span>
@@ -53,7 +55,7 @@ function CTACentered({ heading, ctaLabel, ctaHref, trustLine, className }: Omit<
                   className="inline-block"
                   initial={{ y: "100%" }}
                   whileInView={{ y: "0%" }}
-                  viewport={{ once: true, margin: "-60px" }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.04 }}
                 >
                   {word}
@@ -62,6 +64,8 @@ function CTACentered({ heading, ctaLabel, ctaHref, trustLine, className }: Omit<
             ))
           )}
         </h2>
+        </ParallaxDepth>
+        <ParallaxDepth speed={0.05} direction="up" scrubSmooth={0.4}>
         <motion.p
           className="text-base sm:text-lg text-[--color-text-secondary] mt-6 sm:mt-8 max-w-lg mx-auto leading-relaxed"
           initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
@@ -82,6 +86,7 @@ function CTACentered({ heading, ctaLabel, ctaHref, trustLine, className }: Omit<
             <Button href={ctaHref} size="lg">{ctaLabel}</Button>
           </MagneticElement>
         </motion.div>
+        </ParallaxDepth>
       </div>
     </section>
   );
@@ -138,7 +143,7 @@ function CTAImmersive({ heading, ctaLabel, ctaHref, trustLine, className }: Omit
           className="glass-tinted p-10 sm:p-14 text-center"
           initial={prefersReduced ? undefined : { opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
         >
           <TextRevealByLine

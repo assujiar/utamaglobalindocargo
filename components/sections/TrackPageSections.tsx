@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { Search, Package, Loader2 } from "lucide-react";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -34,6 +35,7 @@ export function TrackHero({ headline, subline }: TrackHeroProps) {
         }}
       />
 
+      <ParallaxDepth speed={0.06} direction="up" scrubSmooth={0.5}>
       <div className="relative mx-auto max-w-lg px-4 pt-32 pb-12 text-center sm:px-6">
         <motion.h1
           className="font-display text-4xl font-bold tracking-tight text-[--color-text-primary] sm:text-5xl"
@@ -53,6 +55,7 @@ export function TrackHero({ headline, subline }: TrackHeroProps) {
           {subline}
         </motion.p>
       </div>
+      </ParallaxDepth>
 
       {/* Section divider */}
       <div className="h-px bg-gradient-to-r from-transparent via-[rgba(255,70,0,0.12)] to-transparent" />

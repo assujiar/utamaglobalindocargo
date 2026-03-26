@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils/cn";
 import { services, type ServiceData } from "@/lib/content/services";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -33,10 +34,11 @@ function ServiceRow({
   const prefersReduced = useReducedMotion();
 
   return (
+    <ParallaxDepth speed={0.03 + index * 0.01} direction="up" scrubSmooth={0.5}>
     <motion.div
       initial={prefersReduced ? undefined : { opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
+      viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1], delay: index * 0.06 }}
     >
       <Link href={href} data-cursor-text="VIEW" className="service-row group">
@@ -59,6 +61,7 @@ function ServiceRow({
         </div>
       </Link>
     </motion.div>
+    </ParallaxDepth>
   );
 }
 
@@ -87,10 +90,11 @@ function ServiceCard({
   );
 
   return (
+    <ParallaxDepth speed={0.03 + index * 0.012} direction="up" scrubSmooth={0.4}>
     <motion.div
       initial={prefersReduced ? undefined : { opacity: 0, scale: 0.92 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1], delay: index * 0.07 }}
     >
       <Link
@@ -117,6 +121,7 @@ function ServiceCard({
         </p>
       </Link>
     </motion.div>
+    </ParallaxDepth>
   );
 }
 

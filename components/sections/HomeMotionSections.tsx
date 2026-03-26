@@ -39,23 +39,24 @@ export function ValuePropSection({
             {valueProp}
           </TextRevealByLine>
 
-          {/* Metrics — horizontal pill layout */}
+          {/* Metrics — horizontal pill layout with continuous scroll parallax */}
           <div className="mt-20 sm:mt-28 flex flex-wrap gap-x-12 sm:gap-x-20 gap-y-10">
             {metrics.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.08 }}
-              >
-                <span className="stat-number text-4xl sm:text-5xl text-[--color-primary] block leading-none">
-                  {item.value}
-                </span>
-                <span className="text-xs text-[--color-text-secondary] mt-2 block tracking-wide uppercase">
-                  {item.label}
-                </span>
-              </motion.div>
+              <ParallaxDepth key={i} speed={0.04 + i * 0.02} direction="up" scrubSmooth={0.4}>
+                <motion.div
+                  initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.2 + i * 0.08 }}
+                >
+                  <span className="stat-number text-4xl sm:text-5xl text-[--color-primary] block leading-none">
+                    {item.value}
+                  </span>
+                  <span className="text-xs text-[--color-text-secondary] mt-2 block tracking-wide uppercase">
+                    {item.label}
+                  </span>
+                </motion.div>
+              </ParallaxDepth>
             ))}
           </div>
         </div>
@@ -152,7 +153,7 @@ export function EditorialSection({
           {/* Reversed asymmetric — desc left 5col, heading right 7col */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
             <div className="md:col-span-5 flex flex-col justify-between order-2 md:order-1">
-              <div>
+              <ParallaxDepth speed={0.06} direction="up" scrubSmooth={0.5}>
                 <motion.p
                   className="label-text text-[--color-primary] mb-5"
                   initial={{ opacity: 0 }}
@@ -169,7 +170,7 @@ export function EditorialSection({
                 >
                   {description}
                 </TextRevealByLine>
-              </div>
+              </ParallaxDepth>
               <motion.div
                 className="mt-8"
                 initial={{ opacity: 0, y: 12 }}
@@ -189,7 +190,9 @@ export function EditorialSection({
             </div>
 
             <div className="md:col-span-7 md:col-start-6 order-1 md:order-2">
-              <EditorialHeading heading={heading} />
+              <ParallaxDepth speed={0.08} direction="down" scrubSmooth={0.5}>
+                <EditorialHeading heading={heading} />
+              </ParallaxDepth>
             </div>
           </div>
         </div>

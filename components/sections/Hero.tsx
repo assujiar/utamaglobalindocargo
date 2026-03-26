@@ -10,6 +10,7 @@ import {
 import { cn } from "@/lib/utils/cn";
 import { Button } from "@/components/ui/Button";
 import { MagneticElement } from "@/components/motion/MagneticElement";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import type { Locale } from "@/lib/i18n/config";
 
 interface HeroProps {
@@ -62,24 +63,28 @@ function Hero({
         className,
       )}
     >
-      {/* Ambient blur circles */}
+      {/* Ambient blur circles with scroll-linked parallax */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div
-          className="absolute w-[70vw] h-[70vw] top-[-20%] left-[-15%] rounded-full"
-          style={{
-            background: "radial-gradient(var(--color-primary) 0, rgba(255,70,0,0) 70%)",
-            opacity: 0.06,
-            animation: prefersReduced ? "none" : "float-slow 25s ease-in-out infinite",
-          }}
-        />
-        <div
-          className="absolute w-[40vw] h-[40vw] bottom-[10%] right-[-5%] rounded-full"
-          style={{
-            background: "radial-gradient(var(--color-accent-warm) 0, rgba(255,171,64,0) 70%)",
-            opacity: 0.04,
-            animation: prefersReduced ? "none" : "float-slow 30s ease-in-out infinite reverse",
-          }}
-        />
+        <ParallaxDepth speed={0.15} direction="down" scrubSmooth={0.6}>
+          <div
+            className="absolute w-[70vw] h-[70vw] top-[-20%] left-[-15%] rounded-full"
+            style={{
+              background: "radial-gradient(var(--color-primary) 0, rgba(255,70,0,0) 70%)",
+              opacity: 0.06,
+              animation: prefersReduced ? "none" : "float-slow 25s ease-in-out infinite",
+            }}
+          />
+        </ParallaxDepth>
+        <ParallaxDepth speed={0.1} direction="up" scrubSmooth={0.6}>
+          <div
+            className="absolute w-[40vw] h-[40vw] bottom-[10%] right-[-5%] rounded-full"
+            style={{
+              background: "radial-gradient(var(--color-accent-warm) 0, rgba(255,171,64,0) 70%)",
+              opacity: 0.04,
+              animation: prefersReduced ? "none" : "float-slow 30s ease-in-out infinite reverse",
+            }}
+          />
+        </ParallaxDepth>
       </div>
 
       {/* Grain */}

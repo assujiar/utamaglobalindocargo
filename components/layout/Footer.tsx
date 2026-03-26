@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { AnimatedLink } from "@/components/ui/AnimatedLink";
 import { MagneticElement } from "@/components/motion/MagneticElement";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import { Button } from "@/components/ui/Button";
 import { getLocalizedPath } from "@/lib/utils/routes";
@@ -47,6 +48,7 @@ function Footer({ locale, dictionary }: FooterProps) {
       <GSAPProvider>
         <div className="relative border-t border-[rgba(255,255,255,0.06)]">
           <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10 py-24 sm:py-36">
+            <ParallaxDepth speed={0.08} direction="up" scrubSmooth={0.5}>
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
               {/* Word-by-word reveal for CTA heading */}
               <h2 className="text-display-lg sm:text-display-xl font-bold text-[--color-text-inverse] tracking-[-0.05em]">
@@ -59,7 +61,7 @@ function Footer({ locale, dictionary }: FooterProps) {
                         className="inline-block"
                         initial={{ y: "100%" }}
                         whileInView={{ y: "0%" }}
-                        viewport={{ once: true, margin: "-60px" }}
+                        viewport={{ once: true }}
                         transition={{
                           duration: 0.7,
                           ease: [0.16, 1, 0.3, 1],
@@ -85,6 +87,7 @@ function Footer({ locale, dictionary }: FooterProps) {
                 </MagneticElement>
               </motion.div>
             </div>
+            </ParallaxDepth>
           </div>
         </div>
       </GSAPProvider>

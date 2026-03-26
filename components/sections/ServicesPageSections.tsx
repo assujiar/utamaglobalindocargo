@@ -5,6 +5,7 @@ import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 
 // ─── Services Hero Section ───
@@ -77,7 +78,7 @@ function CrossValueHeading({ heading }: { heading: string }) {
       className="text-heading-md sm:text-heading-lg font-bold gradient-text text-center mb-12 tracking-[-0.02em]"
       initial={prefersReduced ? undefined : { opacity: 0, scale: 0.98 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
     >
       {heading}
@@ -114,14 +115,16 @@ export function CrossValueSection({
 
           <ul className="space-y-5">
             {points.map((point, i) => (
-              <ScrollReveal key={i} delay={i * 100}>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 size-2 rounded-full bg-[--color-primary] shrink-0 shadow-[0_0_10px_rgba(255,70,0,0.4)]" />
-                  <p className="text-[--color-text-secondary] leading-relaxed text-lg">
-                    {point}
-                  </p>
-                </li>
-              </ScrollReveal>
+              <ParallaxDepth key={i} speed={0.02 + i * 0.015} direction="up" scrubSmooth={0.5}>
+                <ScrollReveal delay={i * 100}>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 size-2 rounded-full bg-[--color-primary] shrink-0 shadow-[0_0_10px_rgba(255,70,0,0.4)]" />
+                    <p className="text-[--color-text-secondary] leading-relaxed text-lg">
+                      {point}
+                    </p>
+                  </li>
+                </ScrollReveal>
+              </ParallaxDepth>
             ))}
           </ul>
         </div>

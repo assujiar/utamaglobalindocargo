@@ -7,6 +7,7 @@ import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { CounterAnimation } from "@/components/motion/CounterAnimation";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import { ProcessFlow } from "@/components/sections/ProcessFlow";
 import { FAQSection } from "@/components/sections/FAQSection";
@@ -161,12 +162,12 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
           {/* Capabilities — rows with border separators */}
           <div>
             {capabilities.map((cap, i) => (
+              <ParallaxDepth key={i} speed={0.02 + i * 0.01} direction="up" scrubSmooth={0.5}>
               <motion.div
-                key={i}
                 className="grid grid-cols-12 gap-4 sm:gap-8 items-baseline py-6 sm:py-8 border-b border-[rgba(255,255,255,0.06)] first:border-t"
                 initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-30px" }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1], delay: i * 0.06 }}
               >
                 <div className="col-span-12 sm:col-span-4">
@@ -187,6 +188,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
                   )}
                 </div>
               </motion.div>
+              </ParallaxDepth>
             ))}
           </div>
         </div>
@@ -209,12 +211,12 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
           {/* Stats — massive numbers horizontal */}
           <div className="flex flex-wrap gap-x-16 gap-y-12 mb-24">
             {detail.stats.map((stat, i) => (
+              <ParallaxDepth key={stat.label_en} speed={0.04 + i * 0.02} direction="up" scrubSmooth={0.4}>
               <motion.div
-                key={stat.label_en}
                 className="relative"
                 initial={prefersReduced ? undefined : { opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
               >
                 <div className="stat-number gradient-text-vivid leading-none" style={{ fontSize: "clamp(3.5rem, 8vw, 6rem)" }}>
@@ -224,6 +226,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
                   {isId ? stat.label_id : stat.label_en}
                 </p>
               </motion.div>
+              </ParallaxDepth>
             ))}
           </div>
 
