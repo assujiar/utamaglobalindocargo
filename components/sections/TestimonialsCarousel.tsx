@@ -79,11 +79,16 @@ function TestimonialsCarousel({ locale, className }: TestimonialsCarouselProps) 
 
   return (
     <section
-      className={cn("py-24 sm:py-32 bg-[--color-bg-dark] relative", className)}
+      className={cn("py-28 sm:py-36 section-elevated relative overflow-hidden", className)}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      <div className="absolute top-0 left-0 right-0 h-px bg-[rgba(255,255,255,0.06)]" aria-hidden="true" />
+      {/* Ambient depth */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <div className="blur-circle absolute w-[40vw] h-[40vw] bottom-[-10%] left-[-10%] opacity-[0.06]" />
+      </div>
+
+      <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
@@ -93,35 +98,39 @@ function TestimonialsCarousel({ locale, className }: TestimonialsCarouselProps) 
               {locale === "id" ? "Kata Klien" : "Testimonials"}
             </p>
 
-            {/* Navigation dots — vertical on desktop */}
+            {/* Navigation lines */}
             <div className="flex md:flex-col items-start gap-3">
               {testimonials.map((_, i) => (
                 <button
                   key={i}
                   type="button"
                   onClick={() => goTo(i)}
-                  className={cn(
-                    "h-px md:h-px w-8 md:w-12 transition-all duration-300",
-                    i === activeIndex
-                      ? "bg-[--color-primary]"
-                      : "bg-[rgba(255,255,255,0.12)] hover:bg-[rgba(255,255,255,0.25)]",
-                  )}
+                  className="relative group h-px md:h-px transition-all duration-500"
                   aria-label={`Testimonial ${i + 1}`}
                   aria-current={i === activeIndex ? "true" : undefined}
-                />
+                >
+                  <div
+                    className={cn(
+                      "h-px transition-all duration-500",
+                      i === activeIndex
+                        ? "w-14 bg-[--color-primary] shadow-[0_0_8px_rgba(255,70,0,0.4)]"
+                        : "w-8 bg-[rgba(255,255,255,0.12)] group-hover:bg-[rgba(255,255,255,0.30)] group-hover:w-10",
+                    )}
+                  />
+                </button>
               ))}
             </div>
           </div>
 
           {/* Right: quote content */}
-          <div className="md:col-span-8 md:col-start-5 min-h-[180px]">
+          <div className="md:col-span-8 md:col-start-5 min-h-[200px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeIndex}
-                initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                initial={prefersReduced ? undefined : { opacity: 0, y: 24, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: -16, filter: "blur(4px)" }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
               >
                 <blockquote className="text-xl sm:text-2xl md:text-3xl text-[--color-text-primary] font-light leading-snug tracking-[-0.01em] mb-8">
                   &ldquo;{quote}&rdquo;
@@ -130,7 +139,7 @@ function TestimonialsCarousel({ locale, className }: TestimonialsCarouselProps) 
                   <span className="text-sm font-medium text-[--color-text-primary]">
                     {role}
                   </span>
-                  <span className="w-4 h-px bg-[rgba(255,255,255,0.15)]" />
+                  <span className="w-6 h-px bg-[--color-primary] opacity-40" />
                   <span className="text-sm text-[--color-text-muted]">
                     {industry}
                   </span>

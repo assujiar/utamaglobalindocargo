@@ -28,11 +28,16 @@ function Footer({ locale, dictionary }: FooterProps) {
   const copyright = dictionary.footer.copyright.replace("{year}", String(year));
 
   return (
-    <footer className="bg-[--color-bg-dark] text-[--color-text-inverse]">
-      {/* LET'S TALK CTA */}
+    <footer className="section-dark text-[--color-text-inverse] relative overflow-hidden">
+      {/* LET'S TALK CTA with rich ambient */}
       <GSAPProvider>
-        <div className="border-t border-[rgba(255,255,255,0.06)]">
-          <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10 py-20 sm:py-28">
+        <div className="relative border-t border-[rgba(255,255,255,0.06)]">
+          {/* Ambient blur */}
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <div className="blur-circle absolute w-[50vw] h-[50vw] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.06]" />
+          </div>
+
+          <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10 py-24 sm:py-32">
             <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8">
               <SplitTextReveal
                 as="p"
@@ -76,7 +81,7 @@ function Footer({ locale, dictionary }: FooterProps) {
               </p>
 
               {/* Social links */}
-              <div className="flex gap-3 mt-5">
+              <div className="flex gap-4 mt-5">
                 {[
                   { label: "WhatsApp", href: "https://wa.me/6281284596614" },
                   { label: "LinkedIn", href: "https://linkedin.com/company/utamaglobalindocargo" },
@@ -88,7 +93,7 @@ function Footer({ locale, dictionary }: FooterProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="text-xs text-[--color-text-muted] hover:text-[--color-primary] transition-colors duration-200"
+                    className="text-xs text-[--color-text-muted] hover:text-[--color-primary] transition-colors duration-200 animated-underline"
                   >
                     {social.label}
                   </a>

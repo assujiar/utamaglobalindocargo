@@ -48,7 +48,10 @@ export default async function LocaleLayout({
         <LenisProvider>
           <GSAPProvider>
             <Preloader />
-            {children}
+            {/* Viewport frame wrapper — Buzzworthy signature rounded inset */}
+            <div className="viewport-frame">
+              {children}
+            </div>
             <CustomCursor />
           </GSAPProvider>
         </LenisProvider>

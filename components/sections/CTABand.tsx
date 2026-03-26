@@ -28,24 +28,31 @@ function CTABand({
     <GSAPProvider>
       <section
         className={cn(
-          "py-28 sm:py-36 text-center relative overflow-hidden bg-[--color-bg-dark]",
+          "py-32 sm:py-44 text-center relative overflow-hidden section-elevated",
           className,
         )}
       >
-        {/* Subtle ambient glow */}
+        {/* Rich ambient blur circles */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-[--color-primary] opacity-[0.04] blur-[200px]" />
+          <div
+            className="blur-circle absolute w-[60vw] h-[60vw] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+            style={{ animation: "pulse-glow 8s ease-in-out infinite" }}
+          />
+          <div className="blur-circle-warm absolute w-[30vw] h-[30vw] top-[20%] right-[-5%] opacity-[0.06]" />
         </div>
 
-        {/* Top border */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-[rgba(255,255,255,0.06)]" aria-hidden="true" />
+        {/* Grain */}
+        <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
+
+        {/* Top glow divider */}
+        <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <SplitTextReveal
             as="h2"
             type="words"
             stagger={0.04}
-            className="text-display-sm sm:text-display-md font-bold text-[--color-text-inverse] mb-6 tracking-[-0.03em]"
+            className="text-display-md sm:text-display-lg font-bold text-[--color-text-inverse] mb-6 tracking-[-0.04em]"
           >
             {heading}
           </SplitTextReveal>
