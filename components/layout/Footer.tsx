@@ -167,7 +167,7 @@ function Footer({ locale, dictionary }: FooterProps) {
 
       {/* Bottom bar */}
       <div className="border-t border-[--color-border-dark]">
-        <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mx-auto max-w-[--max-width-layout] px-5 sm:px-10 pt-8 pb-5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[--color-text-secondary]">{copyright}</p>
 
           <div className="flex items-center gap-6">
