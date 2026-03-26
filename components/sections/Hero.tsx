@@ -95,11 +95,29 @@ function Hero({
         className,
       )}
     >
+      {/* Background image layer with parallax (slowest layer) */}
+      {!prefersReduced ? (
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          style={isMobile ? undefined : { y: bgLayer }}
+          aria-hidden="true"
+        >
+          {/* Placeholder: when real image is ready, use next/image here */}
+          <div className="absolute inset-0 bg-[--color-bg-dark]" />
+          {/* Dark gradient overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[--color-bg-dark]/80 via-[--color-bg-dark]/60 to-[--color-bg-dark]" />
+        </motion.div>
+      ) : (
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute inset-0 bg-[--color-bg-dark]" />
+        </div>
+      )}
+
       {/* Gradient mesh background with parallax */}
       {!prefersReduced ? (
         <motion.div
           className="absolute inset-0 gradient-mesh-intense pointer-events-none"
-          style={isMobile ? undefined : { y: bgLayer }}
+          style={isMobile ? undefined : { y: midLayer }}
           aria-hidden="true"
         />
       ) : (
@@ -120,11 +138,11 @@ function Hero({
         />
       )}
 
-      {/* Glow orbs with parallax */}
+      {/* Glow orbs with parallax (reduced opacity — supporting, not main visual) */}
       {!prefersReduced ? (
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <motion.div
-            className="absolute top-[5%] left-[5%] w-[400px] md:w-[600px] h-[400px] md:h-[600px] rounded-full bg-[--color-primary] opacity-[0.20] blur-[120px]"
+            className="absolute top-[5%] left-[5%] w-[400px] md:w-[600px] h-[400px] md:h-[600px] rounded-full bg-[--color-primary] opacity-[0.10] blur-[120px]"
             style={isMobile ? undefined : { y: midLayer }}
             animate={isMobile ? undefined : {
               x: [0, 60, -40, 20, 0],
@@ -134,7 +152,7 @@ function Hero({
             transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute bottom-[10%] right-[5%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full bg-[--color-accent-warm] opacity-[0.15] blur-[100px]"
+            className="absolute bottom-[10%] right-[5%] w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full bg-[--color-accent-warm] opacity-[0.08] blur-[100px]"
             style={isMobile ? undefined : { y: shapeLayer }}
             animate={isMobile ? undefined : {
               x: [0, -50, 40, -30, 0],
@@ -145,7 +163,7 @@ function Hero({
         </div>
       ) : (
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-[5%] left-[5%] w-[400px] h-[400px] rounded-full bg-[--color-primary] opacity-[0.15] blur-[120px]" />
+          <div className="absolute top-[5%] left-[5%] w-[400px] h-[400px] rounded-full bg-[--color-primary] opacity-[0.08] blur-[120px]" />
         </div>
       )}
 
@@ -321,34 +339,65 @@ function Hero({
           </Button>
         </motion.div>
 
-        {/* Trust badges inline */}
-        <motion.div
-          className="mt-12 flex items-center justify-center gap-6 sm:gap-8"
-          initial={prefersReduced ? undefined : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: isMobile ? 0.8 : 1.3 }}
-        >
-          <div className="flex items-center gap-2">
-            <div className="size-2 rounded-full bg-[--color-success] shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
-            <span className="text-xs text-[--color-text-secondary]">
-              {locale === "id" ? "Sejak 1995" : "Since 1995"}
-            </span>
-          </div>
-          <div className="w-px h-3 bg-[rgba(255,255,255,0.10)]" />
-          <div className="flex items-center gap-2">
-            <div className="size-2 rounded-full bg-[--color-primary] shadow-[0_0_8px_rgba(255,70,0,0.4)]" />
-            <span className="text-xs text-[--color-text-secondary]">
-              {locale === "id" ? "150+ Negara" : "150+ Countries"}
-            </span>
-          </div>
-          <div className="w-px h-3 bg-[rgba(255,255,255,0.10)] hidden sm:block" />
-          <div className="hidden sm:flex items-center gap-2">
-            <div className="size-2 rounded-full bg-[--color-accent-warm] shadow-[0_0_8px_rgba(255,171,64,0.4)]" />
-            <span className="text-xs text-[--color-text-secondary]">
-              WCA & IATA
-            </span>
-          </div>
-        </motion.div>
+        {/* Trust badges inline — staggered fade+scale entrance */}
+        <div className="mt-12 flex items-center justify-center gap-6 sm:gap-8">
+          {[
+            {
+              color: "bg-[--color-success]",
+              glow: "shadow-[0_0_8px_rgba(16,185,129,0.4)]",
+              glowPulse: "0 0 8px rgba(16,185,129,0.4), 0 0 20px rgba(16,185,129,0.2)",
+              label: locale === "id" ? "Sejak 1995" : "Since 1995",
+              hideOnMobile: false,
+            },
+            {
+              color: "bg-[--color-primary]",
+              glow: "shadow-[0_0_8px_rgba(255,70,0,0.4)]",
+              glowPulse: "0 0 8px rgba(255,70,0,0.4), 0 0 20px rgba(255,70,0,0.2)",
+              label: locale === "id" ? "150+ Negara" : "150+ Countries",
+              hideOnMobile: false,
+            },
+            {
+              color: "bg-[--color-accent-warm]",
+              glow: "shadow-[0_0_8px_rgba(255,171,64,0.4)]",
+              glowPulse: "0 0 8px rgba(255,171,64,0.4), 0 0 20px rgba(255,171,64,0.2)",
+              label: "WCA & IATA",
+              hideOnMobile: true,
+            },
+          ].map((badge, i) => (
+            <motion.div
+              key={badge.label}
+              className={cn(
+                "flex items-center gap-2",
+                badge.hideOnMobile && "hidden sm:flex",
+              )}
+              initial={prefersReduced ? undefined : { opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 0.4,
+                ease: EASE_OUT_EXPO,
+                delay: (isMobile ? 0.8 : 1.3) + i * 0.12,
+              }}
+            >
+              {i > 0 && (
+                <div className={cn("w-px h-3 bg-[rgba(255,255,255,0.10)] mr-4 sm:mr-6", badge.hideOnMobile && "hidden sm:block")} />
+              )}
+              <motion.div
+                className={cn("size-2 rounded-full", badge.color, badge.glow)}
+                animate={prefersReduced ? undefined : {
+                  boxShadow: [
+                    badge.glowPulse.split(",")[0],
+                    badge.glowPulse,
+                    badge.glowPulse.split(",")[0],
+                  ],
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+              />
+              <span className="text-xs text-[--color-text-secondary]">
+                {badge.label}
+              </span>
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
 
       {/* Scroll indicator - animated line only */}
