@@ -79,7 +79,7 @@ function TestimonialsCarousel({ locale, className }: TestimonialsCarouselProps) 
 
   return (
     <section
-      className={cn("py-28 sm:py-40 section-dark relative overflow-hidden", className)}
+      className={cn("py-28 sm:py-40 bg-[#0C0908] relative overflow-hidden", className)}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >

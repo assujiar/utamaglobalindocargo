@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
-import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ScrollVelocityText } from "@/components/motion/ScrollVelocityText";
 import { MagneticElement } from "@/components/motion/MagneticElement";
@@ -76,7 +75,7 @@ export function VelocityMarquee({ locale }: { locale: Locale }) {
 
   return (
     <GSAPProvider>
-      <div className="py-4 section-dark border-y border-[rgba(255,255,255,0.06)] overflow-hidden relative">
+      <div className="py-4 bg-[#060608] border-y border-[rgba(255,255,255,0.06)] overflow-hidden relative">
         <ScrollVelocityText
           baseVelocity={50}
           repeat={5}
@@ -87,6 +86,35 @@ export function VelocityMarquee({ locale }: { locale: Locale }) {
         </ScrollVelocityText>
       </div>
     </GSAPProvider>
+  );
+}
+
+// ─── Editorial Heading (horizontal word slide) ───
+
+function EditorialHeading({ heading }: { heading: string }) {
+  const prefersReduced = useReducedMotion();
+  const words = heading.split(" ");
+
+  return (
+    <h2 className="text-display-md sm:text-display-lg font-bold text-[--color-text-inverse] tracking-[-0.04em]">
+      {words.map((word, i) => (
+        <span key={i} className="inline-block overflow-hidden mr-[0.3em] last:mr-0">
+          <motion.span
+            className="inline-block"
+            initial={prefersReduced ? undefined : { opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.5,
+              ease: [0.16, 1, 0.3, 1],
+              delay: i * 0.08,
+            }}
+          >
+            {word}
+          </motion.span>
+        </span>
+      ))}
+    </h2>
   );
 }
 
@@ -106,7 +134,7 @@ export function EditorialSection({
 }) {
   return (
     <GSAPProvider>
-      <section className="py-28 sm:py-40 section-dark relative overflow-hidden">
+      <section className="py-28 sm:py-40 bg-[#0A0810] relative overflow-hidden">
         {/* Parallax gradient orb — unique depth layer */}
         <ParallaxDepth speed={-0.15} className="absolute inset-0 pointer-events-none" disabled={false}>
           <div
@@ -121,9 +149,9 @@ export function EditorialSection({
         {/* NO divider — clean transition from testimonials */}
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          {/* Reversed asymmetric — desc left 4col, heading right 7col */}
+          {/* Reversed asymmetric — desc left 5col, heading right 7col */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
-            <div className="md:col-span-4 flex flex-col justify-between order-2 md:order-1">
+            <div className="md:col-span-5 flex flex-col justify-between order-2 md:order-1">
               <div>
                 <motion.p
                   className="label-text text-[--color-primary] mb-5"
@@ -161,14 +189,7 @@ export function EditorialSection({
             </div>
 
             <div className="md:col-span-7 md:col-start-6 order-1 md:order-2">
-              <SplitTextReveal
-                as="h2"
-                type="words"
-                stagger={0.05}
-                className="text-display-md sm:text-display-lg font-bold text-[--color-text-inverse] tracking-[-0.04em]"
-              >
-                {heading}
-              </SplitTextReveal>
+              <EditorialHeading heading={heading} />
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { services, type ServiceData } from "@/lib/content/services";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -140,7 +141,7 @@ function ServiceGrid({
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12 sm:mb-16">
               <div className="md:col-span-7">
                 <SplitTextReveal
-                  as="h2" type="words" stagger={0.05}
+                  as="h2" type="words" stagger={0.04}
                   className="text-display-sm sm:text-display-md font-bold text-[--color-text-inverse] tracking-[-0.03em]"
                 >
                   {heading}
@@ -161,14 +162,14 @@ function ServiceGrid({
               </div>
             </div>
           ) : (
-            /* Cards variant: centered heading */
+            /* Cards variant: centered heading — TextRevealByLine (unique: centered heading context, stagger 0.05) */
             <div className="mb-14 sm:mb-18">
-              <SplitTextReveal
-                as="h2" type="words" stagger={0.05}
+              <TextRevealByLine
+                as="h2" staggerDelay={0.05}
                 className="text-heading-xl sm:text-display-sm font-bold text-[--color-text-inverse] tracking-[-0.03em]"
               >
                 {heading}
-              </SplitTextReveal>
+              </TextRevealByLine>
             </div>
           )}
 

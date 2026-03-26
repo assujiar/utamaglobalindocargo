@@ -49,9 +49,12 @@ function StatsBar({ locale, className }: StatsBarProps) {
   const prefersReduced = useReducedMotion();
 
   return (
-    <section className={cn("py-32 sm:py-44 section-gradient-mesh relative overflow-hidden", className)}>
-      {/* Horizontal glow accent */}
-      <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
+    <section
+      className={cn("py-32 sm:py-44 bg-[#080604] relative overflow-hidden", className)}
+      style={{ backgroundImage: "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(255,70,0,0.06) 0%, transparent 70%)" }}
+    >
+      {/* Top divider — amber glow, unique */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[rgba(255,171,64,0.2)] to-transparent" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
         {/* Stats — massive numbers in a horizontal flex row */}
@@ -70,7 +73,7 @@ function StatsBar({ locale, className }: StatsBarProps) {
               }}
             >
               {/* Giant number */}
-              <div className="stat-number gradient-text-vivid leading-none" style={{ fontSize: "clamp(4rem, 10vw, 8rem)" }}>
+              <div className="stat-number text-[--color-accent-warm] leading-none" style={{ fontSize: "clamp(4rem, 10vw, 8rem)" }}>
                 <CounterAnimation
                   target={stat.value}
                   suffix={stat.suffix}
@@ -85,8 +88,8 @@ function StatsBar({ locale, className }: StatsBarProps) {
         </div>
       </div>
 
-      {/* Bottom divider */}
-      <div className="absolute bottom-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
+      {/* Bottom divider — barely visible hairline, unique */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-[rgba(255,255,255,0.03)]" aria-hidden="true" />
     </section>
   );
 }

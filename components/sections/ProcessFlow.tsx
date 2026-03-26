@@ -25,9 +25,9 @@ function ProcessFlow({ heading, steps, className }: ProcessFlowProps) {
 
   return (
     <GSAPProvider>
-      <section className={cn("py-28 sm:py-40 section-dark relative overflow-hidden", className)}>
-        {/* Unique divider: warm accent (not glow-divider-full) */}
-        <div className="absolute top-0 left-0 right-0 divider-warm-accent" aria-hidden="true" />
+      <section className={cn("py-28 sm:py-40 bg-[#08080E] relative overflow-hidden", className)}>
+        {/* Unique divider: vertical left-side accent */}
+        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-[rgba(255,70,0,0.2)] to-transparent" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           {/* Heading — right-aligned (unique vs all other headings which are left/centered) */}
@@ -36,7 +36,7 @@ function ProcessFlow({ heading, steps, className }: ProcessFlowProps) {
               <SplitTextReveal
                 as="h2"
                 type="words"
-                stagger={0.05}
+                stagger={0.08}
                 className="text-display-sm sm:text-display-md font-bold text-[--color-text-inverse] tracking-[-0.03em]"
               >
                 {heading}

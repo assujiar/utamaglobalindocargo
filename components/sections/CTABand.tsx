@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { MagneticElement } from "@/components/motion/MagneticElement";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
@@ -39,7 +40,7 @@ function CTACentered({ heading, ctaLabel, ctaHref, trustLine, className }: Omit<
           }}
         />
       </div>
-      <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
+      {/* No divider — gradient mesh bg provides enough visual separation */}
 
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10 text-center">
         <h2 className="text-display-lg sm:text-display-xl font-bold text-[--color-text-inverse] tracking-[-0.05em] max-w-5xl mx-auto">
@@ -140,14 +141,13 @@ function CTAImmersive({ heading, ctaLabel, ctaHref, trustLine, className }: Omit
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
         >
-          <SplitTextReveal
+          <TextRevealByLine
             as="h2"
-            type="words"
-            stagger={0.04}
+            staggerDelay={0.06}
             className="text-heading-xl sm:text-display-sm font-bold text-[--color-text-inverse] tracking-[-0.03em] mb-5"
           >
             {heading}
-          </SplitTextReveal>
+          </TextRevealByLine>
           <p className="text-sm sm:text-base text-[--color-text-secondary] leading-relaxed mb-8 max-w-md mx-auto">
             {trustLine}
           </p>
