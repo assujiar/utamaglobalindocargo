@@ -554,6 +554,102 @@ h1, h2, h3, h4, h5, h6 {
 .section-dark { background-color: var(--color-bg-dark); }
 .section-elevated { background-color: var(--color-bg-dark-elevated); }
 
+.section-light {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-primary-light);
+}
+
+.section-light .label-text { color: var(--color-primary-dark); }
+
+.section-light .text-link {
+  color: var(--color-text-primary-light);
+}
+
+.section-light .text-link::before {
+  background-color: var(--color-primary-dark);
+}
+
+.section-light .text-link:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Gradient mesh background — for dramatic sections */
+.section-gradient-mesh {
+  background-color: var(--color-bg-dark);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% 60%, rgba(255, 70, 0, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 30%, rgba(255, 171, 64, 0.05) 0%, transparent 60%);
+}
+
+/* ─── Service List Row (editorial portfolio list) ─── */
+
+.service-row {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: padding-left 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              border-color 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.service-row:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.service-row:hover {
+  padding-left: 1.5rem;
+  border-color: rgba(255, 70, 0, 0.15);
+}
+
+.service-row .service-name {
+  transition: color 0.3s ease;
+}
+
+.service-row:hover .service-name {
+  color: var(--color-primary);
+}
+
+.service-row .service-tagline {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+              opacity 0.4s ease 0.1s;
+}
+
+.service-row:hover .service-tagline {
+  max-height: 4rem;
+  opacity: 1;
+}
+
+.service-row .service-arrow {
+  transform: translateX(-1rem) rotate(45deg) scale(0);
+  transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+  color: var(--color-primary);
+}
+
+.service-row:hover .service-arrow {
+  transform: translateX(0) rotate(0deg) scale(1);
+}
+
+/* Light row variant */
+.section-light .service-row {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.section-light .service-row:first-child {
+  border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+.section-light .service-row:hover {
+  border-color: rgba(255, 70, 0, 0.20);
+}
+
 /* ─── Scroll Progress ─── */
 
 .scroll-progress {
@@ -596,6 +692,43 @@ h1, h2, h3, h4, h5, h6 {
   button:active, a:active, [role="button"]:active {
     transform: scale(0.97) !important;
     transition: transform 100ms ease-out !important;
+  }
+}
+
+/* ═══════════════════════════════════════
+   KEYFRAME ANIMATIONS
+   ═══════════════════════════════════════ */
+
+@keyframes float-slow {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(3%, -3%) scale(1.02); }
+  66% { transform: translate(-2%, 2%) scale(0.98); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.08; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 0.15; transform: translate(-50%, -50%) scale(1.15); }
+}
+
+@keyframes drift-horizontal {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5%); }
+}
+
+/* ─── Mobile ─── */
+
+@media (hover: none) and (pointer: coarse) {
+  button:active, a:active, [role="button"]:active {
+    transform: scale(0.97) !important;
+    transition: transform 100ms ease-out !important;
+  }
+  .service-row .service-tagline {
+    max-height: none;
+    opacity: 1;
+  }
+  .service-row .service-arrow {
+    transform: none;
+    opacity: 0.5;
   }
 }
 

@@ -21,8 +21,6 @@ interface HeroProps {
   className?: string;
 }
 
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -53,7 +51,6 @@ function Hero({
 
   const contentOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.5], [0, -80]);
-  const blurScale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
 
   const words = headline.split(" ");
 
@@ -65,28 +62,30 @@ function Hero({
         className,
       )}
     >
-      {/* ── Ambient Blur Circles (Buzzworthy-inspired, color-dodge) ── */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        aria-hidden="true"
-        style={prefersReduced ? undefined : { scale: blurScale }}
-      >
-        {/* Primary large blur circle */}
+      {/* Ambient blur circles */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
-          className="blur-circle absolute w-[70vw] h-[70vw] top-[-20%] left-[-15%]"
-          style={{ animation: "float-slow 25s ease-in-out infinite" }}
+          className="absolute w-[70vw] h-[70vw] top-[-20%] left-[-15%] rounded-full"
+          style={{
+            background: "radial-gradient(var(--color-primary) 0, rgba(255,70,0,0) 70%)",
+            opacity: 0.06,
+            animation: prefersReduced ? "none" : "float-slow 25s ease-in-out infinite",
+          }}
         />
-        {/* Secondary warm blur */}
         <div
-          className="blur-circle-warm absolute w-[50vw] h-[50vw] bottom-[-10%] right-[-10%]"
-          style={{ animation: "float-slow 30s ease-in-out infinite reverse" }}
+          className="absolute w-[40vw] h-[40vw] bottom-[10%] right-[-5%] rounded-full"
+          style={{
+            background: "radial-gradient(var(--color-accent-warm) 0, rgba(255,171,64,0) 70%)",
+            opacity: 0.04,
+            animation: prefersReduced ? "none" : "float-slow 30s ease-in-out infinite reverse",
+          }}
         />
-      </motion.div>
+      </div>
 
-      {/* Grain texture */}
+      {/* Grain */}
       <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
 
-      {/* Content — bottom-aligned, left-aligned editorial */}
+      {/* Content */}
       <motion.div
         className="relative z-10 mx-auto w-full max-w-[--max-width-layout] px-5 sm:px-10"
         style={
@@ -100,12 +99,12 @@ function Hero({
           className="label-text text-[--color-primary] mb-6 sm:mb-8"
           initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: EASE }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         >
           {locale === "id" ? "Freight Forwarder Sejak 1995" : "Freight Forwarder Since 1995"}
         </motion.p>
 
-        {/* Headline — massive display type with clip-path reveal */}
+        {/* Headline — clip-path word reveal */}
         <h1 className="text-display-xl max-w-[1000px]">
           {prefersReduced ? (
             <span className="text-[--color-text-inverse]">{headline}</span>
@@ -134,17 +133,17 @@ function Hero({
           className="mt-6 sm:mt-8 text-base sm:text-lg text-[--color-text-secondary] max-w-xl leading-relaxed"
           initial={prefersReduced ? undefined : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: EASE, delay: isMobile ? 0.4 : 0.7 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: isMobile ? 0.4 : 0.7 }}
         >
           {subline}
         </motion.p>
 
-        {/* CTA row */}
+        {/* CTA */}
         <motion.div
           className="mt-8 sm:mt-10 flex flex-col sm:flex-row items-start gap-5"
           initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: EASE, delay: isMobile ? 0.5 : 0.9 }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: isMobile ? 0.5 : 0.9 }}
         >
           <MagneticElement strength={0.3}>
             <Button href={ctaHref} size="lg">
@@ -160,7 +159,7 @@ function Hero({
           </Button>
         </motion.div>
 
-        {/* Trust badges */}
+        {/* Trust badges — inline */}
         <motion.div
           className="mt-14 sm:mt-20 flex items-center gap-8 sm:gap-12"
           initial={prefersReduced ? undefined : { opacity: 0 }}
@@ -192,7 +191,7 @@ function Hero({
       <motion.div
         className="absolute bottom-6 right-5 sm:right-10 z-10 flex flex-col items-center gap-3"
         initial={prefersReduced ? undefined : { opacity: 0 }}
-        animate={{ opacity: 0.5 }}
+        animate={{ opacity: 0.4 }}
         transition={{ duration: 0.5, delay: 1.8 }}
       >
         <span className="label-text text-[10px] text-[--color-text-muted] [writing-mode:vertical-lr]">
@@ -208,7 +207,6 @@ function Hero({
 
       {/* Bottom glow divider */}
       <div className="absolute bottom-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
-
       <div data-hero-sentinel className="absolute bottom-0 h-px w-full" aria-hidden="true" />
     </section>
   );

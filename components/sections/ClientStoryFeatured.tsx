@@ -2,6 +2,8 @@
 
 import { cn } from "@/lib/utils/cn";
 import { motion, useReducedMotion } from "framer-motion";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
 
 interface ClientStoryFeaturedProps {
@@ -24,8 +26,6 @@ const placeholder = {
   resultLabel_en: "Result",
 };
 
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
 function ClientStoryFeatured({
   locale,
   className,
@@ -43,66 +43,58 @@ function ClientStoryFeatured({
     locale === "id" ? placeholder.resultLabel_id : placeholder.resultLabel_en;
 
   return (
-    <section className={cn("py-24 sm:py-32 section-dark relative overflow-hidden", className)}>
-      {/* Ambient glow */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="blur-circle-warm absolute w-[35vw] h-[35vw] top-[10%] right-[-5%] opacity-[0.05]" />
-      </div>
-
-      <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
-
-      <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16">
-          {/* Left: label */}
-          <div className="md:col-span-3">
-            <motion.p
-              className="label-text text-[--color-primary]"
-              initial={prefersReduced ? undefined : { opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: EASE }}
-            >
-              {locale === "id" ? "Cerita Klien" : "Client Story"}
-            </motion.p>
-            <motion.p
-              className="mt-2 text-sm text-[--color-text-muted]"
-              initial={prefersReduced ? undefined : { opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: EASE, delay: 0.1 }}
-            >
-              {industry}
-            </motion.p>
-          </div>
-
-          {/* Right: quote + result */}
-          <div className="md:col-span-8 md:col-start-5">
-            <motion.blockquote
-              className="text-xl sm:text-2xl md:text-3xl text-[--color-text-primary] leading-snug font-light tracking-[-0.01em]"
-              initial={prefersReduced ? undefined : { opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
-            >
-              &ldquo;{quote}&rdquo;
-            </motion.blockquote>
-
+    <GSAPProvider>
+      <section className={cn("py-32 sm:py-48 section-light relative overflow-hidden", className)}>
+        <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
+          {/* Centered pull-quote layout — massive typography */}
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Industry label */}
             <motion.div
-              className="mt-8 pt-6 border-t border-[rgba(255,70,0,0.12)]"
-              initial={prefersReduced ? undefined : { opacity: 0, y: 12 }}
+              className="mb-10 sm:mb-14"
+              initial={prefersReduced ? undefined : { opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <span className="label-text text-[--color-primary]">
+                {locale === "id" ? "Cerita Klien" : "Client Story"}
+              </span>
+              <span className="mx-3 text-[--color-text-muted]">/</span>
+              <span className="label-text text-[--color-text-muted]">
+                {industry}
+              </span>
+            </motion.div>
+
+            {/* Big pull-quote */}
+            <SplitTextReveal
+              as="p"
+              type="words"
+              stagger={0.03}
+              className="text-heading-xl sm:text-display-sm font-light leading-[1.15] tracking-[-0.02em]"
+            >
+              {`\u201C${quote}\u201D`}
+            </SplitTextReveal>
+
+            {/* Result — below with accent divider */}
+            <motion.div
+              className="mt-12 sm:mt-16 inline-flex items-center gap-4 text-left"
+              initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: EASE, delay: 0.3 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
             >
-              <span className="label-text text-[--color-primary] mr-3">{resultLabel}</span>
-              <span className="text-sm text-[--color-text-secondary]">
-                {result}
-              </span>
+              <div className="w-8 h-px bg-[--color-primary]" />
+              <div>
+                <span className="label-text text-[--color-primary] block">{resultLabel}</span>
+                <span className="text-sm text-[--color-text-secondary] mt-1 block">
+                  {result}
+                </span>
+              </div>
             </motion.div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </GSAPProvider>
   );
 }
 

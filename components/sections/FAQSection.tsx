@@ -3,7 +3,8 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { Accordion } from "@/components/ui/Accordion";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { GSAPProvider } from "@/components/motion/GSAPProvider";
 
 interface FAQItem {
   question: string;
@@ -46,35 +47,39 @@ function FAQSection({ heading, items, className }: FAQSectionProps) {
   }));
 
   return (
-    <>
+    <GSAPProvider>
       <FAQSchemaJsonLd items={items} />
-      <section className={cn("py-28 sm:py-36 section-dark relative overflow-hidden", className)}>
-        {/* Ambient depth */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="blur-circle absolute w-[35vw] h-[35vw] top-[20%] left-[-5%] opacity-[0.05]" />
-        </div>
-
+      <section className={cn("py-28 sm:py-40 section-dark relative overflow-hidden", className)}>
         <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
-        <div className="relative z-10 mx-auto max-w-[720px] px-5 sm:px-10">
-          <ScrollReveal>
-            <p className="label-text text-[--color-primary] mb-4">FAQ</p>
-            <h2 className="text-heading-lg sm:text-heading-xl font-bold text-[--color-text-primary] mb-14 sm:mb-18 tracking-[-0.03em]">
-              {heading}
-            </h2>
-          </ScrollReveal>
-          <motion.div
-            className="card-elevated !p-6 sm:!p-8"
-            initial={prefersReduced ? undefined : { opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <Accordion items={accordionItems} defaultOpen={0} />
-          </motion.div>
+        <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
+          {/* Asymmetric two-column: heading left, accordion right */}
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
+            <div className="md:col-span-4">
+              <SplitTextReveal
+                as="h2"
+                type="words"
+                stagger={0.05}
+                className="text-heading-xl sm:text-display-sm font-bold text-[--color-text-primary] tracking-[-0.03em] md:sticky md:top-24"
+              >
+                {heading}
+              </SplitTextReveal>
+            </div>
+
+            <div className="md:col-span-7 md:col-start-6">
+              <motion.div
+                initial={prefersReduced ? undefined : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <Accordion items={accordionItems} defaultOpen={0} />
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
-    </>
+    </GSAPProvider>
   );
 }
 
