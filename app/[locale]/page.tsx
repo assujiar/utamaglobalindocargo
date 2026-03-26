@@ -12,9 +12,11 @@ import { ServiceGrid } from "@/components/sections/ServiceGrid";
 import { StatsBar } from "@/components/sections/StatsBar";
 import { ClientStoryFeatured } from "@/components/sections/ClientStoryFeatured";
 import { CTABand } from "@/components/sections/CTABand";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
-import { Button } from "@/components/ui/Button";
-import { Shield, Compass, Package, Globe, MapPin, Clock, Layers } from "lucide-react";
+import {
+  ValuePropSection,
+  VelocityMarquee,
+  EditorialSection,
+} from "@/components/sections/HomeMotionSections";
 
 // ─── Bilingual content ───
 
@@ -32,6 +34,12 @@ const content = {
       heading: "Solusi untuk Setiap Kebutuhan Rantai Pasok",
       exploreLabel: "Selengkapnya",
     },
+    metrics: [
+      { value: "150+", label: "Negara Tujuan" },
+      { value: "34", label: "Provinsi" },
+      { value: "25+", label: "Tahun" },
+      { value: "6", label: "Layanan" },
+    ],
     proof: {
       badgesLabel: "Tersertifikasi WCA dan IATA",
     },
@@ -65,6 +73,12 @@ const content = {
       heading: "Solutions for Every Supply Chain Requirement",
       exploreLabel: "Learn More",
     },
+    metrics: [
+      { value: "150+", label: "Countries" },
+      { value: "34", label: "Provinces" },
+      { value: "25+", label: "Years" },
+      { value: "6", label: "Services" },
+    ],
     proof: {
       badgesLabel: "WCA and IATA certified",
     },
@@ -197,124 +211,38 @@ export default async function HomePage({
         ctaHref={getLocalizedPath("quote", typedLocale)}
       />
 
-      {/* 2. Value Proposition Strip with visual metrics */}
-      <section className="py-24 sm:py-32 bg-[--color-bg-dark] relative overflow-hidden">
-        {/* Giant watermark */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" aria-hidden="true">
-          <Package className="size-[300px] sm:size-[450px] text-[--color-primary] opacity-[0.015]" strokeWidth={0.3} />
-        </div>
+      {/* 2. Value Proposition + Metrics (GSAP: TextRevealByLine, MagneticElement) */}
+      <ValuePropSection
+        locale={typedLocale}
+        valueProp={c.valueProp}
+        metrics={c.metrics}
+      />
 
-        <div className="absolute inset-0 dot-grid-subtle pointer-events-none" aria-hidden="true" />
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[--color-accent-warm] opacity-[0.05] blur-[160px]" />
-        </div>
+      {/* 3. Velocity Marquee (GSAP: ScrollVelocityText) */}
+      <VelocityMarquee locale={typedLocale} />
 
-        <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          <ScrollReveal>
-            <p className="text-xl sm:text-2xl md:text-3xl text-[--color-text-secondary] text-center max-w-3xl mx-auto leading-relaxed font-light mb-16">
-              {c.valueProp}
-            </p>
-          </ScrollReveal>
-
-          {/* Visual metric cards */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { icon: Globe, value: "150+", label: typedLocale === "id" ? "Negara Tujuan" : "Countries" },
-              { icon: MapPin, value: "34", label: typedLocale === "id" ? "Provinsi" : "Provinces" },
-              { icon: Clock, value: "25+", label: typedLocale === "id" ? "Tahun" : "Years" },
-              { icon: Layers, value: "6", label: typedLocale === "id" ? "Layanan" : "Services" },
-            ].map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <ScrollReveal key={i} delay={i * 80}>
-                  <div className="glass-dark p-5 sm:p-6 text-center">
-                    <Icon className="size-5 text-[--color-primary] mx-auto mb-3" strokeWidth={1.5} />
-                    <span className="stat-number text-3xl sm:text-4xl gradient-text block mb-1">{item.value}</span>
-                    <span className="label-text text-[--color-text-secondary] text-[10px] block">{item.label}</span>
-                  </div>
-                </ScrollReveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Service Grid */}
+      {/* 4. Service Grid */}
       <ServiceGrid
         locale={typedLocale}
         heading={c.serviceGrid.heading}
         exploreLabel={c.serviceGrid.exploreLabel}
       />
 
-      {/* 4. Proof Section (Stats + Client Story) */}
-      <section className="py-28 sm:py-36 bg-[--color-bg-dark] relative overflow-hidden">
-        {/* Giant watermark */}
-        <div className="absolute top-[5%] right-[-3%] pointer-events-none" aria-hidden="true">
-          <Shield className="size-[240px] sm:size-[380px] text-[--color-primary] opacity-[0.02] rotate-[-8deg]" strokeWidth={0.4} />
-        </div>
+      {/* 5. Proof Section (Stats + Client Story) */}
+      <StatsBar locale={typedLocale} badgesLabel={c.proof.badgesLabel} />
 
-        <div className="absolute inset-0 radial-burst pointer-events-none" aria-hidden="true" />
-        <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
-        <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
+      {/* 6. Featured Client Story */}
+      <ClientStoryFeatured locale={typedLocale} />
 
-        <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          {/* Stats */}
-          <StatsBar locale={typedLocale} className="mb-20" />
+      {/* 7. Editorial Spotlight (GSAP: SplitTextReveal, ParallaxDepth, MagneticElement) */}
+      <EditorialSection
+        locale={typedLocale}
+        heading={c.editorial.heading}
+        description={c.editorial.description}
+        ctaLabel={c.editorial.ctaLabel}
+      />
 
-          {/* Badges area */}
-          <ScrollReveal>
-            <div className="text-center mb-14">
-              <p className="label-text text-[--color-text-secondary]">
-                {c.proof.badgesLabel}
-              </p>
-            </div>
-          </ScrollReveal>
-
-          {/* Featured Client Story */}
-          <div className="flex justify-center">
-            <ClientStoryFeatured locale={typedLocale} />
-          </div>
-        </div>
-      </section>
-
-      {/* 5. Featured Editorial / Service Spotlight */}
-      <section className="py-28 sm:py-36 relative overflow-hidden"
-        style={{ background: "linear-gradient(180deg, #09090B 0%, #0f0805 50%, #09090B 100%)" }}
-      >
-        {/* Giant watermark */}
-        <div className="absolute bottom-[5%] left-[3%] pointer-events-none" aria-hidden="true">
-          <Compass className="size-[200px] sm:size-[300px] text-[--color-accent-warm] opacity-[0.02] rotate-[15deg]" strokeWidth={0.4} />
-        </div>
-
-        <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-[--color-primary] opacity-[0.06] blur-[180px]" />
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          <ScrollReveal>
-            <div className="glass-tinted p-10 sm:p-14 max-w-2xl mx-auto text-center">
-              <p className="label-text text-[--color-primary] mb-4">
-                {typedLocale === "id" ? "Spotlight" : "Spotlight"}
-              </p>
-              <h2 className="text-heading-md sm:text-heading-lg font-bold gradient-text mb-5 tracking-[-0.02em]">
-                {c.editorial.heading}
-              </h2>
-              <p className="text-[--color-text-secondary] mb-8 leading-relaxed text-lg">
-                {c.editorial.description}
-              </p>
-              <Button
-                href={getLocalizedPath("services", typedLocale)}
-                variant="secondary"
-              >
-                {c.editorial.ctaLabel}
-              </Button>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* 6. CTA Band */}
+      {/* 8. CTA Band */}
       <CTABand
         locale={typedLocale}
         heading={c.ctaBand.heading}

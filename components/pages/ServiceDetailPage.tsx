@@ -6,6 +6,9 @@ import { Truck, Globe, FileCheck, Plane, Warehouse, Container, Layers, Award } f
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { CounterAnimation } from "@/components/motion/CounterAnimation";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { MagneticElement } from "@/components/motion/MagneticElement";
+import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import { ProcessFlow } from "@/components/sections/ProcessFlow";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { ClientStoryCard } from "@/components/sections/ClientStoryCard";
@@ -88,7 +91,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
   }, []);
 
   return (
-    <>
+    <GSAPProvider>
       {/* ── 1. Hero ── */}
       <section ref={heroRef} className="pt-8 pb-24 sm:pt-12 sm:pb-32 bg-[--color-bg-dark] relative overflow-hidden min-h-[50vh] flex flex-col justify-end">
         {/* Giant watermark service icon */}
@@ -189,14 +192,17 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
         <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-          <ScrollReveal>
-            <p className="label-text text-[--color-primary] text-center mb-4">
-              {isId ? "Kapabilitas" : "Capabilities"}
-            </p>
-            <h2 className="text-heading-md sm:text-heading-lg font-bold gradient-text text-center mb-14 sm:mb-20 tracking-[-0.02em]">
-              {isId ? "Cakupan Layanan" : "Service Scope"}
-            </h2>
-          </ScrollReveal>
+          <p className="label-text text-[--color-primary] text-center mb-4">
+            {isId ? "Kapabilitas" : "Capabilities"}
+          </p>
+          <SplitTextReveal
+            as="h2"
+            type="words"
+            stagger={0.06}
+            className="text-heading-md sm:text-heading-lg font-bold gradient-text text-center mb-14 sm:mb-20 tracking-[-0.02em]"
+          >
+            {isId ? "Cakupan Layanan" : "Service Scope"}
+          </SplitTextReveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {capabilities.map((cap, i) => (
@@ -326,7 +332,7 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
             : "Our team responds within 2 business hours."
         }
       />
-    </>
+    </GSAPProvider>
   );
 }
 

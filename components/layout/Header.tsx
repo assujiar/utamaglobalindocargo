@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
-import { getLocalizedPath } from "@/lib/utils/routes";
+import { getLocalizedPath, getAlternatePathFromUrl } from "@/lib/utils/routes";
 import { services } from "@/lib/content/services";
 import type { Locale } from "@/lib/i18n/config";
 import { Button } from "@/components/ui/Button";
@@ -39,12 +39,9 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
 
   const closeMegaMenu = useCallback(() => setMegaMenuOpen(false), []);
 
-  // Language toggle: swap id<->en in current path
+  // Language toggle: map to correct alternate locale path
   const alternateLocale: Locale = locale === "id" ? "en" : "id";
-  const alternatePathname = pathname.replace(
-    new RegExp(`^/${locale}`),
-    `/${alternateLocale}`,
-  );
+  const alternatePathname = getAlternatePathFromUrl(pathname, locale);
 
   const isActive = (routeKey: string) => {
     const path = getLocalizedPath(routeKey, locale);
