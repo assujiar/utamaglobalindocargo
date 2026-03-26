@@ -8,9 +8,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+/**
+ * Lenis smooth scroll provider — native mode.
+ * Uses the browser's native scroll (no wrapper/transform hack)
+ * so it works reliably on all devices including mobile/iOS.
+ * GSAP ScrollTrigger syncs via the scroll event.
+ */
 export function LenisProvider({ children }: { children: React.ReactNode }) {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
@@ -18,12 +22,9 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    if (prefersReducedMotion || !wrapperRef.current || !contentRef.current)
-      return;
+    if (prefersReducedMotion) return;
 
     const lenis = new Lenis({
-      wrapper: wrapperRef.current,
-      content: contentRef.current,
       lerp: 0.08,
       smoothWheel: true,
       autoRaf: false,
@@ -34,29 +35,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     // Sync Lenis scroll with GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
 
-    // Tell ScrollTrigger to use the Lenis wrapper as scroller proxy
-    ScrollTrigger.scrollerProxy(wrapperRef.current, {
-      scrollTop(value) {
-        if (arguments.length && value !== undefined) {
-          lenis.scrollTo(value, { immediate: true });
-        }
-        return lenis.scroll;
-      },
-      getBoundingClientRect() {
-        return {
-          top: 0,
-          left: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-      },
-      pinType: "transform",
-    });
-
-    // Refresh ScrollTrigger after Lenis is ready
-    ScrollTrigger.defaults({ scroller: wrapperRef.current });
-    ScrollTrigger.refresh();
-
+    // Drive Lenis from GSAP's ticker for frame-perfect sync
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
     });
@@ -69,21 +48,5 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  return (
-    <div
-      ref={wrapperRef}
-      id="smooth-wrapper"
-      style={{
-        position: "fixed",
-        inset: 0,
-        width: "100%",
-        height: "100%",
-        overflow: "hidden",
-      }}
-    >
-      <div ref={contentRef} id="smooth-content">
-        {children}
-      </div>
-    </div>
-  );
+  return <>{children}</>;
 }
