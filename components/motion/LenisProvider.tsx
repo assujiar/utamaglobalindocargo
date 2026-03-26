@@ -22,6 +22,9 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     const lenis = new Lenis({
       lerp: 0.1,
       smoothWheel: true,
+      autoRaf: false,
+      // Lenis natively respects [data-lenis-prevent] on scrollable areas
+      // (dropdowns, modals, scrollable containers)
     });
 
     lenisRef.current = lenis;
