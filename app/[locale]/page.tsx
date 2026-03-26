@@ -196,7 +196,7 @@ export default async function HomePage({
         ctaHref={getLocalizedPath("quote", typedLocale)}
       />
 
-      {/* 2. Value Proposition Strip */}
+      {/* 2. Value Proposition Strip with visual metrics */}
       <section className="py-24 sm:py-32 bg-[--color-bg-dark] relative overflow-hidden">
         <div className="absolute inset-0 dot-grid-subtle pointer-events-none" aria-hidden="true" />
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -205,10 +205,28 @@ export default async function HomePage({
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <ScrollReveal>
-            <p className="text-xl sm:text-2xl md:text-3xl text-[--color-text-secondary] text-center max-w-3xl mx-auto leading-relaxed font-light">
+            <p className="text-xl sm:text-2xl md:text-3xl text-[--color-text-secondary] text-center max-w-3xl mx-auto leading-relaxed font-light mb-16">
               {c.valueProp}
             </p>
           </ScrollReveal>
+
+          {/* Visual metric cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { icon: "🌏", value: "150+", label: typedLocale === "id" ? "Negara Tujuan" : "Countries" },
+              { icon: "🏝️", value: "34", label: typedLocale === "id" ? "Provinsi" : "Provinces" },
+              { icon: "📦", value: "25+", label: typedLocale === "id" ? "Tahun" : "Years" },
+              { icon: "✈️", value: "6", label: typedLocale === "id" ? "Layanan" : "Services" },
+            ].map((item, i) => (
+              <ScrollReveal key={i} delay={i * 80}>
+                <div className="glass-dark p-4 sm:p-5 text-center">
+                  <span className="text-2xl mb-2 block">{item.icon}</span>
+                  <span className="stat-number text-2xl sm:text-3xl gradient-text block">{item.value}</span>
+                  <span className="label-text text-[--color-text-secondary] text-[10px] mt-1 block">{item.label}</span>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 

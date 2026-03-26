@@ -100,35 +100,30 @@ function ServiceCard({
         {/* Animated gradient border overlay */}
         <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none gradient-border" />
 
-        {/* Number + icon row */}
-        <div className="relative z-10 flex items-start justify-between mb-5">
-          <span className="label-text text-[--color-primary]">
-            {service.number}
-          </span>
-          {Icon && (
-            <div className="flex items-center justify-center size-10 rounded-xl bg-[rgba(255,70,0,0.08)] group-hover:bg-[rgba(255,70,0,0.18)] group-hover:shadow-[0_0_24px_rgba(255,70,0,0.20)] transition-all duration-300">
-              <Icon className="size-5 text-[--color-primary]" />
-            </div>
-          )}
-        </div>
+        {/* Large icon - visual anchor */}
+        {Icon && (
+          <div className="relative z-10 flex items-center justify-center size-14 sm:size-16 rounded-2xl bg-[rgba(255,70,0,0.08)] group-hover:bg-[rgba(255,70,0,0.15)] group-hover:shadow-[0_0_32px_rgba(255,70,0,0.25)] transition-all duration-300 mb-5">
+            <Icon className="size-7 sm:size-8 text-[--color-primary] group-hover:scale-110 transition-transform duration-300" />
+          </div>
+        )}
+
+        {/* Number */}
+        <span className="relative z-10 label-text text-[--color-text-secondary] mb-2 block">
+          {service.number}
+        </span>
 
         {/* Name */}
-        <h3 className="relative z-10 text-lg font-semibold text-[--color-text-primary] mb-1.5 group-hover:text-white transition-colors duration-200">
+        <h3 className="relative z-10 text-lg font-semibold text-[--color-text-primary] mb-2 group-hover:text-white transition-colors duration-200">
           {name}
         </h3>
 
         {/* Tagline */}
-        <p className="relative z-10 text-sm text-[--color-text-secondary] mb-3 group-hover:text-[--color-text-primary] transition-colors duration-300">{tagline}</p>
+        <p className="relative z-10 text-sm text-[--color-text-secondary] mb-auto group-hover:text-[--color-text-primary] transition-colors duration-300">{tagline}</p>
 
-        {/* Hover preview: desktop only */}
-        <p className="relative z-10 hidden md:block text-sm text-[--color-text-secondary] leading-relaxed max-h-0 overflow-hidden opacity-0 group-hover:max-h-24 group-hover:opacity-100 transition-all duration-400 ease-out mb-auto">
-          {description}
-        </p>
-
-        {/* Explore link */}
-        <span className="relative z-10 mt-auto pt-4 inline-flex items-center gap-2 text-sm font-semibold text-[--color-primary] group-hover:gap-3.5 transition-all duration-300">
+        {/* Explore link with arrow */}
+        <span className="relative z-10 mt-5 pt-4 border-t border-[rgba(255,255,255,0.06)] inline-flex items-center gap-2 text-sm font-semibold text-[--color-primary] group-hover:gap-3.5 transition-all duration-300 w-full">
           {exploreLabel}
-          <ArrowRight className="size-4 group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true" />
+          <ArrowRight className="size-4 ml-auto group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true" />
         </span>
       </Link>
     </motion.div>
