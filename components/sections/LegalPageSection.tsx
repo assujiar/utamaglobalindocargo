@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 
 /* ─── Shared easing ─── */
 const EASE_OUT_EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -73,7 +74,8 @@ export function LegalPageSection({
         {/* Content sections */}
         <div className={cn("space-y-12", contentLayoutClass)}>
           {content.map((section, index) => (
-            <ScrollReveal key={index} delay={index * 80}>
+            <ParallaxDepth key={index} speed={0.03 + index * 0.008} direction="up" scrubSmooth={0.5}>
+            <ScrollReveal delay={index * 80}>
               <article
                 className={cn(
                   "group",
@@ -112,6 +114,7 @@ export function LegalPageSection({
                 )}
               </article>
             </ScrollReveal>
+            </ParallaxDepth>
           ))}
         </div>
       </div>

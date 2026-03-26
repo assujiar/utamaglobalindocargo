@@ -7,6 +7,10 @@ import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
 import { services, type ServiceData } from "@/lib/content/services";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
+import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -32,10 +36,11 @@ function ServiceRow({
   const prefersReduced = useReducedMotion();
 
   return (
+    <ParallaxDepth speed={0.03 + index * 0.01} direction="up" scrubSmooth={0.5}>
     <motion.div
       initial={prefersReduced ? undefined : { opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: "-30px" }}
+      viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1], delay: index * 0.06 }}
     >
       <Link href={href} data-cursor-text="VIEW" className="service-row group">
@@ -58,6 +63,7 @@ function ServiceRow({
         </div>
       </Link>
     </motion.div>
+    </ParallaxDepth>
   );
 }
 
@@ -86,10 +92,11 @@ function ServiceCard({
   );
 
   return (
+    <ParallaxDepth speed={0.03 + index * 0.012} direction="up" scrubSmooth={0.4}>
     <motion.div
       initial={prefersReduced ? undefined : { opacity: 0, scale: 0.92 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-40px" }}
+      viewport={{ once: true }}
       transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1], delay: index * 0.07 }}
     >
       <Link
@@ -116,6 +123,7 @@ function ServiceCard({
         </p>
       </Link>
     </motion.div>
+    </ParallaxDepth>
   );
 }
 
@@ -125,10 +133,17 @@ function ServiceGrid({
   return (
     <GSAPProvider>
       <section className={cn(
-        "relative",
+        "relative overflow-hidden",
         variant === "rows" ? "py-28 sm:py-40 section-elevated" : "py-28 sm:py-36 section-deep",
         className,
       )}>
+        <ScrollDrivenText
+          text="SERVICES"
+          className="absolute top-[35%] -translate-y-1/2 z-[1]"
+          speed={0.2}
+          direction="left"
+        />
+        <ScrollPattern variant={variant === "rows" ? "grid" : "dots"} count={12} speed={0.07} />
         {variant === "cards" && (
           <div className="absolute top-0 left-0 right-0 divider-subtle" aria-hidden="true" />
         )}
@@ -140,7 +155,7 @@ function ServiceGrid({
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-12 sm:mb-16">
               <div className="md:col-span-7">
                 <SplitTextReveal
-                  as="h2" type="words" stagger={0.05}
+                  as="h2" type="words" stagger={0.04}
                   className="text-display-sm sm:text-display-md font-bold text-[--color-text-inverse] tracking-[-0.03em]"
                 >
                   {heading}
@@ -161,14 +176,14 @@ function ServiceGrid({
               </div>
             </div>
           ) : (
-            /* Cards variant: centered heading */
+            /* Cards variant: centered heading — TextRevealByLine (unique: centered heading context, stagger 0.05) */
             <div className="mb-14 sm:mb-18">
-              <SplitTextReveal
-                as="h2" type="words" stagger={0.05}
+              <TextRevealByLine
+                as="h2" staggerDelay={0.05}
                 className="text-heading-xl sm:text-display-sm font-bold text-[--color-text-inverse] tracking-[-0.03em]"
               >
                 {heading}
-              </SplitTextReveal>
+              </TextRevealByLine>
             </div>
           )}
 

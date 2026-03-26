@@ -1,9 +1,14 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import { Breadcrumb } from "@/components/layout/Breadcrumb";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
+import { FloatingOrb } from "@/components/motion/FloatingOrb";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 
 // ─── Services Hero Section ───
@@ -22,6 +27,21 @@ export function ServicesHero({
   return (
     <GSAPProvider>
       <section className="pt-8 pb-24 sm:pt-12 sm:pb-32 bg-[--color-bg-dark] relative overflow-hidden">
+        <ScrollDrivenText
+          text="OUR SERVICES"
+          className="absolute top-[40%] -translate-y-1/2 z-[1]"
+          speed={0.3}
+          direction="left"
+        />
+        <FloatingOrb
+          className="absolute top-[10%] right-[-8%] z-[1]"
+          size={400}
+          color="rgba(255, 70, 0, 0.1)"
+          speed={0.2}
+          scale={{ from: 0.6, to: 1.1 }}
+          opacity={{ from: 0.3, to: 0.7 }}
+        />
+        <ScrollPattern variant="dots" count={14} speed={0.1} />
         <div
           className="absolute inset-0 gradient-mesh-intense pointer-events-none"
           aria-hidden="true"
@@ -53,7 +73,7 @@ export function ServicesHero({
         </div>
 
         <div
-          className="absolute bottom-0 left-0 right-0 glow-divider-full"
+          className="absolute bottom-0 left-0 right-0 h-px w-3/4 mx-auto bg-gradient-to-r from-transparent via-[rgba(255,255,255,0.08)] to-transparent"
           aria-hidden="true"
         />
       </section>
@@ -67,6 +87,21 @@ interface CrossValueSectionProps {
   label: string;
   heading: string;
   points: readonly string[];
+}
+
+function CrossValueHeading({ heading }: { heading: string }) {
+  const prefersReduced = useReducedMotion();
+  return (
+    <motion.h2
+      className="text-heading-md sm:text-heading-lg font-bold gradient-text text-center mb-12 tracking-[-0.02em]"
+      initial={prefersReduced ? undefined : { opacity: 0, scale: 0.98 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+    >
+      {heading}
+    </motion.h2>
+  );
 }
 
 export function CrossValueSection({
@@ -84,10 +119,6 @@ export function CrossValueSection({
         }}
       >
         <div
-          className="absolute top-0 left-0 right-0 glow-divider-full"
-          aria-hidden="true"
-        />
-        <div
           className="absolute inset-0 pointer-events-none"
           aria-hidden="true"
         >
@@ -98,24 +129,20 @@ export function CrossValueSection({
           <p className="label-text text-[--color-primary] text-center mb-4">
             {label}
           </p>
-          <SplitTextReveal
-            as="h2"
-            type="words"
-            stagger={0.06}
-            className="text-heading-md sm:text-heading-lg font-bold gradient-text text-center mb-12 tracking-[-0.02em]"
-          >
-            {heading}
-          </SplitTextReveal>
+          <CrossValueHeading heading={heading} />
+
           <ul className="space-y-5">
             {points.map((point, i) => (
-              <ScrollReveal key={i} delay={i * 100}>
-                <li className="flex items-start gap-3">
-                  <span className="mt-2 size-2 rounded-full bg-[--color-primary] shrink-0 shadow-[0_0_10px_rgba(255,70,0,0.4)]" />
-                  <p className="text-[--color-text-secondary] leading-relaxed text-lg">
-                    {point}
-                  </p>
-                </li>
-              </ScrollReveal>
+              <ParallaxDepth key={i} speed={0.02 + i * 0.015} direction="up" scrubSmooth={0.5}>
+                <ScrollReveal delay={i * 100}>
+                  <li className="flex items-start gap-3">
+                    <span className="mt-2 size-2 rounded-full bg-[--color-primary] shrink-0 shadow-[0_0_10px_rgba(255,70,0,0.4)]" />
+                    <p className="text-[--color-text-secondary] leading-relaxed text-lg">
+                      {point}
+                    </p>
+                  </li>
+                </ScrollReveal>
+              </ParallaxDepth>
             ))}
           </ul>
         </div>

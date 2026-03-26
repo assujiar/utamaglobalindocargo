@@ -10,6 +10,10 @@ import {
 import { cn } from "@/lib/utils/cn";
 import { Button } from "@/components/ui/Button";
 import { MagneticElement } from "@/components/motion/MagneticElement";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
+import { FloatingOrb } from "@/components/motion/FloatingOrb";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
 import type { Locale } from "@/lib/i18n/config";
 
 interface HeroProps {
@@ -62,25 +66,50 @@ function Hero({
         className,
       )}
     >
-      {/* Ambient blur circles */}
+      {/* Ambient blur circles with scroll-linked parallax */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div
-          className="absolute w-[70vw] h-[70vw] top-[-20%] left-[-15%] rounded-full"
-          style={{
-            background: "radial-gradient(var(--color-primary) 0, rgba(255,70,0,0) 70%)",
-            opacity: 0.06,
-            animation: prefersReduced ? "none" : "float-slow 25s ease-in-out infinite",
-          }}
-        />
-        <div
-          className="absolute w-[40vw] h-[40vw] bottom-[10%] right-[-5%] rounded-full"
-          style={{
-            background: "radial-gradient(var(--color-accent-warm) 0, rgba(255,171,64,0) 70%)",
-            opacity: 0.04,
-            animation: prefersReduced ? "none" : "float-slow 30s ease-in-out infinite reverse",
-          }}
-        />
+        <ParallaxDepth speed={0.15} direction="down" scrubSmooth={0.6}>
+          <div
+            className="absolute w-[70vw] h-[70vw] top-[-20%] left-[-15%] rounded-full"
+            style={{
+              background: "radial-gradient(var(--color-primary) 0, rgba(255,70,0,0) 70%)",
+              opacity: 0.06,
+              animation: prefersReduced ? "none" : "float-slow 25s ease-in-out infinite",
+            }}
+          />
+        </ParallaxDepth>
+        <ParallaxDepth speed={0.1} direction="up" scrubSmooth={0.6}>
+          <div
+            className="absolute w-[40vw] h-[40vw] bottom-[10%] right-[-5%] rounded-full"
+            style={{
+              background: "radial-gradient(var(--color-accent-warm) 0, rgba(255,171,64,0) 70%)",
+              opacity: 0.04,
+              animation: prefersReduced ? "none" : "float-slow 30s ease-in-out infinite reverse",
+            }}
+          />
+        </ParallaxDepth>
       </div>
+
+      {/* Oversized scroll-driven background text (like Buzzworthy's "attitude") */}
+      <ScrollDrivenText
+        text="LOGISTICS"
+        className="absolute top-1/2 -translate-y-1/2 z-[1]"
+        speed={0.4}
+        direction="left"
+      />
+
+      {/* Floating decorative orb (like Buzzworthy's webglBubble) */}
+      <FloatingOrb
+        className="absolute top-[15%] right-[-5%] z-[2]"
+        size={500}
+        color="rgba(255, 70, 0, 0.12)"
+        speed={0.3}
+        scale={{ from: 0.6, to: 1.0 }}
+        opacity={{ from: 0.4, to: 0.8 }}
+      />
+
+      {/* Scroll-driven decorative pattern */}
+      <ScrollPattern variant="dots" count={16} speed={0.12} />
 
       {/* Grain */}
       <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />

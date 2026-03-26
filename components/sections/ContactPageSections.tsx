@@ -9,6 +9,7 @@ import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { StaggeredReveal } from "@/components/motion/StaggeredReveal";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { MagneticElement } from "@/components/motion/MagneticElement";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { Button } from "@/components/ui/Button";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
@@ -59,6 +60,7 @@ export function ContactHero({
           </div>
 
           {/* Right-aligned text block */}
+          <ParallaxDepth speed={0.07} direction="up" scrubSmooth={0.5}>
           <div className="ml-auto max-w-3xl text-right">
             <SplitTextReveal
               as="h1"
@@ -82,6 +84,7 @@ export function ContactHero({
               {subline}
             </motion.p>
           </div>
+          </ParallaxDepth>
         </div>
 
         {/* Bottom divider: purple-to-orange gradient (unique) */}
@@ -115,8 +118,8 @@ export function ContactInfoCards({ cards }: ContactInfoCardsProps) {
       <div className="mx-auto max-w-7xl px-4 md:px-6 py-16 md:py-24">
         <StaggeredReveal className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {cards.map((card, index) => (
+            <ParallaxDepth key={index} speed={0.03 + index * 0.02} direction="up" scrubSmooth={0.5}>
             <div
-              key={index}
               className={cn(
                 "border border-[rgba(168,85,247,0.1)] rounded-2xl p-8",
                 "bg-[rgba(255,255,255,0.02)]",
@@ -165,6 +168,7 @@ export function ContactInfoCards({ cards }: ContactInfoCardsProps) {
                 </MagneticElement>
               )}
             </div>
+            </ParallaxDepth>
           ))}
         </StaggeredReveal>
       </div>
@@ -419,6 +423,7 @@ export function OfficeLocation({
         <div className="size-1.5 rounded-full bg-[rgba(168,85,247,0.4)]" />
       </div>
 
+      <ParallaxDepth speed={0.06} direction="up" scrubSmooth={0.5}>
       <ScrollReveal>
         <div className="mx-auto max-w-xl px-4 md:px-6 pb-20 md:pb-28 text-center">
           {/* Heading with letter-spacing animation */}
@@ -480,6 +485,7 @@ export function OfficeLocation({
           </motion.div>
         </div>
       </ScrollReveal>
+      </ParallaxDepth>
     </section>
   );
 }

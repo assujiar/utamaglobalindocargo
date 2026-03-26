@@ -7,6 +7,7 @@ import { Check } from "lucide-react";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { StaggeredReveal } from "@/components/motion/StaggeredReveal";
 import { MagneticElement } from "@/components/motion/MagneticElement";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { Button } from "@/components/ui/Button";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import { services } from "@/lib/content/services";
@@ -54,6 +55,7 @@ function QuoteHero({ headline, subline, stepIndicator }: QuoteHeroProps) {
       />
 
       <div className="relative z-10 mx-auto max-w-xl px-4 py-24 sm:py-32 text-center">
+        <ParallaxDepth speed={0.06} direction="up" scrubSmooth={0.5}>
         {/* Step indicator pill */}
         <motion.span
           className="inline-block bg-[rgba(255,70,0,0.1)] border border-[rgba(255,70,0,0.2)] rounded-full px-4 py-1.5 text-xs text-[--color-primary] tracking-wider uppercase mb-6"
@@ -83,6 +85,7 @@ function QuoteHero({ headline, subline, stepIndicator }: QuoteHeroProps) {
         >
           {subline}
         </motion.p>
+        </ParallaxDepth>
       </div>
     </section>
   );

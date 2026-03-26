@@ -5,7 +5,12 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { MagneticElement } from "@/components/motion/MagneticElement";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { FloatingOrb } from "@/components/motion/FloatingOrb";
+import { ScrollCharReveal } from "@/components/motion/ScrollCharReveal";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -29,6 +34,15 @@ function CTACentered({ heading, ctaLabel, ctaHref, trustLine, className }: Omit<
 
   return (
     <section className={cn("py-36 sm:py-52 relative overflow-hidden section-gradient-mesh", className)}>
+      <ScrollPattern variant="dots" count={15} speed={0.1} />
+      <FloatingOrb
+        className="absolute top-[10%] left-[5%] z-[1]"
+        size={400}
+        color="rgba(255, 70, 0, 0.1)"
+        speed={0.3}
+        scale={{ from: 0.5, to: 1.2 }}
+        opacity={{ from: 0.3, to: 0.9 }}
+      />
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="absolute w-[70vw] h-[70vw] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
@@ -39,9 +53,10 @@ function CTACentered({ heading, ctaLabel, ctaHref, trustLine, className }: Omit<
           }}
         />
       </div>
-      <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
+      {/* No divider — gradient mesh bg provides enough visual separation */}
 
       <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10 text-center">
+        <ParallaxDepth speed={0.08} direction="up" scrubSmooth={0.5}>
         <h2 className="text-display-lg sm:text-display-xl font-bold text-[--color-text-inverse] tracking-[-0.05em] max-w-5xl mx-auto">
           {prefersReduced ? (
             <span>{heading}</span>
@@ -52,7 +67,7 @@ function CTACentered({ heading, ctaLabel, ctaHref, trustLine, className }: Omit<
                   className="inline-block"
                   initial={{ y: "100%" }}
                   whileInView={{ y: "0%" }}
-                  viewport={{ once: true, margin: "-60px" }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.04 }}
                 >
                   {word}
@@ -61,6 +76,8 @@ function CTACentered({ heading, ctaLabel, ctaHref, trustLine, className }: Omit<
             ))
           )}
         </h2>
+        </ParallaxDepth>
+        <ParallaxDepth speed={0.05} direction="up" scrubSmooth={0.4}>
         <motion.p
           className="text-base sm:text-lg text-[--color-text-secondary] mt-6 sm:mt-8 max-w-lg mx-auto leading-relaxed"
           initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
@@ -81,6 +98,7 @@ function CTACentered({ heading, ctaLabel, ctaHref, trustLine, className }: Omit<
             <Button href={ctaHref} size="lg">{ctaLabel}</Button>
           </MagneticElement>
         </motion.div>
+        </ParallaxDepth>
       </div>
     </section>
   );
@@ -130,6 +148,7 @@ function CTAImmersive({ heading, ctaLabel, ctaHref, trustLine, className }: Omit
 
   return (
     <section className={cn("py-32 sm:py-48 relative overflow-hidden section-glass-intense", className)}>
+      <ScrollPattern variant="lines" count={8} speed={0.06} />
       <div className="absolute top-0 left-0 right-0 divider-center-fade" aria-hidden="true" />
 
       <div className="relative z-10 mx-auto max-w-3xl px-5 sm:px-10">
@@ -137,17 +156,16 @@ function CTAImmersive({ heading, ctaLabel, ctaHref, trustLine, className }: Omit
           className="glass-tinted p-10 sm:p-14 text-center"
           initial={prefersReduced ? undefined : { opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
         >
-          <SplitTextReveal
+          <TextRevealByLine
             as="h2"
-            type="words"
-            stagger={0.04}
+            staggerDelay={0.06}
             className="text-heading-xl sm:text-display-sm font-bold text-[--color-text-inverse] tracking-[-0.03em] mb-5"
           >
             {heading}
-          </SplitTextReveal>
+          </TextRevealByLine>
           <p className="text-sm sm:text-base text-[--color-text-secondary] leading-relaxed mb-8 max-w-md mx-auto">
             {trustLine}
           </p>

@@ -605,7 +605,24 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ═══════════════════════════════════════
    SECTION DIVIDERS (each unique)
-   ═══════════════════════════════════════ */
+   ═══════════════════════════════════════
+
+   DIVIDER INVENTORY — do not introduce duplicates:
+   ┌─────────────────────────┬──────────────────────────────────────────────────┬──────────────────────────────┐
+   │ Class / Style           │ Description                                      │ Used by                      │
+   ├─────────────────────────┼──────────────────────────────────────────────────┼──────────────────────────────┤
+   │ .glow-divider-full      │ Full-width orange glow gradient (symmetric)      │ StatsBar                     │
+   │ .divider-warm-accent    │ 2px left-orange to right-amber to transparent    │ CTASplit                     │
+   │ .divider-subtle         │ 1px rgba white 4% opacity                        │ ServiceGrid (cards)          │
+   │ .divider-center-fade    │ 60%-width centered orange fade                   │ CTAImmersive                 │
+   │ .shimmer-line           │ Animated scanning gradient                       │ ClientStoryCard / testimonial│
+   │ .divider-dots           │ Two dot pseudo-elements                          │ ClientStoryFeatured          │
+   │ (inline) h-px from-     │ Left-orange to right-amber gradient (asymmetric) │ RecirculationModule          │
+   │   orange to amber       │ from-[rgba(255,70,0,0.12)]                       │                              │
+   │                         │ to-[rgba(255,171,64,0.08)]                       │                              │
+   │ (none)                  │ No divider — gradient mesh bg separation         │ CTACentered                  │
+   └─────────────────────────┴──────────────────────────────────────────────────┴──────────────────────────────┘
+*/
 
 /* Orange glow gradient — homepage hero/stats */
 .glow-divider-full {

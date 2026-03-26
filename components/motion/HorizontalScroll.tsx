@@ -36,14 +36,20 @@ export function HorizontalScroll({
     const track = trackRef.current;
     const totalWidth = track.scrollWidth - window.innerWidth;
 
+    // Scroll distance = 1.8x the overflow width for comfortable pacing.
+    // Start pinning when section top reaches 10% from viewport top,
+    // so the heading is visible and cards start moving while user is IN the section.
+    const scrollDistance = totalWidth * 1.8;
+
     const tween = gsap.to(track, {
       x: -totalWidth,
       ease: "none",
       scrollTrigger: {
         trigger: sectionRef.current,
+        start: "top 10%",
         pin: true,
-        scrub: 0.8 * speed,
-        end: () => `+=${totalWidth}`,
+        scrub: 0.4 * speed,
+        end: () => `+=${scrollDistance}`,
         invalidateOnRefresh: true,
       },
     });

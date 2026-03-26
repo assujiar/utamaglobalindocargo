@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils/cn";
 import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { MagneticElement } from "@/components/motion/MagneticElement";
-import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import { services } from "@/lib/content/services";
 import type { Locale } from "@/lib/i18n/config";
@@ -38,26 +38,41 @@ function RecirculationModule({
   return (
     <GSAPProvider>
       <section className={cn("py-28 sm:py-40 section-deep relative overflow-hidden", className)}>
-        {/* Unique divider: dots */}
-        <div className="absolute top-0 left-0 right-0 flex justify-center pt-0" aria-hidden="true">
-          <div className="divider-dots" />
-        </div>
+        {/* Unique divider: left-orange to right-amber gradient */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-[rgba(255,70,0,0.12)] to-[rgba(255,171,64,0.08)]" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
+          {/* Unique heading: word-by-word scale+y entrance */}
           <div className="mb-14 sm:mb-18">
-            <SplitTextReveal
-              as="h2"
-              type="words"
-              stagger={0.05}
-              className="text-heading-xl sm:text-display-sm font-bold text-[--color-text-primary] tracking-[-0.03em]"
-            >
-              {relatedHeading}
-            </SplitTextReveal>
+            <h2 className="text-heading-xl sm:text-display-sm font-bold text-[--color-text-primary] tracking-[-0.03em]">
+              {prefersReduced ? (
+                <span>{relatedHeading}</span>
+              ) : (
+                relatedHeading.split(" ").map((word, i) => (
+                  <span key={i} className="inline-block overflow-hidden mr-[0.22em] last:mr-0">
+                    <motion.span
+                      className="inline-block"
+                      initial={{ opacity: 0, y: 24, scale: 0.95 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 0.6,
+                        ease: [0.16, 1, 0.3, 1],
+                        delay: i * 0.06,
+                      }}
+                    >
+                      {word}
+                    </motion.span>
+                  </span>
+                ))
+              )}
+            </h2>
           </div>
 
           {/* Glass-tinted cards — unique from ServiceGrid's glass-dark cards and rows */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl mb-14">
             {relatedServices.map((service, i) => {
+              const parallaxSpeed = 0.03 + i * 0.015;
               if (!service) return null;
               const name = locale === "id" ? service.name_id : service.name_en;
               const tagline = locale === "id" ? service.tagline_id : service.tagline_en;
@@ -66,11 +81,11 @@ function RecirculationModule({
               const href = `/${locale}/${servicesPath}/${slug}`;
 
               return (
+                <ParallaxDepth key={service.key} speed={parallaxSpeed} direction="up" scrubSmooth={0.5}>
                 <motion.div
-                  key={service.key}
                   initial={prefersReduced ? undefined : { opacity: 0, y: 24, rotate: -1 }}
                   whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-                  viewport={{ once: true, margin: "-30px" }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1], delay: i * 0.1 }}
                 >
                   <Link href={href} className="group block glass-tinted p-6 sm:p-7 h-full">
@@ -89,6 +104,7 @@ function RecirculationModule({
                     </p>
                   </Link>
                 </motion.div>
+                </ParallaxDepth>
               );
             })}
           </div>

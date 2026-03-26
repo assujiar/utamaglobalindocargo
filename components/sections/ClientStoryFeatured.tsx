@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils/cn";
 import { motion, useReducedMotion } from "framer-motion";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -71,31 +72,35 @@ function ClientStoryFeatured({
             </motion.div>
 
             {/* Big pull-quote — SplitTextReveal */}
-            <SplitTextReveal
-              as="p"
-              type="words"
-              stagger={0.03}
-              className="text-heading-xl sm:text-display-sm font-light leading-[1.15] tracking-[-0.02em]"
-            >
-              {`\u201C${quote}\u201D`}
-            </SplitTextReveal>
+            <ParallaxDepth speed={0.06} direction="up" scrubSmooth={0.5}>
+              <SplitTextReveal
+                as="p"
+                type="words"
+                stagger={0.03}
+                className="text-heading-xl sm:text-display-sm font-light leading-[1.15] tracking-[-0.02em]"
+              >
+                {`\u201C${quote}\u201D`}
+              </SplitTextReveal>
+            </ParallaxDepth>
 
             {/* Result with accent line */}
-            <motion.div
-              className="mt-12 sm:mt-16 inline-flex items-center gap-4 text-left"
-              initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            >
-              <div className="w-8 h-px bg-[--color-primary]" />
-              <div>
-                <span className="label-text text-[--color-primary] block">{resultLabel}</span>
-                <span className="text-sm text-[--color-text-secondary] mt-1 block">
-                  {result}
-                </span>
-              </div>
-            </motion.div>
+            <ParallaxDepth speed={0.04} direction="up" scrubSmooth={0.4}>
+              <motion.div
+                className="mt-12 sm:mt-16 inline-flex items-center gap-4 text-left"
+                initial={prefersReduced ? undefined : { opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+              >
+                <div className="w-8 h-px bg-[--color-primary]" />
+                <div>
+                  <span className="label-text text-[--color-primary] block">{resultLabel}</span>
+                  <span className="text-sm text-[--color-text-secondary] mt-1 block">
+                    {result}
+                  </span>
+                </div>
+              </motion.div>
+            </ParallaxDepth>
           </div>
         </div>
       </section>

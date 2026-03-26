@@ -13,6 +13,11 @@ import { CounterAnimation } from "@/components/motion/CounterAnimation";
 import { SectionTransition } from "@/components/motion/SectionTransition";
 import { MagneticElement } from "@/components/motion/MagneticElement";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
+import { FloatingOrb } from "@/components/motion/FloatingOrb";
+import { ScrollCharReveal } from "@/components/motion/ScrollCharReveal";
+import { ScrollPattern } from "@/components/motion/ScrollPattern";
 import { Button } from "@/components/ui/Button";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 
@@ -38,6 +43,24 @@ function AboutHero({ headline, subline, breadcrumbItems }: AboutHeroProps) {
   return (
     <GSAPProvider>
       <section className="relative bg-[#0A0A12] overflow-hidden">
+        {/* Oversized scroll-driven background text */}
+        <ScrollDrivenText
+          text="SINCE 1995"
+          className="absolute top-1/3 -translate-y-1/2 z-[1]"
+          speed={0.3}
+          direction="right"
+        />
+
+        {/* Floating decorative orb */}
+        <FloatingOrb
+          className="absolute top-[20%] left-[-10%] z-[1]"
+          size={450}
+          color="rgba(255, 171, 64, 0.1)"
+          speed={0.25}
+          scale={{ from: 0.8, to: 1.2 }}
+          opacity={{ from: 0.3, to: 0.7 }}
+        />
+
         {/* Ambient glow orb */}
         <div
           className="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full opacity-[0.04]"
@@ -121,19 +144,21 @@ function CompanyStory({ label, paragraphs, since }: CompanyStoryProps) {
             {label}
           </span>
 
-          <StaggeredReveal
-            className="space-y-6"
-            staggerDelay={120}
-          >
-            {paragraphs.map((paragraph, i) => (
-              <p
-                key={i}
-                className="text-base md:text-lg leading-relaxed text-[#1A1A1A]/85 max-w-[720px]"
-              >
-                {paragraph}
-              </p>
-            ))}
-          </StaggeredReveal>
+          <ParallaxDepth speed={0.05} direction="up" scrubSmooth={0.5}>
+            <StaggeredReveal
+              className="space-y-6"
+              staggerDelay={120}
+            >
+              {paragraphs.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className="text-base md:text-lg leading-relaxed text-[#1A1A1A]/85 max-w-[720px]"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </StaggeredReveal>
+          </ParallaxDepth>
         </div>
       </div>
     </section>
@@ -169,7 +194,7 @@ function MilestoneTimeline({ heading, milestones }: MilestoneTimelineProps) {
           </div>
 
           <HorizontalScroll
-            className="min-h-[400px]"
+            className="min-h-[70vh]"
             panelClassName="gap-6 px-6 md:px-12 lg:px-24 items-center"
           >
             {milestones.map((milestone, i) => (
@@ -212,45 +237,56 @@ interface ValuePillarsProps {
 function ValuePillars({ heading, values }: ValuePillarsProps) {
   return (
     <GSAPProvider>
-      <section className="bg-gradient-to-b from-[#111118] to-[#0A0A0F]">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-24 py-20 md:py-28">
+      <section className="bg-gradient-to-b from-[#111118] to-[#0A0A0F] relative overflow-hidden">
+        <FloatingOrb
+          className="absolute bottom-[-10%] right-[-5%] z-[1]"
+          size={350}
+          color="rgba(255, 70, 0, 0.08)"
+          speed={0.2}
+          scale={{ from: 0.9, to: 1.3 }}
+          opacity={{ from: 0.4, to: 0.8 }}
+        />
+        <ScrollPattern variant="dots" count={12} speed={0.08} />
+        <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-12 lg:px-24 py-20 md:py-28">
           <div className="mb-12 md:mb-16 max-w-2xl">
-            <SplitTextReveal
+            <ScrollCharReveal
               as="h2"
-              type="words"
               className="font-serif text-3xl md:text-5xl text-[--color-text-primary] tracking-tight"
-              stagger={0.06}
+              colorFrom="rgba(245,245,245,0.15)"
+              colorTo="rgba(245,245,245,1)"
+              yOffset={30}
             >
               {heading}
-            </SplitTextReveal>
+            </ScrollCharReveal>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
             {values.map((value, i) => (
-              <ImageReveal
-                key={i}
-                direction="left"
-                delay={i * 0.15}
-              >
-                <div
-                  className={cn(
-                    "p-8 md:p-10 rounded-2xl",
-                    "border border-[rgba(255,255,255,0.06)]",
-                    "hover:border-[rgba(255,70,0,0.15)]",
-                    "transition-colors duration-200 ease-out"
-                  )}
+              <ParallaxDepth key={i} speed={0.03 + i * 0.025} direction="up" scrubSmooth={0.5}>
+                <ImageReveal
+                  direction="left"
+                  delay={i * 0.15}
                 >
-                  <span className="inline-block uppercase tracking-[0.2em] text-xs font-semibold text-[--color-primary] mb-4">
-                    0{i + 1}
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-semibold text-[--color-text-primary] mb-4">
-                    {value.title}
-                  </h3>
-                  <p className="text-[--color-text-secondary] text-sm md:text-base leading-relaxed">
-                    {value.description}
-                  </p>
-                </div>
-              </ImageReveal>
+                  <div
+                    className={cn(
+                      "p-8 md:p-10 rounded-2xl",
+                      "border border-[rgba(255,255,255,0.06)]",
+                      "hover:border-[rgba(255,70,0,0.15)]",
+                      "transition-colors duration-200 ease-out"
+                    )}
+                  >
+                    <span className="inline-block uppercase tracking-[0.2em] text-xs font-semibold text-[--color-primary] mb-4">
+                      0{i + 1}
+                    </span>
+                    <h3 className="text-xl md:text-2xl font-semibold text-[--color-text-primary] mb-4">
+                      {value.title}
+                    </h3>
+                    <p className="text-[--color-text-secondary] text-sm md:text-base leading-relaxed">
+                      {value.description}
+                    </p>
+                  </div>
+                </ImageReveal>
+              </ParallaxDepth>
             ))}
           </div>
         </div>
@@ -321,8 +357,8 @@ function NetworkReach({ heading, description, stats }: NetworkReachProps) {
                 {stats.map((stat, i) => {
                   const parsed = parseStatValue(stat.value);
                   return (
+                    <ParallaxDepth key={i} speed={0.04 + i * 0.02} direction="up" scrubSmooth={0.4}>
                     <motion.div
-                      key={i}
                       className="text-center md:text-left"
                       initial={
                         prefersReduced
@@ -350,6 +386,7 @@ function NetworkReach({ heading, description, stats }: NetworkReachProps) {
                         {stat.label}
                       </span>
                     </motion.div>
+                    </ParallaxDepth>
                   );
                 })}
               </div>

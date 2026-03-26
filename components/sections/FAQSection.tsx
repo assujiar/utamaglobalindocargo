@@ -3,7 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { Accordion } from "@/components/ui/Accordion";
-import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 
 interface FAQItem {
@@ -49,32 +49,37 @@ function FAQSection({ heading, items, className }: FAQSectionProps) {
   return (
     <GSAPProvider>
       <FAQSchemaJsonLd items={items} />
-      <section className={cn("py-28 sm:py-40 section-dark relative overflow-hidden", className)}>
-        <div className="absolute top-0 left-0 right-0 glow-divider-full" aria-hidden="true" />
+      <section className={cn("py-28 sm:py-40 bg-[#0E0C08] relative overflow-hidden", className)}>
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-[rgba(255,70,0,0.15)] via-transparent to-transparent" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           {/* Asymmetric two-column: heading left, accordion right */}
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16">
-            <div className="md:col-span-4">
-              <SplitTextReveal
-                as="h2"
-                type="words"
-                stagger={0.05}
-                className="text-heading-xl sm:text-display-sm font-bold text-[--color-text-primary] tracking-[-0.03em] md:sticky md:top-24"
-              >
-                {heading}
-              </SplitTextReveal>
+            <div className="md:col-span-3">
+              <ParallaxDepth speed={0.06} direction="down" scrubSmooth={0.5}>
+                <motion.h2
+                  className="text-heading-xl sm:text-display-sm font-bold text-[--color-text-primary] tracking-[-0.03em] md:sticky md:top-24"
+                  initial={prefersReduced ? undefined : { opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {heading}
+                </motion.h2>
+              </ParallaxDepth>
             </div>
 
-            <div className="md:col-span-7 md:col-start-6">
-              <motion.div
-                initial={prefersReduced ? undefined : { opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <Accordion items={accordionItems} defaultOpen={0} />
-              </motion.div>
+            <div className="md:col-span-8 md:col-start-5">
+              <ParallaxDepth speed={0.04} direction="up" scrubSmooth={0.4}>
+                <motion.div
+                  initial={prefersReduced ? undefined : { opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <Accordion items={accordionItems} defaultOpen={0} />
+                </motion.div>
+              </ParallaxDepth>
             </div>
           </div>
         </div>
