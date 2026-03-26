@@ -126,7 +126,7 @@ function Header({ locale, dictionary, minimal = false }: HeaderProps) {
             >
               {/* Services with MegaMenu */}
               <div
-                className="relative"
+                className="relative z-50"
                 onMouseEnter={() => setMegaMenuOpen(true)}
                 onMouseLeave={closeMegaMenu}
               >

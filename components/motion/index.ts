@@ -9,3 +9,13 @@ export type { CounterAnimationProps } from "./CounterAnimation";
 
 export { PageTransition } from "./PageTransition";
 export type { PageTransitionProps } from "./PageTransition";
+
+// GSAP-powered premium motion components
+export { GSAPProvider } from "./GSAPProvider";
+export { MagneticElement } from "./MagneticElement";
+export { TextRevealByLine } from "./TextRevealByLine";
+export { SplitTextReveal } from "./SplitTextReveal";
+export { HorizontalScroll } from "./HorizontalScroll";
+export { ScrollVelocityText } from "./ScrollVelocityText";
+export { ParallaxDepth } from "./ParallaxDepth";
+export { PinnedReveal } from "./PinnedReveal";

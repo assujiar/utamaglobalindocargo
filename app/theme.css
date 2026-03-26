@@ -101,10 +101,10 @@
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.15);
   --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.20);
   --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.25);
-  --shadow-glow-sm: 0 0 20px rgba(255, 70, 0, 0.25), 0 0 60px rgba(255, 70, 0, 0.10);
-  --shadow-glow-md: 0 0 40px rgba(255, 70, 0, 0.45), 0 0 80px rgba(255, 70, 0, 0.15);
-  --shadow-glow-lg: 0 0 60px rgba(255, 70, 0, 0.60), 0 0 120px rgba(255, 70, 0, 0.20);
-  --shadow-glow-xl: 0 0 80px rgba(255, 70, 0, 0.70), 0 0 160px rgba(255, 70, 0, 0.25);
+  --shadow-glow-sm: 0 2px 12px rgba(255, 70, 0, 0.10), 0 0 0 1px rgba(255, 70, 0, 0.06);
+  --shadow-glow-md: 0 4px 20px rgba(255, 70, 0, 0.15), 0 0 0 1px rgba(255, 70, 0, 0.10);
+  --shadow-glow-lg: 0 6px 32px rgba(255, 70, 0, 0.20), 0 0 0 1px rgba(255, 70, 0, 0.12);
+  --shadow-glow-xl: 0 8px 48px rgba(255, 70, 0, 0.25), 0 0 0 1px rgba(255, 70, 0, 0.15);
   --shadow-glow-ambient: 0 0 120px rgba(255, 70, 0, 0.12);
   --shadow-warm: 0 8px 32px rgba(255, 70, 0, 0.12);
 
