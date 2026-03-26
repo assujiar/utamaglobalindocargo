@@ -14,6 +14,8 @@ import { SectionTransition } from "@/components/motion/SectionTransition";
 import { MagneticElement } from "@/components/motion/MagneticElement";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
+import { FloatingOrb } from "@/components/motion/FloatingOrb";
 import { Button } from "@/components/ui/Button";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 
@@ -39,6 +41,24 @@ function AboutHero({ headline, subline, breadcrumbItems }: AboutHeroProps) {
   return (
     <GSAPProvider>
       <section className="relative bg-[#0A0A12] overflow-hidden">
+        {/* Oversized scroll-driven background text */}
+        <ScrollDrivenText
+          text="SINCE 1995"
+          className="absolute top-1/3 -translate-y-1/2 z-[1]"
+          speed={0.3}
+          direction="right"
+        />
+
+        {/* Floating decorative orb */}
+        <FloatingOrb
+          className="absolute top-[20%] left-[-10%] z-[1]"
+          size={450}
+          color="rgba(255, 171, 64, 0.1)"
+          speed={0.25}
+          scale={{ from: 0.8, to: 1.2 }}
+          opacity={{ from: 0.3, to: 0.7 }}
+        />
+
         {/* Ambient glow orb */}
         <div
           className="pointer-events-none absolute -top-40 -right-40 h-[500px] w-[500px] rounded-full opacity-[0.04]"
@@ -215,8 +235,16 @@ interface ValuePillarsProps {
 function ValuePillars({ heading, values }: ValuePillarsProps) {
   return (
     <GSAPProvider>
-      <section className="bg-gradient-to-b from-[#111118] to-[#0A0A0F]">
-        <div className="mx-auto max-w-[1440px] px-6 md:px-12 lg:px-24 py-20 md:py-28">
+      <section className="bg-gradient-to-b from-[#111118] to-[#0A0A0F] relative overflow-hidden">
+        <FloatingOrb
+          className="absolute bottom-[-10%] right-[-5%] z-[1]"
+          size={350}
+          color="rgba(255, 70, 0, 0.08)"
+          speed={0.2}
+          scale={{ from: 0.9, to: 1.3 }}
+          opacity={{ from: 0.4, to: 0.8 }}
+        />
+        <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-12 lg:px-24 py-20 md:py-28">
           <div className="mb-12 md:mb-16 max-w-2xl">
             <SplitTextReveal
               as="h2"

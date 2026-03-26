@@ -8,6 +8,8 @@ import { CounterAnimation } from "@/components/motion/CounterAnimation";
 import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
+import { FloatingOrb } from "@/components/motion/FloatingOrb";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import { ProcessFlow } from "@/components/sections/ProcessFlow";
 import { FAQSection } from "@/components/sections/FAQSection";
@@ -74,6 +76,24 @@ function ServiceDetailPage({ locale, service, detail }: ServiceDetailPageProps) 
         className="relative flex min-h-[50vh] flex-col justify-end pb-20 sm:pb-28 section-dark overflow-hidden"
       >
         <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
+
+        {/* Scroll-driven oversized text */}
+        <ScrollDrivenText
+          text={serviceName.toUpperCase()}
+          className="absolute top-[40%] -translate-y-1/2 z-[1]"
+          speed={0.35}
+          direction="left"
+        />
+
+        {/* Floating orb */}
+        <FloatingOrb
+          className="absolute bottom-[10%] right-[-8%] z-[1]"
+          size={400}
+          color="rgba(255, 70, 0, 0.1)"
+          speed={0.25}
+          scale={{ from: 0.7, to: 1.1 }}
+          opacity={{ from: 0.3, to: 0.7 }}
+        />
 
         <motion.div
           className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10 w-full"

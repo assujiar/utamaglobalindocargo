@@ -8,6 +8,7 @@ import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
 import { TextRevealByLine } from "@/components/motion/TextRevealByLine";
 import { ScrollReveal } from "@/components/motion/ScrollReveal";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { FloatingOrb } from "@/components/motion/FloatingOrb";
 import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
 
@@ -31,6 +32,14 @@ function CTACentered({ heading, ctaLabel, ctaHref, trustLine, className }: Omit<
 
   return (
     <section className={cn("py-36 sm:py-52 relative overflow-hidden section-gradient-mesh", className)}>
+      <FloatingOrb
+        className="absolute top-[10%] left-[5%] z-[1]"
+        size={400}
+        color="rgba(255, 70, 0, 0.1)"
+        speed={0.3}
+        scale={{ from: 0.5, to: 1.2 }}
+        opacity={{ from: 0.3, to: 0.9 }}
+      />
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         <div
           className="absolute w-[70vw] h-[70vw] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"

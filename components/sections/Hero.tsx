@@ -11,6 +11,8 @@ import { cn } from "@/lib/utils/cn";
 import { Button } from "@/components/ui/Button";
 import { MagneticElement } from "@/components/motion/MagneticElement";
 import { ParallaxDepth } from "@/components/motion/ParallaxDepth";
+import { ScrollDrivenText } from "@/components/motion/ScrollDrivenText";
+import { FloatingOrb } from "@/components/motion/FloatingOrb";
 import type { Locale } from "@/lib/i18n/config";
 
 interface HeroProps {
@@ -86,6 +88,24 @@ function Hero({
           />
         </ParallaxDepth>
       </div>
+
+      {/* Oversized scroll-driven background text (like Buzzworthy's "attitude") */}
+      <ScrollDrivenText
+        text="LOGISTICS"
+        className="absolute top-1/2 -translate-y-1/2 z-[1]"
+        speed={0.4}
+        direction="left"
+      />
+
+      {/* Floating decorative orb (like Buzzworthy's webglBubble) */}
+      <FloatingOrb
+        className="absolute top-[15%] right-[-5%] z-[2]"
+        size={500}
+        color="rgba(255, 70, 0, 0.12)"
+        speed={0.3}
+        scale={{ from: 0.6, to: 1.0 }}
+        opacity={{ from: 0.4, to: 0.8 }}
+      />
 
       {/* Grain */}
       <div className="absolute inset-0 grain-overlay pointer-events-none" aria-hidden="true" />
