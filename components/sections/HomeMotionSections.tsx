@@ -71,23 +71,40 @@ export function ValuePropSection({
 
 // ─── Velocity Marquee ───
 // UNIQUE: Only section with infinite scroll motion, dark band with border-y
+// Now with opposing direction rows — like Buzzworthy's client logo marquees
 
 export function VelocityMarquee({ locale }: { locale: Locale }) {
-  const text =
+  const textRow1 =
     locale === "id"
       ? "FREIGHT FORWARDING • KEPABEANAN • PERGUDANGAN • DISTRIBUSI • KARGO PROYEK • CHARTER •"
       : "FREIGHT FORWARDING • CUSTOMS CLEARANCE • WAREHOUSING • DISTRIBUTION • PROJECT CARGO • CHARTER •";
 
+  const textRow2 =
+    locale === "id"
+      ? "JAKARTA • SURABAYA • SEMARANG • MEDAN • MAKASSAR • BALIKPAPAN • PONTIANAK • MANADO •"
+      : "JAKARTA • SURABAYA • SEMARANG • MEDAN • MAKASSAR • BALIKPAPAN • PONTIANAK • MANADO •";
+
   return (
     <GSAPProvider>
-      <div className="py-4 bg-[#060608] border-y border-[rgba(255,255,255,0.06)] overflow-hidden relative">
+      <div className="py-2 sm:py-4 bg-[#060608] border-y border-[rgba(255,255,255,0.06)] overflow-hidden relative">
+        {/* Row 1: scrolling left (services) */}
         <ScrollVelocityText
           baseVelocity={50}
           repeat={5}
           direction="left"
-          className="text-[64px] sm:text-[100px] md:text-[140px] font-bold text-[rgba(255,255,255,0.03)] leading-none select-none font-display tracking-tighter"
+          className="text-[48px] sm:text-[80px] md:text-[120px] font-bold text-[rgba(255,255,255,0.03)] leading-none select-none font-display tracking-tighter"
         >
-          {text}
+          {textRow1}
+        </ScrollVelocityText>
+
+        {/* Row 2: scrolling right (cities) — opposing direction */}
+        <ScrollVelocityText
+          baseVelocity={35}
+          repeat={5}
+          direction="right"
+          className="text-[48px] sm:text-[80px] md:text-[120px] font-bold text-[rgba(255,255,255,0.02)] leading-none select-none font-display tracking-tighter"
+        >
+          {textRow2}
         </ScrollVelocityText>
       </div>
     </GSAPProvider>
