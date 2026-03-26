@@ -14,7 +14,9 @@ import {
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils/cn";
 import { services, type ServiceData } from "@/lib/content/services";
-import { ScrollReveal } from "@/components/motion/ScrollReveal";
+import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { MagneticElement } from "@/components/motion/MagneticElement";
+import { GSAPProvider } from "@/components/motion/GSAPProvider";
 import type { Locale } from "@/lib/i18n/config";
 
 interface ServiceGridProps {
@@ -46,8 +48,6 @@ function ServiceCard({
 }) {
   const name = locale === "id" ? service.name_id : service.name_en;
   const tagline = locale === "id" ? service.tagline_id : service.tagline_en;
-  const description =
-    locale === "id" ? service.description_id : service.description_en;
   const slug = locale === "id" ? service.slug_id : service.slug_en;
   const servicesPath = locale === "id" ? "layanan" : "services";
   const href = `/${locale}/${servicesPath}/${slug}`;
@@ -84,53 +84,55 @@ function ServiceCard({
         delay: index * 0.1,
       }}
     >
-      <Link
-        ref={cardRef}
-        href={href}
-        className={cn(
-          "group relative flex flex-col glass-dark card-shine p-6 sm:p-7",
-          "[transition:transform_200ms_ease-out,border-color_300ms_ease-out,box-shadow_300ms_ease-out,background_300ms_ease-out]",
-          "hover:border-[rgba(255,70,0,0.35)] hover:shadow-[0_0_60px_rgba(255,70,0,0.15),0_0_120px_rgba(255,70,0,0.05)] hover:bg-[rgba(255,255,255,0.07)]",
-          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color-primary]",
-          "h-full",
-        )}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-      >
-        {/* Animated gradient border overlay */}
-        <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none gradient-border" />
+      <MagneticElement strength={0.1}>
+        <Link
+          ref={cardRef}
+          href={href}
+          className={cn(
+            "group relative flex flex-col glass-dark card-shine p-6 sm:p-7",
+            "[transition:transform_200ms_ease-out,border-color_300ms_ease-out,box-shadow_300ms_ease-out,background_300ms_ease-out]",
+            "hover:border-[rgba(255,70,0,0.35)] hover:shadow-[0_0_60px_rgba(255,70,0,0.15),0_0_120px_rgba(255,70,0,0.05)] hover:bg-[rgba(255,255,255,0.07)]",
+            "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[--color-primary]",
+            "h-full",
+          )}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+        >
+          {/* Animated gradient border overlay */}
+          <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none gradient-border" />
 
-        {/* Giant watermark icon - oversized background decoration */}
-        {Icon && (
-          <div className="absolute -bottom-4 -right-4 pointer-events-none" aria-hidden="true">
-            <Icon className="size-32 sm:size-40 text-[--color-primary] opacity-[0.04] group-hover:opacity-[0.08] group-hover:scale-110 transition-all duration-500" />
-          </div>
-        )}
+          {/* Giant watermark icon */}
+          {Icon && (
+            <div className="absolute -bottom-4 -right-4 pointer-events-none" aria-hidden="true">
+              <Icon className="size-32 sm:size-40 text-[--color-primary] opacity-[0.04] group-hover:opacity-[0.08] group-hover:scale-110 transition-all duration-500" />
+            </div>
+          )}
 
-        {/* Small icon badge + number row */}
-        <div className="relative z-10 flex items-center gap-3 mb-5">
-          <div className="flex items-center justify-center size-11 rounded-xl bg-[rgba(255,70,0,0.10)] group-hover:bg-[rgba(255,70,0,0.18)] group-hover:shadow-[0_0_24px_rgba(255,70,0,0.25)] transition-all duration-300">
-            {Icon && <Icon className="size-5 text-[--color-primary]" />}
+          {/* Small icon badge + number row */}
+          <div className="relative z-10 flex items-center gap-3 mb-5">
+            <div className="flex items-center justify-center size-11 rounded-xl bg-[rgba(255,70,0,0.10)] group-hover:bg-[rgba(255,70,0,0.18)] group-hover:shadow-[0_0_24px_rgba(255,70,0,0.25)] transition-all duration-300">
+              {Icon && <Icon className="size-5 text-[--color-primary]" />}
+            </div>
+            <span className="label-text text-[--color-text-secondary]">
+              {service.number}
+            </span>
           </div>
-          <span className="label-text text-[--color-text-secondary]">
-            {service.number}
+
+          {/* Name */}
+          <h3 className="relative z-10 text-lg font-semibold text-[--color-text-primary] mb-2 group-hover:text-white transition-colors duration-200">
+            {name}
+          </h3>
+
+          {/* Tagline */}
+          <p className="relative z-10 text-sm text-[--color-text-secondary] mb-auto group-hover:text-[--color-text-primary] transition-colors duration-300">{tagline}</p>
+
+          {/* Explore link with arrow */}
+          <span className="relative z-10 mt-5 pt-4 border-t border-[rgba(255,255,255,0.06)] group-hover:border-[rgba(255,70,0,0.15)] inline-flex items-center gap-2 text-sm font-semibold text-[--color-primary] group-hover:gap-3.5 transition-all duration-300 w-full">
+            {exploreLabel}
+            <ArrowRight className="size-4 ml-auto group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true" />
           </span>
-        </div>
-
-        {/* Name */}
-        <h3 className="relative z-10 text-lg font-semibold text-[--color-text-primary] mb-2 group-hover:text-white transition-colors duration-200">
-          {name}
-        </h3>
-
-        {/* Tagline */}
-        <p className="relative z-10 text-sm text-[--color-text-secondary] mb-auto group-hover:text-[--color-text-primary] transition-colors duration-300">{tagline}</p>
-
-        {/* Explore link with arrow */}
-        <span className="relative z-10 mt-5 pt-4 border-t border-[rgba(255,255,255,0.06)] group-hover:border-[rgba(255,70,0,0.15)] inline-flex items-center gap-2 text-sm font-semibold text-[--color-primary] group-hover:gap-3.5 transition-all duration-300 w-full">
-          {exploreLabel}
-          <ArrowRight className="size-4 ml-auto group-hover:translate-x-1 transition-transform duration-300" aria-hidden="true" />
-        </span>
-      </Link>
+        </Link>
+      </MagneticElement>
     </motion.div>
   );
 }
@@ -142,38 +144,43 @@ function ServiceGrid({
   className,
 }: ServiceGridProps) {
   return (
-    <section className={cn("py-28 sm:py-36 bg-[--color-bg-dark] relative overflow-hidden", className)}>
-      {/* Dot grid pattern background */}
-      <div className="absolute inset-0 dot-grid-subtle pointer-events-none" aria-hidden="true" />
+    <GSAPProvider>
+      <section className={cn("py-28 sm:py-36 bg-[--color-bg-dark] relative overflow-hidden", className)}>
+        {/* Dot grid pattern background */}
+        <div className="absolute inset-0 dot-grid-subtle pointer-events-none" aria-hidden="true" />
 
-      {/* Ambient glow */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-[--color-primary] opacity-[0.06] blur-[160px]" />
-      </div>
+        {/* Ambient glow */}
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[900px] h-[900px] rounded-full bg-[--color-primary] opacity-[0.06] blur-[160px]" />
+        </div>
 
-      <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
-        <ScrollReveal>
+        <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10">
           <p className="label-text text-[--color-primary] text-center mb-4">
             {locale === "id" ? "Layanan Kami" : "Our Services"}
           </p>
-          <h2 className="text-heading-lg sm:text-heading-xl font-bold gradient-text text-center max-w-3xl mx-auto mb-16 sm:mb-20 tracking-[-0.03em]">
+          <SplitTextReveal
+            as="h2"
+            type="words"
+            stagger={0.06}
+            className="text-heading-lg sm:text-heading-xl font-bold gradient-text text-center max-w-3xl mx-auto mb-16 sm:mb-20 tracking-[-0.03em]"
+          >
             {heading}
-          </h2>
-        </ScrollReveal>
+          </SplitTextReveal>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-          {services.map((service, i) => (
-            <ServiceCard
-              key={service.key}
-              service={service}
-              locale={locale}
-              exploreLabel={exploreLabel}
-              index={i}
-            />
-          ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+            {services.map((service, i) => (
+              <ServiceCard
+                key={service.key}
+                service={service}
+                locale={locale}
+                exploreLabel={exploreLabel}
+                index={i}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </GSAPProvider>
   );
 }
 

@@ -61,3 +61,28 @@ export function getAlternatePath(key: string, locale: Locale): string {
   const alternate: Locale = locale === "id" ? "en" : "id";
   return getLocalizedPath(key, alternate);
 }
+
+/**
+ * Given a full pathname (e.g. /id/layanan/distribusi-domestik),
+ * return the equivalent path in the alternate locale (e.g. /en/services/domestic-distribution).
+ * Falls back to just swapping the locale prefix if no match is found.
+ */
+export function getAlternatePathFromUrl(
+  pathname: string,
+  currentLocale: Locale,
+): string {
+  const alternateLocale: Locale = currentLocale === "id" ? "en" : "id";
+
+  // Strip the locale prefix to get the route part
+  const routePart = pathname.replace(new RegExp(`^/${currentLocale}`), "") || "/";
+
+  // Search through all routes for a match
+  for (const [, route] of Object.entries(routeMap.routes)) {
+    if (route[currentLocale] === routePart) {
+      return `/${alternateLocale}${route[alternateLocale]}`;
+    }
+  }
+
+  // Fallback: just swap the locale prefix
+  return pathname.replace(new RegExp(`^/${currentLocale}`), `/${alternateLocale}`);
+}

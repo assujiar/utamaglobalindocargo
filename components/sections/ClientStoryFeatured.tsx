@@ -21,6 +21,8 @@ const placeholder = {
     "Efisiensi distribusi meningkat 40%, waktu transit berkurang dari 5 hari menjadi 3 hari rata-rata.",
   result_en:
     "Distribution efficiency improved by 40%, transit time reduced from 5 days to an average of 3 days.",
+  resultLabel_id: "Hasil",
+  resultLabel_en: "Result",
 };
 
 function ClientStoryFeatured({
@@ -35,37 +37,38 @@ function ClientStoryFeatured({
       : placeholder.display_quote_en;
   const result =
     locale === "id" ? placeholder.result_id : placeholder.result_en;
+  const resultLabel =
+    locale === "id" ? placeholder.resultLabel_id : placeholder.resultLabel_en;
 
   return (
-    <ScrollReveal>
-      <div
-        className={cn(
-          "glass-tinted p-8 sm:p-10 max-w-xl relative overflow-hidden",
-          className,
-        )}
-      >
-        {/* Glow accent behind quote */}
-        <div className="absolute top-0 right-0 w-[200px] h-[200px] rounded-full bg-[--color-primary] opacity-[0.06] blur-[80px] pointer-events-none" aria-hidden="true" />
+    <section className={cn("py-16 bg-[--color-bg-dark] relative", className)}>
+      <div className="relative z-10 mx-auto max-w-[--max-width-layout] px-5 sm:px-10 flex justify-center">
+        <ScrollReveal>
+          <div className="glass-tinted p-8 sm:p-10 max-w-xl relative overflow-hidden">
+            {/* Glow accent behind quote */}
+            <div className="absolute top-0 right-0 w-[200px] h-[200px] rounded-full bg-[--color-primary] opacity-[0.06] blur-[80px] pointer-events-none" aria-hidden="true" />
 
-        {/* Industry tag */}
-        <span className="relative z-10 label-text text-[--color-primary] mb-5 block">
-          {industry}
-        </span>
+            {/* Industry tag */}
+            <span className="relative z-10 label-text text-[--color-primary] mb-5 block">
+              {industry}
+            </span>
 
-        {/* Pull quote */}
-        <blockquote className="relative z-10 text-lg sm:text-xl font-medium text-[--color-text-inverse] leading-snug mb-5">
-          &ldquo;{quote}&rdquo;
-        </blockquote>
+            {/* Pull quote */}
+            <blockquote className="relative z-10 text-lg sm:text-xl font-medium text-[--color-text-inverse] leading-snug mb-5">
+              &ldquo;{quote}&rdquo;
+            </blockquote>
 
-        {/* Result */}
-        <div className="relative z-10 flex items-start gap-2">
-          <span className="label-text text-[--color-primary] shrink-0 mt-0.5">Result</span>
-          <p className="text-sm text-[--color-text-secondary] leading-relaxed">
-            {result}
-          </p>
-        </div>
+            {/* Result */}
+            <div className="relative z-10 flex items-start gap-2">
+              <span className="label-text text-[--color-primary] shrink-0 mt-0.5">{resultLabel}</span>
+              <p className="text-sm text-[--color-text-secondary] leading-relaxed">
+                {result}
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
-    </ScrollReveal>
+    </section>
   );
 }
 
