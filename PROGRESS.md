@@ -66,12 +66,22 @@
 - [x] Tiga kolom detail: Tantangan / Solusi / Hasil
 - [x] Build verification sukses
 
-## Fase 6: Halaman Konten & Layanan — 🔲 Tertunda
-- [ ] Halaman layanan individual
-- [ ] Halaman tentang perusahaan
-- [ ] Halaman studi kasus / portofolio
-- [ ] Blog / artikel industri
-- [ ] Halaman kontak dedicated
+## Fase 6: Kuesioner Multi-Langkah & Telemetri UTM Closed-Loop — ✅ Telah Diselesaikan Sepenuhnya
+- [x] Instalasi react-hook-form + zod + @hookform/resolvers
+- [x] useUTMCapture.ts — hook ekstraktor UTM (source/medium/campaign/term/content)
+- [x] Parsing URLSearchParams → serialisasi JSON → injeksi localStorage
+- [x] getStoredUTMData() — retrieval saat form submission
+- [x] ContactForm.tsx — progressive disclosure 3 langkah
+- [x] Langkah 1: Determinasi niat (4 blok seleksi interaktif, bukan dropdown)
+- [x] Langkah 2: Skrining kualifikasi volume ($50k / $150k / $500k+)
+- [x] Langkah 3: Profil eksekutif (company_name + executive_email)
+- [x] Garis indikator progress 1px #ff4600 (fixed top)
+- [x] Validasi Zod schema untuk kebersihan data B2B
+- [x] CTA: "Inisialisasi Algoritma Optimasi" + ikon panah heksagonal SVG #ff4600
+- [x] /api/leads/route.ts — endpoint POST Node.js (Next.js Route Handler)
+- [x] Injeksi payload + UTM attribution ke tabel leads_prospect JSONB Supabase
+- [x] Layar sukses: "Kapasitas Rantai Pasokan...Sedang Dievaluasi Algoritma"
+- [x] Rute /contact tergenerate + build verification sukses
 
 ## Fase 7: Pengujian, QA & Deployment Produksi — 🔲 Tertunda
 - [ ] Unit testing komponen
