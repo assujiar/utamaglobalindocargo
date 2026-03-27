@@ -52,12 +52,19 @@
 - [x] Header transisi "Kami Tidak Menjual Logistik. Kami Mengeliminasi Gesekan."
 - [x] Build verification sukses
 
-## Fase 5: Optimisasi SEO & Performa — 🔲 Tertunda
-- [ ] Meta tags & Open Graph optimization
-- [ ] Structured data (JSON-LD)
-- [ ] Image optimization & lazy loading
-- [ ] Core Web Vitals optimization
-- [ ] Sitemap & robots.txt
+## Fase 5: Pameran Studi Kasus & Shared Layout Transitions — ✅ Telah Diselesaikan Sepenuhnya
+- [x] Instalasi framer-motion untuk layoutId shared transitions
+- [x] caseStudiesData.ts — 4 studi kasus B2B (Supply Chain, Customs, Warehouse, Freight)
+- [x] CaseStudyCard.tsx — motion.div dengan layoutId unik per studi kasus
+- [x] CaseStudyModal.tsx — modal mengembang penuh dengan layoutId identik
+- [x] CaseStudyGrid.tsx — LayoutGroup + AnimatePresence + kisi asimetris
+- [x] Variasi margin vertikal per kolom (ilusi mengambang bebas)
+- [x] Desktop hover image scaling (md:group-hover:scale-110)
+- [x] Mobile: hover scaling dinonaktifkan (hanya md: breakpoint)
+- [x] Transisi dramatis 0.7s dengan bezier [0.43, 0.13, 0.23, 0.96]
+- [x] Rute /case-studies dengan metadata SEO
+- [x] Tiga kolom detail: Tantangan / Solusi / Hasil
+- [x] Build verification sukses
 
 ## Fase 6: Halaman Konten & Layanan — 🔲 Tertunda
 - [ ] Halaman layanan individual
