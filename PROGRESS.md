@@ -25,12 +25,17 @@
 - [x] Halaman placeholder hero section dengan warna merek #ff4600
 - [x] Build verification sukses
 
-## Fase 3: Sistem Animasi & Interaksi Imersif — 🔲 Tertunda
-- [ ] Scroll-driven animations (GSAP/Framer Motion)
-- [ ] Parallax effects pada hero section
-- [ ] Transisi halaman smooth
-- [ ] Hover effects tingkat lanjut
-- [ ] Loading & page transition animations
+## Fase 3: Konstruksi Hero Section WebGL & Perenderan Spasial 3D — ✅ Telah Diselesaikan Sepenuhnya
+- [x] Instalasi three + @react-three/fiber + @react-three/drei + @types/three
+- [x] HeroGlobe.tsx — 4000 partikel Fibonacci sphere via BufferGeometry + Points
+- [x] Vertex Shader kustom — uniform uPointerPos (vec2), rotasi orbit Y, proximity scaling
+- [x] Fragment Shader GLSL — base carbon-dark (#111111), proximity glow logistics-orange (#ff4600)
+- [x] Efek interaksi magnetik cairan (smoothstep + pow kurva eksponensial)
+- [x] Additive blending + soft edge anti-aliasing partikel
+- [x] HeroSection.tsx — GSAP useGSAP reveal stagger (opacity 0→1, translateY, rotateX)
+- [x] Tipografi masif "Seni Mendikte Waktu & Jarak" + subtitle manifesto B2B
+- [x] Dynamic import HeroGlobe (SSR disabled) + gradient overlay
+- [x] Build verification sukses
 
 ## Fase 4: Formulir Perolehan Prospek & Integrasi CRM — 🔲 Tertunda
 - [ ] Formulir kontak eksekutif multi-langkah
