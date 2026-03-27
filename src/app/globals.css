@@ -5,8 +5,8 @@
   --color-foreground: var(--foreground);
   --color-logistics-orange: #ff4600;
   --color-carbon-dark: #111111;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Fira Code", "Courier New", monospace;
 }
 
 :root {

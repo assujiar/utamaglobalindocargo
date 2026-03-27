@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  weight: ["400", "600", "700", "800", "900"],
-});
+import SmoothScroller from "@/components/layout/SmoothScroller";
 
 export const metadata: Metadata = {
   title: "Utama Global Indo Cargo — Solusi Logistik Korporat B2B",
@@ -20,9 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-background text-foreground">
-        {children}
+    <html lang="id" className="h-full antialiased">
+      <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+        <SmoothScroller>{children}</SmoothScroller>
       </body>
     </html>
   );

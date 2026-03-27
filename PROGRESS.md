@@ -13,12 +13,17 @@
 - [x] Konfigurasi .gitignore
 - [x] Komit dan push ke repositori
 
-## Fase 2: Arsitektur Komponen Halaman Utama — 🔲 Tertunda
-- [ ] Hero section dengan animasi skala raksasa
-- [ ] Navigasi korporat sticky/fixed
-- [ ] Section layanan logistik utama
-- [ ] Statistik/metrik korporat animasi
-- [ ] Footer korporat dengan CTA
+## Fase 2: Mesin Animasi & Pengguliran Inersia — ✅ Telah Diselesaikan Sepenuhnya
+- [x] Instalasi GSAP + @gsap/react + Lenis (smooth scroll library)
+- [x] Pembuatan SmoothScroller.tsx — pembungkus tata letak utama
+- [x] Instansiasi Lenis dengan parameter redaman matematis sinematik
+- [x] Sinkronisasi ticker GSAP ↔ Lenis (lenis.on scroll → ScrollTrigger.update)
+- [x] Injeksi lenis.raf ke gsap.ticker.add (konversi detik→milidetik)
+- [x] Penonaktifan gsap.ticker.lagSmoothing(0)
+- [x] Arsitektur pembersihan memori (ScrollTrigger.kill + lenis.destroy)
+- [x] Integrasi SmoothScroller ke layout.tsx (membungkus children)
+- [x] Halaman placeholder hero section dengan warna merek #ff4600
+- [x] Build verification sukses
 
 ## Fase 3: Sistem Animasi & Interaksi Imersif — 🔲 Tertunda
 - [ ] Scroll-driven animations (GSAP/Framer Motion)
