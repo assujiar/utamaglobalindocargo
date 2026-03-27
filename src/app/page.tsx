@@ -1,4 +1,5 @@
 import HeroSection from "@/components/layout/HeroSection";
+import ServicesHorizontal from "@/components/sections/ServicesHorizontal";
 
 export default function Home() {
   return (
@@ -6,23 +7,10 @@ export default function Home() {
       {/* Hero Section — WebGL Globe + Tipografi GSAP */}
       <HeroSection />
 
-      {/* Section Layanan Placeholder */}
-      <section
-        id="layanan"
-        className="min-h-screen flex items-center justify-center bg-white"
-      >
-        <div className="text-center px-6">
-          <h2 className="text-4xl md:text-6xl font-extrabold text-carbon-dark tracking-tight">
-            Jaringan <span className="text-logistics-orange">Global</span>
-          </h2>
-          <p className="mt-6 text-lg text-carbon-dark/60 max-w-xl mx-auto">
-            Infrastruktur logistik terintegrasi untuk rantai pasok tingkat
-            eksekutif.
-          </p>
-        </div>
-      </section>
+      {/* Horizontal Scroll Hijacking — Panel Layanan PAS Framework */}
+      <ServicesHorizontal />
 
-      {/* Section Operasi Placeholder */}
+      {/* Section Penutup */}
       <section className="min-h-screen flex items-center justify-center bg-carbon-dark">
         <div className="text-center px-6">
           <h2 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight">
