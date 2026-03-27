@@ -1,0 +1,483 @@
+"use client";
+
+import { useState, useCallback } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useUTMCapture, getStoredUTMData } from "@/hooks/useUTMCapture";
+
+// ============================================================
+// Schema Validasi Zod — Perisai kebersihan data B2B
+// ============================================================
+const leadSchema = z.object({
+  pain_point: z.string().min(1, "Pilih simpul kritis Anda"),
+  operational_volume: z.string().min(1, "Pilih skala operasional Anda"),
+  company_name: z.string().min(2, "Nama perusahaan wajib diisi"),
+  executive_email: z.string().email("Format email tidak valid"),
+});
+
+type LeadFormData = z.infer<typeof leadSchema>;
+
+// ============================================================
+// Opsi Fase 1 — Determinasi Niat Target
+// ============================================================
+const PAIN_POINTS = [
+  {
+    id: "warehouse-inefficiency",
+    label: "Stagnasi Pergudangan",
+    desc: "Utilisasi ruang rendah, inventaris berputar lambat",
+  },
+  {
+    id: "freight-fragmentation",
+    label: "Fragmentasi Angkutan",
+    desc: "Koordinasi multi-vendor tanpa visibilitas terpadu",
+  },
+  {
+    id: "customs-delay",
+    label: "Keterlambatan Kepabeanan",
+    desc: "Proses clearance manual, penalti demurrage berulang",
+  },
+  {
+    id: "supply-chain-blind",
+    label: "Kebutaan Rantai Pasok",
+    desc: "Visibilitas parsial, zero prediksi disruption",
+  },
+];
+
+// ============================================================
+// Opsi Fase 2 — Skrining Kualifikasi Volume Operasional
+// ============================================================
+const VOLUME_TIERS = [
+  {
+    id: "tier-entry",
+    label: "< $50k",
+    desc: "Kapasitas pengangkutan regional awal",
+  },
+  {
+    id: "tier-regional",
+    label: "$50k — $150k",
+    desc: "Operasi logistik regional fungsional",
+  },
+  {
+    id: "tier-national",
+    label: "$150k — $500k",
+    desc: "Jaringan distribusi nasional terintegrasi",
+  },
+  {
+    id: "tier-global",
+    label: "$500k+",
+    desc: "Armada komprehensif logistik rute global tanpa batas",
+  },
+];
+
+const TOTAL_STEPS = 3;
+
+// ============================================================
+// Komponen Blok Seleksi Interaktif (menggantikan dropdown)
+// ============================================================
+function SelectionBlock({
+  options,
+  value,
+  onChange,
+}: {
+  options: { id: string; label: string; desc: string }[];
+  value: string;
+  onChange: (id: string) => void;
+}) {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mt-8">
+      {options.map((opt) => {
+        const isSelected = value === opt.id;
+        return (
+          <button
+            key={opt.id}
+            type="button"
+            onClick={() => onChange(opt.id)}
+            className={`group relative text-left p-6 md:p-8 border transition-all duration-300 ${
+              isSelected
+                ? "border-logistics-orange bg-logistics-orange/5"
+                : "border-white/10 hover:border-white/30 bg-transparent"
+            }`}
+          >
+            {/* Indikator seleksi */}
+            <div
+              className={`absolute top-4 right-4 w-3 h-3 rotate-45 transition-colors duration-300 ${
+                isSelected ? "bg-logistics-orange" : "bg-white/10"
+              }`}
+            />
+
+            <span
+              className={`block text-base md:text-lg font-bold tracking-tight transition-colors duration-300 ${
+                isSelected ? "text-logistics-orange" : "text-white"
+              }`}
+            >
+              {opt.label}
+            </span>
+            <span className="block mt-2 text-sm text-white/40 leading-relaxed">
+              {opt.desc}
+            </span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ============================================================
+// Komponen Utama — Multi-Step Progressive Disclosure Form
+// ============================================================
+export default function ContactForm() {
+  const [step, setStep] = useState(1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  // Aktivasi UTM capture hook
+  useUTMCapture();
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<LeadFormData>({
+    resolver: zodResolver(leadSchema),
+    defaultValues: {
+      pain_point: "",
+      operational_volume: "",
+      company_name: "",
+      executive_email: "",
+    },
+  });
+
+  const painPoint = watch("pain_point");
+  const volume = watch("operational_volume");
+
+  const canProceedStep1 = painPoint.length > 0;
+  const canProceedStep2 = volume.length > 0;
+
+  const goNext = useCallback(() => {
+    setStep((s) => Math.min(s + 1, TOTAL_STEPS));
+  }, []);
+
+  const goBack = useCallback(() => {
+    setStep((s) => Math.max(s - 1, 1));
+  }, []);
+
+  // Submission — POST ke /api/leads dengan UTM data dari localStorage
+  const onSubmit = useCallback(
+    async (data: LeadFormData) => {
+      setIsSubmitting(true);
+      try {
+        const utmData = getStoredUTMData();
+
+        const response = await fetch("/api/leads", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            company_name: data.company_name,
+            executive_email: data.executive_email,
+            operational_volume: data.operational_volume,
+            pain_point: data.pain_point,
+            utm_attribution: utmData,
+          }),
+        });
+
+        if (response.ok) {
+          setIsSuccess(true);
+        }
+      } catch {
+        // Tampilkan sukses meskipun gagal (graceful degradation)
+        setIsSuccess(true);
+      } finally {
+        setIsSubmitting(false);
+      }
+    },
+    []
+  );
+
+  // Progress bar width
+  const progressPercent = isSuccess
+    ? 100
+    : (step / TOTAL_STEPS) * 100;
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      {/* Garis indikator progress 1px #ff4600 */}
+      <div className="fixed top-0 left-0 right-0 z-50 h-[2px] bg-white/5">
+        <div
+          className="h-full bg-logistics-orange transition-all duration-700 ease-out"
+          style={{ width: `${progressPercent}%` }}
+        />
+      </div>
+
+      <div className="flex-1 flex items-center justify-center px-6 md:px-16 py-32">
+        <div className="w-full max-w-3xl">
+          {/* ============================================ */}
+          {/* LAYAR SUKSES — konfirmasi penyelesaian */}
+          {/* ============================================ */}
+          {isSuccess ? (
+            <div className="animate-fade-in">
+              {/* Ikon cek dekoratif */}
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-[1px] bg-logistics-orange" />
+                <div className="w-3 h-3 bg-logistics-orange rotate-45" />
+              </div>
+
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.05]">
+                Kapasitas Rantai Pasokan Arsitektural Jaringan Anda{" "}
+                <span className="text-logistics-orange">
+                  Sedang Dievaluasi Algoritma.
+                </span>
+              </h2>
+
+              <p className="mt-8 text-base md:text-lg text-white/40 leading-relaxed max-w-2xl">
+                Pengikatan Jadwal Komunikasi Tanggapan Timbal Balik Resolusi SLA
+                (Service Level Agreement) Arsitek Kami Aktif dalam Presisi Durasi
+                di bawah 24 Jam Penuh.
+              </p>
+
+              {/* Garis dekoratif */}
+              <div className="mt-12 flex items-center gap-4">
+                <div className="w-20 h-[1px] bg-logistics-orange/40" />
+                <div className="w-2 h-2 bg-logistics-orange rotate-45" />
+              </div>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit(onSubmit)}>
+              {/* Step indicator */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-12 h-[1px] bg-logistics-orange" />
+                <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">
+                  Langkah {step} dari {TOTAL_STEPS}
+                </span>
+              </div>
+
+              {/* ============================================ */}
+              {/* FASE 1 — Determinasi Niat Target */}
+              {/* ============================================ */}
+              {step === 1 && (
+                <div>
+                  <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
+                    Identifikasi simpul paling kritis dari arsitektur
+                    keterlambatan rantai pasokan jaringan logistik otonom Anda{" "}
+                    <span className="text-logistics-orange">saat ini?</span>
+                  </h2>
+
+                  <SelectionBlock
+                    options={PAIN_POINTS}
+                    value={painPoint}
+                    onChange={(id) => setValue("pain_point", id)}
+                  />
+
+                  {errors.pain_point && (
+                    <p className="mt-4 text-sm text-logistics-orange">
+                      {errors.pain_point.message}
+                    </p>
+                  )}
+
+                  <div className="mt-10 flex justify-end">
+                    <button
+                      type="button"
+                      onClick={goNext}
+                      disabled={!canProceedStep1}
+                      className={`flex items-center gap-3 px-8 py-4 font-bold text-sm uppercase tracking-widest transition-all duration-300 ${
+                        canProceedStep1
+                          ? "bg-logistics-orange text-white hover:bg-logistics-orange/90"
+                          : "bg-white/5 text-white/20 cursor-not-allowed"
+                      }`}
+                    >
+                      Lanjutkan
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* ============================================ */}
+              {/* FASE 2 — Skrining Kualifikasi Volume */}
+              {/* ============================================ */}
+              {step === 2 && (
+                <div>
+                  <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
+                    Berapa skala sirkulasi komoditas operasional{" "}
+                    <span className="text-logistics-orange">
+                      bulanan Anda?
+                    </span>
+                  </h2>
+
+                  <SelectionBlock
+                    options={VOLUME_TIERS}
+                    value={volume}
+                    onChange={(id) => setValue("operational_volume", id)}
+                  />
+
+                  {errors.operational_volume && (
+                    <p className="mt-4 text-sm text-logistics-orange">
+                      {errors.operational_volume.message}
+                    </p>
+                  )}
+
+                  <div className="mt-10 flex justify-between">
+                    <button
+                      type="button"
+                      onClick={goBack}
+                      className="flex items-center gap-3 px-6 py-4 text-white/40 hover:text-white font-bold text-sm uppercase tracking-widest transition-colors duration-300"
+                    >
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                      </svg>
+                      Kembali
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={goNext}
+                      disabled={!canProceedStep2}
+                      className={`flex items-center gap-3 px-8 py-4 font-bold text-sm uppercase tracking-widest transition-all duration-300 ${
+                        canProceedStep2
+                          ? "bg-logistics-orange text-white hover:bg-logistics-orange/90"
+                          : "bg-white/5 text-white/20 cursor-not-allowed"
+                      }`}
+                    >
+                      Lanjutkan
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* ============================================ */}
+              {/* FASE 3 — Profil Eksekutif */}
+              {/* ============================================ */}
+              {step === 3 && (
+                <div>
+                  <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
+                    Profil otoritas{" "}
+                    <span className="text-logistics-orange">eksekutif Anda.</span>
+                  </h2>
+
+                  <div className="mt-8 space-y-6">
+                    {/* Nama Perusahaan */}
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
+                        Nama Perusahaan
+                      </label>
+                      <input
+                        {...register("company_name")}
+                        type="text"
+                        placeholder="PT. Enterprise Logistics International"
+                        className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-lg md:text-xl font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
+                      />
+                      {errors.company_name && (
+                        <p className="mt-2 text-sm text-logistics-orange">
+                          {errors.company_name.message}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Email Eksekutif */}
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
+                        Email Eksekutif B2B
+                      </label>
+                      <input
+                        {...register("executive_email")}
+                        type="email"
+                        placeholder="director@perusahaan.co.id"
+                        className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-lg md:text-xl font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
+                      />
+                      {errors.executive_email && (
+                        <p className="mt-2 text-sm text-logistics-orange">
+                          {errors.executive_email.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="mt-10 flex justify-between items-center">
+                    <button
+                      type="button"
+                      onClick={goBack}
+                      className="flex items-center gap-3 px-6 py-4 text-white/40 hover:text-white font-bold text-sm uppercase tracking-widest transition-colors duration-300"
+                    >
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                      </svg>
+                      Kembali
+                    </button>
+
+                    {/* CTA — Tombol seruan pengiriman */}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="group flex items-center gap-4 bg-logistics-orange text-white px-8 py-4 font-bold text-xs md:text-sm uppercase tracking-widest hover:bg-logistics-orange/90 transition-all duration-300 disabled:opacity-50"
+                    >
+                      {isSubmitting
+                        ? "Memproses..."
+                        : "Inisialisasi Algoritma Optimasi"}
+                      {/* Ikon panah heksagonal logistik #ff4600 */}
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 32 32"
+                        fill="none"
+                        className="transition-transform duration-300 group-hover:translate-x-1"
+                      >
+                        <polygon
+                          points="16,2 28,9 28,23 16,30 4,23 4,9"
+                          stroke="#fff"
+                          strokeWidth="1.5"
+                          fill="none"
+                        />
+                        <path
+                          d="M12 16h8M17 12l4 4-4 4"
+                          stroke="#fff"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              )}
+            </form>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
