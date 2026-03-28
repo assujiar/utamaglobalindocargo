@@ -2,25 +2,33 @@
 
 import { useRef, useEffect, useCallback } from "react";
 import {
-  ROUTE_LANES,
-  NODE_CLUSTERS,
+  CORRIDORS,
+  HUBS,
   PULSES,
-  ROUTE_FIELD_COLORS,
+  COLORS,
+  generateLanes,
+  generateHubNodes,
   type Point,
-  type RouteLane,
+  type GeneratedLane,
+  type GeneratedNode,
 } from "@/lib/hero/routeFieldConfig";
 
-// ─── Helpers ───
+// ═══════════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════════
 
-function interpolatePolyline(
+const _pos = { x: 0, y: 0 };
+const _trail = { x: 0, y: 0 };
+
+function lerpPoint(
   points: Point[],
   t: number,
   w: number,
   h: number,
   out: { x: number; y: number }
-): void {
-  const clamped = Math.max(0, Math.min(1, t));
-  const seg = clamped * (points.length - 1);
+) {
+  const c = Math.max(0, Math.min(1, t));
+  const seg = c * (points.length - 1);
   const i = Math.floor(seg);
   const f = seg - i;
   const a = points[Math.min(i, points.length - 1)];
@@ -29,30 +37,19 @@ function interpolatePolyline(
   out.y = (a.y + (b.y - a.y) * f) * h;
 }
 
-function buildRouteMap(): Map<string, RouteLane> {
-  const map = new Map<string, RouteLane>();
-  for (const lane of ROUTE_LANES) map.set(lane.id, lane);
-  return map;
-}
-
-/** Draws a smooth polyline through normalized points. Reused for lanes + parallel tracks. */
-function traceLane(
+function traceCurve(
   ctx: CanvasRenderingContext2D,
   pts: Point[],
   w: number,
-  h: number,
-  yOffset: number
+  h: number
 ) {
-  const p0x = pts[0].x * w;
-  const p0y = pts[0].y * h + yOffset;
-  ctx.moveTo(p0x, p0y);
-
+  ctx.moveTo(pts[0].x * w, pts[0].y * h);
   for (let i = 1; i < pts.length; i++) {
     const cx = pts[i].x * w;
-    const cy = pts[i].y * h + yOffset;
+    const cy = pts[i].y * h;
     if (i < pts.length - 1) {
       const nx = pts[i + 1].x * w;
-      const ny = pts[i + 1].y * h + yOffset;
+      const ny = pts[i + 1].y * h;
       ctx.quadraticCurveTo(cx, cy, (cx + nx) / 2, (cy + ny) / 2);
     } else {
       ctx.lineTo(cx, cy);
@@ -60,12 +57,14 @@ function traceLane(
   }
 }
 
-// ─── Drawing ───
+// ═══════════════════════════════════════════════════════
+// DRAWING SYSTEMS
+// ═══════════════════════════════════════════════════════
 
 function drawGrid(ctx: CanvasRenderingContext2D, w: number, h: number) {
-  ctx.strokeStyle = ROUTE_FIELD_COLORS.grid;
+  ctx.strokeStyle = COLORS.grid;
   ctx.lineWidth = 0.5;
-  const sp = 120;
+  const sp = 100;
   for (let x = 0; x < w; x += sp) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
@@ -80,125 +79,222 @@ function drawGrid(ctx: CanvasRenderingContext2D, w: number, h: number) {
   }
 }
 
-function drawLanes(ctx: CanvasRenderingContext2D, w: number, h: number) {
-  for (const lane of ROUTE_LANES) {
-    const isPrimary = lane.role === "primary";
-    const color = isPrimary
-      ? ROUTE_FIELD_COLORS.primary
-      : lane.role === "secondary"
-        ? ROUTE_FIELD_COLORS.secondary
-        : ROUTE_FIELD_COLORS.tertiary;
-    const lw = isPrimary ? 1.2 : lane.role === "secondary" ? 0.8 : 0.4;
+/** Draw all generated lanes — the corridor bundle system */
+function drawCorridorBundles(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  h: number,
+  lanes: GeneratedLane[]
+) {
+  for (const lane of lanes) {
+    const colorSet = COLORS.corridor[lane.role];
+    // Outer lanes use accent color, inner lanes use base color
+    const color = lane.opacity > 0.7 ? colorSet.base : colorSet.accent;
 
-    // Main lane
+    ctx.globalAlpha = lane.opacity;
     ctx.strokeStyle = color;
-    ctx.lineWidth = lw;
+    ctx.lineWidth = lane.width;
     ctx.beginPath();
-    traceLane(ctx, lane.points, w, h, 0);
+    traceCurve(ctx, lane.points, w, h);
     ctx.stroke();
+  }
+  ctx.globalAlpha = 1;
+}
 
-    // Parallel track for primary lanes
-    if (isPrimary) {
-      ctx.strokeStyle = "rgba(255, 70, 0, 0.07)";
-      ctx.lineWidth = 0.5;
+/** Draw hub zones — glow, ring, connection lines, and nodes */
+function drawHubs(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  h: number,
+  time: number,
+  nodes: GeneratedNode[]
+) {
+  // 1. Hub zone glow (very subtle area fill)
+  for (const hub of HUBS) {
+    const cx = hub.center.x * w;
+    const cy = hub.center.y * h;
+    const r = hub.radius * w;
+    const colors = COLORS.hub[hub.role];
+
+    const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
+    grad.addColorStop(0, colors.glow);
+    grad.addColorStop(1, "transparent");
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // 2. Connection lines between nodes within each hub
+  const nodesByHub = new Map<string, GeneratedNode[]>();
+  for (const n of nodes) {
+    const arr = nodesByHub.get(n.hubId) || [];
+    arr.push(n);
+    nodesByHub.set(n.hubId, arr);
+  }
+
+  for (const [, hubNodes] of nodesByHub) {
+    if (hubNodes.length < 2) continue;
+    const primary = hubNodes.find((n) => n.isPrimary);
+    if (!primary) continue;
+
+    ctx.strokeStyle =
+      primary.role === "transfer"
+        ? "rgba(255, 70, 0, 0.10)"
+        : "rgba(255, 255, 255, 0.05)";
+    ctx.lineWidth = 0.5;
+
+    for (const n of hubNodes) {
+      if (n.isPrimary) continue;
       ctx.beginPath();
-      traceLane(ctx, lane.points, w, h, 6);
+      ctx.moveTo(primary.x * w, primary.y * h);
+      ctx.lineTo(n.x * w, n.y * h);
       ctx.stroke();
     }
   }
-}
 
-function drawNodes(ctx: CanvasRenderingContext2D, w: number, h: number, time: number) {
-  for (const cluster of NODE_CLUSTERS) {
-    const isTransfer = cluster.role === "transfer";
-    for (let i = 0; i < cluster.points.length; i++) {
-      const x = cluster.points[i].x * w;
-      const y = cluster.points[i].y * h;
-      const breathe = isTransfer ? 1 + Math.sin(time * 1.5 + i * 1.2) * 0.12 : 1;
-      const base = i === 0 ? 2.5 : 1.6;
-      const r = base * breathe;
+  // 3. Hub perimeter ring (dashed for transfer hub)
+  for (const hub of HUBS) {
+    const cx = hub.center.x * w;
+    const cy = hub.center.y * h;
+    const r = hub.radius * w * 0.8;
+    const colors = COLORS.hub[hub.role];
 
-      ctx.fillStyle = isTransfer && i === 0
-        ? ROUTE_FIELD_COLORS.nodeActive
-        : ROUTE_FIELD_COLORS.node;
+    ctx.strokeStyle = colors.ring;
+    ctx.lineWidth = 0.6;
+
+    if (hub.role === "transfer") {
+      ctx.setLineDash([4, 6]);
+    }
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // 4. Individual nodes
+  for (const node of nodes) {
+    const x = node.x * w;
+    const y = node.y * h;
+    const colors = COLORS.hub[node.role];
+
+    const breathe = node.isPrimary && node.role === "transfer"
+      ? 1 + Math.sin(time * 1.2) * 0.15
+      : 1;
+
+    const baseSize = node.isPrimary ? 3.0 : 1.5 + node.size * 1.5;
+    const r = baseSize * breathe;
+
+    // Node fill
+    ctx.fillStyle = node.isPrimary ? colors.node : colors.node;
+    ctx.globalAlpha = node.isPrimary ? 1 : 0.5 + node.size * 0.3;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Primary node outer ring
+    if (node.isPrimary) {
+      ctx.strokeStyle = colors.ring;
+      ctx.lineWidth = 0.6;
+      ctx.globalAlpha = 0.6;
       ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.arc(x, y, r + 5, 0, Math.PI * 2);
+      ctx.stroke();
 
-      if (i === 0) {
-        ctx.strokeStyle = isTransfer
-          ? "rgba(255, 70, 0, 0.2)"
-          : "rgba(255, 255, 255, 0.1)";
-        ctx.lineWidth = 0.5;
+      // Second concentric ring for transfer hub
+      if (node.role === "transfer") {
+        ctx.globalAlpha = 0.3;
         ctx.beginPath();
-        ctx.arc(x, y, r + 4, 0, Math.PI * 2);
+        ctx.arc(x, y, r + 10, 0, Math.PI * 2);
         ctx.stroke();
       }
     }
+    ctx.globalAlpha = 1;
   }
 }
 
-// Reusable point objects to avoid allocation in hot loop
-const _pulsePos = { x: 0, y: 0 };
-const _trailPos = { x: 0, y: 0 };
+/** Draw inter-hub connection lines — visual handoff corridors between hub zones */
+function drawHubConnections(
+  ctx: CanvasRenderingContext2D,
+  w: number,
+  h: number
+) {
+  ctx.strokeStyle = "rgba(255, 70, 0, 0.06)";
+  ctx.lineWidth = 1;
+  ctx.setLineDash([8, 12]);
 
+  for (let i = 0; i < HUBS.length - 1; i++) {
+    const a = HUBS[i].center;
+    const b = HUBS[i + 1].center;
+    ctx.beginPath();
+    ctx.moveTo(a.x * w, a.y * h);
+    ctx.lineTo(b.x * w, b.y * h);
+    ctx.stroke();
+  }
+
+  ctx.setLineDash([]);
+}
+
+/** Draw pulses moving along corridor spines */
 function drawPulses(
   ctx: CanvasRenderingContext2D,
   w: number,
   h: number,
-  routeMap: Map<string, RouteLane>,
+  spineMap: Map<string, Point[]>,
   pulseStates: number[]
 ) {
   for (let i = 0; i < PULSES.length; i++) {
     const pulse = PULSES[i];
-    const route = routeMap.get(pulse.routeId);
-    if (!route) continue;
+    const spine = spineMap.get(pulse.routeId);
+    if (!spine) continue;
 
     const t = pulseStates[i];
-    if (t < 0 || t > 1) continue; // off-screen, skip drawing
+    if (t < 0 || t > 1) continue;
 
-    interpolatePolyline(route.points, t, w, h, _pulsePos);
+    lerpPoint(spine, t, w, h, _pos);
 
     // Glow
+    const glowR = pulse.size * 4;
     const grad = ctx.createRadialGradient(
-      _pulsePos.x, _pulsePos.y, 0,
-      _pulsePos.x, _pulsePos.y, pulse.size * 3.5
+      _pos.x, _pos.y, 0,
+      _pos.x, _pos.y, glowR
     );
     grad.addColorStop(0, pulse.color);
     grad.addColorStop(1, "transparent");
     ctx.fillStyle = grad;
     ctx.beginPath();
-    ctx.arc(_pulsePos.x, _pulsePos.y, pulse.size * 3.5, 0, Math.PI * 2);
+    ctx.arc(_pos.x, _pos.y, glowR, 0, Math.PI * 2);
     ctx.fill();
 
     // Core
     ctx.fillStyle = pulse.color;
     ctx.beginPath();
-    ctx.arc(_pulsePos.x, _pulsePos.y, pulse.size, 0, Math.PI * 2);
+    ctx.arc(_pos.x, _pos.y, pulse.size, 0, Math.PI * 2);
     ctx.fill();
 
     // Trail
     const isOrange = pulse.color === "#ff4600";
-    for (let s = 1; s <= 4; s++) {
-      const trailT = t - 0.015 * s;
-      if (trailT < 0) continue;
-      interpolatePolyline(route.points, trailT, w, h, _trailPos);
-      const a = (1 - s / 4) * 0.25;
+    for (let s = 1; s <= 5; s++) {
+      const tt = t - 0.012 * s;
+      if (tt < 0) continue;
+      lerpPoint(spine, tt, w, h, _trail);
+      const a = (1 - s / 5) * 0.3;
       ctx.fillStyle = isOrange
         ? `rgba(255,70,0,${a})`
         : `rgba(255,255,255,${a * 0.4})`;
       ctx.beginPath();
-      ctx.arc(_trailPos.x, _trailPos.y, pulse.size * 0.5, 0, Math.PI * 2);
+      ctx.arc(_trail.x, _trail.y, pulse.size * 0.5, 0, Math.PI * 2);
       ctx.fill();
     }
   }
 }
 
+/** Readability mask — darker zone behind text content, cleaner edges */
 function drawReadabilityMask(ctx: CanvasRenderingContext2D, w: number, h: number) {
-  // Center darkening — protects headline zone
-  const cg = ctx.createRadialGradient(w * 0.5, h * 0.42, 0, w * 0.5, h * 0.42, w * 0.45);
-  cg.addColorStop(0, "rgba(11,11,13,0.5)");
-  cg.addColorStop(0.55, "rgba(11,11,13,0.22)");
+  // Center darkening for headline
+  const cg = ctx.createRadialGradient(w * 0.5, h * 0.42, 0, w * 0.5, h * 0.42, w * 0.38);
+  cg.addColorStop(0, "rgba(11,11,13,0.52)");
+  cg.addColorStop(0.6, "rgba(11,11,13,0.20)");
   cg.addColorStop(1, "rgba(11,11,13,0)");
   ctx.fillStyle = cg;
   ctx.fillRect(0, 0, w, h);
@@ -211,14 +307,16 @@ function drawReadabilityMask(ctx: CanvasRenderingContext2D, w: number, h: number
   ctx.fillRect(0, 0, w, h);
 
   // Top vignette
-  const tg = ctx.createLinearGradient(0, 0, 0, h * 0.15);
-  tg.addColorStop(0, "rgba(11,11,13,0.3)");
+  const tg = ctx.createLinearGradient(0, 0, 0, h * 0.12);
+  tg.addColorStop(0, "rgba(11,11,13,0.35)");
   tg.addColorStop(1, "transparent");
   ctx.fillStyle = tg;
   ctx.fillRect(0, 0, w, h);
 }
 
-// ─── Component ───
+// ═══════════════════════════════════════════════════════
+// COMPONENT
+// ═══════════════════════════════════════════════════════
 
 interface Props {
   simplified?: boolean;
@@ -229,7 +327,17 @@ export default function AbstractRouteFieldCanvas({ simplified = false }: Props) 
   const animRef = useRef<number>(0);
   const sizeRef = useRef({ w: 0, h: 0 });
   const pulseStatesRef = useRef<number[]>(PULSES.map((p) => p.offset));
-  const routeMapRef = useRef(buildRouteMap());
+
+  // Pre-generate lane bundles and hub nodes (deterministic, only once)
+  const lanesRef = useRef(generateLanes());
+  const nodesRef = useRef(generateHubNodes());
+  const spineMapRef = useRef(
+    (() => {
+      const map = new Map<string, Point[]>();
+      for (const c of CORRIDORS) map.set(c.id, c.spine);
+      return map;
+    })()
+  );
 
   const draw = useCallback(
     (time: number) => {
@@ -238,35 +346,42 @@ export default function AbstractRouteFieldCanvas({ simplified = false }: Props) 
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
 
-      const s = sizeRef.current;
-      const { w, h } = s;
+      const { w, h } = sizeRef.current;
       if (w === 0) return;
 
       ctx.clearRect(0, 0, w, h);
       ctx.fillStyle = "#0b0b0d";
       ctx.fillRect(0, 0, w, h);
 
+      // Grid
       if (!simplified) drawGrid(ctx, w, h);
-      drawLanes(ctx, w, h);
-      drawNodes(ctx, w, h, time);
 
-      // Advance pulses
+      // Corridor bundles
+      drawCorridorBundles(ctx, w, h, lanesRef.current);
+
+      // Hub connections (dashed lines between hub centers)
+      if (!simplified) drawHubConnections(ctx, w, h);
+
+      // Hub zones, rings, nodes
+      drawHubs(ctx, w, h, time, nodesRef.current);
+
+      // Advance and draw pulses
       const ps = pulseStatesRef.current;
       for (let i = 0; i < PULSES.length; i++) {
         ps[i] += PULSES[i].speed * 0.016;
         if (ps[i] > 1.1) ps[i] = -0.1;
       }
-
       if (!simplified) {
-        drawPulses(ctx, w, h, routeMapRef.current, ps);
+        drawPulses(ctx, w, h, spineMapRef.current, ps);
       }
 
+      // Readability overlays
       drawReadabilityMask(ctx, w, h);
     },
     [simplified]
   );
 
-  // Handle sizing — only recalculate on mount and resize, not every frame
+  // Size management
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -274,15 +389,11 @@ export default function AbstractRouteFieldCanvas({ simplified = false }: Props) 
     const updateSize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const rect = canvas.getBoundingClientRect();
-      const w = rect.width;
-      const h = rect.height;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
       const ctx = canvas.getContext("2d");
-      if (ctx) {
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      }
-      sizeRef.current = { w, h };
+      if (ctx) ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      sizeRef.current = { w: rect.width, h: rect.height };
     };
 
     updateSize();
