@@ -104,7 +104,7 @@ high-power device?      → Full canvas
 |---|---|---|
 | Renderer | WebGL (R3F + custom shaders) | 2D Canvas API |
 | Dependencies | three, @react-three/fiber, @react-three/drei | None (native canvas) |
-| Particle count | 4000 3D particles | ~7 polylines + ~12 nodes + 4 pulses |
+| Particle count | 4000 3D particles | 6 polylines + 12 nodes + 4 pulses |
 | GPU usage | High (vertex + fragment shaders per frame) | Minimal (2D path drawing) |
 | Bundle impact | ~150KB+ (Three.js) | ~3KB (canvas code) |
 | Fallback | Static gradient | Full CSS route field |

@@ -42,7 +42,7 @@
 
 - [ ] Mobile experience clean and functional
 - [ ] ServicesHorizontal usable on mobile (vertical stack)
-- [ ] HeroGlobe has reduced-motion fallback
+- [x] Hero background (Abstract Route Field) has reduced-motion fallback
 - [ ] `prefers-reduced-motion` respected sitewide
 - [ ] Case study modal closeable via ESC
 - [ ] Mobile menu has aria-expanded

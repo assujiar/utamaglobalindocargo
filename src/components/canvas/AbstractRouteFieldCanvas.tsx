@@ -227,7 +227,7 @@ interface Props {
 export default function AbstractRouteFieldCanvas({ simplified = false }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animRef = useRef<number>(0);
-  const sizeRef = useRef({ w: 0, h: 0, dpr: 1 });
+  const sizeRef = useRef({ w: 0, h: 0 });
   const pulseStatesRef = useRef<number[]>(PULSES.map((p) => p.offset));
   const routeMapRef = useRef(buildRouteMap());
 
@@ -282,7 +282,7 @@ export default function AbstractRouteFieldCanvas({ simplified = false }: Props) 
       if (ctx) {
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
-      sizeRef.current = { w, h, dpr };
+      sizeRef.current = { w, h };
     };
 
     updateSize();

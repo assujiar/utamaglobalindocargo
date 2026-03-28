@@ -52,8 +52,8 @@
 
 | # | Task | File(s) | Priority |
 |---|---|---|---|
-| D1 | Add reduced-motion fallback to HeroGlobe | `src/components/canvas/HeroGlobe.tsx` | P1 |
-| D2 | Add reduced-motion fallback to HeroSection | `src/components/layout/HeroSection.tsx` | P1 |
+| D1 | ~~HeroGlobe removed~~ → Replaced with Abstract Route Field (done) | `src/components/canvas/AbstractRouteField*.tsx` | DONE |
+| D2 | Reduced-motion fallback in HeroSection + route field (done) | `src/components/layout/HeroSection.tsx` | DONE |
 | D3 | Add reduced-motion CSS media query | `src/app/globals.css` | P1 |
 | D4 | Add ESC close + focus trap to case study modal | `src/components/case-studies/CaseStudyModal.tsx` | P1 |
 | D5 | Ensure mobile UX is clean for ServicesHorizontal | `src/components/sections/ServicesHorizontal.tsx` | P1 |
