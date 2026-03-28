@@ -4,7 +4,7 @@ import CaseStudyGrid from "@/components/case-studies/CaseStudyGrid";
 export const metadata: Metadata = {
   title: "Studi Kasus | Utama Globalindo Cargo",
   description:
-    "Bagaimana kami membantu perusahaan dari berbagai industri menyelesaikan tantangan logistik mereka. Studi kasus dengan data terverifikasi.",
+    "Contoh ilustratif bagaimana pendekatan logistik yang tepat dapat menyelesaikan tantangan operasional di berbagai industri.",
 };
 
 export default function CaseStudiesPage() {

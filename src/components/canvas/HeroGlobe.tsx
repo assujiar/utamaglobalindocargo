@@ -1,10 +1,9 @@
 "use client";
 
-import { useRef, useMemo, useCallback } from "react";
+import { useRef, useMemo, useEffect, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-// Vertex shader - rotasi + interaksi kursor
 const vertexShader = `
   uniform float uTime;
   uniform vec2 uPointerPos;
@@ -17,7 +16,6 @@ const vertexShader = `
   void main() {
     vec3 pos = position;
 
-    // Rotasi lambat pada sumbu Y untuk efek orbit globe
     float angle = uTime * 0.15;
     float cosA = cos(angle);
     float sinA = sin(angle);
@@ -30,25 +28,15 @@ const vertexShader = `
     vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
     gl_Position = projectionMatrix * mvPosition;
 
-    // Proyeksi posisi partikel ke ruang layar normalisasi
     vec2 screenPos = gl_Position.xy / gl_Position.w;
-
-    // Kalkulus jarak vektor antara partikel dan kursor
     vDistance = length(screenPos - uPointerPos);
-
-    // Elevasi berdasarkan posisi Y asli untuk variasi warna
     vElevation = position.y;
 
-    // Point size - larger near cursor
     float proximity = 1.0 - smoothstep(0.0, 0.5, vDistance);
     gl_PointSize = aScale * (3.0 + proximity * 8.0) * (300.0 / -mvPosition.z);
   }
 `;
 
-// ============================================================
-// Fragment shader - color based on cursor proximity
-// Base: carbon dark (#111111), Proximity glow: logistics orange (#ff4600)
-// ============================================================
 const fragmentShader = `
   uniform float uTime;
 
@@ -56,52 +44,33 @@ const fragmentShader = `
   varying float vElevation;
 
   void main() {
-    // Bentuk partikel bulat (discard di luar radius)
     float dist = length(gl_PointCoord - vec2(0.5));
     if (dist > 0.5) discard;
 
-    // Soft edge untuk anti-aliasing partikel
     float alpha = 1.0 - smoothstep(0.3, 0.5, dist);
 
-    // Warna dasar: carbon dark (#111111 = 0.067, 0.067, 0.067)
     vec3 baseColor = vec3(0.067, 0.067, 0.067);
-
-    // Warna identitas merek: logistics orange (#ff4600 = 1.0, 0.275, 0.0)
     vec3 brandColor = vec3(1.0, 0.275, 0.0);
 
-    // Orange glow near cursor
     float proximity = 1.0 - smoothstep(0.0, 0.45, vDistance);
-    proximity = pow(proximity, 1.5); // Sharper falloff
+    proximity = pow(proximity, 1.5);
 
-    // Pulse subtil berdasarkan waktu untuk partikel dekat kursor
     float pulse = sin(uTime * 3.0 + vElevation * 5.0) * 0.15 + 0.85;
     proximity *= pulse;
 
-    // Ambient glow dasar agar globe terlihat tanpa interaksi
     float ambientGlow = 0.08 + 0.05 * sin(uTime * 0.5 + vElevation * 2.0);
 
-    // Campuran warna akhir
     vec3 finalColor = mix(baseColor, brandColor, max(proximity, ambientGlow));
-
-    // Alpha berdasarkan proximity + base visibility
     float finalAlpha = alpha * (0.4 + proximity * 0.6);
 
     gl_FragColor = vec4(finalColor, finalAlpha);
   }
 `;
 
-// ============================================================
-// Globe particles component
-// ============================================================
 function ParticleGlobe() {
-  const pointsRef = useRef<THREE.Points>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
-  const pointer = useRef(new THREE.Vector2(0, 0));
 
-  // Generasi formasi titik partikel sferis (distribusi Fibonacci)
-  // Menggunakan seeded pseudo-random agar hasil deterministik (pure)
   const { positions, scales } = useMemo(() => {
-    // Seeded PRNG (mulberry32) untuk deterministic random
     function seededRandom(seed: number) {
       let s = seed;
       return () => {
@@ -117,28 +86,22 @@ function ParticleGlobe() {
     const pos = new Float32Array(count * 3);
     const scl = new Float32Array(count);
     const radius = 2.2;
-
-    // Fibonacci sphere distribution
     const goldenRatio = (1 + Math.sqrt(5)) / 2;
 
     for (let i = 0; i < count; i++) {
       const theta = Math.acos(1 - (2 * (i + 0.5)) / count);
       const phi = (2 * Math.PI * i) / goldenRatio;
-
-      // Variasi radius untuk efek volume (tidak hanya permukaan)
       const r = radius * (0.85 + rand() * 0.3);
 
       pos[i * 3] = r * Math.sin(theta) * Math.cos(phi);
       pos[i * 3 + 1] = r * Math.sin(theta) * Math.sin(phi);
       pos[i * 3 + 2] = r * Math.cos(theta);
-
       scl[i] = 0.5 + rand() * 1.0;
     }
 
     return { positions: pos, scales: scl };
   }, []);
 
-  // Uniforms untuk shader
   const uniforms = useMemo(
     () => ({
       uTime: { value: 0 },
@@ -147,22 +110,9 @@ function ParticleGlobe() {
     []
   );
 
-  // Mouse tracking (NDC coords)
-  const handlePointerMove = useCallback(
-    (e: THREE.Event & { pointer?: THREE.Vector2 }) => {
-      if (e.pointer) {
-        pointer.current.copy(e.pointer);
-      }
-    },
-    []
-  );
-
-  // Update uniforms per frame
   useFrame((state) => {
     if (materialRef.current) {
       materialRef.current.uniforms.uTime.value = state.clock.elapsedTime;
-
-      // Smooth lerp untuk posisi pointer
       materialRef.current.uniforms.uPointerPos.value.lerp(
         state.pointer,
         0.05
@@ -171,16 +121,10 @@ function ParticleGlobe() {
   });
 
   return (
-    <points ref={pointsRef} onPointerMove={handlePointerMove}>
+    <points>
       <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          args={[positions, 3]}
-        />
-        <bufferAttribute
-          attach="attributes-aScale"
-          args={[scales, 1]}
-        />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-aScale" args={[scales, 1]} />
       </bufferGeometry>
       <shaderMaterial
         ref={materialRef}
@@ -195,10 +139,74 @@ function ParticleGlobe() {
   );
 }
 
-// ============================================================
-// Canvas wrapper
-// ============================================================
+/**
+ * Static fallback for reduced-motion preference or WebGL failure.
+ * Shows a subtle radial gradient matching the brand colors.
+ */
+function StaticFallback() {
+  return (
+    <div
+      className="absolute inset-0"
+      style={{
+        background:
+          "radial-gradient(ellipse at center, rgba(255,70,0,0.08) 0%, rgba(17,17,17,0) 60%)",
+      }}
+    />
+  );
+}
+
+/**
+ * Checks if WebGL is available and reduced motion is not preferred.
+ * Uses useSyncExternalStore to avoid setState-in-effect lint issues.
+ */
+function checkWebGLCapability(): boolean {
+  if (typeof window === "undefined") return false;
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+  if (prefersReducedMotion) return false;
+
+  try {
+    const canvas = document.createElement("canvas");
+    const gl =
+      canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+    return !!gl;
+  } catch {
+    return false;
+  }
+}
+
+// Cache the result since WebGL capability doesn't change
+let cachedResult: "yes" | "no" | null = null;
+function getCanRenderWebGL(): "yes" | "no" {
+  if (cachedResult === null) {
+    cachedResult = checkWebGLCapability() ? "yes" : "no";
+  }
+  return cachedResult;
+}
+
+function useCanRenderWebGL() {
+  const [status, setStatus] = useState<"yes" | "no" | "pending">("pending");
+
+  useEffect(() => {
+    // Deferred to avoid synchronous setState in effect body
+    const id = requestAnimationFrame(() => {
+      setStatus(getCanRenderWebGL());
+    });
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  return status;
+}
+
 export default function HeroGlobe() {
+  const canRender = useCanRenderWebGL();
+
+  if (canRender !== "yes") {
+    return <StaticFallback />;
+  }
+
   return (
     <Canvas
       camera={{ position: [0, 0, 5.5], fov: 50 }}

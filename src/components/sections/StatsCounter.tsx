@@ -1,79 +1,36 @@
 "use client";
 
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const STATS = [
-  { value: 14, suffix: "+", label: "Negara Tujuan Aktif", prefix: "" },
-  { value: 340, suffix: "+", label: "Kontainer Dikelola / Bulan", prefix: "" },
-  { value: 99.7, suffix: "%", label: "On-Time Delivery Rate", prefix: "" },
-  { value: 4.7, suffix: "M", label: "Efisiensi Biaya Klien / Tahun", prefix: "$" },
+const CAPABILITIES = [
+  {
+    headline: "Domestik & Internasional",
+    description: "Distribusi ke seluruh Indonesia dan freight forwarding lintas negara",
+  },
+  {
+    headline: "Customs & Compliance",
+    description: "Customs brokerage, klasifikasi HS, dan pengurusan dokumen LARTAS",
+  },
+  {
+    headline: "Warehouse & Fulfillment",
+    description: "Penyimpanan, inventory management, dan fulfillment per order",
+  },
+  {
+    headline: "Project & Special Cargo",
+    description: "Muatan khusus, oversized, heavy-lift, dan airfreight charter",
+  },
 ];
-
-function AnimatedNumber({
-  value,
-  suffix,
-  prefix,
-  triggered,
-}: {
-  value: number;
-  suffix: string;
-  prefix: string;
-  triggered: boolean;
-}) {
-  const [display, setDisplay] = useState(0);
-
-  useEffect(() => {
-    if (!triggered) return;
-
-    const duration = 2000;
-    const steps = 60;
-    const increment = value / steps;
-    let current = 0;
-    let step = 0;
-
-    const timer = setInterval(() => {
-      step++;
-      current = Math.min(value, increment * step);
-      setDisplay(current);
-      if (step >= steps) clearInterval(timer);
-    }, duration / steps);
-
-    return () => clearInterval(timer);
-  }, [triggered, value]);
-
-  const formatted = Number.isInteger(value)
-    ? Math.round(display).toLocaleString()
-    : display.toFixed(1);
-
-  return (
-    <span>
-      {prefix}
-      {formatted}
-      {suffix}
-    </span>
-  );
-}
 
 export default function StatsCounter() {
   const sectionRef = useRef<HTMLElement>(null);
-  const [triggered, setTriggered] = useState(false);
-
-  const handleTrigger = useCallback(() => setTriggered(true), []);
 
   useGSAP(
     () => {
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top 75%",
-        once: true,
-        onEnter: handleTrigger,
-      });
-
       gsap.fromTo(
         "[data-stat]",
         { opacity: 0, y: 30 },
@@ -101,31 +58,26 @@ export default function StatsCounter() {
           <div className="flex items-center justify-center gap-4 mb-6">
             <div className="w-12 h-[1px] bg-logistics-orange/30" />
             <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-carbon-dark/30">
-              Track Record
+              Kapabilitas
             </span>
             <div className="w-12 h-[1px] bg-logistics-orange/30" />
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-carbon-dark tracking-tight">
-            Dalam <span className="text-logistics-orange">Angka.</span>
+            Satu Partner,{" "}
+            <span className="text-logistics-orange">Semua Terurus.</span>
           </h2>
         </div>
 
-        {/* Stats grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-          {STATS.map((stat) => (
-            <div key={stat.label} data-stat className="text-center">
-              <span className="block text-4xl md:text-5xl lg:text-6xl font-black text-logistics-orange leading-none tracking-tight">
-                <AnimatedNumber
-                  value={stat.value}
-                  suffix={stat.suffix}
-                  prefix={stat.prefix}
-                  triggered={triggered}
-                />
+        {/* Capabilities grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+          {CAPABILITIES.map((cap) => (
+            <div key={cap.headline} data-stat className="text-center">
+              <span className="block text-lg md:text-xl font-black text-logistics-orange leading-tight tracking-tight">
+                {cap.headline}
               </span>
-              <span className="block mt-3 text-xs md:text-sm font-bold uppercase tracking-[0.2em] text-carbon-dark/30">
-                {stat.label}
+              <span className="block mt-3 text-sm text-carbon-dark/40 leading-relaxed">
+                {cap.description}
               </span>
-              {/* Garis dekoratif */}
               <div className="mt-4 mx-auto w-8 h-[1px] bg-logistics-orange/20" />
             </div>
           ))}

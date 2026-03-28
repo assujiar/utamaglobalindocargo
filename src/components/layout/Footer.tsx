@@ -15,7 +15,9 @@ const FOOTER_LINKS = [
   {
     title: "Perusahaan",
     links: [
+      { label: "Tentang Kami", href: "/about" },
       { label: "Studi Kasus", href: "/case-studies" },
+      { label: "FAQ", href: "/faq" },
       { label: "Kontak", href: "/contact" },
     ],
   },
@@ -27,7 +29,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           {/* Brand column */}
-          <div className="md:col-span-5">
+          <div className="md:col-span-4">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-8 h-8 bg-logistics-orange flex items-center justify-center">
                 <span className="text-white font-black text-sm leading-none">
@@ -41,9 +43,8 @@ export default function Footer() {
             <p className="text-white/30 text-sm leading-relaxed max-w-sm">
               Freight forwarding, customs brokerage, warehousing, dan project
               cargo untuk perusahaan yang membutuhkan partner logistik
-              terpercaya. Jakarta, Asia Pasifik.
+              terpercaya.
             </p>
-            {/* Decorative line */}
             <div className="mt-8 flex items-center gap-3">
               <div className="w-12 h-[1px] bg-logistics-orange/40" />
               <div className="w-2 h-2 bg-logistics-orange rotate-45" />
@@ -72,9 +73,9 @@ export default function Footer() {
           ))}
 
           {/* Contact column */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-4">
             <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-5">
-              Kontak
+              Hubungi Kami
             </h4>
             <ul className="space-y-3 text-sm text-white/50">
               <li>Jakarta, Indonesia</li>
@@ -87,6 +88,14 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
+            <div className="mt-6">
+              <Link
+                href="/contact"
+                className="inline-block px-5 py-2.5 bg-logistics-orange text-white text-xs font-bold uppercase tracking-widest hover:bg-logistics-orange/90 transition-colors duration-300"
+              >
+                Kirim Permintaan
+              </Link>
+            </div>
           </div>
         </div>
 

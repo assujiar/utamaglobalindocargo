@@ -1,11 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 
 const NAV_LINKS = [
+  { label: "Tentang", href: "/about" },
   { label: "Layanan", href: "/#layanan" },
   { label: "Studi Kasus", href: "/case-studies" },
+  { label: "FAQ", href: "/faq" },
   { label: "Kontak", href: "/contact" },
 ];
 
@@ -17,6 +19,20 @@ export default function Header() {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Close mobile menu on ESC
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
+
+  const toggleMenu = useCallback(() => {
+    setMenuOpen((prev) => !prev);
   }, []);
 
   return (
@@ -66,8 +82,10 @@ export default function Header() {
         {/* Mobile hamburger */}
         <button
           className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          onClick={toggleMenu}
+          aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
+          aria-expanded={menuOpen}
+          aria-controls="mobile-nav"
         >
           <span
             className={`block w-6 h-[2px] transition-all duration-300 ${
@@ -89,8 +107,13 @@ export default function Header() {
 
       {/* Mobile menu overlay */}
       {menuOpen && (
-        <div className="md:hidden bg-carbon-dark/98 backdrop-blur-lg">
-          <nav className="flex flex-col px-6 py-8 gap-6">
+        <nav
+          id="mobile-nav"
+          className="md:hidden bg-carbon-dark/98 backdrop-blur-lg"
+          role="navigation"
+          aria-label="Menu utama mobile"
+        >
+          <div className="flex flex-col px-6 py-8 gap-6">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
@@ -108,8 +131,8 @@ export default function Header() {
             >
               Hubungi Kami
             </Link>
-          </nav>
-        </div>
+          </div>
+        </nav>
       )}
     </header>
   );

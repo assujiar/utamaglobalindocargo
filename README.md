@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Utama Globalindo Cargo — Corporate Website
+
+Corporate website for PT Utama Globalindo Cargo, a freight forwarding and logistics company based in Jakarta, Indonesia. Built for digital visibility and executive-level lead generation.
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript (strict mode)
+- **Styling**: Tailwind CSS v4
+- **Animation**: GSAP, Framer Motion, Lenis (smooth scroll)
+- **3D**: React Three Fiber + Three.js (WebGL particle globe)
+- **Forms**: react-hook-form + Zod validation
+- **Backend**: Supabase (PostgreSQL + JSONB lead storage)
+- **Deployment**: Vercel
+
+## Brand Identity
+
+- **Primary Color**: `#ff4600` (Logistics Orange)
+- **Secondary Color**: `#111111` (Carbon Dark)
+- **Typography**: Inter / system sans-serif — bold, industrial feel
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Copy environment variables
+cp .env.example .env.local
+# Fill in your Supabase project URL and keys
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Type check
+npx tsc --noEmit
+
+# Lint
+npm run lint
+
+# Production build
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Required | Context | Description |
+|---|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Yes | Client + Server | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes | Client only | Supabase anonymous/public key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Yes | Server only | Supabase service role key (for API routes) |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+src/
+├── app/                    # App Router pages & layouts
+│   ├── api/leads/          # Lead capture API endpoint
+│   ├── about/              # Company page
+│   ├── contact/            # Lead capture form
+│   ├── case-studies/       # Anonymized case studies
+│   ├── faq/                # Frequently asked questions
+│   └── services/           # 6 service detail pages
+├── components/
+│   ├── canvas/             # WebGL/3D components
+│   ├── layout/             # Header, Footer, Hero, etc.
+│   ├── sections/           # Homepage sections
+│   ├── contact/            # Contact form
+│   └── services/           # Service page template
+├── hooks/                  # Custom React hooks
+├── lib/                    # Utilities (Supabase clients, analytics)
+└── types/                  # TypeScript type definitions
 
-To learn more about Next.js, take a look at the following resources:
+supabase/
+└── migrations/             # SQL migration files
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+docs/
+├── rebuild_audit/          # SSOT audit documents
+└── review-web-28-Maret-2026.md  # External review
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Architecture Constraints
 
-## Deploy on Vercel
+- **No customer login portal** — site is exclusively for digital visibility and lead generation
+- **No client authentication** — all compute freed for front-end rendering performance
+- **No fabricated proof** — stats, logos, and case studies must be evidence-based
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Known Issues / TODO
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Brand assets (logo SVG, OG image) need final designs from business team
+- Analytics GTM/GA4 container ID needs to be configured
+- Case studies flagged as illustrative — need business approval
+- Contact details (phone, address) need verification from operations
+- Privacy/consent text needs legal review
+
+## Supabase Setup
+
+1. Create a Supabase project
+2. Run migrations from `supabase/migrations/` in order
+3. Verify RLS policies are active on `leads_prospect` table
+4. Set environment variables in `.env.local` and Vercel dashboard
+
+## Deployment
+
+Configured for Vercel deployment. Push to main branch triggers production build.
+
+```bash
+# Verify before deploy
+npm run lint && npx tsc --noEmit && npm run build
+```
