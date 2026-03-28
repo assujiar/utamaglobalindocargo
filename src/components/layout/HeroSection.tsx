@@ -56,17 +56,17 @@ export default function HeroSection() {
       ref={sectionRef}
       className="relative min-h-[100svh] overflow-hidden bg-[#08080a]"
     >
-      {/* 3D Scene Background */}
+      {/* 3D Scene */}
       <CityLoopHero />
 
-      {/* Readability veil — darkens the upper content zone */}
+      {/* Readability veil — protects upper text zone, keeps lower scene visible */}
       <div
         aria-hidden="true"
         className="absolute inset-0 pointer-events-none"
         style={{
           background: `
-            radial-gradient(ellipse at 50% 35%, rgba(8,8,10,0.55) 0%, transparent 55%),
-            linear-gradient(to bottom, rgba(8,8,10,0.35) 0%, transparent 25%, transparent 65%, rgba(8,8,10,0.45) 100%)
+            radial-gradient(ellipse at 50% 30%, rgba(8,8,10,0.6) 0%, rgba(8,8,10,0.2) 40%, transparent 60%),
+            linear-gradient(to bottom, rgba(8,8,10,0.4) 0%, rgba(8,8,10,0.15) 35%, transparent 55%, rgba(8,8,10,0.2) 85%, rgba(8,8,10,0.5) 100%)
           `,
         }}
       />
@@ -74,13 +74,13 @@ export default function HeroSection() {
       {/* Content */}
       <div
         ref={contentRef}
-        className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl items-center px-6 pb-20 pt-28 sm:px-8 lg:px-12"
+        className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl items-center px-6 pb-24 pt-28 sm:px-8 lg:px-12"
       >
         <div className="mx-auto max-w-5xl text-center">
           {/* Pretitle */}
           <div data-reveal className="mb-5 md:mb-7 flex items-center justify-center gap-3">
             <span className="h-[1px] w-6 md:w-10 bg-logistics-orange/40" />
-            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-white/30">
+            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-white/35">
               Freight &bull; Customs &bull; Warehouse &bull; Project Cargo
             </span>
             <span className="h-[1px] w-6 md:w-10 bg-logistics-orange/40" />
@@ -149,16 +149,16 @@ export default function HeroSection() {
             </a>
             <a
               href="#layanan"
-              className="inline-flex items-center border border-white/12 px-7 py-4 text-white/50 text-sm font-bold uppercase tracking-widest hover:border-white/25 hover:text-white/75 transition-all duration-300"
+              className="inline-flex items-center border border-white/15 px-7 py-4 text-white/55 text-sm font-bold uppercase tracking-widest hover:border-logistics-orange/40 hover:text-white/80 transition-all duration-300"
             >
               Lihat Layanan
             </a>
           </div>
 
-          {/* Service scope line */}
+          {/* Service scope */}
           <div
             data-fade
-            className="mx-auto mt-12 md:mt-16 flex items-center justify-center gap-3"
+            className="mx-auto mt-12 md:mt-14 flex items-center justify-center gap-3"
           >
             <span className="h-[1px] w-6 md:w-10 bg-white/10" />
             <span className="text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.15em] text-white/30">
