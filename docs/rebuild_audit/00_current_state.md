@@ -19,7 +19,38 @@
 | Accessibility | 3/10 | Mostly missing |
 | Production readiness | 2.5/10 | Not ready |
 
-**Publish readiness: ~25-30%.**
+**Publish readiness (initial assessment): ~25-30%.**
+
+---
+
+## Phase 2 Status Update (2026-03-28)
+
+The following items from the original assessment have been resolved:
+
+### Lead Capture — FIXED
+- [x] False-success on network error → proper error state with fallback contact
+- [x] Form fields expanded: contact_person, phone_whatsapp, cargo_description, origin_destination, timeline, privacy_consent
+- [x] Server-side Zod validation on /api/leads
+- [x] Honeypot anti-spam field
+- [x] Server Supabase client (supabaseServer.ts) — anon browser client removed as dead code
+- [x] RLS enabled with insert-only anon policy (migration 00002)
+
+### Trust & Credibility — FIXED
+- [x] StatsCounter neutralized: displays capabilities, not unverified numbers
+- [x] Case studies marked as illustrative scenarios (not verified company achievements)
+- [x] Case study page/modal text corrected (NDA Protected → Skenario Ilustratif)
+- [x] ClientLogos placeholder component deleted
+- [x] README rewritten from scratch
+- [x] PROGRESS.md rewritten honestly
+
+### Still Needs Business Input
+- [ ] Real brand assets (logo, OG image)
+- [ ] Verified company stats (if any should be displayed)
+- [ ] Client logos with permission
+- [ ] Case study approval from stakeholders
+- [ ] Contact details (phone, WhatsApp, address)
+- [ ] Privacy policy text (legal review)
+- [ ] GTM/GA4 container ID
 
 ---
 

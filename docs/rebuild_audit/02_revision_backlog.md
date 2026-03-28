@@ -21,42 +21,43 @@
 | A11 | Rewrite PROGRESS.md honestly | `PROGRESS.md` | P0 |
 | A12 | Update .env.example with server key | `.env.example` | P0 |
 
-## Phase B — Lead Capture Hardening
+## Phase B — Lead Capture Hardening — ALL DONE
 
-| # | Task | File(s) | Priority |
-|---|---|---|---|
-| B1 | Fix false-success on network error | `src/components/contact/ContactForm.tsx` | P0 |
-| B2 | Add error state UI | `src/components/contact/ContactForm.tsx` | P0 |
-| B3 | Add fields: name, phone, cargo, route, timeline, consent | `src/components/contact/ContactForm.tsx` | P0 |
-| B4 | Add direct contact fallback (WhatsApp, phone, email) | `src/app/contact/page.tsx` | P0 |
-| B5 | Create server Supabase client | `src/lib/supabaseServer.ts` | P0 |
-| B6 | Refactor /api/leads to use server client | `src/app/api/leads/route.ts` | P0 |
-| B7 | Add server-side Zod validation | `src/app/api/leads/route.ts` | P0 |
-| B8 | Add honeypot field | `ContactForm.tsx` + `route.ts` | P1 |
-| B9 | Update Supabase migration with RLS + new fields | `supabase/migrations/` | P0 |
+| # | Task | Status |
+|---|---|---|
+| B1 | Fix false-success on network error | DONE |
+| B2 | Add error state UI | DONE |
+| B3 | Add fields: name, phone, cargo, route, timeline, consent | DONE |
+| B4 | Add direct contact fallback | DONE |
+| B5 | Create server Supabase client | DONE |
+| B6 | Refactor /api/leads to use server client | DONE |
+| B7 | Add server-side Zod validation | DONE |
+| B8 | Add honeypot field | DONE |
+| B9 | Update Supabase migration with RLS + new fields | DONE |
+| B10 | Remove dead browser supabaseClient.ts | DONE |
 
-## Phase C — Trust, IA, and Content
+## Phase C — Trust, IA, and Content — ALL DONE
 
-| # | Task | File(s) | Priority |
-|---|---|---|---|
-| C1 | Create About page | `src/app/about/page.tsx` | P1 |
-| C2 | Create FAQ page | `src/app/faq/page.tsx` | P1 |
-| C3 | Replace StatsCounter with neutral content | `src/components/sections/StatsCounter.tsx` | P0 |
-| C4 | Add company intro section to homepage | `src/app/page.tsx` | P1 |
-| C5 | Neutralize case study metrics | `src/lib/caseStudiesData.ts` | P0 |
-| C6 | Remove ClientLogos component | `src/components/sections/ClientLogos.tsx` | P1 |
-| C7 | Add footer direct contact channels | `src/components/layout/Footer.tsx` | P1 |
-| C8 | Update sitemap with new pages | `src/app/sitemap.ts` | P1 |
+| # | Task | Status |
+|---|---|---|
+| C1 | Create About page | DONE |
+| C2 | Create FAQ page | DONE |
+| C3 | Replace StatsCounter with neutral content | DONE |
+| C4 | Add company intro section to homepage | DONE |
+| C5 | Neutralize case study metrics (marked illustrative) | DONE |
+| C6 | Remove ClientLogos component | DONE |
+| C7 | Add footer direct contact channels | DONE |
+| C8 | Update sitemap with new pages | DONE |
 
-## Phase D — Motion, Performance, Polish
+## Phase D — Motion, Performance, Polish — ALL DONE
 
-| # | Task | File(s) | Priority |
-|---|---|---|---|
-| D1 | ~~HeroGlobe removed~~ → Replaced with Abstract Route Field (done) | `src/components/canvas/AbstractRouteField*.tsx` | DONE |
-| D2 | Reduced-motion fallback in HeroSection + route field (done) | `src/components/layout/HeroSection.tsx` | DONE |
-| D3 | Add reduced-motion CSS media query | `src/app/globals.css` | P1 |
-| D4 | Add ESC close + focus trap to case study modal | `src/components/case-studies/CaseStudyModal.tsx` | P1 |
-| D5 | Ensure mobile UX is clean for ServicesHorizontal | `src/components/sections/ServicesHorizontal.tsx` | P1 |
+| # | Task | Status |
+|---|---|---|
+| D1 | Hero replaced with CityLoop 3D scene | DONE |
+| D2 | Reduced-motion fallback (CityLoopHeroFallback) | DONE |
+| D3 | Reduced-motion CSS media query (globals.css) | DONE |
+| D4 | ESC close + focus trap on case study modal | DONE |
+| D5 | ServicesHorizontal rewritten (proper scroll-hijack + mobile stack) | DONE |
 
 ## Phase E — SEO, Analytics, Launch
 
