@@ -8,14 +8,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const CLIENTS = [
-  "Manufaktur",
-  "Farmasi",
-  "E-Commerce",
-  "Komoditas",
+  "Manufacturing",
+  "Pharmaceutical",
+  "E-Commerce & Retail",
+  "Commodities Trading",
   "FMCG",
-  "Bioteknologi",
-  "Otomotif",
-  "Energi",
+  "Energy & Mining",
+  "Automotive",
+  "Technology",
 ];
 
 export default function ClientLogos() {
@@ -49,7 +49,7 @@ export default function ClientLogos() {
         <div className="flex items-center justify-center gap-4 mb-12">
           <div className="w-12 h-[1px] bg-logistics-orange/30" />
           <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-carbon-dark/30">
-            Industri yang Kami Layani
+            Dipercaya Lintas Industri
           </span>
           <div className="w-12 h-[1px] bg-logistics-orange/30" />
         </div>

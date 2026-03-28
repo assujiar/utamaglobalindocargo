@@ -22,20 +22,20 @@ export default function Home() {
       <section className="py-32 md:py-48 bg-carbon-dark">
         <div className="max-w-5xl mx-auto px-6 md:px-12 text-center">
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.95]">
-            Punya Rencana Besar?
+            Setiap Bisnis Punya
             <br />
-            <span className="text-logistics-orange">Cerita ke Kami.</span>
+            <span className="text-logistics-orange">Tantangan Berbeda.</span>
           </h2>
           <p className="mt-8 text-base md:text-lg text-white/40 max-w-xl mx-auto leading-relaxed">
-            Satu percakapan 30 menit bisa mengubah cara Anda melihat logistik.
-            Gratis, tanpa ikatan, langsung dengan tim kami.
+            Kami tidak menawarkan paket template. Ceritakan situasi Anda,
+            dan kami akan jujur sampaikan apakah — dan bagaimana — kami bisa membantu.
           </p>
           <div className="mt-10">
             <a
               href="/contact"
               className="inline-block px-10 py-4 bg-logistics-orange text-white font-bold text-sm md:text-base uppercase tracking-widest hover:bg-logistics-orange/90 transition-colors duration-300"
             >
-              Jadwalkan Obrolan
+              Diskusikan Kebutuhan Anda
             </a>
           </div>
         </div>

@@ -10,10 +10,10 @@ import { useUTMCapture, getStoredUTMData } from "@/hooks/useUTMCapture";
 // Schema Validasi Zod — Perisai kebersihan data B2B
 // ============================================================
 const leadSchema = z.object({
-  pain_point: z.string().min(1, "Pilih salah satu yang paling mengganggu"),
-  operational_volume: z.string().min(1, "Pilih volume pengiriman Anda"),
-  company_name: z.string().min(2, "Kami perlu tahu nama perusahaan Anda"),
-  executive_email: z.string().email("Hmm, format emailnya belum tepat"),
+  pain_point: z.string().min(1, "Pilih layanan yang Anda butuhkan"),
+  operational_volume: z.string().min(1, "Pilih estimasi volume pengiriman"),
+  company_name: z.string().min(2, "Nama perusahaan wajib diisi"),
+  executive_email: z.string().email("Format email belum sesuai"),
 });
 
 type LeadFormData = z.infer<typeof leadSchema>;
@@ -23,24 +23,24 @@ type LeadFormData = z.infer<typeof leadSchema>;
 // ============================================================
 const PAIN_POINTS = [
   {
-    id: "warehouse-inefficiency",
-    label: "Gudang Berantakan",
-    desc: "Stok numpuk di satu tempat, kosong di tempat lain, biaya terus jalan",
+    id: "domestic-distribution",
+    label: "Distribusi Domestik",
+    desc: "FTL, LTL, FCL, LCL, atau airfreight ke seluruh Indonesia",
   },
   {
-    id: "freight-fragmentation",
-    label: "Pengiriman Ribet",
-    desc: "Terlalu banyak vendor, tracking tidak jelas, koordinasi melelahkan",
+    id: "international-freight",
+    label: "International Freight & Import DTD",
+    desc: "Ekspor, impor, atau door-to-door dari negara asal",
   },
   {
-    id: "customs-delay",
-    label: "Bea Cukai Bikin Pusing",
-    desc: "Dokumen sering ditolak, barang tertahan, kena denda terus",
+    id: "customs-warehouse",
+    label: "Customs Brokerage & Warehousing",
+    desc: "Pengurusan bea cukai, penyimpanan, dan fulfillment",
   },
   {
-    id: "supply-chain-blind",
-    label: "Tidak Tahu Barang di Mana",
-    desc: "Visibilitas minim, baru tahu masalah setelah terlambat",
+    id: "project-cargo-charter",
+    label: "Project Cargo, Blocspace & Charter",
+    desc: "Muatan khusus, oversized, atau kebutuhan kapasitas terjamin",
   },
 ];
 
@@ -50,23 +50,23 @@ const PAIN_POINTS = [
 const VOLUME_TIERS = [
   {
     id: "tier-entry",
-    label: "< $50k",
-    desc: "Baru mulai, atau skala masih kecil — tidak apa-apa",
+    label: "< $50k / bulan",
+    desc: "Skala awal atau pengiriman berkala dengan volume terbatas",
   },
   {
     id: "tier-regional",
-    label: "$50k — $150k",
-    desc: "Sudah rutin kirim barang, butuh partner yang lebih serius",
+    label: "$50k — $150k / bulan",
+    desc: "Pengiriman rutin dengan kebutuhan koordinasi multi-rute",
   },
   {
     id: "tier-national",
-    label: "$150k — $500k",
-    desc: "Distribusi nasional, kompleksitas mulai terasa",
+    label: "$150k — $500k / bulan",
+    desc: "Distribusi nasional atau multi-negara dengan volume konsisten",
   },
   {
     id: "tier-global",
-    label: "$500k+",
-    desc: "Volume besar, rute internasional, butuh yang benar-benar paham",
+    label: "$500k+ / bulan",
+    desc: "Operasi skala besar dengan rute internasional reguler",
   },
 ];
 
@@ -225,16 +225,15 @@ export default function ContactForm() {
               </div>
 
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.05]">
-                Sudah Kami Terima.{" "}
+                Terima Kasih.{" "}
                 <span className="text-logistics-orange">
-                  Tinggal Tunggu Kabar dari Kami.
+                  Kami Akan Segera Menghubungi.
                 </span>
               </h2>
 
               <p className="mt-8 text-base md:text-lg text-white/40 leading-relaxed max-w-2xl">
-                Tim kami akan menghubungi Anda dalam 24 jam kerja untuk
-                menjadwalkan diskusi pertama. Tidak ada sales pitch — cuma
-                obrolan jujur tentang apa yang bisa kami bantu.
+                Tim kami akan merespons dalam 1 hari kerja untuk menjadwalkan
+                diskusi awal sesuai kebutuhan yang Anda sampaikan.
               </p>
 
               {/* Garis dekoratif */}
@@ -259,8 +258,8 @@ export default function ContactForm() {
               {step === 1 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
-                    Apa yang paling menghambat{" "}
-                    <span className="text-logistics-orange">operasi Anda saat ini?</span>
+                    Layanan apa yang{" "}
+                    <span className="text-logistics-orange">Anda butuhkan?</span>
                   </h2>
 
                   <SelectionBlock
@@ -308,9 +307,9 @@ export default function ContactForm() {
               {step === 2 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
-                    Berapa kira-kira nilai pengiriman{" "}
+                    Estimasi volume{" "}
                     <span className="text-logistics-orange">
-                      per bulan Anda?
+                      pengiriman Anda?
                     </span>
                   </h2>
 
@@ -377,8 +376,8 @@ export default function ContactForm() {
               {step === 3 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
-                    Terakhir, sedikit{" "}
-                    <span className="text-logistics-orange">tentang Anda.</span>
+                    Siapa yang bisa{" "}
+                    <span className="text-logistics-orange">kami hubungi?</span>
                   </h2>
 
                   <div className="mt-8 space-y-6">

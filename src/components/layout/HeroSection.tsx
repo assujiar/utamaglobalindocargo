@@ -108,12 +108,12 @@ export default function HeroSection() {
         <h1 className="text-6xl md:text-8xl lg:text-[10rem] xl:text-[13rem] font-black uppercase leading-[0.82] tracking-tighter">
           <span className="block overflow-hidden">
             <span data-reveal className="block text-white/90">
-              Barang Anda
+              Logistik
             </span>
           </span>
           <span className="block overflow-hidden">
             <span data-reveal className="block text-logistics-orange">
-              Urusan Kami
+              Tanpa Drama
             </span>
           </span>
         </h1>
@@ -122,18 +122,19 @@ export default function HeroSection() {
         <div className="mt-6 md:mt-10 flex items-center justify-center gap-4">
           <div className="w-12 h-[1px] bg-logistics-orange/40" />
           <span data-reveal className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-white/30">
-            Sejak 2012 — Jakarta &bull; Asia Pasifik
+            Freight &bull; Customs &bull; Warehouse &bull; Project Cargo
           </span>
           <div className="w-12 h-[1px] bg-logistics-orange/40" />
         </div>
 
-        {/* Subtitle — satu kalimat yang langsung nyambung */}
+        {/* Subtitle */}
         <p
           data-subtitle
           className="mt-6 md:mt-10 text-base md:text-xl lg:text-2xl text-white/50 font-light max-w-2xl mx-auto tracking-wide leading-relaxed"
         >
-          Kami bukan sekadar kirim barang dari titik A ke B.
-          Kami pastikan bisnis Anda berjalan tanpa harus pusing soal logistik.
+          Logistik yang baik tidak perlu Anda pikirkan setiap hari.
+          Dari pengiriman domestik sampai impor door-to-door —
+          kami kelola supaya Anda bisa fokus mengembangkan bisnis.
         </p>
 
         {/* CTA Button */}
@@ -142,13 +143,13 @@ export default function HeroSection() {
             href="#layanan"
             className="inline-block px-10 py-4 bg-logistics-orange text-white font-bold text-sm md:text-base uppercase tracking-widest hover:bg-logistics-orange/90 transition-colors duration-300"
           >
-            Lihat Layanan
+            Layanan Kami
           </a>
           <a
             href="/contact"
             className="inline-block px-10 py-4 border border-white/20 text-white/60 font-bold text-sm md:text-base uppercase tracking-widest hover:border-logistics-orange hover:text-logistics-orange transition-colors duration-300"
           >
-            Ngobrol Dulu
+            Konsultasi Gratis
           </a>
         </div>
       </div>

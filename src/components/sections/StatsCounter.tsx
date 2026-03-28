@@ -8,10 +8,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const STATS = [
-  { value: 14, suffix: "+", label: "Negara Tujuan", prefix: "" },
-  { value: 340, suffix: "+", label: "Kontainer per Bulan", prefix: "" },
-  { value: 99.7, suffix: "%", label: "Pengiriman Tepat Waktu", prefix: "" },
-  { value: 4.7, suffix: "M", label: "Dihemat untuk Klien Kami", prefix: "$" },
+  { value: 14, suffix: "+", label: "Negara Tujuan Aktif", prefix: "" },
+  { value: 340, suffix: "+", label: "Kontainer Dikelola / Bulan", prefix: "" },
+  { value: 99.7, suffix: "%", label: "On-Time Delivery Rate", prefix: "" },
+  { value: 4.7, suffix: "M", label: "Efisiensi Biaya Klien / Tahun", prefix: "$" },
 ];
 
 function AnimatedNumber({
@@ -101,12 +101,12 @@ export default function StatsCounter() {
           <div className="flex items-center justify-center gap-4 mb-6">
             <div className="w-12 h-[1px] bg-logistics-orange/30" />
             <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-carbon-dark/30">
-              Bukan Janji, Ini Fakta
+              Track Record
             </span>
             <div className="w-12 h-[1px] bg-logistics-orange/30" />
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-carbon-dark tracking-tight">
-            Hasil Kerja, <span className="text-logistics-orange">Bukan Brosur.</span>
+            Bukan Klaim. <span className="text-logistics-orange">Ini Data.</span>
           </h2>
         </div>
 

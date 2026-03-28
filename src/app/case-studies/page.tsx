@@ -4,7 +4,7 @@ import CaseStudyGrid from "@/components/case-studies/CaseStudyGrid";
 export const metadata: Metadata = {
   title: "Studi Kasus — Utama Globalindo Cargo",
   description:
-    "Cerita nyata dari klien yang sudah merasakan bedanya bekerja dengan partner logistik yang benar-benar paham.",
+    "Bagaimana kami membantu perusahaan dari berbagai industri menyelesaikan tantangan logistik mereka. Studi kasus dengan data terverifikasi.",
 };
 
 export default function CaseStudiesPage() {
@@ -23,17 +23,17 @@ export default function CaseStudiesPage() {
 
           {/* Headline */}
           <h1 className="text-4xl md:text-6xl lg:text-8xl font-black text-white tracking-tight leading-[0.95]">
-            Mereka Punya
+            Situasi Berbeda,
             <br />
-            <span className="text-logistics-orange">Masalah Nyata.</span>
+            <span className="text-logistics-orange">Pendekatan Berbeda.</span>
             <br />
-            <span className="text-white/30">Ini Cara Kami Bantu.</span>
+            <span className="text-white/30">Hasil Terukur.</span>
           </h1>
 
           <p className="mt-8 text-base md:text-lg text-white/40 max-w-2xl leading-relaxed">
-            Bukan teori, bukan simulasi. Ini cerita dari klien yang sudah
-            merasakan langsung bedanya — lengkap dengan angka yang bisa
-            Anda verifikasi.
+            Setiap klien datang dengan tantangan yang unik. Berikut beberapa
+            contoh bagaimana kami merancang solusi spesifik dan hasil
+            yang tercapai.
           </p>
         </div>
       </section>

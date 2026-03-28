@@ -4,7 +4,7 @@ import ContactForm from "@/components/contact/ContactForm";
 export const metadata: Metadata = {
   title: "Kontak — Utama Globalindo Cargo",
   description:
-    "Ceritakan kebutuhan logistik Anda, kami dengarkan dan bantu carikan solusi yang pas.",
+    "Sampaikan kebutuhan logistik Anda dan kami akan merespons dalam 1 hari kerja dengan rekomendasi yang sesuai.",
 };
 
 export default function ContactPage() {

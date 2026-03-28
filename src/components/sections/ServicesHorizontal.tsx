@@ -13,42 +13,62 @@ gsap.registerPlugin(ScrollTrigger);
 // ============================================================
 const panels = [
   {
-    id: "pergudangan",
+    id: "domestic",
     number: "01",
-    label: "Pergudangan",
-    headline: "Gudang Anda Harusnya Menghasilkan, Bukan Cuma Menyimpan.",
+    label: "Domestic Distribution",
+    headline: "Seluruh Indonesia, Satu Koordinasi.",
     description:
-      "Banyak perusahaan punya gudang tapi belum punya strategi gudang. Ruang yang setengah kosong di satu lokasi, overstock di lokasi lain — semua itu diam-diam memakan margin Anda. Kami bantu tata ulang, dari penempatan barang sampai rotasi stok, supaya setiap meter persegi benar-benar bekerja.",
+      "FTL, LTL, FCL, LCL, atau airfreight domestik — apapun mode yang dibutuhkan, kami atur dari pickup sampai delivery. Anda tidak perlu kelola rute per rute atau vendor per vendor. Cukup satu titik koordinasi untuk seluruh distribusi nasional Anda.",
     accent: "bg-logistics-orange",
     theme: "dark" as const,
   },
   {
-    id: "angkutan",
+    id: "international",
     number: "02",
-    label: "Freight & Angkutan",
-    headline: "Terlalu Banyak Vendor, Terlalu Sedikit Kendali.",
+    label: "International Freight",
+    headline: "Impor dan Ekspor Tanpa Jeda.",
     description:
-      "Kalau Anda masih harus telepon tiga vendor berbeda untuk satu pengiriman, ada yang salah. Kami satukan semuanya — darat, laut, udara — dalam satu koordinasi. Anda cukup tahu kapan barang berangkat dan kapan sampai. Sisanya biar kami yang pusing.",
+      "FCL, LCL, dan airfreight — baik ekspor maupun impor. Kami tangani dari booking carrier, dokumentasi, sampai barang tiba di tujuan. Yang sering jadi bottleneck bukan jalurnya, tapi koordinasi di antara titik-titik transit. Di situ kami bekerja.",
     accent: "bg-logistics-orange",
     theme: "light" as const,
   },
   {
-    id: "kepabeanan",
+    id: "import-dtd",
     number: "03",
-    label: "Kepabeanan",
-    headline: "Dokumen Salah Satu Huruf, Barang Tertahan Berminggu-minggu.",
+    label: "Import DTD & Customs",
+    headline: "Dari Negara Asal Langsung ke Gudang Anda.",
     description:
-      "Urusan bea cukai itu detail dan tidak pernah maaf. Satu kode HS yang keliru bisa berarti penalti, denda, dan barang Anda menginap di pelabuhan tanpa kepastian. Tim kepabeanan kami sudah biasa dengan kerumitan ini — mereka tahu cara bicara dengan regulasi supaya barang Anda tetap bergerak.",
+      "Import door-to-door artinya Anda tidak perlu urus apapun di tengah jalan. Kami jemput dari origin, tangani customs clearance — termasuk klasifikasi HS, dokumen LARTAS, dan segala kerumitan regulasi — lalu antarkan sampai ke lokasi Anda.",
     accent: "bg-logistics-orange",
     theme: "dark" as const,
   },
   {
-    id: "rantai-pasok",
+    id: "warehouse",
     number: "04",
-    label: "Rantai Pasok",
-    headline: "Anda Tidak Bisa Kendalikan Apa yang Tidak Bisa Anda Lihat.",
+    label: "Warehousing & Fulfillment",
+    headline: "Gudang yang Bekerja, Bukan Sekadar Menyimpan.",
     description:
-      "Kebanyakan masalah logistik bukan karena tidak ada solusi, tapi karena masalahnya baru ketahuan setelah terlambat. Kami bangun visibilitas dari hulu ke hilir — Anda tahu posisi barang, tahu risiko keterlambatan, dan punya waktu untuk bertindak sebelum jadi kerugian.",
+      "Penyimpanan saja tidak cukup. Kami kelola inventory, atur penempatan barang untuk efisiensi picking, dan handle fulfillment per order. Gudang yang terkelola dengan benar bisa memangkas waktu dan biaya operasional secara signifikan.",
+    accent: "bg-logistics-orange",
+    theme: "light" as const,
+  },
+  {
+    id: "project-cargo",
+    number: "05",
+    label: "Project Cargo",
+    headline: "Muatan Khusus Butuh Penanganan Khusus.",
+    description:
+      "Alat berat, komponen oversized, atau material sensitif — pengiriman seperti ini tidak bisa pakai template standar. Kami rancang solusi per proyek: survei rute, perizinan khusus, alat angkut yang tepat, sampai penempatan di lokasi tujuan.",
+    accent: "bg-logistics-orange",
+    theme: "dark" as const,
+  },
+  {
+    id: "blocspace",
+    number: "06",
+    label: "Blocspace & Charter",
+    headline: "Kapasitas Terjamin, Bukan Sekadar Tersedia.",
+    description:
+      "Ketika volume Anda butuh jaminan ruang atau jadwal reguler tidak mencukupi, kami sediakan blocspace dan airfreight charter. Untuk peak season, peluncuran produk, atau kebutuhan mendesak yang tidak bisa menunggu slot berikutnya.",
     accent: "bg-logistics-orange",
     theme: "light" as const,
   },
@@ -123,11 +143,12 @@ function ServicePanel({
           {panel.headline.split(" ").map((word, i) => {
             // Aksentuasi kata kunci dengan warna oranye
             const accentWords = [
-              "Menghasilkan,",
-              "Kendali.",
-              "Tertahan",
-              "Berminggu-minggu.",
-              "Lihat.",
+              "Koordinasi.",
+              "Jeda.",
+              "Gudang",
+              "Anda.",
+              "Khusus.",
+              "Terjamin,",
             ];
             const isAccent = accentWords.includes(word);
             return (
@@ -210,15 +231,15 @@ export default function ServicesHorizontal() {
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-[1px] bg-logistics-orange" />
             <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">
-              Yang Kami Kerjakan
+              Layanan
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.95]">
-            Empat Hal yang
+            Dari Pengiriman Lokal
             <br />
-            <span className="text-logistics-orange">Sering Bikin Pusing.</span>
+            <span className="text-logistics-orange">Sampai Kargo Internasional.</span>
             <br />
-            <span className="text-white/40">Kebetulan, Itu Keahlian Kami.</span>
+            <span className="text-white/40">Satu Partner, Semua Terurus.</span>
           </h2>
         </div>
 

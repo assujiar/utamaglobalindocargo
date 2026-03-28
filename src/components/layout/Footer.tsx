@@ -4,10 +4,12 @@ const FOOTER_LINKS = [
   {
     title: "Layanan",
     links: [
-      { label: "Pergudangan", href: "/#layanan" },
-      { label: "Freight & Angkutan", href: "/#layanan" },
-      { label: "Kepabeanan", href: "/#layanan" },
-      { label: "Rantai Pasok", href: "/#layanan" },
+      { label: "Domestic Distribution", href: "/#layanan" },
+      { label: "International Freight", href: "/#layanan" },
+      { label: "Import DTD & Customs", href: "/#layanan" },
+      { label: "Warehousing & Fulfillment", href: "/#layanan" },
+      { label: "Project Cargo", href: "/#layanan" },
+      { label: "Blocspace & Charter", href: "/#layanan" },
     ],
   },
   {
@@ -37,9 +39,9 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-white/30 text-sm leading-relaxed max-w-sm">
-              Partner logistik untuk perusahaan yang tidak mau pusing soal
-              pengiriman, pergudangan, dan bea cukai. Berbasis di Jakarta,
-              beroperasi di seluruh Asia Pasifik.
+              Freight forwarding, customs brokerage, warehousing, dan project
+              cargo untuk perusahaan yang membutuhkan partner logistik
+              terpercaya. Jakarta — Asia Pasifik.
             </p>
             {/* Decorative line */}
             <div className="mt-8 flex items-center gap-3">
@@ -96,7 +98,7 @@ export default function Footer() {
           </p>
           <div className="flex items-center gap-6">
             <span className="text-[10px] text-white/10 uppercase tracking-widest">
-              Barang Anda, Urusan Kami
+              Logistik Tanpa Drama
             </span>
           </div>
         </div>

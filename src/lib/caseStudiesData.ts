@@ -16,109 +16,109 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     id: "supply-chain-alpha",
-    title: "14 Negara, Satu Kendali",
+    title: "Distribusi 14 Negara dalam Satu Jaringan Terpadu",
     client: "Konglomerat Manufaktur ASEAN",
-    industry: "Manufaktur",
+    industry: "Manufacturing",
     metric: "47%",
-    metricLabel: "Lebih Cepat",
+    metricLabel: "Reduksi Lead Time",
     summary:
-      "Klien ini punya pabrik di 14 negara tapi rantai pasoknya masih dikelola seperti perusahaan satu kota. Kami ubah itu.",
+      "Klien mengelola distribusi di 14 negara dengan vendor berbeda di setiap titik. Kami konsolidasi seluruhnya ke dalam satu jaringan yang saling ter-backup.",
     challenge:
-      "Setiap gangguan di satu titik, efek dominonya terasa di mana-mana. Tim mereka butuh 72 jam cuma untuk stabilisasi kalau ada masalah. Vendor di 14 negara, tapi tidak ada yang benar-benar tahu gambaran besarnya.",
+      "Setiap gangguan di satu negara memicu efek domino ke rantai pasok lainnya. Stabilisasi membutuhkan rata-rata 72 jam. Tidak ada satu pihak pun yang memiliki gambaran menyeluruh dari seluruh operasi.",
     solution:
-      "Kami rancang ulang jalur distribusi mereka dari hub-and-spoke jadi jaringan yang saling backup. Kalau satu jalur bermasalah, barang otomatis dialihkan ke rute lain — dalam hitungan menit, bukan hari.",
+      "Kami rancang ulang jalur distribusi dari hub-and-spoke menjadi jaringan yang memungkinkan re-routing otomatis. Ketika satu jalur terganggu, barang dialihkan ke rute alternatif tanpa intervensi manual.",
     result:
-      "Lead time turun 47%. Biaya denda pelabuhan turun 62%. 18 bulan berturut-turut tanpa kehabisan stok.",
+      "Lead time berkurang 47%. Biaya demurrage turun 62%. Tidak ada stockout selama 18 bulan berturut-turut sejak implementasi.",
     color: "dark",
     gridSpan: "tall",
   },
   {
     id: "customs-velocity",
-    title: "Dari 6 Hari Jadi 2 Hari di Bea Cukai",
+    title: "Clearance Time dari 6 Hari Menjadi Kurang dari 2 Hari",
     client: "Distributor Farmasi Regional",
-    industry: "Farmasi",
+    industry: "Pharmaceutical",
     metric: "3.2x",
-    metricLabel: "Lebih Cepat",
+    metricLabel: "Percepatan Clearance",
     summary:
-      "Proses customs mereka masih manual dan sering salah kode. Kami digitalisasi semuanya sebelum barang sampai di pelabuhan.",
+      "Proses bea cukai klien masih manual dengan tingkat kesalahan klasifikasi yang tinggi. Kami digitalisasi seluruh alur sebelum barang tiba di pelabuhan.",
     challenge:
-      "Rata-rata 5.7 hari per pengiriman nyangsang di bea cukai. 23% kiriman salah kode HS — artinya denda, delay, dan tim yang frustrasi berulang kali.",
+      "Rata-rata 5.7 hari per pengiriman tertahan di bea cukai. Kesalahan klasifikasi HS Code terjadi pada 23% pengiriman — mengakibatkan penalti berulang dan keterlambatan distribusi ke rumah sakit.",
     solution:
-      "Kami terapkan sistem klasifikasi otomatis dan pre-clearance. Dokumen sudah siap dan terverifikasi sebelum kontainer tiba. Tim bea cukai mereka sekarang bisa fokus ke hal lain.",
+      "Sistem klasifikasi otomatis dan pre-clearance yang memproses seluruh dokumentasi sebelum kontainer tiba. Tim bea cukai klien bisa fokus ke pengawasan strategis, bukan administrasi harian.",
     result:
-      "Waktu clearance turun dari 5.7 hari jadi 1.8 hari. Kesalahan kode turun ke 0.3%. Hemat $2.1 juta per tahun dari penalti yang hilang.",
+      "Waktu clearance turun dari 5.7 hari menjadi 1.8 hari. Error rate klasifikasi turun ke 0.3%. Penghematan $2.1M per tahun dari eliminasi penalti.",
     color: "light",
     gridSpan: "normal",
   },
   {
     id: "warehouse-singularity",
-    title: "6 Gudang Setengah Kosong, Sekarang 89% Terpakai",
-    client: "E-Commerce Skala Nasional",
-    industry: "E-Commerce",
+    title: "Utilisasi Gudang dari 54% Naik ke 89%",
+    client: "E-Commerce Enterprise Nasional",
+    industry: "E-Commerce & Retail",
     metric: "89%",
     metricLabel: "Utilisasi Gudang",
     summary:
-      "Gudang mereka banyak, tapi setengahnya tidak efisien. Kami tata ulang cara mereka menaruh dan merotasi barang.",
+      "Enam gudang dengan utilisasi rendah dan distribusi inventaris yang tidak merata. Kami tata ulang penempatan dan rotasi stok berdasarkan data demand aktual.",
     challenge:
-      "Utilisasi cuma 54% rata-rata. Di satu gudang overstock, di gudang lain kosong. Picking lambat karena penempatan SKU tidak pernah dioptimasi.",
+      "Utilisasi rata-rata hanya 54% di 6 lokasi. Overstock dan stockout terjadi bersamaan di lokasi berbeda. Proses picking lambat karena penempatan SKU tidak pernah dioptimasi sejak gudang pertama kali beroperasi.",
     solution:
-      "Kami bangun sistem rotasi stok antar-gudang berdasarkan data demand per wilayah. Penempatan barang ditata ulang supaya proses picking lebih pendek dan cepat.",
+      "Sistem rotasi stok antar-gudang berdasarkan prediksi demand per wilayah. Penempatan SKU ditata ulang untuk meminimalkan jarak picking. Inventory visibility real-time di seluruh lokasi.",
     result:
-      "Utilisasi naik ke 89%. Biaya operasional gudang turun 34%. Fulfillment 2.8 kali lebih cepat.",
+      "Utilisasi gudang naik ke 89%. Biaya operasional turun 34%. Kecepatan fulfillment meningkat 2.8x.",
     color: "dark",
     gridSpan: "wide",
   },
   {
     id: "freight-orchestration",
-    title: "340 Kontainer, 1 Dashboard",
+    title: "340+ Kontainer per Bulan dalam Satu Dashboard",
     client: "Trading House Komoditas",
-    industry: "Perdagangan",
+    industry: "Commodities Trading",
     metric: "$4.7M",
-    metricLabel: "Dihemat per Tahun",
+    metricLabel: "Efisiensi Biaya / Tahun",
     summary:
-      "7 freight forwarder, ratusan kontainer per bulan, tapi tracking cuma ada untuk sepertiga pengiriman. Kami satukan semuanya.",
+      "Tujuh freight forwarder berbeda, ratusan kontainer per bulan, tapi tracking hanya tersedia untuk sepertiga pengiriman. Kami satukan seluruhnya.",
     challenge:
-      "Informasi tersebar di 7 vendor berbeda. Real-time tracking cuma tersedia untuk 31% pengiriman. Sisanya? Tim mereka cuma bisa berharap dan menebak.",
+      "Informasi tersebar di 7 vendor tanpa integrasi. Real-time visibility hanya tersedia untuk 31% pengiriman. Tim operasional menghabiskan lebih banyak waktu mencari informasi daripada mengambil keputusan.",
     solution:
-      "Satu dashboard yang menghubungkan semua carrier. Setiap kontainer terlihat posisinya, kapan berangkat, kapan sampai. Konsolidasi muatan juga kami optimalkan supaya tidak ada ruang kontainer yang terbuang.",
+      "Satu dashboard terintegrasi yang menghubungkan seluruh carrier. Setiap kontainer terpantau posisi dan ETD/ETA-nya. Konsolidasi muatan dioptimalkan untuk memaksimalkan kapasitas kontainer.",
     result:
-      "Visibilitas naik ke 99.7%. Hemat $4.7 juta dari konsolidasi yang lebih pintar. Transit time rata-rata berkurang 12 hari.",
+      "Visibility naik ke 99.7%. Efisiensi biaya $4.7M per tahun dari optimasi konsolidasi. Transit time rata-rata berkurang 12 hari.",
     color: "light",
     gridSpan: "tall",
   },
   {
     id: "cold-chain-integrity",
-    title: "Vaksin Harus Dingin, Tanpa Kompromi",
-    client: "Perusahaan Bioteknologi SEA",
-    industry: "Bioteknologi",
+    title: "Cold Chain Compliance 99.8% untuk Distribusi Vaksin",
+    client: "Perusahaan Bioteknologi Asia Tenggara",
+    industry: "Biotech & Life Sciences",
     metric: "99.8%",
-    metricLabel: "Suhu Terjaga",
+    metricLabel: "Temperature Compliance",
     summary:
-      "Distribusi vaksin di 6 negara tropis. Satu derajat keluar batas, produk senilai miliaran harus dimusnahkan.",
+      "Distribusi vaksin dan biofarmasi di 6 negara tropis dengan toleransi suhu yang sangat ketat. Satu deviasi berarti produk harus dimusnahkan.",
     challenge:
-      "18% pengiriman pernah mengalami deviasi suhu. Kerugian $3.4 juta per tahun dari produk yang harus dibuang. Monitoring manual tidak bisa mendeteksi masalah sebelum terlambat.",
+      "Deviasi suhu terjadi pada 18% pengiriman. Kerugian $3.4M per tahun dari produk yang harus dibuang. Monitoring manual tidak mampu mendeteksi masalah sebelum kerusakan sudah terjadi.",
     solution:
-      "Kami pasang sensor IoT di setiap unit pendingin dengan monitoring real-time. Sistem kami bisa mendeteksi risiko deviasi 2 jam sebelum terjadi dan otomatis mengalihkan ke fasilitas terdekat.",
+      "IoT sensor di setiap unit pendingin dengan telemetri real-time. Sistem prediktif mendeteksi risiko deviasi 2 jam sebelum terjadi dan memicu re-routing otomatis ke fasilitas cold storage terdekat.",
     result:
-      "Suhu terjaga 99.8%. Kerugian produk turun 94%. Investasi balik modal dalam 7 bulan.",
+      "Temperature compliance mencapai 99.8%. Kerugian produk turun 94%. Investasi kembali dalam 7 bulan.",
     color: "dark",
     gridSpan: "normal",
   },
   {
     id: "last-mile-velocity",
-    title: "Pengiriman 2x Lebih Cepat ke 12 Kota",
+    title: "SLA Delivery dari 67% Naik ke 96% di 12 Kota",
     client: "Konglomerat FMCG Nasional",
-    industry: "FMCG",
+    industry: "FMCG & Consumer Goods",
     metric: "2.1x",
-    metricLabel: "Lebih Cepat",
+    metricLabel: "Percepatan Delivery",
     summary:
-      "Janji pengiriman 24 jam, tapi di lapangan cuma tercapai 67%. Kami redesain total jaringan last-mile mereka.",
+      "Janji delivery 24 jam yang konsisten tidak tercapai di kota-kota tier-2. Kami redesain jaringan last-mile dari hub tunggal ke micro-fulfillment terdistribusi.",
     challenge:
-      "SLA 24 jam cuma tercapai 67% di kota tier-2. Biaya last-mile makan 43% total biaya logistik. Komplain pelanggan terus naik dan tim lapangan kewalahan.",
+      "SLA 24 jam hanya tercapai 67% di kota tier-2. Biaya last-mile mengonsumsi 43% total biaya logistik. Volume komplain meningkat dan menggerus reputasi brand di pasar lokal.",
     solution:
-      "Kami bangun 48 titik micro-fulfillment di kota-kota strategis. Order otomatis dialokasikan ke titik terdekat. Rute pengiriman dioptimasi supaya tidak ada jalan bolak-balik.",
+      "Jaringan 48 titik micro-fulfillment di lokasi strategis. Order otomatis dialokasikan ke titik terdekat. Rute pengiriman dioptimasi untuk mengurangi jarak tempuh dan idle time.",
     result:
-      "SLA tercapai 96%. Biaya last-mile turun 38%. Kecepatan pengiriman meningkat 2.1 kali rata-rata.",
+      "SLA compliance naik ke 96%. Biaya last-mile turun 38%. Kecepatan delivery meningkat 2.1x rata-rata.",
     color: "light",
     gridSpan: "wide",
   },

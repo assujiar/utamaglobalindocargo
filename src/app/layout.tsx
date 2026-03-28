@@ -14,33 +14,33 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Utama Globalindo Cargo — Barang Anda, Urusan Kami",
+    default: "Utama Globalindo Cargo — Freight Forwarding & Logistics",
     template: "%s | Utama Globalindo Cargo",
   },
   description:
-    "Partner logistik untuk perusahaan yang serius soal pengiriman, pergudangan, kepabeanan, dan rantai pasok. Berbasis di Jakarta, beroperasi di Asia Pasifik.",
+    "Freight forwarding, customs brokerage, warehousing, dan project cargo untuk perusahaan yang membutuhkan partner logistik terpercaya. Jakarta — Asia Pasifik.",
   keywords: [
-    "logistik B2B Indonesia",
-    "freight forwarding Jakarta",
-    "supply chain management",
-    "warehouse management",
-    "customs brokerage Indonesia",
-    "jasa pengiriman korporat",
-    "kargo Indonesia",
+    "freight forwarding Indonesia",
+    "customs brokerage Jakarta",
+    "logistics company Indonesia",
+    "warehouse fulfillment",
+    "project cargo",
+    "international shipping",
+    "supply chain Indonesia",
   ],
   openGraph: {
     type: "website",
     locale: "id_ID",
     siteName: "Utama Globalindo Cargo",
-    title: "Utama Globalindo Cargo — Barang Anda, Urusan Kami",
+    title: "Utama Globalindo Cargo — Freight Forwarding & Logistics",
     description:
-      "Partner logistik untuk perusahaan yang tidak mau pusing soal pengiriman. Jakarta — Asia Pasifik.",
+      "Freight forwarding, customs brokerage, warehousing, dan project cargo. Jakarta — Asia Pasifik.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Utama Globalindo Cargo — Barang Anda, Urusan Kami",
+    title: "Utama Globalindo Cargo — Freight Forwarding & Logistics",
     description:
-      "Partner logistik untuk perusahaan yang serius. Pergudangan, freight, bea cukai, rantai pasok.",
+      "Domestic & international freight, customs, warehousing, project cargo. Jakarta — Asia Pasifik.",
   },
   robots: {
     index: true,
