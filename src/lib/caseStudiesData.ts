@@ -16,109 +16,109 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     id: "supply-chain-alpha",
-    title: "Restrukturisasi Rantai Pasok Multinasional",
+    title: "14 Negara, Satu Kendali",
     client: "Konglomerat Manufaktur ASEAN",
-    industry: "Manufaktur Berat",
+    industry: "Manufaktur",
     metric: "47%",
-    metricLabel: "Reduksi Lead Time",
+    metricLabel: "Lebih Cepat",
     summary:
-      "Transformasi arsitektur distribusi 14 negara dari model hub-and-spoke menjadi jaringan mesh adaptif.",
+      "Klien ini punya pabrik di 14 negara tapi rantai pasoknya masih dikelola seperti perusahaan satu kota. Kami ubah itu.",
     challenge:
-      "Fragmentasi vendor di 14 titik negara menciptakan bottleneck berulang. Setiap gangguan rantai pasok menghasilkan efek domino yang memakan waktu 72 jam untuk stabilisasi.",
+      "Setiap gangguan di satu titik, efek dominonya terasa di mana-mana. Tim mereka butuh 72 jam cuma untuk stabilisasi kalau ada masalah. Vendor di 14 negara, tapi tidak ada yang benar-benar tahu gambaran besarnya.",
     solution:
-      "Implementasi orkestrasi rantai pasok terpadu dengan routing algoritmik real-time. Jaringan mesh adaptif mengeliminasi single-point-of-failure dan memungkinkan re-routing otomatis dalam hitungan menit.",
+      "Kami rancang ulang jalur distribusi mereka dari hub-and-spoke jadi jaringan yang saling backup. Kalau satu jalur bermasalah, barang otomatis dialihkan ke rute lain — dalam hitungan menit, bukan hari.",
     result:
-      "Lead time tereduksi 47%. Biaya demurrage turun 62%. Zero stockout selama 18 bulan berturut-turut.",
+      "Lead time turun 47%. Biaya denda pelabuhan turun 62%. 18 bulan berturut-turut tanpa kehabisan stok.",
     color: "dark",
     gridSpan: "tall",
   },
   {
     id: "customs-velocity",
-    title: "Akselerasi Kepabeanan Zero-Delay",
+    title: "Dari 6 Hari Jadi 2 Hari di Bea Cukai",
     client: "Distributor Farmasi Regional",
-    industry: "Farmasi & Healthcare",
+    industry: "Farmasi",
     metric: "3.2x",
-    metricLabel: "Percepatan Clearance",
+    metricLabel: "Lebih Cepat",
     summary:
-      "Digitalisasi end-to-end proses kepabeanan dari deklarasi manual menjadi pre-clearance algoritmik.",
+      "Proses customs mereka masih manual dan sering salah kode. Kami digitalisasi semuanya sebelum barang sampai di pelabuhan.",
     challenge:
-      "Proses kepabeanan manual memakan rata-rata 5.7 hari per shipment. Kesalahan klasifikasi HS Code terjadi pada 23% pengiriman, mengakibatkan penalti dan keterlambatan kritis.",
+      "Rata-rata 5.7 hari per pengiriman nyangsang di bea cukai. 23% kiriman salah kode HS — artinya denda, delay, dan tim yang frustrasi berulang kali.",
     solution:
-      "Mesin kepatuhan regulasi dengan klasifikasi HS Code otomatis berbasis AI dan pre-clearance yang memproses dokumentasi sebelum kontainer tiba di pelabuhan tujuan.",
+      "Kami terapkan sistem klasifikasi otomatis dan pre-clearance. Dokumen sudah siap dan terverifikasi sebelum kontainer tiba. Tim bea cukai mereka sekarang bisa fokus ke hal lain.",
     result:
-      "Clearance time tereduksi dari 5.7 hari menjadi 1.8 hari. Error rate klasifikasi turun ke 0.3%. Penghematan penalti $2.1M per tahun.",
+      "Waktu clearance turun dari 5.7 hari jadi 1.8 hari. Kesalahan kode turun ke 0.3%. Hemat $2.1 juta per tahun dari penalti yang hilang.",
     color: "light",
     gridSpan: "normal",
   },
   {
     id: "warehouse-singularity",
-    title: "Konvergensi Pergudangan Dinamis",
-    client: "E-Commerce Enterprise Tier-1",
-    industry: "Retail & E-Commerce",
+    title: "6 Gudang Setengah Kosong, Sekarang 89% Terpakai",
+    client: "E-Commerce Skala Nasional",
+    industry: "E-Commerce",
     metric: "89%",
-    metricLabel: "Utilisasi Ruang",
+    metricLabel: "Utilisasi Gudang",
     summary:
-      "Transformasi 6 gudang statis menjadi jaringan fulfillment dinamis dengan alokasi ruang algoritmik.",
+      "Gudang mereka banyak, tapi setengahnya tidak efisien. Kami tata ulang cara mereka menaruh dan merotasi barang.",
     challenge:
-      "Utilisasi rata-rata hanya 54% di 6 lokasi gudang. Maldistribusi inventaris menyebabkan overstock di satu lokasi dan stockout di lokasi lain secara simultan.",
+      "Utilisasi cuma 54% rata-rata. Di satu gudang overstock, di gudang lain kosong. Picking lambat karena penempatan SKU tidak pernah dioptimasi.",
     solution:
-      "Sistem alokasi ruang dinamis yang merotasi inventaris antar-gudang berdasarkan prediksi demand regional. Slotting algoritmik mengoptimalkan penempatan SKU untuk minimalisasi pick-path.",
+      "Kami bangun sistem rotasi stok antar-gudang berdasarkan data demand per wilayah. Penempatan barang ditata ulang supaya proses picking lebih pendek dan cepat.",
     result:
-      "Utilisasi ruang melonjak ke 89%. Biaya operasional gudang turun 34%. Kecepatan fulfillment meningkat 2.8x.",
+      "Utilisasi naik ke 89%. Biaya operasional gudang turun 34%. Fulfillment 2.8 kali lebih cepat.",
     color: "dark",
     gridSpan: "wide",
   },
   {
     id: "freight-orchestration",
-    title: "Orkestrasi Armada Kontainer Intercontinental",
-    client: "Trading House Komoditas Global",
-    industry: "Perdagangan Komoditas",
+    title: "340 Kontainer, 1 Dashboard",
+    client: "Trading House Komoditas",
+    industry: "Perdagangan",
     metric: "$4.7M",
-    metricLabel: "Penghematan Tahunan",
+    metricLabel: "Dihemat per Tahun",
     summary:
-      "Konsolidasi manajemen 340+ kontainer/bulan dari 7 freight forwarder ke platform komando tunggal.",
+      "7 freight forwarder, ratusan kontainer per bulan, tapi tracking cuma ada untuk sepertiga pengiriman. Kami satukan semuanya.",
     challenge:
-      "Koordinasi dengan 7 freight forwarder independen menciptakan informational blackhole. Visibility real-time terhadap posisi kontainer hanya tersedia untuk 31% shipment.",
+      "Informasi tersebar di 7 vendor berbeda. Real-time tracking cuma tersedia untuk 31% pengiriman. Sisanya? Tim mereka cuma bisa berharap dan menebak.",
     solution:
-      "Platform komando tunggal yang mengintegrasikan seluruh carrier ke dalam satu dashboard visibility. Algoritma konsolidasi mengoptimalkan pemanfaatan kapasitas kontainer secara otomatis.",
+      "Satu dashboard yang menghubungkan semua carrier. Setiap kontainer terlihat posisinya, kapan berangkat, kapan sampai. Konsolidasi muatan juga kami optimalkan supaya tidak ada ruang kontainer yang terbuang.",
     result:
-      "Visibility meningkat ke 99.7%. Penghematan $4.7M dari optimisasi konsolidasi. Rata-rata transit time tereduksi 12 hari.",
+      "Visibilitas naik ke 99.7%. Hemat $4.7 juta dari konsolidasi yang lebih pintar. Transit time rata-rata berkurang 12 hari.",
     color: "light",
     gridSpan: "tall",
   },
   {
     id: "cold-chain-integrity",
-    title: "Integritas Cold Chain Farmasi Transnasional",
-    client: "Perusahaan Bioteknologi Asia Tenggara",
-    industry: "Bioteknologi & Life Sciences",
+    title: "Vaksin Harus Dingin, Tanpa Kompromi",
+    client: "Perusahaan Bioteknologi SEA",
+    industry: "Bioteknologi",
     metric: "99.8%",
-    metricLabel: "Compliance Suhu",
+    metricLabel: "Suhu Terjaga",
     summary:
-      "Pembangunan jaringan cold chain end-to-end untuk distribusi vaksin dan biofarmasi di 6 negara tropis.",
+      "Distribusi vaksin di 6 negara tropis. Satu derajat keluar batas, produk senilai miliaran harus dimusnahkan.",
     challenge:
-      "Deviasi suhu terjadi pada 18% shipment, menyebabkan kerugian $3.4M per tahun dari produk yang harus dimusnahkan. Monitoring manual tidak mampu mendeteksi excursion secara real-time.",
+      "18% pengiriman pernah mengalami deviasi suhu. Kerugian $3.4 juta per tahun dari produk yang harus dibuang. Monitoring manual tidak bisa mendeteksi masalah sebelum terlambat.",
     solution:
-      "Implementasi IoT sensor array dengan telemetri suhu real-time di setiap unit pendingin. Algoritma prediktif mendeteksi risiko deviasi 2 jam sebelum terjadi dan memicu re-routing otomatis ke fasilitas terdekat.",
+      "Kami pasang sensor IoT di setiap unit pendingin dengan monitoring real-time. Sistem kami bisa mendeteksi risiko deviasi 2 jam sebelum terjadi dan otomatis mengalihkan ke fasilitas terdekat.",
     result:
-      "Compliance suhu mencapai 99.8%. Kerugian produk turun 94%. ROI tercapai dalam 7 bulan implementasi.",
+      "Suhu terjaga 99.8%. Kerugian produk turun 94%. Investasi balik modal dalam 7 bulan.",
     color: "dark",
     gridSpan: "normal",
   },
   {
     id: "last-mile-velocity",
-    title: "Akselerasi Last-Mile Metropolitas",
+    title: "Pengiriman 2x Lebih Cepat ke 12 Kota",
     client: "Konglomerat FMCG Nasional",
-    industry: "FMCG & Consumer Goods",
+    industry: "FMCG",
     metric: "2.1x",
-    metricLabel: "Percepatan Delivery",
+    metricLabel: "Lebih Cepat",
     summary:
-      "Redesain total jaringan last-mile delivery untuk 12 kota metropolitan dari model hub tunggal ke micro-fulfillment terdistribusi.",
+      "Janji pengiriman 24 jam, tapi di lapangan cuma tercapai 67%. Kami redesain total jaringan last-mile mereka.",
     challenge:
-      "SLA delivery 24 jam hanya tercapai 67% di kota-kota tier-2. Biaya last-mile mengkonsumsi 43% total biaya logistik. Customer complaint rate terus meningkat.",
+      "SLA 24 jam cuma tercapai 67% di kota tier-2. Biaya last-mile makan 43% total biaya logistik. Komplain pelanggan terus naik dan tim lapangan kewalahan.",
     solution:
-      "Jaringan micro-fulfillment center di 48 titik strategis dengan dynamic routing yang mengalokasikan order ke node terdekat secara otomatis. Batch optimization mengurangi empty miles.",
+      "Kami bangun 48 titik micro-fulfillment di kota-kota strategis. Order otomatis dialokasikan ke titik terdekat. Rute pengiriman dioptimasi supaya tidak ada jalan bolak-balik.",
     result:
-      "SLA compliance melonjak ke 96%. Biaya last-mile tereduksi 38%. Delivery speed meningkat 2.1x rata-rata.",
+      "SLA tercapai 96%. Biaya last-mile turun 38%. Kecepatan pengiriman meningkat 2.1 kali rata-rata.",
     color: "light",
     gridSpan: "wide",
   },

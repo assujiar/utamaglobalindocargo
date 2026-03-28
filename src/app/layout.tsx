@@ -14,33 +14,33 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Utama Global Indo Cargo — Solusi Logistik Korporat B2B",
-    template: "%s | Utama Global Indo Cargo",
+    default: "Utama Globalindo Cargo — Barang Anda, Urusan Kami",
+    template: "%s | Utama Globalindo Cargo",
   },
   description:
-    "Platform logistik korporat B2B berkinerja tinggi untuk solusi pengiriman, pergudangan, kepabeanan, dan manajemen rantai pasok tingkat eksekutif di Asia Pasifik.",
+    "Partner logistik untuk perusahaan yang serius soal pengiriman, pergudangan, kepabeanan, dan rantai pasok. Berbasis di Jakarta, beroperasi di Asia Pasifik.",
   keywords: [
-    "logistik B2B",
-    "freight forwarding Indonesia",
+    "logistik B2B Indonesia",
+    "freight forwarding Jakarta",
     "supply chain management",
     "warehouse management",
-    "customs brokerage",
-    "manajemen rantai pasok",
+    "customs brokerage Indonesia",
+    "jasa pengiriman korporat",
     "kargo Indonesia",
   ],
   openGraph: {
     type: "website",
     locale: "id_ID",
-    siteName: "Utama Global Indo Cargo",
-    title: "Utama Global Indo Cargo — Seni Mendikte Waktu & Jarak",
+    siteName: "Utama Globalindo Cargo",
+    title: "Utama Globalindo Cargo — Barang Anda, Urusan Kami",
     description:
-      "Infrastruktur logistik korporat untuk presisi rantai pasok tingkat eksekutif.",
+      "Partner logistik untuk perusahaan yang tidak mau pusing soal pengiriman. Jakarta — Asia Pasifik.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Utama Global Indo Cargo — Solusi Logistik Korporat B2B",
+    title: "Utama Globalindo Cargo — Barang Anda, Urusan Kami",
     description:
-      "Sinkronisasi Resolusi Pasokan Asimetris — presisi rantai pasok tingkat eksekutif.",
+      "Partner logistik untuk perusahaan yang serius. Pergudangan, freight, bea cukai, rantai pasok.",
   },
   robots: {
     index: true,

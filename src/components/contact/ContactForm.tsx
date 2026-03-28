@@ -10,10 +10,10 @@ import { useUTMCapture, getStoredUTMData } from "@/hooks/useUTMCapture";
 // Schema Validasi Zod — Perisai kebersihan data B2B
 // ============================================================
 const leadSchema = z.object({
-  pain_point: z.string().min(1, "Pilih simpul kritis Anda"),
-  operational_volume: z.string().min(1, "Pilih skala operasional Anda"),
-  company_name: z.string().min(2, "Nama perusahaan wajib diisi"),
-  executive_email: z.string().email("Format email tidak valid"),
+  pain_point: z.string().min(1, "Pilih salah satu yang paling mengganggu"),
+  operational_volume: z.string().min(1, "Pilih volume pengiriman Anda"),
+  company_name: z.string().min(2, "Kami perlu tahu nama perusahaan Anda"),
+  executive_email: z.string().email("Hmm, format emailnya belum tepat"),
 });
 
 type LeadFormData = z.infer<typeof leadSchema>;
@@ -24,23 +24,23 @@ type LeadFormData = z.infer<typeof leadSchema>;
 const PAIN_POINTS = [
   {
     id: "warehouse-inefficiency",
-    label: "Stagnasi Pergudangan",
-    desc: "Utilisasi ruang rendah, inventaris berputar lambat",
+    label: "Gudang Berantakan",
+    desc: "Stok numpuk di satu tempat, kosong di tempat lain, biaya terus jalan",
   },
   {
     id: "freight-fragmentation",
-    label: "Fragmentasi Angkutan",
-    desc: "Koordinasi multi-vendor tanpa visibilitas terpadu",
+    label: "Pengiriman Ribet",
+    desc: "Terlalu banyak vendor, tracking tidak jelas, koordinasi melelahkan",
   },
   {
     id: "customs-delay",
-    label: "Keterlambatan Kepabeanan",
-    desc: "Proses clearance manual, penalti demurrage berulang",
+    label: "Bea Cukai Bikin Pusing",
+    desc: "Dokumen sering ditolak, barang tertahan, kena denda terus",
   },
   {
     id: "supply-chain-blind",
-    label: "Kebutaan Rantai Pasok",
-    desc: "Visibilitas parsial, zero prediksi disruption",
+    label: "Tidak Tahu Barang di Mana",
+    desc: "Visibilitas minim, baru tahu masalah setelah terlambat",
   },
 ];
 
@@ -51,22 +51,22 @@ const VOLUME_TIERS = [
   {
     id: "tier-entry",
     label: "< $50k",
-    desc: "Kapasitas pengangkutan regional awal",
+    desc: "Baru mulai, atau skala masih kecil — tidak apa-apa",
   },
   {
     id: "tier-regional",
     label: "$50k — $150k",
-    desc: "Operasi logistik regional fungsional",
+    desc: "Sudah rutin kirim barang, butuh partner yang lebih serius",
   },
   {
     id: "tier-national",
     label: "$150k — $500k",
-    desc: "Jaringan distribusi nasional terintegrasi",
+    desc: "Distribusi nasional, kompleksitas mulai terasa",
   },
   {
     id: "tier-global",
     label: "$500k+",
-    desc: "Armada komprehensif logistik rute global tanpa batas",
+    desc: "Volume besar, rute internasional, butuh yang benar-benar paham",
   },
 ];
 
@@ -225,16 +225,16 @@ export default function ContactForm() {
               </div>
 
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.05]">
-                Kapasitas Rantai Pasokan Arsitektural Jaringan Anda{" "}
+                Sudah Kami Terima.{" "}
                 <span className="text-logistics-orange">
-                  Sedang Dievaluasi Algoritma.
+                  Tinggal Tunggu Kabar dari Kami.
                 </span>
               </h2>
 
               <p className="mt-8 text-base md:text-lg text-white/40 leading-relaxed max-w-2xl">
-                Pengikatan Jadwal Komunikasi Tanggapan Timbal Balik Resolusi SLA
-                (Service Level Agreement) Arsitek Kami Aktif dalam Presisi Durasi
-                di bawah 24 Jam Penuh.
+                Tim kami akan menghubungi Anda dalam 24 jam kerja untuk
+                menjadwalkan diskusi pertama. Tidak ada sales pitch — cuma
+                obrolan jujur tentang apa yang bisa kami bantu.
               </p>
 
               {/* Garis dekoratif */}
@@ -259,9 +259,8 @@ export default function ContactForm() {
               {step === 1 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
-                    Identifikasi simpul paling kritis dari arsitektur
-                    keterlambatan rantai pasokan jaringan logistik otonom Anda{" "}
-                    <span className="text-logistics-orange">saat ini?</span>
+                    Apa yang paling menghambat{" "}
+                    <span className="text-logistics-orange">operasi Anda saat ini?</span>
                   </h2>
 
                   <SelectionBlock
@@ -309,9 +308,9 @@ export default function ContactForm() {
               {step === 2 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
-                    Berapa skala sirkulasi komoditas operasional{" "}
+                    Berapa kira-kira nilai pengiriman{" "}
                     <span className="text-logistics-orange">
-                      bulanan Anda?
+                      per bulan Anda?
                     </span>
                   </h2>
 
@@ -378,8 +377,8 @@ export default function ContactForm() {
               {step === 3 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
-                    Profil otoritas{" "}
-                    <span className="text-logistics-orange">eksekutif Anda.</span>
+                    Terakhir, sedikit{" "}
+                    <span className="text-logistics-orange">tentang Anda.</span>
                   </h2>
 
                   <div className="mt-8 space-y-6">
@@ -391,7 +390,7 @@ export default function ContactForm() {
                       <input
                         {...register("company_name")}
                         type="text"
-                        placeholder="PT. Enterprise Logistics International"
+                        placeholder="PT. Perusahaan Anda"
                         className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-lg md:text-xl font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
                       />
                       {errors.company_name && (
@@ -404,12 +403,12 @@ export default function ContactForm() {
                     {/* Email Eksekutif */}
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
-                        Email Eksekutif B2B
+                        Email Kerja
                       </label>
                       <input
                         {...register("executive_email")}
                         type="email"
-                        placeholder="director@perusahaan.co.id"
+                        placeholder="nama@perusahaan.co.id"
                         className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-lg md:text-xl font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
                       />
                       {errors.executive_email && (
@@ -446,8 +445,8 @@ export default function ContactForm() {
                       className="group flex items-center gap-4 bg-logistics-orange text-white px-8 py-4 font-bold text-xs md:text-sm uppercase tracking-widest hover:bg-logistics-orange/90 transition-all duration-300 disabled:opacity-50"
                     >
                       {isSubmitting
-                        ? "Memproses..."
-                        : "Inisialisasi Algoritma Optimasi"}
+                        ? "Mengirim..."
+                        : "Kirim & Jadwalkan Diskusi"}
                       {/* Ikon panah heksagonal logistik #ff4600 */}
                       <svg
                         width="24"

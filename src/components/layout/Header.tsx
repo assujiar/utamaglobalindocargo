@@ -59,7 +59,7 @@ export default function Header() {
             href="/contact"
             className="px-5 py-2.5 bg-logistics-orange text-white text-xs font-bold uppercase tracking-widest hover:bg-logistics-orange/90 transition-colors duration-300"
           >
-            Mulai Konsultasi
+            Hubungi Kami
           </Link>
         </nav>
 
@@ -106,7 +106,7 @@ export default function Header() {
               onClick={() => setMenuOpen(false)}
               className="mt-4 inline-block px-6 py-3 bg-logistics-orange text-white text-sm font-bold uppercase tracking-widest text-center"
             >
-              Mulai Konsultasi
+              Hubungi Kami
             </Link>
           </nav>
         </div>

@@ -15,43 +15,40 @@ const panels = [
   {
     id: "pergudangan",
     number: "01",
-    label: "Resolusi Pergudangan",
-    headline: "Inventaris Statis Adalah Jebakan Modal Terperangkap.",
+    label: "Pergudangan",
+    headline: "Gudang Anda Harusnya Menghasilkan, Bukan Cuma Menyimpan.",
     description:
-      "Setiap meter kubik yang tidak berputar adalah laba yang menguap. Arsitektur pergudangan kami mengkonversi aset diam menjadi simpul distribusi dinamis — kelincahan infrastruktur yang membebaskan arus kas operasional Anda dari gravitasi inefisiensi.",
+      "Banyak perusahaan punya gudang tapi belum punya strategi gudang. Ruang yang setengah kosong di satu lokasi, overstock di lokasi lain — semua itu diam-diam memakan margin Anda. Kami bantu tata ulang, dari penempatan barang sampai rotasi stok, supaya setiap meter persegi benar-benar bekerja.",
     accent: "bg-logistics-orange",
     theme: "dark" as const,
   },
   {
     id: "angkutan",
     number: "02",
-    label: "Manajemen Angkutan Perantara",
-    headline:
-      "Kekacauan Fragmentasi Komunikasi Menenggelamkan Jam Operasional Eksekutif Anda.",
+    label: "Freight & Angkutan",
+    headline: "Terlalu Banyak Vendor, Terlalu Sedikit Kendali.",
     description:
-      "Koordinasi multi-vendor tanpa orkestrasi terpusat menciptakan entropi yang mengkonsumsi bandwidth keputusan strategis. Platform penyatuan perutean algoritma kami memusatkan visibilitas dan mereduksi titik kontak fragmentasi hingga ke satu antarmuka komando tunggal.",
+      "Kalau Anda masih harus telepon tiga vendor berbeda untuk satu pengiriman, ada yang salah. Kami satukan semuanya — darat, laut, udara — dalam satu koordinasi. Anda cukup tahu kapan barang berangkat dan kapan sampai. Sisanya biar kami yang pusing.",
     accent: "bg-logistics-orange",
     theme: "light" as const,
   },
   {
     id: "kepabeanan",
     number: "03",
-    label: "Akselerasi Kepabeanan",
-    headline:
-      "Regulasi Bergerak Lebih Cepat Dari Kemampuan Adaptasi Manual Tim Anda.",
+    label: "Kepabeanan",
+    headline: "Dokumen Salah Satu Huruf, Barang Tertahan Berminggu-minggu.",
     description:
-      "Setiap keterlambatan kepabeanan adalah penalti finansial yang berganda secara eksponensial. Mesin kepatuhan regulasi kami mengantisipasi perubahan tarif dan klasifikasi harmonized system sebelum kontainer Anda berlabuh — presisi dokumen yang mengeliminasi demurrage.",
+      "Urusan bea cukai itu detail dan tidak pernah maaf. Satu kode HS yang keliru bisa berarti penalti, denda, dan barang Anda menginap di pelabuhan tanpa kepastian. Tim kepabeanan kami sudah biasa dengan kerumitan ini — mereka tahu cara bicara dengan regulasi supaya barang Anda tetap bergerak.",
     accent: "bg-logistics-orange",
     theme: "dark" as const,
   },
   {
     id: "rantai-pasok",
     number: "04",
-    label: "Orkestrasi Rantai Pasok",
-    headline:
-      "Visibilitas Parsial Adalah Ilusi Kontrol Yang Lebih Berbahaya Dari Kebutaan Total.",
+    label: "Rantai Pasok",
+    headline: "Anda Tidak Bisa Kendalikan Apa yang Tidak Bisa Anda Lihat.",
     description:
-      "Dashboard tradisional menampilkan data historis — kami menyajikan probabilitas masa depan. Telemetri prediktif end-to-end memproyeksikan titik kegagalan rantai pasok 72 jam sebelum terjadi, memberi Anda waktu eksekusi yang tidak dimiliki kompetitor.",
+      "Kebanyakan masalah logistik bukan karena tidak ada solusi, tapi karena masalahnya baru ketahuan setelah terlambat. Kami bangun visibilitas dari hulu ke hilir — Anda tahu posisi barang, tahu risiko keterlambatan, dan punya waktu untuk bertindak sebelum jadi kerugian.",
     accent: "bg-logistics-orange",
     theme: "light" as const,
   },
@@ -126,14 +123,11 @@ function ServicePanel({
           {panel.headline.split(" ").map((word, i) => {
             // Aksentuasi kata kunci dengan warna oranye
             const accentWords = [
-              "Jebakan",
-              "Terperangkap.",
-              "Menenggelamkan",
-              "Ilusi",
-              "Berbahaya",
-              "Kebutaan",
-              "Lebih",
-              "Regulasi",
+              "Menghasilkan,",
+              "Kendali.",
+              "Tertahan",
+              "Berminggu-minggu.",
+              "Lihat.",
             ];
             const isAccent = accentWords.includes(word);
             return (
@@ -216,15 +210,15 @@ export default function ServicesHorizontal() {
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-[1px] bg-logistics-orange" />
             <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">
-              Ekosistem Layanan
+              Yang Kami Kerjakan
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.95]">
-            Kami Tidak Menjual
+            Empat Hal yang
             <br />
-            <span className="text-logistics-orange">Logistik.</span>
+            <span className="text-logistics-orange">Sering Bikin Pusing.</span>
             <br />
-            <span className="text-white/40">Kami Mengeliminasi Gesekan.</span>
+            <span className="text-white/40">Kebetulan, Itu Keahlian Kami.</span>
           </h2>
         </div>
 
