@@ -6,19 +6,28 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useUTMCapture, getStoredUTMData } from "@/hooks/useUTMCapture";
 
-// Validasi form
+// --- Validation Schema ---
 
 const leadSchema = z.object({
-  pain_point: z.string().min(1, "Pilih layanan yang Anda butuhkan"),
+  service_interest: z.string().min(1, "Pilih layanan yang Anda butuhkan"),
   operational_volume: z.string().min(1, "Pilih estimasi volume pengiriman"),
+  contact_person: z.string().min(2, "Nama lengkap wajib diisi"),
   company_name: z.string().min(2, "Nama perusahaan wajib diisi"),
   executive_email: z.string().email("Format email belum sesuai"),
+  phone_whatsapp: z.string().min(5, "Nomor telepon / WhatsApp wajib diisi"),
+  cargo_description: z.string().optional(),
+  origin_destination: z.string().optional(),
+  timeline: z.string().optional(),
+  privacy_consent: z.literal(true, { error: "Anda harus menyetujui kebijakan privasi" }),
+  // Honeypot — invisible to users
+  website_url: z.string().optional(),
 });
 
 type LeadFormData = z.infer<typeof leadSchema>;
 
-// Step 1: Pilihan layanan
-const PAIN_POINTS = [
+// --- Step 1: Service Selection ---
+
+const SERVICE_OPTIONS = [
   {
     id: "domestic-distribution",
     label: "Distribusi Domestik",
@@ -41,7 +50,8 @@ const PAIN_POINTS = [
   },
 ];
 
-// Step 2: Volume pengiriman
+// --- Step 2: Volume Tiers ---
+
 const VOLUME_TIERS = [
   {
     id: "tier-entry",
@@ -67,7 +77,8 @@ const VOLUME_TIERS = [
 
 const TOTAL_STEPS = 3;
 
-// Komponen pilihan (grid of buttons)
+// --- Selection Block Component ---
+
 function SelectionBlock({
   options,
   value,
@@ -92,13 +103,11 @@ function SelectionBlock({
                 : "border-white/10 hover:border-white/30 bg-transparent"
             }`}
           >
-            {/* Indikator seleksi */}
             <div
               className={`absolute top-4 right-4 w-3 h-3 rotate-45 transition-colors duration-300 ${
                 isSelected ? "bg-logistics-orange" : "bg-white/10"
               }`}
             />
-
             <span
               className={`block text-base md:text-lg font-bold tracking-tight transition-colors duration-300 ${
                 isSelected ? "text-logistics-orange" : "text-white"
@@ -116,13 +125,40 @@ function SelectionBlock({
   );
 }
 
-// Form utama - 3 langkah
+// --- Text Input Component ---
+
+function FormInput({
+  label,
+  error,
+  ...props
+}: {
+  label: string;
+  error?: string;
+} & React.InputHTMLAttributes<HTMLInputElement>) {
+  return (
+    <div>
+      <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
+        {label}
+      </label>
+      <input
+        {...props}
+        className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-lg md:text-xl font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
+      />
+      {error && (
+        <p className="mt-2 text-sm text-logistics-orange">{error}</p>
+      )}
+    </div>
+  );
+}
+
+// --- Main Form ---
+
 export default function ContactForm() {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  // Aktivasi UTM capture hook
   useUTMCapture();
 
   const {
@@ -134,17 +170,23 @@ export default function ContactForm() {
   } = useForm<LeadFormData>({
     resolver: zodResolver(leadSchema),
     defaultValues: {
-      pain_point: "",
+      service_interest: "",
       operational_volume: "",
+      contact_person: "",
       company_name: "",
       executive_email: "",
+      phone_whatsapp: "",
+      cargo_description: "",
+      origin_destination: "",
+      timeline: "",
+      website_url: "",
     },
   });
 
-  const painPoint = watch("pain_point");
+  const serviceInterest = watch("service_interest");
   const volume = watch("operational_volume");
 
-  const canProceedStep1 = painPoint.length > 0;
+  const canProceedStep1 = serviceInterest.length > 0;
   const canProceedStep2 = volume.length > 0;
 
   const goNext = useCallback(() => {
@@ -153,12 +195,14 @@ export default function ContactForm() {
 
   const goBack = useCallback(() => {
     setStep((s) => Math.max(s - 1, 1));
+    setSubmitError(null);
   }, []);
 
-  // Submission - POST ke /api/leads dengan UTM data dari localStorage
   const onSubmit = useCallback(
     async (data: LeadFormData) => {
       setIsSubmitting(true);
+      setSubmitError(null);
+
       try {
         const utmData = getStoredUTMData();
 
@@ -166,20 +210,31 @@ export default function ContactForm() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            company_name: data.company_name,
-            executive_email: data.executive_email,
-            operational_volume: data.operational_volume,
-            pain_point: data.pain_point,
+            ...data,
             utm_attribution: utmData,
           }),
         });
 
         if (response.ok) {
-          setIsSuccess(true);
+          const result = await response.json();
+          if (result.success) {
+            setIsSuccess(true);
+          } else {
+            setSubmitError(
+              result.error || "Terjadi kesalahan. Silakan coba lagi."
+            );
+          }
+        } else {
+          const result = await response.json().catch(() => null);
+          setSubmitError(
+            result?.error ||
+              "Gagal mengirim formulir. Silakan coba lagi atau hubungi kami langsung."
+          );
         }
       } catch {
-        // Tampilkan sukses meskipun gagal (graceful degradation)
-        setIsSuccess(true);
+        setSubmitError(
+          "Koneksi bermasalah. Silakan periksa koneksi internet Anda dan coba lagi, atau hubungi kami langsung melalui email atau WhatsApp."
+        );
       } finally {
         setIsSubmitting(false);
       }
@@ -187,14 +242,11 @@ export default function ContactForm() {
     []
   );
 
-  // Progress bar width
-  const progressPercent = isSuccess
-    ? 100
-    : (step / TOTAL_STEPS) * 100;
+  const progressPercent = isSuccess ? 100 : (step / TOTAL_STEPS) * 100;
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Garis indikator progress 1px #ff4600 */}
+      {/* Progress bar */}
       <div className="fixed top-16 md:top-20 left-0 right-0 z-40 h-[2px] bg-white/5">
         <div
           className="h-full bg-logistics-orange transition-all duration-700 ease-out"
@@ -204,10 +256,9 @@ export default function ContactForm() {
 
       <div className="flex-1 flex items-center justify-center px-6 md:px-16 py-32">
         <div className="w-full max-w-3xl">
-          {/* Layar sukses */}
+          {/* Success Screen */}
           {isSuccess ? (
             <div className="animate-fade-in">
-              {/* Ikon cek dekoratif */}
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-[1px] bg-logistics-orange" />
                 <div className="w-3 h-3 bg-logistics-orange rotate-45" />
@@ -225,7 +276,6 @@ export default function ContactForm() {
                 diskusi awal sesuai kebutuhan yang Anda sampaikan.
               </p>
 
-              {/* Garis dekoratif */}
               <div className="mt-12 flex items-center gap-4">
                 <div className="w-20 h-[1px] bg-logistics-orange/40" />
                 <div className="w-2 h-2 bg-logistics-orange rotate-45" />
@@ -233,6 +283,16 @@ export default function ContactForm() {
             </div>
           ) : (
             <form onSubmit={handleSubmit(onSubmit)}>
+              {/* Honeypot — hidden from users, visible to bots */}
+              <div className="absolute -left-[9999px]" aria-hidden="true">
+                <input
+                  {...register("website_url")}
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               {/* Step indicator */}
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-[1px] bg-logistics-orange" />
@@ -241,7 +301,23 @@ export default function ContactForm() {
                 </span>
               </div>
 
-              {/* Step 1: Pilih layanan */}
+              {/* Error banner */}
+              {submitError && (
+                <div className="mb-8 p-4 border border-red-500/30 bg-red-500/5">
+                  <p className="text-sm text-red-400">{submitError}</p>
+                  <p className="mt-2 text-xs text-white/30">
+                    Atau hubungi kami langsung:{" "}
+                    <a
+                      href="mailto:info@utamaglobalindocargo.com"
+                      className="text-logistics-orange hover:underline"
+                    >
+                      info@utamaglobalindocargo.com
+                    </a>
+                  </p>
+                </div>
+              )}
+
+              {/* Step 1: Service selection */}
               {step === 1 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
@@ -250,14 +326,14 @@ export default function ContactForm() {
                   </h2>
 
                   <SelectionBlock
-                    options={PAIN_POINTS}
-                    value={painPoint}
-                    onChange={(id) => setValue("pain_point", id)}
+                    options={SERVICE_OPTIONS}
+                    value={serviceInterest}
+                    onChange={(id) => setValue("service_interest", id)}
                   />
 
-                  {errors.pain_point && (
+                  {errors.service_interest && (
                     <p className="mt-4 text-sm text-logistics-orange">
-                      {errors.pain_point.message}
+                      {errors.service_interest.message}
                     </p>
                   )}
 
@@ -273,14 +349,7 @@ export default function ContactForm() {
                       }`}
                     >
                       Lanjutkan
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
                     </button>
@@ -288,14 +357,12 @@ export default function ContactForm() {
                 </div>
               )}
 
-              {/* Step 2: Volume pengiriman */}
+              {/* Step 2: Volume + cargo context */}
               {step === 2 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
                     Estimasi volume{" "}
-                    <span className="text-logistics-orange">
-                      pengiriman Anda?
-                    </span>
+                    <span className="text-logistics-orange">pengiriman Anda?</span>
                   </h2>
 
                   <SelectionBlock
@@ -310,20 +377,55 @@ export default function ContactForm() {
                     </p>
                   )}
 
+                  {/* Optional context fields */}
+                  <div className="mt-10 space-y-6">
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
+                        Deskripsi Kargo{" "}
+                        <span className="text-white/15">(opsional)</span>
+                      </label>
+                      <input
+                        {...register("cargo_description")}
+                        type="text"
+                        placeholder="Contoh: komponen elektronik, bahan kimia, alat berat..."
+                        className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-base font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
+                        Rute / Asal — Tujuan{" "}
+                        <span className="text-white/15">(opsional)</span>
+                      </label>
+                      <input
+                        {...register("origin_destination")}
+                        type="text"
+                        placeholder="Contoh: Shanghai → Jakarta, Surabaya → Makassar..."
+                        className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-base font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
+                        Target Timeline{" "}
+                        <span className="text-white/15">(opsional)</span>
+                      </label>
+                      <input
+                        {...register("timeline")}
+                        type="text"
+                        placeholder="Contoh: dalam 2 minggu, reguler bulanan, ASAP..."
+                        className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-base font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
+                      />
+                    </div>
+                  </div>
+
                   <div className="mt-10 flex justify-between">
                     <button
                       type="button"
                       onClick={goBack}
                       className="flex items-center gap-3 px-6 py-4 text-white/40 hover:text-white font-bold text-sm uppercase tracking-widest transition-colors duration-300"
                     >
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M19 12H5M12 19l-7-7 7-7" />
                       </svg>
                       Kembali
@@ -340,14 +442,7 @@ export default function ContactForm() {
                       }`}
                     >
                       Lanjutkan
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
                     </button>
@@ -355,7 +450,7 @@ export default function ContactForm() {
                 </div>
               )}
 
-              {/* Step 3: Kontak */}
+              {/* Step 3: Contact details + consent */}
               {step === 3 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
@@ -364,38 +459,57 @@ export default function ContactForm() {
                   </h2>
 
                   <div className="mt-8 space-y-6">
-                    {/* Nama Perusahaan */}
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
-                        Nama Perusahaan
-                      </label>
-                      <input
-                        {...register("company_name")}
-                        type="text"
-                        placeholder="PT. Perusahaan Anda"
-                        className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-lg md:text-xl font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
-                      />
-                      {errors.company_name && (
-                        <p className="mt-2 text-sm text-logistics-orange">
-                          {errors.company_name.message}
-                        </p>
-                      )}
-                    </div>
+                    <FormInput
+                      label="Nama Lengkap"
+                      {...register("contact_person")}
+                      type="text"
+                      placeholder="Nama lengkap Anda"
+                      error={errors.contact_person?.message}
+                    />
 
-                    {/* Email Eksekutif */}
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
-                        Email Kerja
+                    <FormInput
+                      label="Nama Perusahaan"
+                      {...register("company_name")}
+                      type="text"
+                      placeholder="PT. Perusahaan Anda"
+                      error={errors.company_name?.message}
+                    />
+
+                    <FormInput
+                      label="Email Kerja"
+                      {...register("executive_email")}
+                      type="email"
+                      placeholder="nama@perusahaan.co.id"
+                      error={errors.executive_email?.message}
+                    />
+
+                    <FormInput
+                      label="Telepon / WhatsApp"
+                      {...register("phone_whatsapp")}
+                      type="tel"
+                      placeholder="+62 812 xxxx xxxx"
+                      error={errors.phone_whatsapp?.message}
+                    />
+
+                    {/* Privacy consent */}
+                    <div className="mt-8 pt-6 border-t border-white/5">
+                      <label className="flex items-start gap-4 cursor-pointer group">
+                        <input
+                          type="checkbox"
+                          {...register("privacy_consent")}
+                          className="mt-1 w-4 h-4 accent-logistics-orange bg-transparent border-white/20"
+                        />
+                        <span className="text-sm text-white/40 leading-relaxed group-hover:text-white/60 transition-colors">
+                          Saya menyetujui bahwa data yang saya kirimkan akan
+                          digunakan oleh PT Utama Globalindo Cargo untuk
+                          merespons permintaan ini dan menghubungi saya terkait
+                          layanan logistik. Data tidak akan dibagikan ke pihak
+                          ketiga tanpa persetujuan.
+                        </span>
                       </label>
-                      <input
-                        {...register("executive_email")}
-                        type="email"
-                        placeholder="nama@perusahaan.co.id"
-                        className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-lg md:text-xl font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
-                      />
-                      {errors.executive_email && (
-                        <p className="mt-2 text-sm text-logistics-orange">
-                          {errors.executive_email.message}
+                      {errors.privacy_consent && (
+                        <p className="mt-2 ml-8 text-sm text-logistics-orange">
+                          {errors.privacy_consent.message}
                         </p>
                       )}
                     </div>
@@ -407,29 +521,18 @@ export default function ContactForm() {
                       onClick={goBack}
                       className="flex items-center gap-3 px-6 py-4 text-white/40 hover:text-white font-bold text-sm uppercase tracking-widest transition-colors duration-300"
                     >
-                      <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M19 12H5M12 19l-7-7 7-7" />
                       </svg>
                       Kembali
                     </button>
 
-                    {/* Submit button */}
                     <button
                       type="submit"
                       disabled={isSubmitting}
                       className="group flex items-center gap-4 bg-logistics-orange text-white px-8 py-4 font-bold text-xs md:text-sm uppercase tracking-widest hover:bg-logistics-orange/90 transition-all duration-300 disabled:opacity-50"
                     >
-                      {isSubmitting
-                        ? "Mengirim..."
-                        : "Kirim & Jadwalkan Diskusi"}
-                      {/* Arrow icon */}
+                      {isSubmitting ? "Mengirim..." : "Kirim & Jadwalkan Diskusi"}
                       <svg
                         width="24"
                         height="24"
@@ -457,6 +560,26 @@ export default function ContactForm() {
               )}
             </form>
           )}
+        </div>
+      </div>
+
+      {/* Direct contact fallback */}
+      <div className="px-6 md:px-16 pb-16">
+        <div className="max-w-3xl mx-auto border-t border-white/5 pt-8">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/20 mb-4">
+            Atau hubungi kami langsung
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
+            <a
+              href="mailto:info@utamaglobalindocargo.com"
+              className="text-sm text-white/40 hover:text-logistics-orange transition-colors"
+            >
+              info@utamaglobalindocargo.com
+            </a>
+            <span className="text-sm text-white/40">
+              Jakarta, Indonesia
+            </span>
+          </div>
         </div>
       </div>
     </div>

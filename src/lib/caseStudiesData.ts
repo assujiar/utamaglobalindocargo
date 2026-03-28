@@ -1,3 +1,10 @@
+/**
+ * NOTICE: These case studies are illustrative scenarios based on
+ * common operational patterns in the logistics industry.
+ * They should be reviewed and approved by business stakeholders
+ * before being presented as company-specific achievements.
+ * Metrics use approximate language ("sekitar", "~") intentionally.
+ */
 export interface CaseStudy {
   id: string;
   title: string;

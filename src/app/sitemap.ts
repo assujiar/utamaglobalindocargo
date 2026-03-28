@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/case-studies`,
+      url: `${baseUrl}/about`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
@@ -21,6 +21,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/faq`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/case-studies`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${baseUrl}/services/domestic-distribution`,

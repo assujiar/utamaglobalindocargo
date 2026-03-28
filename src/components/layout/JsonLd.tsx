@@ -4,14 +4,25 @@ export default function JsonLd() {
     "@type": "Organization",
     name: "PT Utama Globalindo Cargo",
     description:
-      "Freight forwarding, customs brokerage, warehousing, dan project cargo. Jakarta, Asia Pasifik.",
+      "Freight forwarding, customs brokerage, warehousing, dan project cargo untuk perusahaan yang membutuhkan partner logistik terpercaya. Jakarta, Indonesia.",
     url: "https://utamaglobalindocargo.com",
-    logo: "https://utamaglobalindocargo.com/logo.png",
-    industry: "Logistics & Supply Chain",
-    areaServed: {
-      "@type": "GeoShape",
-      name: "Asia Pacific",
+    logo: "https://utamaglobalindocargo.com/logo.svg",
+    image: "https://utamaglobalindocargo.com/og-image.png",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Jakarta",
+      addressCountry: "ID",
     },
+    areaServed: [
+      {
+        "@type": "Country",
+        name: "Indonesia",
+      },
+      {
+        "@type": "GeoShape",
+        name: "Asia Pacific",
+      },
+    ],
     serviceType: [
       "Domestic Distribution",
       "International Freight Forwarding",
@@ -24,6 +35,7 @@ export default function JsonLd() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "Sales",
+      email: "info@utamaglobalindocargo.com",
       availableLanguage: ["Indonesian", "English"],
     },
     sameAs: [],

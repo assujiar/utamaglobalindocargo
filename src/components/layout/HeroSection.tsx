@@ -3,160 +3,197 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import dynamic from "next/dynamic";
+import AbstractRouteField from "@/components/canvas/AbstractRouteField";
 
-// Dynamic import untuk HeroGlobe - SSR disabled (WebGL hanya client-side)
-const HeroGlobe = dynamic(() => import("@/components/canvas/HeroGlobe"), {
-  ssr: false,
-});
+const TRUST_SIGNALS = [
+  "Respons 1 hari kerja",
+  "Satu titik koordinasi",
+  "Domestik & internasional",
+  "Customs clearance terintegrasi",
+];
 
 export default function HeroSection() {
-  const containerRef = useRef<HTMLElement>(null);
-  const headlineRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
-  // GSAP reveal animation - tipografi bermunculan frasa demi frasa
   useGSAP(
     () => {
-      const lines = headlineRef.current?.querySelectorAll("[data-reveal]");
-      if (!lines) return;
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
 
-      // Set initial state - opasitas nol, translasi ke bawah
-      gsap.set(lines, {
-        opacity: 0,
-        y: 80,
-        rotateX: 15,
-      });
+      const reveals = contentRef.current?.querySelectorAll("[data-reveal]");
+      const fades = contentRef.current?.querySelectorAll("[data-fade]");
 
-      // Stagger reveal - frasa demi frasa
-      gsap.to(lines, {
-        opacity: 1,
-        y: 0,
-        rotateX: 0,
-        duration: 1.2,
-        stagger: 0.2,
-        ease: "power3.out",
-        delay: 0.5,
-      });
+      if (prefersReduced) {
+        if (reveals) gsap.set(reveals, { opacity: 1, y: 0 });
+        if (fades) gsap.set(fades, { opacity: 1, y: 0 });
+        return;
+      }
 
-      // Subtitle fade in
-      gsap.fromTo(
-        "[data-subtitle]",
-        { opacity: 0, y: 30 },
-        {
+      if (reveals) {
+        gsap.set(reveals, { opacity: 0, y: 48 });
+        gsap.to(reveals, {
           opacity: 1,
           y: 0,
           duration: 1,
-          ease: "power2.out",
-          delay: 1.4,
-        }
-      );
+          stagger: 0.15,
+          ease: "power3.out",
+          delay: 0.3,
+        });
+      }
 
-      // CTA button reveal
-      gsap.fromTo(
-        "[data-cta]",
-        { opacity: 0, y: 20, scale: 0.95 },
-        {
+      if (fades) {
+        gsap.set(fades, { opacity: 0, y: 16 });
+        gsap.to(fades, {
           opacity: 1,
           y: 0,
-          scale: 1,
           duration: 0.8,
+          stagger: 0.1,
           ease: "power2.out",
-          delay: 1.8,
-        }
-      );
+          delay: 0.9,
+        });
+      }
     },
-    { scope: containerRef }
+    { scope: sectionRef }
   );
 
   return (
     <section
-      ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-carbon-dark"
+      ref={sectionRef}
+      className="relative min-h-[100svh] overflow-hidden bg-[#0b0b0d]"
     >
-      {/* WebGL Canvas - latar belakang z-index terendah */}
-      <div className="absolute inset-0 z-0">
-        <HeroGlobe />
-      </div>
+      {/* Background */}
+      <AbstractRouteField />
 
-      {/* Pola SVG hexagon - kedalaman visual lapisan dekoratif */}
-      <div className="absolute inset-0 z-[1] opacity-[0.04] pointer-events-none">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="hexagons" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(1.5)">
-              <path
-                d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66Z"
-                fill="none"
-                stroke="#ff4600"
-                strokeWidth="0.5"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hexagons)" />
-        </svg>
-      </div>
-
-      {/* Gradient overlay untuk keterbacaan teks */}
-      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-carbon-dark/40 via-transparent to-carbon-dark/80" />
-
-      {/* Tipografi lapisan teratas DOM */}
+      {/* Geometric texture overlay — structural depth between bg and content */}
       <div
-        ref={headlineRef}
-        className="relative z-[3] text-center px-6 max-w-6xl mx-auto"
-        style={{ perspective: "1000px" }}
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.035] pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)
+          `,
+          backgroundSize: "80px 80px",
+          maskImage:
+            "radial-gradient(ellipse at 50% 50%, black 0%, transparent 70%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at 50% 50%, black 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Content */}
+      <div
+        ref={contentRef}
+        className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl items-center px-6 pb-16 pt-28 sm:px-8 lg:px-12"
       >
-        {/* Headline */}
-        <h1 className="text-6xl md:text-8xl lg:text-[10rem] xl:text-[13rem] font-black uppercase leading-[0.82] tracking-tighter">
-          <span className="block overflow-hidden">
-            <span data-reveal className="block text-white/90">
-              Logistik
+        <div className="mx-auto max-w-5xl text-center">
+          {/* Pretitle */}
+          <div data-reveal className="mb-6 md:mb-8 flex items-center justify-center gap-3">
+            <span className="h-[1px] w-8 md:w-12 bg-logistics-orange/40" />
+            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-white/30">
+              Freight &bull; Customs &bull; Warehouse &bull; Project Cargo
             </span>
-          </span>
-          <span className="block overflow-hidden">
-            <span data-reveal className="block text-logistics-orange">
-              Tanpa Drama
+            <span className="h-[1px] w-8 md:w-12 bg-logistics-orange/40" />
+          </div>
+
+          {/* Headline */}
+          <h1 className="leading-[0.88] tracking-tighter">
+            <span className="block overflow-hidden">
+              <span
+                data-reveal
+                className="block text-[3.2rem] sm:text-[4.5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-black uppercase text-white/90"
+              >
+                Logistik
+              </span>
             </span>
-          </span>
-        </h1>
+            <span className="block overflow-hidden">
+              <span
+                data-reveal
+                className="block text-[3.2rem] sm:text-[4.5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-black uppercase text-white/90"
+              >
+                Tanpa
+              </span>
+            </span>
+            <span className="block overflow-hidden">
+              <span
+                data-reveal
+                className="block text-[3.2rem] sm:text-[4.5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-black uppercase text-logistics-orange"
+              >
+                Drama.
+              </span>
+            </span>
+          </h1>
 
-        {/* Sub-headline - baris kecil di bawah hero */}
-        <div className="mt-6 md:mt-10 flex items-center justify-center gap-4">
-          <div className="w-12 h-[1px] bg-logistics-orange/40" />
-          <span data-reveal className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-white/30">
-            Freight &bull; Customs &bull; Warehouse &bull; Project Cargo
-          </span>
-          <div className="w-12 h-[1px] bg-logistics-orange/40" />
-        </div>
-
-        {/* Subtitle */}
-        <p
-          data-subtitle
-          className="mt-6 md:mt-10 text-base md:text-xl lg:text-2xl text-white/50 font-light max-w-2xl mx-auto tracking-wide leading-relaxed"
-        >
-          Logistik yang baik tidak perlu Anda pikirkan setiap hari.
-          Dari pengiriman domestik sampai impor door-to-door,
-          kami kelola supaya Anda bisa fokus mengembangkan bisnis.
-        </p>
-
-        {/* CTA Button */}
-        <div data-cta className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="#layanan"
-            className="inline-block px-10 py-4 bg-logistics-orange text-white font-bold text-sm md:text-base uppercase tracking-widest hover:bg-logistics-orange/90 transition-colors duration-300"
+          {/* Supporting copy */}
+          <p
+            data-fade
+            className="mx-auto mt-6 md:mt-8 max-w-lg text-[15px] md:text-lg text-white/55 leading-relaxed"
           >
-            Layanan Kami
-          </a>
-          <a
-            href="/contact"
-            className="inline-block px-10 py-4 border border-white/20 text-white/60 font-bold text-sm md:text-base uppercase tracking-widest hover:border-logistics-orange hover:text-logistics-orange transition-colors duration-300"
+            Pengiriman dari asal sampai tujuan, domestik maupun internasional.
+            Satu koordinator, status yang jelas, tanpa Anda harus ikut mikirin operasional.
+          </p>
+
+          {/* CTAs */}
+          <div
+            data-fade
+            className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5"
           >
-            Konsultasi Gratis
-          </a>
+            {/* Primary */}
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-3 bg-logistics-orange px-8 md:px-10 py-4 text-white font-bold text-sm uppercase tracking-widest hover:bg-logistics-orange/90 transition-colors duration-300"
+            >
+              Kirim Permintaan
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+
+            {/* Secondary */}
+            <a
+              href="#layanan"
+              className="inline-flex items-center gap-2 px-5 py-4 text-white/40 text-sm font-semibold uppercase tracking-widest hover:text-white/70 transition-colors duration-300"
+            >
+              Lihat Layanan
+            </a>
+          </div>
+
+          {/* Trust strip */}
+          <div
+            data-fade
+            className="mx-auto mt-10 md:mt-14 max-w-2xl border-t border-white/[0.06] pt-5 md:pt-6"
+          >
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 md:gap-x-7">
+              {TRUST_SIGNALS.map((item) => (
+                <span
+                  key={item}
+                  className="text-[10px] md:text-[11px] font-medium uppercase tracking-[0.12em] text-white/22"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[3]">
-        <div className="w-[1px] h-16 bg-gradient-to-b from-logistics-orange to-transparent animate-pulse" />
+      {/* Scroll indicator — line only, no label */}
+      <div
+        data-fade
+        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2"
+      >
+        <div className="h-10 w-[1px] bg-gradient-to-b from-white/20 to-transparent" />
       </div>
     </section>
   );
