@@ -29,12 +29,11 @@ function CityBuildings() {
   const meshRef = useRef<THREE.InstancedMesh>(null);
   const tempObject = useMemo(() => new THREE.Object3D(), []);
 
-  // Generate stable building data in useMemo (pure data, no refs)
   const buildings = useMemo<BuildingDatum[]>(() => {
     const rng = makeRng(77);
     const result: BuildingDatum[] = [];
 
-    // Near row — foreground silhouettes
+    // Near row
     for (let i = 0; i < 16; i++) {
       const x = (i - 8) * 3.5 + rng() * 1.5;
       const h = 1.5 + rng() * 5;
@@ -65,7 +64,6 @@ function CityBuildings() {
     return result;
   }, []);
 
-  // Apply matrices via useLayoutEffect — ref is available here, not during render
   useLayoutEffect(() => {
     const mesh = meshRef.current;
     if (!mesh) return;
@@ -78,14 +76,13 @@ function CityBuildings() {
       tempObject.updateMatrix();
       mesh.setMatrixAt(i, tempObject.matrix);
     }
-
     mesh.instanceMatrix.needsUpdate = true;
   }, [buildings, tempObject]);
 
   return (
     <instancedMesh ref={meshRef} args={[undefined, undefined, buildings.length]}>
       <boxGeometry args={[1, 1, 1]} />
-      <meshBasicMaterial color="#0e0e11" />
+      <meshStandardMaterial color="#151519" roughness={0.9} metalness={0.1} />
     </instancedMesh>
   );
 }
@@ -124,10 +121,15 @@ const FRAG = `
   uniform float uOpacity;
   varying vec2 vUv;
   void main() {
-    float pulse = sin((vUv.x - uTime) * 12.0) * 0.5 + 0.5;
-    pulse = pow(pulse, 3.0);
+    // Smoother, more even flow — less flashy than pow(3)
+    float pulse = sin((vUv.x - uTime) * 8.0) * 0.5 + 0.5;
+    pulse = pow(pulse, 2.0);
+    // Gentle constant base glow so the tube is always slightly visible
+    pulse = 0.15 + pulse * 0.85;
+
     float edge = 1.0 - abs(vUv.y - 0.5) * 2.0;
-    edge = pow(edge, 0.5);
+    edge = pow(edge, 0.6);
+
     float a = pulse * edge * uOpacity;
     gl_FragColor = vec4(uColor, a);
   }
@@ -144,7 +146,7 @@ function HighwayLoop({
   const matRef = useRef<THREE.ShaderMaterial>(null);
 
   const geo = useMemo(
-    () => new THREE.TubeGeometry(curve, 128, width, 4, true),
+    () => new THREE.TubeGeometry(curve, 80, width, 4, true),
     [curve, width]
   );
 
@@ -174,12 +176,11 @@ function HighwayLoop({
 }
 
 function HighwaySystem() {
+  // 3 loops: dominant sweep, mid supporting, far atmospheric
   const loops = useMemo(() => [
-    { curve: makeLoopCurve(12, 6, -1.8, 0, -2, 0.3), width: 0.06, opacity: 0.7, speed: 0.15 },
-    { curve: makeLoopCurve(8, 4, -1.5, 1, -1, 0.2), width: 0.05, opacity: 0.55, speed: 0.22 },
-    { curve: makeLoopCurve(10, 3.5, -2.0, -3, -3, 0.15), width: 0.04, opacity: 0.4, speed: 0.18 },
-    { curve: makeLoopCurve(15, 8, -2.5, 2, -6, 0.4), width: 0.035, opacity: 0.25, speed: 0.08 },
-    { curve: makeLoopCurve(5, 2.5, -1.2, -1, 0, 0.1), width: 0.04, opacity: 0.45, speed: 0.25 },
+    { curve: makeLoopCurve(12, 6, -1.8, 0, -2, 0.3), width: 0.055, opacity: 0.6, speed: 0.12 },
+    { curve: makeLoopCurve(8, 4, -1.6, 1, -1, 0.2), width: 0.04, opacity: 0.4, speed: 0.16 },
+    { curve: makeLoopCurve(15, 8, -2.4, 2, -5, 0.35), width: 0.03, opacity: 0.2, speed: 0.07 },
   ], []);
 
   return (
@@ -197,7 +198,7 @@ function GroundPlane() {
   return (
     <mesh rotation-x={-Math.PI / 2} position={[0, -2.2, 0]}>
       <planeGeometry args={[100, 60]} />
-      <meshBasicMaterial color="#080809" transparent opacity={0.95} />
+      <meshBasicMaterial color="#080809" />
     </mesh>
   );
 }
@@ -205,10 +206,8 @@ function GroundPlane() {
 function Atmosphere() {
   return (
     <group>
-      <pointLight position={[0, -1, -2]} color="#ff4600" intensity={0.6} distance={25} decay={2} />
-      <pointLight position={[5, -1.5, -4]} color="#ff4600" intensity={0.3} distance={20} decay={2} />
-      <pointLight position={[-5, -1.5, -3]} color="#ff4600" intensity={0.3} distance={20} decay={2} />
-      <ambientLight intensity={0.03} />
+      <pointLight position={[0, -0.5, -3]} color="#ff4600" intensity={0.5} distance={30} decay={2} />
+      <ambientLight intensity={0.04} />
     </group>
   );
 }
@@ -216,8 +215,9 @@ function Atmosphere() {
 function CameraDrift() {
   useFrame(({ camera, clock }) => {
     const t = clock.elapsedTime;
-    camera.position.x = Math.sin(t * 0.05) * 0.8;
-    camera.position.y = 3.5 + Math.sin(t * 0.08) * 0.15;
+    // Barely perceptible — premium, not distracting
+    camera.position.x = Math.sin(t * 0.04) * 0.3;
+    camera.position.y = 3.5 + Math.sin(t * 0.06) * 0.08;
     camera.lookAt(0, -0.5, -4);
   });
   return null;
@@ -250,7 +250,7 @@ export default function CityLoopHeroScene({ simplified = false }: Props) {
         height: "100%",
       }}
     >
-      <fog attach="fog" args={["#08080a", 8, 35]} />
+      <fog attach="fog" args={["#08080a", 10, 42]} />
       <color attach="background" args={["#08080a"]} />
       <CameraDrift />
       <Atmosphere />
