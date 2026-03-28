@@ -1,6 +1,5 @@
 import HeroSection from "@/components/layout/HeroSection";
 import ServicesHorizontal from "@/components/sections/ServicesHorizontal";
-import ClientLogos from "@/components/sections/ClientLogos";
 import StatsCounter from "@/components/sections/StatsCounter";
 
 export default function Home() {
@@ -9,10 +8,7 @@ export default function Home() {
       {/* Hero Section — WebGL Globe + Tipografi GSAP */}
       <HeroSection />
 
-      {/* Logo Klien Trust Bar */}
-      <ClientLogos />
-
-      {/* Horizontal Scroll Hijacking — Panel Layanan PAS Framework */}
+      {/* Horizontal Scroll Hijacking — Panel Layanan */}
       <ServicesHorizontal />
 
       {/* Statistik Animatif */}

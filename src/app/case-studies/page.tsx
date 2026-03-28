@@ -35,6 +35,15 @@ export default function CaseStudiesPage() {
             contoh bagaimana kami merancang solusi spesifik dan hasil
             yang tercapai.
           </p>
+
+          {/* NDA Notice */}
+          <div className="mt-6 flex items-center gap-3">
+            <div className="w-2 h-2 bg-logistics-orange/40 rotate-45 flex-shrink-0" />
+            <p className="text-xs md:text-sm text-white/25 leading-relaxed">
+              Kami menjunjung tinggi privasi klien dan kesepakatan NDA.
+              Nama perusahaan dan identitas spesifik klien tidak ditampilkan.
+            </p>
+          </div>
         </div>
       </section>
 

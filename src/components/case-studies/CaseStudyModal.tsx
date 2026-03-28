@@ -84,14 +84,14 @@ export default function CaseStudyModal({
                 </div>
               </div>
 
-              {/* Client badge */}
+              {/* NDA confidentiality badge */}
               <div className="absolute bottom-6 left-8 md:left-12">
                 <span
                   className={`text-xs font-bold uppercase tracking-[0.25em] ${
                     isDark ? "text-white/30" : "text-carbon-dark/30"
                   }`}
                 >
-                  {study.client}
+                  Confidential — NDA Protected
                 </span>
               </div>
             </motion.div>

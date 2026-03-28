@@ -1,7 +1,6 @@
 export interface CaseStudy {
   id: string;
   title: string;
-  client: string;
   industry: string;
   metric: string;
   metricLabel: string;
@@ -17,12 +16,11 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "supply-chain-alpha",
     title: "Distribusi 14 Negara dalam Satu Jaringan Terpadu",
-    client: "Konglomerat Manufaktur ASEAN",
     industry: "Manufacturing",
     metric: "47%",
     metricLabel: "Reduksi Lead Time",
     summary:
-      "Klien mengelola distribusi di 14 negara dengan vendor berbeda di setiap titik. Kami konsolidasi seluruhnya ke dalam satu jaringan yang saling ter-backup.",
+      "Konsolidasi distribusi multi-negara dengan vendor berbeda di setiap titik ke dalam satu jaringan yang saling ter-backup.",
     challenge:
       "Setiap gangguan di satu negara memicu efek domino ke rantai pasok lainnya. Stabilisasi membutuhkan rata-rata 72 jam. Tidak ada satu pihak pun yang memiliki gambaran menyeluruh dari seluruh operasi.",
     solution:
@@ -35,14 +33,13 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "customs-velocity",
     title: "Clearance Time dari 6 Hari Menjadi Kurang dari 2 Hari",
-    client: "Distributor Farmasi Regional",
     industry: "Pharmaceutical",
     metric: "3.2x",
     metricLabel: "Percepatan Clearance",
     summary:
-      "Proses bea cukai klien masih manual dengan tingkat kesalahan klasifikasi yang tinggi. Kami digitalisasi seluruh alur sebelum barang tiba di pelabuhan.",
+      "Digitalisasi seluruh alur bea cukai dari proses manual menjadi pre-clearance sebelum barang tiba di pelabuhan.",
     challenge:
-      "Rata-rata 5.7 hari per pengiriman tertahan di bea cukai. Kesalahan klasifikasi HS Code terjadi pada 23% pengiriman — mengakibatkan penalti berulang dan keterlambatan distribusi ke rumah sakit.",
+      "Rata-rata 5.7 hari per pengiriman tertahan di bea cukai. Kesalahan klasifikasi HS Code terjadi pada 23% pengiriman — mengakibatkan penalti berulang dan keterlambatan distribusi.",
     solution:
       "Sistem klasifikasi otomatis dan pre-clearance yang memproses seluruh dokumentasi sebelum kontainer tiba. Tim bea cukai klien bisa fokus ke pengawasan strategis, bukan administrasi harian.",
     result:
@@ -53,14 +50,13 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "warehouse-singularity",
     title: "Utilisasi Gudang dari 54% Naik ke 89%",
-    client: "E-Commerce Enterprise Nasional",
     industry: "E-Commerce & Retail",
     metric: "89%",
     metricLabel: "Utilisasi Gudang",
     summary:
-      "Enam gudang dengan utilisasi rendah dan distribusi inventaris yang tidak merata. Kami tata ulang penempatan dan rotasi stok berdasarkan data demand aktual.",
+      "Penataan ulang penempatan dan rotasi stok di enam gudang berdasarkan data demand aktual per wilayah.",
     challenge:
-      "Utilisasi rata-rata hanya 54% di 6 lokasi. Overstock dan stockout terjadi bersamaan di lokasi berbeda. Proses picking lambat karena penempatan SKU tidak pernah dioptimasi sejak gudang pertama kali beroperasi.",
+      "Utilisasi rata-rata hanya 54% di 6 lokasi. Overstock dan stockout terjadi bersamaan di lokasi berbeda. Proses picking lambat karena penempatan SKU tidak pernah dioptimasi.",
     solution:
       "Sistem rotasi stok antar-gudang berdasarkan prediksi demand per wilayah. Penempatan SKU ditata ulang untuk meminimalkan jarak picking. Inventory visibility real-time di seluruh lokasi.",
     result:
@@ -71,12 +67,11 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "freight-orchestration",
     title: "340+ Kontainer per Bulan dalam Satu Dashboard",
-    client: "Trading House Komoditas",
     industry: "Commodities Trading",
     metric: "$4.7M",
     metricLabel: "Efisiensi Biaya / Tahun",
     summary:
-      "Tujuh freight forwarder berbeda, ratusan kontainer per bulan, tapi tracking hanya tersedia untuk sepertiga pengiriman. Kami satukan seluruhnya.",
+      "Integrasi tujuh freight forwarder berbeda ke dalam satu platform visibility dengan optimasi konsolidasi otomatis.",
     challenge:
       "Informasi tersebar di 7 vendor tanpa integrasi. Real-time visibility hanya tersedia untuk 31% pengiriman. Tim operasional menghabiskan lebih banyak waktu mencari informasi daripada mengambil keputusan.",
     solution:
@@ -89,14 +84,13 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "cold-chain-integrity",
     title: "Cold Chain Compliance 99.8% untuk Distribusi Vaksin",
-    client: "Perusahaan Bioteknologi Asia Tenggara",
     industry: "Biotech & Life Sciences",
     metric: "99.8%",
     metricLabel: "Temperature Compliance",
     summary:
-      "Distribusi vaksin dan biofarmasi di 6 negara tropis dengan toleransi suhu yang sangat ketat. Satu deviasi berarti produk harus dimusnahkan.",
+      "Pembangunan jaringan cold chain end-to-end untuk distribusi biofarmasi di 6 negara tropis dengan toleransi suhu ketat.",
     challenge:
-      "Deviasi suhu terjadi pada 18% pengiriman. Kerugian $3.4M per tahun dari produk yang harus dibuang. Monitoring manual tidak mampu mendeteksi masalah sebelum kerusakan sudah terjadi.",
+      "Deviasi suhu terjadi pada 18% pengiriman. Kerugian $3.4M per tahun dari produk yang harus dimusnahkan. Monitoring manual tidak mampu mendeteksi masalah sebelum kerusakan sudah terjadi.",
     solution:
       "IoT sensor di setiap unit pendingin dengan telemetri real-time. Sistem prediktif mendeteksi risiko deviasi 2 jam sebelum terjadi dan memicu re-routing otomatis ke fasilitas cold storage terdekat.",
     result:
@@ -107,12 +101,11 @@ export const caseStudies: CaseStudy[] = [
   {
     id: "last-mile-velocity",
     title: "SLA Delivery dari 67% Naik ke 96% di 12 Kota",
-    client: "Konglomerat FMCG Nasional",
     industry: "FMCG & Consumer Goods",
     metric: "2.1x",
     metricLabel: "Percepatan Delivery",
     summary:
-      "Janji delivery 24 jam yang konsisten tidak tercapai di kota-kota tier-2. Kami redesain jaringan last-mile dari hub tunggal ke micro-fulfillment terdistribusi.",
+      "Redesain jaringan last-mile dari model hub tunggal ke micro-fulfillment terdistribusi di 48 titik strategis.",
     challenge:
       "SLA 24 jam hanya tercapai 67% di kota tier-2. Biaya last-mile mengonsumsi 43% total biaya logistik. Volume komplain meningkat dan menggerus reputasi brand di pasar lokal.",
     solution:
