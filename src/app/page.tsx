@@ -6,7 +6,7 @@ import StatsCounter from "@/components/sections/StatsCounter";
 export default function Home() {
   return (
     <div className="flex flex-col">
-      {/* Hero Section — Abstract Route Field + GSAP reveal */}
+      {/* Hero */}
       <HeroSection />
 
       {/* Company Intro — who we are, why trust us */}

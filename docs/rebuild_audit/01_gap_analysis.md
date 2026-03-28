@@ -110,3 +110,28 @@
 - Component exists but not rendered on homepage
 - Contains placeholder industry labels, not real logos
 - **Fix**: Remove component entirely until real logos available.
+
+---
+
+## Resolution Status (Phase 2)
+
+| # | Item | Status |
+|---|---|---|
+| 1 | Lead capture false-success | **RESOLVED** — proper error state + fallback |
+| 2 | Form fields too thin | **RESOLVED** — 7 new fields added |
+| 3 | Supabase client not split | **RESOLVED** — server client created, browser client removed |
+| 4 | No RLS | **RESOLVED** — migration 00002 with insert-only anon policy |
+| 5 | Unverified metrics | **RESOLVED** — replaced with capabilities grid |
+| 6 | Case studies synthetic | **RESOLVED** — marked as illustrative scenarios |
+| 7 | Starter assets | **RESOLVED** — deleted, brand placeholders added |
+| 8 | README default | **RESOLVED** — rewritten |
+| 9 | PROGRESS.md oversells | **RESOLVED** — rewritten honestly |
+| 10 | No company trust pages | **RESOLVED** — /about and /faq created |
+| 11-12 | Homepage IA | **RESOLVED** — company intro + capabilities added |
+| 13 | Accessibility gaps | **RESOLVED** — reduced-motion, aria-expanded, ESC modal, skip-link |
+| 14 | SEO incomplete | **PARTIALLY RESOLVED** — canonical, favicon, JSON-LD fixed. OG image needs real design. |
+| 15 | No analytics | **PARTIALLY RESOLVED** — analytics.ts helpers created. GTM ID needed from business. |
+| 16 | ServicesHorizontal | **RESOLVED** — rewritten with proper scroll-hijack + separate mobile stack |
+| 17 | HeroGlobe | **RESOLVED** — replaced with static hero (animated paths de-scoped) |
+| 18 | Service pages template | **ACKNOWLEDGED** — adequate for launch, differentiate post-launch |
+| 19 | ClientLogos unused | **RESOLVED** — component deleted |

@@ -117,7 +117,7 @@ export default function CaseStudyModal({
                     isDark ? "text-white/30" : "text-carbon-dark/30"
                   }`}
                 >
-                  Ilustratif / NDA Protected
+                  Skenario Ilustratif
                 </span>
               </div>
             </motion.div>

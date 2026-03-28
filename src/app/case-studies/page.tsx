@@ -26,22 +26,21 @@ export default function CaseStudiesPage() {
             Situasi Berbeda,
             <br />
             <span className="text-logistics-orange">Pendekatan Berbeda.</span>
-            <br />
-            <span className="text-white/30">Hasil Terukur.</span>
           </h1>
 
           <p className="mt-8 text-base md:text-lg text-white/40 max-w-2xl leading-relaxed">
-            Setiap klien datang dengan tantangan yang unik. Berikut beberapa
-            contoh bagaimana kami merancang solusi spesifik dan hasil
-            yang tercapai.
+            Contoh ilustratif bagaimana pendekatan logistik yang terstruktur
+            dapat menyelesaikan tantangan operasional di berbagai industri.
+            Skenario di bawah menggambarkan pola umum yang kami tangani.
           </p>
 
-          {/* NDA Notice */}
+          {/* Illustrative notice */}
           <div className="mt-6 flex items-center gap-3">
             <div className="w-2 h-2 bg-logistics-orange/40 rotate-45 flex-shrink-0" />
             <p className="text-xs md:text-sm text-white/25 leading-relaxed">
-              Kami menjunjung tinggi privasi klien dan kesepakatan NDA.
-              Nama perusahaan dan identitas spesifik klien tidak ditampilkan.
+              Skenario bersifat ilustratif berdasarkan pola operasional umum
+              di industri logistik. Nama perusahaan dan detail spesifik tidak
+              ditampilkan.
             </p>
           </div>
         </div>
