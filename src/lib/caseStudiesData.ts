@@ -86,4 +86,40 @@ export const caseStudies: CaseStudy[] = [
     color: "light",
     gridSpan: "tall",
   },
+  {
+    id: "cold-chain-integrity",
+    title: "Integritas Cold Chain Farmasi Transnasional",
+    client: "Perusahaan Bioteknologi Asia Tenggara",
+    industry: "Bioteknologi & Life Sciences",
+    metric: "99.8%",
+    metricLabel: "Compliance Suhu",
+    summary:
+      "Pembangunan jaringan cold chain end-to-end untuk distribusi vaksin dan biofarmasi di 6 negara tropis.",
+    challenge:
+      "Deviasi suhu terjadi pada 18% shipment, menyebabkan kerugian $3.4M per tahun dari produk yang harus dimusnahkan. Monitoring manual tidak mampu mendeteksi excursion secara real-time.",
+    solution:
+      "Implementasi IoT sensor array dengan telemetri suhu real-time di setiap unit pendingin. Algoritma prediktif mendeteksi risiko deviasi 2 jam sebelum terjadi dan memicu re-routing otomatis ke fasilitas terdekat.",
+    result:
+      "Compliance suhu mencapai 99.8%. Kerugian produk turun 94%. ROI tercapai dalam 7 bulan implementasi.",
+    color: "dark",
+    gridSpan: "normal",
+  },
+  {
+    id: "last-mile-velocity",
+    title: "Akselerasi Last-Mile Metropolitas",
+    client: "Konglomerat FMCG Nasional",
+    industry: "FMCG & Consumer Goods",
+    metric: "2.1x",
+    metricLabel: "Percepatan Delivery",
+    summary:
+      "Redesain total jaringan last-mile delivery untuk 12 kota metropolitan dari model hub tunggal ke micro-fulfillment terdistribusi.",
+    challenge:
+      "SLA delivery 24 jam hanya tercapai 67% di kota-kota tier-2. Biaya last-mile mengkonsumsi 43% total biaya logistik. Customer complaint rate terus meningkat.",
+    solution:
+      "Jaringan micro-fulfillment center di 48 titik strategis dengan dynamic routing yang mengalokasikan order ke node terdekat secara otomatis. Batch optimization mengurangi empty miles.",
+    result:
+      "SLA compliance melonjak ke 96%. Biaya last-mile tereduksi 38%. Delivery speed meningkat 2.1x rata-rata.",
+    color: "light",
+    gridSpan: "wide",
+  },
 ];

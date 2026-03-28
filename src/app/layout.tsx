@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import SmoothScroller from "@/components/layout/SmoothScroller";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import ConsoleEasterEgg from "@/components/layout/ConsoleEasterEgg";
 import JsonLd from "@/components/layout/JsonLd";
 
@@ -70,7 +72,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground font-sans">
+        <Header />
         <SmoothScroller>{children}</SmoothScroller>
+        <Footer />
         <ConsoleEasterEgg />
       </body>
     </html>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useMemo, useCallback } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 // ============================================================
@@ -101,10 +101,22 @@ function ParticleGlobe() {
   const pointsRef = useRef<THREE.Points>(null);
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   const pointer = useRef(new THREE.Vector2(0, 0));
-  const { viewport } = useThree();
 
   // Generasi formasi titik partikel sferis (distribusi Fibonacci)
+  // Menggunakan seeded pseudo-random agar hasil deterministik (pure)
   const { positions, scales } = useMemo(() => {
+    // Seeded PRNG (mulberry32) untuk deterministic random
+    function seededRandom(seed: number) {
+      let s = seed;
+      return () => {
+        s = (s + 0x6d2b79f5) | 0;
+        let t = Math.imul(s ^ (s >>> 15), 1 | s);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      };
+    }
+    const rand = seededRandom(42);
+
     const count = 4000;
     const pos = new Float32Array(count * 3);
     const scl = new Float32Array(count);
@@ -118,13 +130,13 @@ function ParticleGlobe() {
       const phi = (2 * Math.PI * i) / goldenRatio;
 
       // Variasi radius untuk efek volume (tidak hanya permukaan)
-      const r = radius * (0.85 + Math.random() * 0.3);
+      const r = radius * (0.85 + rand() * 0.3);
 
       pos[i * 3] = r * Math.sin(theta) * Math.cos(phi);
       pos[i * 3 + 1] = r * Math.sin(theta) * Math.sin(phi);
       pos[i * 3 + 2] = r * Math.cos(theta);
 
-      scl[i] = 0.5 + Math.random() * 1.0;
+      scl[i] = 0.5 + rand() * 1.0;
     }
 
     return { positions: pos, scales: scl };
@@ -194,9 +206,9 @@ export default function HeroGlobe() {
   return (
     <Canvas
       camera={{ position: [0, 0, 5.5], fov: 50 }}
-      dpr={[1, 2]}
+      dpr={[1, 1.5]}
       gl={{
-        antialias: true,
+        antialias: false,
         alpha: true,
         powerPreference: "high-performance",
       }}
