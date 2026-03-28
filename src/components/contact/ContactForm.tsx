@@ -6,75 +6,68 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useUTMCapture, getStoredUTMData } from "@/hooks/useUTMCapture";
 
-// ============================================================
-// Schema Validasi Zod — Perisai kebersihan data B2B
-// ============================================================
+// Validasi form
+
 const leadSchema = z.object({
-  pain_point: z.string().min(1, "Pilih simpul kritis Anda"),
-  operational_volume: z.string().min(1, "Pilih skala operasional Anda"),
+  pain_point: z.string().min(1, "Pilih layanan yang Anda butuhkan"),
+  operational_volume: z.string().min(1, "Pilih estimasi volume pengiriman"),
   company_name: z.string().min(2, "Nama perusahaan wajib diisi"),
-  executive_email: z.string().email("Format email tidak valid"),
+  executive_email: z.string().email("Format email belum sesuai"),
 });
 
 type LeadFormData = z.infer<typeof leadSchema>;
 
-// ============================================================
-// Opsi Fase 1 — Determinasi Niat Target
-// ============================================================
+// Step 1: Pilihan layanan
 const PAIN_POINTS = [
   {
-    id: "warehouse-inefficiency",
-    label: "Stagnasi Pergudangan",
-    desc: "Utilisasi ruang rendah, inventaris berputar lambat",
+    id: "domestic-distribution",
+    label: "Distribusi Domestik",
+    desc: "FTL, LTL, FCL, LCL, atau airfreight ke seluruh Indonesia",
   },
   {
-    id: "freight-fragmentation",
-    label: "Fragmentasi Angkutan",
-    desc: "Koordinasi multi-vendor tanpa visibilitas terpadu",
+    id: "international-freight",
+    label: "International Freight & Import DTD",
+    desc: "Ekspor, impor, atau door-to-door dari negara asal",
   },
   {
-    id: "customs-delay",
-    label: "Keterlambatan Kepabeanan",
-    desc: "Proses clearance manual, penalti demurrage berulang",
+    id: "customs-warehouse",
+    label: "Customs Brokerage & Warehousing",
+    desc: "Pengurusan bea cukai, penyimpanan, dan fulfillment",
   },
   {
-    id: "supply-chain-blind",
-    label: "Kebutaan Rantai Pasok",
-    desc: "Visibilitas parsial, zero prediksi disruption",
+    id: "project-cargo-charter",
+    label: "Project Cargo, Blocspace & Charter",
+    desc: "Muatan khusus, oversized, atau kebutuhan kapasitas terjamin",
   },
 ];
 
-// ============================================================
-// Opsi Fase 2 — Skrining Kualifikasi Volume Operasional
-// ============================================================
+// Step 2: Volume pengiriman
 const VOLUME_TIERS = [
   {
     id: "tier-entry",
-    label: "< $50k",
-    desc: "Kapasitas pengangkutan regional awal",
+    label: "< $50k / bulan",
+    desc: "Skala awal atau pengiriman berkala dengan volume terbatas",
   },
   {
     id: "tier-regional",
-    label: "$50k — $150k",
-    desc: "Operasi logistik regional fungsional",
+    label: "$50k - $150k / bulan",
+    desc: "Pengiriman rutin dengan kebutuhan koordinasi multi-rute",
   },
   {
     id: "tier-national",
-    label: "$150k — $500k",
-    desc: "Jaringan distribusi nasional terintegrasi",
+    label: "$150k - $500k / bulan",
+    desc: "Distribusi nasional atau multi-negara dengan volume konsisten",
   },
   {
     id: "tier-global",
-    label: "$500k+",
-    desc: "Armada komprehensif logistik rute global tanpa batas",
+    label: "$500k+ / bulan",
+    desc: "Operasi skala besar dengan rute internasional reguler",
   },
 ];
 
 const TOTAL_STEPS = 3;
 
-// ============================================================
-// Komponen Blok Seleksi Interaktif (menggantikan dropdown)
-// ============================================================
+// Komponen pilihan (grid of buttons)
 function SelectionBlock({
   options,
   value,
@@ -123,9 +116,7 @@ function SelectionBlock({
   );
 }
 
-// ============================================================
-// Komponen Utama — Multi-Step Progressive Disclosure Form
-// ============================================================
+// Form utama - 3 langkah
 export default function ContactForm() {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -164,7 +155,7 @@ export default function ContactForm() {
     setStep((s) => Math.max(s - 1, 1));
   }, []);
 
-  // Submission — POST ke /api/leads dengan UTM data dari localStorage
+  // Submission - POST ke /api/leads dengan UTM data dari localStorage
   const onSubmit = useCallback(
     async (data: LeadFormData) => {
       setIsSubmitting(true);
@@ -213,9 +204,7 @@ export default function ContactForm() {
 
       <div className="flex-1 flex items-center justify-center px-6 md:px-16 py-32">
         <div className="w-full max-w-3xl">
-          {/* ============================================ */}
-          {/* LAYAR SUKSES — konfirmasi penyelesaian */}
-          {/* ============================================ */}
+          {/* Layar sukses */}
           {isSuccess ? (
             <div className="animate-fade-in">
               {/* Ikon cek dekoratif */}
@@ -225,16 +214,15 @@ export default function ContactForm() {
               </div>
 
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.05]">
-                Kapasitas Rantai Pasokan Arsitektural Jaringan Anda{" "}
+                Terima Kasih.{" "}
                 <span className="text-logistics-orange">
-                  Sedang Dievaluasi Algoritma.
+                  Kami Akan Segera Menghubungi.
                 </span>
               </h2>
 
               <p className="mt-8 text-base md:text-lg text-white/40 leading-relaxed max-w-2xl">
-                Pengikatan Jadwal Komunikasi Tanggapan Timbal Balik Resolusi SLA
-                (Service Level Agreement) Arsitek Kami Aktif dalam Presisi Durasi
-                di bawah 24 Jam Penuh.
+                Tim kami akan merespons dalam 1 hari kerja untuk menjadwalkan
+                diskusi awal sesuai kebutuhan yang Anda sampaikan.
               </p>
 
               {/* Garis dekoratif */}
@@ -253,15 +241,12 @@ export default function ContactForm() {
                 </span>
               </div>
 
-              {/* ============================================ */}
-              {/* FASE 1 — Determinasi Niat Target */}
-              {/* ============================================ */}
+              {/* Step 1: Pilih layanan */}
               {step === 1 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
-                    Identifikasi simpul paling kritis dari arsitektur
-                    keterlambatan rantai pasokan jaringan logistik otonom Anda{" "}
-                    <span className="text-logistics-orange">saat ini?</span>
+                    Layanan apa yang{" "}
+                    <span className="text-logistics-orange">Anda butuhkan?</span>
                   </h2>
 
                   <SelectionBlock
@@ -303,15 +288,13 @@ export default function ContactForm() {
                 </div>
               )}
 
-              {/* ============================================ */}
-              {/* FASE 2 — Skrining Kualifikasi Volume */}
-              {/* ============================================ */}
+              {/* Step 2: Volume pengiriman */}
               {step === 2 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
-                    Berapa skala sirkulasi komoditas operasional{" "}
+                    Estimasi volume{" "}
                     <span className="text-logistics-orange">
-                      bulanan Anda?
+                      pengiriman Anda?
                     </span>
                   </h2>
 
@@ -372,14 +355,12 @@ export default function ContactForm() {
                 </div>
               )}
 
-              {/* ============================================ */}
-              {/* FASE 3 — Profil Eksekutif */}
-              {/* ============================================ */}
+              {/* Step 3: Kontak */}
               {step === 3 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
-                    Profil otoritas{" "}
-                    <span className="text-logistics-orange">eksekutif Anda.</span>
+                    Siapa yang bisa{" "}
+                    <span className="text-logistics-orange">kami hubungi?</span>
                   </h2>
 
                   <div className="mt-8 space-y-6">
@@ -391,7 +372,7 @@ export default function ContactForm() {
                       <input
                         {...register("company_name")}
                         type="text"
-                        placeholder="PT. Enterprise Logistics International"
+                        placeholder="PT. Perusahaan Anda"
                         className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-lg md:text-xl font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
                       />
                       {errors.company_name && (
@@ -404,12 +385,12 @@ export default function ContactForm() {
                     {/* Email Eksekutif */}
                     <div>
                       <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
-                        Email Eksekutif B2B
+                        Email Kerja
                       </label>
                       <input
                         {...register("executive_email")}
                         type="email"
-                        placeholder="director@perusahaan.co.id"
+                        placeholder="nama@perusahaan.co.id"
                         className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-lg md:text-xl font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
                       />
                       {errors.executive_email && (
@@ -439,16 +420,16 @@ export default function ContactForm() {
                       Kembali
                     </button>
 
-                    {/* CTA — Tombol seruan pengiriman */}
+                    {/* Submit button */}
                     <button
                       type="submit"
                       disabled={isSubmitting}
                       className="group flex items-center gap-4 bg-logistics-orange text-white px-8 py-4 font-bold text-xs md:text-sm uppercase tracking-widest hover:bg-logistics-orange/90 transition-all duration-300 disabled:opacity-50"
                     >
                       {isSubmitting
-                        ? "Memproses..."
-                        : "Inisialisasi Algoritma Optimasi"}
-                      {/* Ikon panah heksagonal logistik #ff4600 */}
+                        ? "Mengirim..."
+                        : "Kirim & Jadwalkan Diskusi"}
+                      {/* Arrow icon */}
                       <svg
                         width="24"
                         height="24"

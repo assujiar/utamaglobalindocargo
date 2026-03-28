@@ -4,10 +4,12 @@ const FOOTER_LINKS = [
   {
     title: "Layanan",
     links: [
-      { label: "Pergudangan Dinamis", href: "/#layanan" },
-      { label: "Manajemen Angkutan", href: "/#layanan" },
-      { label: "Akselerasi Kepabeanan", href: "/#layanan" },
-      { label: "Orkestrasi Rantai Pasok", href: "/#layanan" },
+      { label: "Domestic Distribution", href: "/services/domestic-distribution" },
+      { label: "International Freight", href: "/services/international-freight" },
+      { label: "Import DTD & Customs", href: "/services/import-dtd" },
+      { label: "Warehousing & Fulfillment", href: "/services/warehousing" },
+      { label: "Project Cargo", href: "/services/project-cargo" },
+      { label: "Blocspace & Charter", href: "/services/blocspace" },
     ],
   },
   {
@@ -37,9 +39,9 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-white/30 text-sm leading-relaxed max-w-sm">
-              Platform logistik korporat B2B berkinerja tinggi untuk solusi
-              pengiriman dan manajemen rantai pasok tingkat eksekutif di Asia
-              Pasifik.
+              Freight forwarding, customs brokerage, warehousing, dan project
+              cargo untuk perusahaan yang membutuhkan partner logistik
+              terpercaya. Jakarta, Asia Pasifik.
             </p>
             {/* Decorative line */}
             <div className="mt-8 flex items-center gap-3">
@@ -91,12 +93,12 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/20">
-            &copy; {new Date().getFullYear()} Utama Global Indo Cargo. Seluruh
+            &copy; {new Date().getFullYear()} PT Utama Globalindo Cargo. Seluruh
             hak dilindungi.
           </p>
           <div className="flex items-center gap-6">
             <span className="text-[10px] text-white/10 uppercase tracking-widest">
-              Direkayasa untuk presisi logistik
+              Logistik Tanpa Drama
             </span>
           </div>
         </div>

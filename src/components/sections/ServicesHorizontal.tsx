@@ -1,65 +1,83 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ============================================================
-// Data Panel Layanan — PAS Framework (Problem-Agitate-Solve)
-// Tanpa spesifikasi fitur mati; fokus penceritaan psikologis B2B
-// ============================================================
+// Data layanan
 const panels = [
   {
-    id: "pergudangan",
+    id: "domestic",
     number: "01",
-    label: "Resolusi Pergudangan",
-    headline: "Inventaris Statis Adalah Jebakan Modal Terperangkap.",
+    label: "Domestic Distribution",
+    href: "/services/domestic-distribution",
+    headline: "Seluruh Indonesia, Satu Koordinasi.",
     description:
-      "Setiap meter kubik yang tidak berputar adalah laba yang menguap. Arsitektur pergudangan kami mengkonversi aset diam menjadi simpul distribusi dinamis — kelincahan infrastruktur yang membebaskan arus kas operasional Anda dari gravitasi inefisiensi.",
+      "FTL, LTL, FCL, LCL, atau airfreight domestik. Apapun mode yang dibutuhkan, kami atur dari pickup sampai delivery. Satu titik koordinasi untuk seluruh distribusi nasional Anda.",
     accent: "bg-logistics-orange",
     theme: "dark" as const,
   },
   {
-    id: "angkutan",
+    id: "international",
     number: "02",
-    label: "Manajemen Angkutan Perantara",
-    headline:
-      "Kekacauan Fragmentasi Komunikasi Menenggelamkan Jam Operasional Eksekutif Anda.",
+    label: "International Freight",
+    href: "/services/international-freight",
+    headline: "Impor dan Ekspor Tanpa Jeda.",
     description:
-      "Koordinasi multi-vendor tanpa orkestrasi terpusat menciptakan entropi yang mengkonsumsi bandwidth keputusan strategis. Platform penyatuan perutean algoritma kami memusatkan visibilitas dan mereduksi titik kontak fragmentasi hingga ke satu antarmuka komando tunggal.",
+      "FCL, LCL, dan airfreight untuk ekspor maupun impor. Kami tangani dari booking carrier, dokumentasi, sampai barang tiba di tujuan. Yang sering jadi bottleneck bukan jalurnya, tapi koordinasi di antara titik-titik transit. Di situ kami bekerja.",
     accent: "bg-logistics-orange",
     theme: "light" as const,
   },
   {
-    id: "kepabeanan",
+    id: "import-dtd",
     number: "03",
-    label: "Akselerasi Kepabeanan",
-    headline:
-      "Regulasi Bergerak Lebih Cepat Dari Kemampuan Adaptasi Manual Tim Anda.",
+    label: "Import DTD & Customs",
+    href: "/services/import-dtd",
+    headline: "Dari Negara Asal Langsung ke Gudang Anda.",
     description:
-      "Setiap keterlambatan kepabeanan adalah penalti finansial yang berganda secara eksponensial. Mesin kepatuhan regulasi kami mengantisipasi perubahan tarif dan klasifikasi harmonized system sebelum kontainer Anda berlabuh — presisi dokumen yang mengeliminasi demurrage.",
+      "Import door-to-door artinya Anda tidak perlu urus apapun di tengah jalan. Kami jemput dari origin, tangani customs clearance termasuk klasifikasi HS dan dokumen LARTAS, lalu antarkan sampai ke lokasi Anda.",
     accent: "bg-logistics-orange",
     theme: "dark" as const,
   },
   {
-    id: "rantai-pasok",
+    id: "warehouse",
     number: "04",
-    label: "Orkestrasi Rantai Pasok",
-    headline:
-      "Visibilitas Parsial Adalah Ilusi Kontrol Yang Lebih Berbahaya Dari Kebutaan Total.",
+    label: "Warehousing & Fulfillment",
+    href: "/services/warehousing",
+    headline: "Gudang yang Bekerja, Bukan Sekadar Menyimpan.",
     description:
-      "Dashboard tradisional menampilkan data historis — kami menyajikan probabilitas masa depan. Telemetri prediktif end-to-end memproyeksikan titik kegagalan rantai pasok 72 jam sebelum terjadi, memberi Anda waktu eksekusi yang tidak dimiliki kompetitor.",
+      "Penyimpanan saja tidak cukup. Kami kelola inventory, atur penempatan barang untuk efisiensi picking, dan handle fulfillment per order. Gudang yang terkelola dengan benar bisa memangkas waktu dan biaya operasional secara signifikan.",
+    accent: "bg-logistics-orange",
+    theme: "light" as const,
+  },
+  {
+    id: "project-cargo",
+    number: "05",
+    label: "Project Cargo",
+    href: "/services/project-cargo",
+    headline: "Muatan Khusus Butuh Penanganan Khusus.",
+    description:
+      "Alat berat, komponen oversized, atau material sensitif. Pengiriman seperti ini tidak bisa pakai template standar. Kami rancang solusi per proyek: survei rute, perizinan khusus, alat angkut yang tepat, sampai penempatan di lokasi tujuan.",
+    accent: "bg-logistics-orange",
+    theme: "dark" as const,
+  },
+  {
+    id: "blocspace",
+    number: "06",
+    label: "Blocspace & Charter",
+    href: "/services/blocspace",
+    headline: "Kapasitas Terjamin, Bukan Sekadar Tersedia.",
+    description:
+      "Ketika volume Anda butuh jaminan ruang atau jadwal reguler tidak mencukupi, kami sediakan blocspace dan airfreight charter. Untuk peak season, peluncuran produk, atau kebutuhan mendesak yang tidak bisa menunggu slot berikutnya.",
     accent: "bg-logistics-orange",
     theme: "light" as const,
   },
 ];
 
-// ============================================================
-// Komponen Panel Individual
-// ============================================================
 function ServicePanel({
   panel,
   index,
@@ -77,7 +95,7 @@ function ServicePanel({
         isDark ? "bg-carbon-dark" : "bg-white"
       }`}
     >
-      {/* Garis indikator progress vertikal — 1px #ff4600 */}
+      {/* Garis indikator progress vertikal - 1px #ff4600 */}
       <div className="absolute left-8 md:left-16 top-0 bottom-0 flex flex-col items-center">
         <div className="w-[1px] flex-1 bg-logistics-orange/20" />
         <span
@@ -90,7 +108,7 @@ function ServicePanel({
         <div className="w-[1px] flex-1 bg-logistics-orange/20" />
       </div>
 
-      {/* Garis indikator horizontal bawah — progress rasio penyelesaian */}
+      {/* Garis indikator horizontal bawah - progress rasio penyelesaian */}
       <div className="absolute bottom-0 left-0 right-0 h-[1px]">
         <div
           className="h-full bg-logistics-orange"
@@ -117,7 +135,7 @@ function ServicePanel({
           {panel.number}
         </span>
 
-        {/* Headline PAS — tipografi masif pemantik masalah */}
+        {/* Headline */}
         <h3
           className={`text-3xl md:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight ${
             isDark ? "text-white" : "text-carbon-dark"
@@ -126,14 +144,12 @@ function ServicePanel({
           {panel.headline.split(" ").map((word, i) => {
             // Aksentuasi kata kunci dengan warna oranye
             const accentWords = [
-              "Jebakan",
-              "Terperangkap.",
-              "Menenggelamkan",
-              "Ilusi",
-              "Berbahaya",
-              "Kebutaan",
-              "Lebih",
-              "Regulasi",
+              "Koordinasi.",
+              "Jeda.",
+              "Gudang",
+              "Anda.",
+              "Khusus.",
+              "Terjamin,",
             ];
             const isAccent = accentWords.includes(word);
             return (
@@ -156,14 +172,22 @@ function ServicePanel({
           {panel.description}
         </p>
 
-        {/* Garis dekoratif horizontal bawah paragraf */}
+        {/* Link ke halaman detail */}
         <div className="mt-10 flex items-center gap-4">
-          <div className="w-20 h-[1px] bg-logistics-orange/40" />
+          <Link
+            href={panel.href}
+            className={`text-sm font-bold uppercase tracking-widest hover:text-logistics-orange transition-colors duration-300 ${
+              isDark ? "text-white/60" : "text-carbon-dark/60"
+            }`}
+          >
+            Lihat Detail
+          </Link>
+          <div className="w-12 h-[1px] bg-logistics-orange/40" />
           <div className="w-2 h-2 bg-logistics-orange rotate-45" />
         </div>
       </div>
 
-      {/* Elemen geometris dekoratif — sudut kanan atas */}
+      {/* Elemen geometris dekoratif - sudut kanan atas */}
       <div className="absolute top-8 right-8 md:top-16 md:right-16">
         <div
           className={`w-16 h-16 md:w-24 md:h-24 border ${
@@ -176,9 +200,6 @@ function ServicePanel({
   );
 }
 
-// ============================================================
-// Komponen Utama — Horizontal Scroll Hijacking via ScrollTrigger
-// ============================================================
 export default function ServicesHorizontal() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -216,15 +237,15 @@ export default function ServicesHorizontal() {
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-[1px] bg-logistics-orange" />
             <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">
-              Ekosistem Layanan
+              Layanan
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[0.95]">
-            Kami Tidak Menjual
+            Dari Pengiriman Lokal
             <br />
-            <span className="text-logistics-orange">Logistik.</span>
+            <span className="text-logistics-orange">Sampai Kargo Internasional.</span>
             <br />
-            <span className="text-white/40">Kami Mengeliminasi Gesekan.</span>
+            <span className="text-white/40">Satu Partner, Semua Terurus.</span>
           </h2>
         </div>
 
@@ -235,7 +256,7 @@ export default function ServicesHorizontal() {
       {/* Kontainer pembajakan scroll horizontal */}
       {/* height: panels * 100vh untuk ruang penyerapan waktu gulir */}
       <div ref={sectionRef} className="relative" id="layanan">
-        {/* Track baris fleksibel nowrap — lebar = panels * 100vw */}
+        {/* Track baris fleksibel nowrap - lebar = panels * 100vw */}
         <div
           ref={trackRef}
           className="flex flex-col md:flex-row md:flex-nowrap"

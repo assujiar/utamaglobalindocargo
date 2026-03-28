@@ -1,7 +1,6 @@
 export interface CaseStudy {
   id: string;
   title: string;
-  client: string;
   industry: string;
   metric: string;
   metricLabel: string;
@@ -16,109 +15,103 @@ export interface CaseStudy {
 export const caseStudies: CaseStudy[] = [
   {
     id: "supply-chain-alpha",
-    title: "Restrukturisasi Rantai Pasok Multinasional",
-    client: "Konglomerat Manufaktur ASEAN",
-    industry: "Manufaktur Berat",
-    metric: "47%",
+    title: "Konsolidasi Distribusi Multi-Negara",
+    industry: "Manufacturing",
+    metric: "~40%",
     metricLabel: "Reduksi Lead Time",
     summary:
-      "Transformasi arsitektur distribusi 14 negara dari model hub-and-spoke menjadi jaringan mesh adaptif.",
+      "Distribusi ke belasan negara dengan vendor berbeda di setiap titik, dikonsolidasi ke dalam satu jaringan koordinasi.",
     challenge:
-      "Fragmentasi vendor di 14 titik negara menciptakan bottleneck berulang. Setiap gangguan rantai pasok menghasilkan efek domino yang memakan waktu 72 jam untuk stabilisasi.",
+      "Gangguan di satu negara berdampak ke negara lain karena tidak ada koordinasi terpusat. Waktu stabilisasi saat ada masalah bisa memakan beberapa hari.",
     solution:
-      "Implementasi orkestrasi rantai pasok terpadu dengan routing algoritmik real-time. Jaringan mesh adaptif mengeliminasi single-point-of-failure dan memungkinkan re-routing otomatis dalam hitungan menit.",
+      "Jalur distribusi dirancang ulang dengan rute alternatif yang bisa diaktifkan saat jalur utama terganggu, tanpa harus koordinasi manual satu per satu.",
     result:
-      "Lead time tereduksi 47%. Biaya demurrage turun 62%. Zero stockout selama 18 bulan berturut-turut.",
+      "Lead time berkurang sekitar 40%. Biaya demurrage turun signifikan. Ketersediaan stok jauh lebih stabil dibanding sebelumnya.",
     color: "dark",
     gridSpan: "tall",
   },
   {
     id: "customs-velocity",
-    title: "Akselerasi Kepabeanan Zero-Delay",
-    client: "Distributor Farmasi Regional",
-    industry: "Farmasi & Healthcare",
-    metric: "3.2x",
-    metricLabel: "Percepatan Clearance",
+    title: "Percepatan Proses Customs Clearance",
+    industry: "Pharmaceutical",
+    metric: "~3x",
+    metricLabel: "Lebih Cepat",
     summary:
-      "Digitalisasi end-to-end proses kepabeanan dari deklarasi manual menjadi pre-clearance algoritmik.",
+      "Proses bea cukai yang sebelumnya manual dan rawan kesalahan, didigitalisasi supaya dokumen siap sebelum barang tiba.",
     challenge:
-      "Proses kepabeanan manual memakan rata-rata 5.7 hari per shipment. Kesalahan klasifikasi HS Code terjadi pada 23% pengiriman, mengakibatkan penalti dan keterlambatan kritis.",
+      "Proses clearance rata-rata hampir seminggu per pengiriman. Kesalahan klasifikasi HS Code cukup sering terjadi, mengakibatkan penalti dan keterlambatan.",
     solution:
-      "Mesin kepatuhan regulasi dengan klasifikasi HS Code otomatis berbasis AI dan pre-clearance yang memproses dokumentasi sebelum kontainer tiba di pelabuhan tujuan.",
+      "Klasifikasi HS dan dokumentasi disiapkan lebih awal dengan sistem yang terstandarisasi. Verifikasi dilakukan sebelum kontainer berangkat, bukan setelah tiba.",
     result:
-      "Clearance time tereduksi dari 5.7 hari menjadi 1.8 hari. Error rate klasifikasi turun ke 0.3%. Penghematan penalti $2.1M per tahun.",
+      "Waktu clearance turun dari hampir seminggu menjadi kurang dari 2 hari. Kesalahan klasifikasi turun drastis. Penalti berkurang signifikan.",
     color: "light",
     gridSpan: "normal",
   },
   {
     id: "warehouse-singularity",
-    title: "Konvergensi Pergudangan Dinamis",
-    client: "E-Commerce Enterprise Tier-1",
-    industry: "Retail & E-Commerce",
-    metric: "89%",
-    metricLabel: "Utilisasi Ruang",
+    title: "Optimasi Utilisasi Multi-Gudang",
+    industry: "E-Commerce & Retail",
+    metric: "~85%",
+    metricLabel: "Utilisasi Gudang",
     summary:
-      "Transformasi 6 gudang statis menjadi jaringan fulfillment dinamis dengan alokasi ruang algoritmik.",
+      "Beberapa gudang dengan utilisasi rendah dan distribusi stok tidak merata, ditata ulang berdasarkan data demand per wilayah.",
     challenge:
-      "Utilisasi rata-rata hanya 54% di 6 lokasi gudang. Maldistribusi inventaris menyebabkan overstock di satu lokasi dan stockout di lokasi lain secara simultan.",
+      "Utilisasi gudang rata-rata hanya sekitar separuh kapasitas. Di satu lokasi overstock, di lokasi lain justru kosong. Picking lambat karena penempatan barang tidak terstruktur.",
     solution:
-      "Sistem alokasi ruang dinamis yang merotasi inventaris antar-gudang berdasarkan prediksi demand regional. Slotting algoritmik mengoptimalkan penempatan SKU untuk minimalisasi pick-path.",
+      "Rotasi stok antar-gudang disesuaikan dengan pola demand regional. Penempatan SKU ditata ulang untuk mempersingkat jarak picking.",
     result:
-      "Utilisasi ruang melonjak ke 89%. Biaya operasional gudang turun 34%. Kecepatan fulfillment meningkat 2.8x.",
+      "Utilisasi naik ke sekitar 85%. Biaya operasional gudang turun sekitar sepertiga. Waktu fulfillment jauh lebih cepat.",
     color: "dark",
     gridSpan: "wide",
   },
   {
     id: "freight-orchestration",
-    title: "Orkestrasi Armada Kontainer Intercontinental",
-    client: "Trading House Komoditas Global",
-    industry: "Perdagangan Komoditas",
-    metric: "$4.7M",
-    metricLabel: "Penghematan Tahunan",
+    title: "Integrasi Multi-Carrier ke Satu Platform",
+    industry: "Commodities Trading",
+    metric: "7→1",
+    metricLabel: "Vendor Terkonsolidasi",
     summary:
-      "Konsolidasi manajemen 340+ kontainer/bulan dari 7 freight forwarder ke platform komando tunggal.",
+      "Koordinasi dengan banyak freight forwarder yang sebelumnya terpisah-pisah, disatukan dalam satu dashboard visibility.",
     challenge:
-      "Koordinasi dengan 7 freight forwarder independen menciptakan informational blackhole. Visibility real-time terhadap posisi kontainer hanya tersedia untuk 31% shipment.",
+      "Informasi tersebar di beberapa vendor tanpa integrasi. Tracking real-time hanya tersedia untuk sebagian kecil pengiriman. Tim operasional lebih banyak mencari informasi daripada mengambil keputusan.",
     solution:
-      "Platform komando tunggal yang mengintegrasikan seluruh carrier ke dalam satu dashboard visibility. Algoritma konsolidasi mengoptimalkan pemanfaatan kapasitas kontainer secara otomatis.",
+      "Satu dashboard yang menghubungkan seluruh carrier. Posisi dan estimasi setiap kontainer bisa dipantau. Konsolidasi muatan dioptimalkan supaya kapasitas kontainer lebih terpakai.",
     result:
-      "Visibility meningkat ke 99.7%. Penghematan $4.7M dari optimisasi konsolidasi. Rata-rata transit time tereduksi 12 hari.",
+      "Visibility meningkat drastis. Biaya pengiriman turun karena konsolidasi yang lebih efisien. Transit time rata-rata berkurang.",
     color: "light",
     gridSpan: "tall",
   },
   {
     id: "cold-chain-integrity",
-    title: "Integritas Cold Chain Farmasi Transnasional",
-    client: "Perusahaan Bioteknologi Asia Tenggara",
-    industry: "Bioteknologi & Life Sciences",
-    metric: "99.8%",
-    metricLabel: "Compliance Suhu",
+    title: "Monitoring Cold Chain untuk Produk Sensitif",
+    industry: "Biotech & Life Sciences",
+    metric: ">99%",
+    metricLabel: "Suhu Terjaga",
     summary:
-      "Pembangunan jaringan cold chain end-to-end untuk distribusi vaksin dan biofarmasi di 6 negara tropis.",
+      "Distribusi produk biofarmasi di beberapa negara tropis dengan monitoring suhu real-time di setiap titik pengiriman.",
     challenge:
-      "Deviasi suhu terjadi pada 18% shipment, menyebabkan kerugian $3.4M per tahun dari produk yang harus dimusnahkan. Monitoring manual tidak mampu mendeteksi excursion secara real-time.",
+      "Deviasi suhu terjadi cukup sering dan baru terdeteksi setelah produk rusak. Kerugian dari produk yang harus dimusnahkan cukup besar setiap tahunnya.",
     solution:
-      "Implementasi IoT sensor array dengan telemetri suhu real-time di setiap unit pendingin. Algoritma prediktif mendeteksi risiko deviasi 2 jam sebelum terjadi dan memicu re-routing otomatis ke fasilitas terdekat.",
+      "Sensor IoT dipasang di setiap unit pendingin dengan monitoring real-time. Sistem memberikan peringatan dini saat ada risiko deviasi, sehingga bisa ditangani sebelum produk rusak.",
     result:
-      "Compliance suhu mencapai 99.8%. Kerugian produk turun 94%. ROI tercapai dalam 7 bulan implementasi.",
+      "Compliance suhu naik ke lebih dari 99%. Kerugian produk turun secara signifikan. Investasi kembali dalam waktu kurang dari setahun.",
     color: "dark",
     gridSpan: "normal",
   },
   {
     id: "last-mile-velocity",
-    title: "Akselerasi Last-Mile Metropolitas",
-    client: "Konglomerat FMCG Nasional",
+    title: "Redesain Jaringan Last-Mile di Beberapa Kota",
     industry: "FMCG & Consumer Goods",
-    metric: "2.1x",
-    metricLabel: "Percepatan Delivery",
+    metric: "~2x",
+    metricLabel: "Lebih Cepat",
     summary:
-      "Redesain total jaringan last-mile delivery untuk 12 kota metropolitan dari model hub tunggal ke micro-fulfillment terdistribusi.",
+      "Jaringan last-mile yang sebelumnya terpusat di satu hub, dipecah ke banyak titik fulfillment supaya lebih dekat ke tujuan.",
     challenge:
-      "SLA delivery 24 jam hanya tercapai 67% di kota-kota tier-2. Biaya last-mile mengkonsumsi 43% total biaya logistik. Customer complaint rate terus meningkat.",
+      "SLA delivery sering tidak tercapai, terutama di kota-kota di luar ibukota. Biaya last-mile terlalu tinggi dibanding total biaya logistik.",
     solution:
-      "Jaringan micro-fulfillment center di 48 titik strategis dengan dynamic routing yang mengalokasikan order ke node terdekat secara otomatis. Batch optimization mengurangi empty miles.",
+      "Titik fulfillment diperbanyak di lokasi-lokasi strategis. Order dialokasikan ke titik terdekat secara otomatis. Rute dioptimasi untuk mengurangi jarak tempuh.",
     result:
-      "SLA compliance melonjak ke 96%. Biaya last-mile tereduksi 38%. Delivery speed meningkat 2.1x rata-rata.",
+      "SLA compliance naik signifikan. Biaya last-mile turun sekitar sepertiga. Kecepatan pengiriman meningkat sekitar 2 kali lipat.",
     color: "light",
     gridSpan: "wide",
   },
