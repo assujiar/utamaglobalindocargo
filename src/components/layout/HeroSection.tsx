@@ -155,16 +155,16 @@ export default function HeroSection() {
             </a>
           </div>
 
-          {/* Service capability line */}
+          {/* Service scope line */}
           <div
             data-fade
             className="mx-auto mt-12 md:mt-16 flex items-center justify-center gap-3"
           >
-            <span className="h-[1px] w-5 md:w-8 bg-white/8" />
-            <span className="text-[10px] md:text-[11px] font-medium uppercase tracking-[0.15em] text-white/22">
-              Distribusi domestik &bull; Freight internasional &bull; Customs &bull; Gudang &bull; Kargo khusus
+            <span className="h-[1px] w-6 md:w-10 bg-white/10" />
+            <span className="text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.15em] text-white/30">
+              Domestik &bull; Internasional &bull; Customs &bull; Gudang &bull; Kargo Khusus
             </span>
-            <span className="h-[1px] w-5 md:w-8 bg-white/8" />
+            <span className="h-[1px] w-6 md:w-10 bg-white/10" />
           </div>
         </div>
       </div>
@@ -174,7 +174,7 @@ export default function HeroSection() {
         data-fade
         className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2"
       >
-        <div className="h-10 w-[1px] bg-gradient-to-b from-white/15 to-transparent" />
+        <div className="h-8 w-[1px] bg-gradient-to-b from-white/20 to-transparent" />
       </div>
     </section>
   );
