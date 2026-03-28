@@ -1,21 +1,20 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ============================================================
-// Data Panel Layanan - PAS Framework (Problem-Agitate-Solve)
-// Tanpa spesifikasi fitur mati; fokus penceritaan psikologis B2B
-// ============================================================
+// Data layanan
 const panels = [
   {
     id: "domestic",
     number: "01",
     label: "Domestic Distribution",
+    href: "/services/domestic-distribution",
     headline: "Seluruh Indonesia, Satu Koordinasi.",
     description:
       "FTL, LTL, FCL, LCL, atau airfreight domestik. Apapun mode yang dibutuhkan, kami atur dari pickup sampai delivery. Satu titik koordinasi untuk seluruh distribusi nasional Anda.",
@@ -26,6 +25,7 @@ const panels = [
     id: "international",
     number: "02",
     label: "International Freight",
+    href: "/services/international-freight",
     headline: "Impor dan Ekspor Tanpa Jeda.",
     description:
       "FCL, LCL, dan airfreight untuk ekspor maupun impor. Kami tangani dari booking carrier, dokumentasi, sampai barang tiba di tujuan. Yang sering jadi bottleneck bukan jalurnya, tapi koordinasi di antara titik-titik transit. Di situ kami bekerja.",
@@ -36,6 +36,7 @@ const panels = [
     id: "import-dtd",
     number: "03",
     label: "Import DTD & Customs",
+    href: "/services/import-dtd",
     headline: "Dari Negara Asal Langsung ke Gudang Anda.",
     description:
       "Import door-to-door artinya Anda tidak perlu urus apapun di tengah jalan. Kami jemput dari origin, tangani customs clearance termasuk klasifikasi HS dan dokumen LARTAS, lalu antarkan sampai ke lokasi Anda.",
@@ -46,6 +47,7 @@ const panels = [
     id: "warehouse",
     number: "04",
     label: "Warehousing & Fulfillment",
+    href: "/services/warehousing",
     headline: "Gudang yang Bekerja, Bukan Sekadar Menyimpan.",
     description:
       "Penyimpanan saja tidak cukup. Kami kelola inventory, atur penempatan barang untuk efisiensi picking, dan handle fulfillment per order. Gudang yang terkelola dengan benar bisa memangkas waktu dan biaya operasional secara signifikan.",
@@ -56,6 +58,7 @@ const panels = [
     id: "project-cargo",
     number: "05",
     label: "Project Cargo",
+    href: "/services/project-cargo",
     headline: "Muatan Khusus Butuh Penanganan Khusus.",
     description:
       "Alat berat, komponen oversized, atau material sensitif. Pengiriman seperti ini tidak bisa pakai template standar. Kami rancang solusi per proyek: survei rute, perizinan khusus, alat angkut yang tepat, sampai penempatan di lokasi tujuan.",
@@ -66,6 +69,7 @@ const panels = [
     id: "blocspace",
     number: "06",
     label: "Blocspace & Charter",
+    href: "/services/blocspace",
     headline: "Kapasitas Terjamin, Bukan Sekadar Tersedia.",
     description:
       "Ketika volume Anda butuh jaminan ruang atau jadwal reguler tidak mencukupi, kami sediakan blocspace dan airfreight charter. Untuk peak season, peluncuran produk, atau kebutuhan mendesak yang tidak bisa menunggu slot berikutnya.",
@@ -74,9 +78,6 @@ const panels = [
   },
 ];
 
-// ============================================================
-// Komponen Panel Individual
-// ============================================================
 function ServicePanel({
   panel,
   index,
@@ -134,7 +135,7 @@ function ServicePanel({
           {panel.number}
         </span>
 
-        {/* Headline PAS - tipografi masif pemantik masalah */}
+        {/* Headline */}
         <h3
           className={`text-3xl md:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight ${
             isDark ? "text-white" : "text-carbon-dark"
@@ -171,9 +172,17 @@ function ServicePanel({
           {panel.description}
         </p>
 
-        {/* Garis dekoratif horizontal bawah paragraf */}
+        {/* Link ke halaman detail */}
         <div className="mt-10 flex items-center gap-4">
-          <div className="w-20 h-[1px] bg-logistics-orange/40" />
+          <Link
+            href={panel.href}
+            className={`text-sm font-bold uppercase tracking-widest hover:text-logistics-orange transition-colors duration-300 ${
+              isDark ? "text-white/60" : "text-carbon-dark/60"
+            }`}
+          >
+            Lihat Detail
+          </Link>
+          <div className="w-12 h-[1px] bg-logistics-orange/40" />
           <div className="w-2 h-2 bg-logistics-orange rotate-45" />
         </div>
       </div>
@@ -191,9 +200,6 @@ function ServicePanel({
   );
 }
 
-// ============================================================
-// Komponen Utama - Horizontal Scroll Hijacking via ScrollTrigger
-// ============================================================
 export default function ServicesHorizontal() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);

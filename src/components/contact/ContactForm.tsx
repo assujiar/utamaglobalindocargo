@@ -6,9 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useUTMCapture, getStoredUTMData } from "@/hooks/useUTMCapture";
 
-// ============================================================
-// Schema Validasi Zod - Perisai kebersihan data B2B
-// ============================================================
+// Validasi form
+
 const leadSchema = z.object({
   pain_point: z.string().min(1, "Pilih layanan yang Anda butuhkan"),
   operational_volume: z.string().min(1, "Pilih estimasi volume pengiriman"),
@@ -18,9 +17,7 @@ const leadSchema = z.object({
 
 type LeadFormData = z.infer<typeof leadSchema>;
 
-// ============================================================
-// Opsi Fase 1 - Determinasi Niat Target
-// ============================================================
+// Step 1: Pilihan layanan
 const PAIN_POINTS = [
   {
     id: "domestic-distribution",
@@ -44,9 +41,7 @@ const PAIN_POINTS = [
   },
 ];
 
-// ============================================================
-// Opsi Fase 2 - Skrining Kualifikasi Volume Operasional
-// ============================================================
+// Step 2: Volume pengiriman
 const VOLUME_TIERS = [
   {
     id: "tier-entry",
@@ -72,9 +67,7 @@ const VOLUME_TIERS = [
 
 const TOTAL_STEPS = 3;
 
-// ============================================================
-// Komponen Blok Seleksi Interaktif (menggantikan dropdown)
-// ============================================================
+// Komponen pilihan (grid of buttons)
 function SelectionBlock({
   options,
   value,
@@ -123,9 +116,7 @@ function SelectionBlock({
   );
 }
 
-// ============================================================
-// Komponen Utama - Multi-Step Progressive Disclosure Form
-// ============================================================
+// Form utama - 3 langkah
 export default function ContactForm() {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -213,9 +204,7 @@ export default function ContactForm() {
 
       <div className="flex-1 flex items-center justify-center px-6 md:px-16 py-32">
         <div className="w-full max-w-3xl">
-          {/* ============================================ */}
-          {/* LAYAR SUKSES - konfirmasi penyelesaian */}
-          {/* ============================================ */}
+          {/* Layar sukses */}
           {isSuccess ? (
             <div className="animate-fade-in">
               {/* Ikon cek dekoratif */}
@@ -252,9 +241,7 @@ export default function ContactForm() {
                 </span>
               </div>
 
-              {/* ============================================ */}
-              {/* FASE 1 - Determinasi Niat Target */}
-              {/* ============================================ */}
+              {/* Step 1: Pilih layanan */}
               {step === 1 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
@@ -301,9 +288,7 @@ export default function ContactForm() {
                 </div>
               )}
 
-              {/* ============================================ */}
-              {/* FASE 2 - Skrining Kualifikasi Volume */}
-              {/* ============================================ */}
+              {/* Step 2: Volume pengiriman */}
               {step === 2 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
@@ -370,9 +355,7 @@ export default function ContactForm() {
                 </div>
               )}
 
-              {/* ============================================ */}
-              {/* FASE 3 - Profil Eksekutif */}
-              {/* ============================================ */}
+              {/* Step 3: Kontak */}
               {step === 3 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
@@ -437,7 +420,7 @@ export default function ContactForm() {
                       Kembali
                     </button>
 
-                    {/* CTA - Tombol seruan pengiriman */}
+                    {/* Submit button */}
                     <button
                       type="submit"
                       disabled={isSubmitting}
@@ -446,7 +429,7 @@ export default function ContactForm() {
                       {isSubmitting
                         ? "Mengirim..."
                         : "Kirim & Jadwalkan Diskusi"}
-                      {/* Ikon panah heksagonal logistik #ff4600 */}
+                      {/* Arrow icon */}
                       <svg
                         width="24"
                         height="24"

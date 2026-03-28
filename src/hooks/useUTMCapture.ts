@@ -23,11 +23,8 @@ export interface UTMData {
 }
 
 /**
- * Custom React Hook - Ekstraktor Telemetri UTM
- *
- * Parsing URLSearchParams segera saat komponen mount di client-side.
- * Mendeteksi utm_source, utm_medium, utm_campaign, utm_term, utm_content.
- * Serialisasi JSON → injeksi ke window.localStorage secara siluman.
+ * Hook untuk menangkap UTM parameters dari URL.
+ * Menyimpan ke localStorage saat pertama kali halaman dibuka.
  */
 export function useUTMCapture() {
   useEffect(() => {

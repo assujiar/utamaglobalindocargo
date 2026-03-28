@@ -4,12 +4,12 @@ const FOOTER_LINKS = [
   {
     title: "Layanan",
     links: [
-      { label: "Domestic Distribution", href: "/#layanan" },
-      { label: "International Freight", href: "/#layanan" },
-      { label: "Import DTD & Customs", href: "/#layanan" },
-      { label: "Warehousing & Fulfillment", href: "/#layanan" },
-      { label: "Project Cargo", href: "/#layanan" },
-      { label: "Blocspace & Charter", href: "/#layanan" },
+      { label: "Domestic Distribution", href: "/services/domestic-distribution" },
+      { label: "International Freight", href: "/services/international-freight" },
+      { label: "Import DTD & Customs", href: "/services/import-dtd" },
+      { label: "Warehousing & Fulfillment", href: "/services/warehousing" },
+      { label: "Project Cargo", href: "/services/project-cargo" },
+      { label: "Blocspace & Charter", href: "/services/blocspace" },
     ],
   },
   {

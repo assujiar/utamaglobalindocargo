@@ -32,7 +32,7 @@ export default function CaseStudyCard({ study, onSelect }: CaseStudyCardProps) {
         },
       }}
     >
-      {/* Zona gambar dengan hover scaling - dinonaktifkan di mobile */}
+      {/* Image area with hover scale (desktop only) */}
       <motion.div
         layoutId={`case-study-hero-image-${study.id}`}
         className="relative w-full overflow-hidden"
@@ -41,7 +41,7 @@ export default function CaseStudyCard({ study, onSelect }: CaseStudyCardProps) {
           minHeight: "200px",
         }}
       >
-        {/* Latar visual generatif - gradient sebagai pengganti foto */}
+        {/* Gradient placeholder */}
         <div
           className={`absolute inset-0 transition-transform duration-700 ease-out
             md:group-hover:scale-110

@@ -104,7 +104,7 @@ export default function HeroSection() {
         className="relative z-[3] text-center px-6 max-w-6xl mx-auto"
         style={{ perspective: "1000px" }}
       >
-        {/* Headline berskala masif - efek clip reveal overflow-hidden */}
+        {/* Headline */}
         <h1 className="text-6xl md:text-8xl lg:text-[10rem] xl:text-[13rem] font-black uppercase leading-[0.82] tracking-tighter">
           <span className="block overflow-hidden">
             <span data-reveal className="block text-white/90">
