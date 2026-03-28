@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 // ============================================================
-// Data Panel Layanan — PAS Framework (Problem-Agitate-Solve)
+// Data Panel Layanan - PAS Framework (Problem-Agitate-Solve)
 // Tanpa spesifikasi fitur mati; fokus penceritaan psikologis B2B
 // ============================================================
 const panels = [
@@ -18,7 +18,7 @@ const panels = [
     label: "Domestic Distribution",
     headline: "Seluruh Indonesia, Satu Koordinasi.",
     description:
-      "FTL, LTL, FCL, LCL, atau airfreight domestik — apapun mode yang dibutuhkan, kami atur dari pickup sampai delivery. Anda tidak perlu kelola rute per rute atau vendor per vendor. Cukup satu titik koordinasi untuk seluruh distribusi nasional Anda.",
+      "FTL, LTL, FCL, LCL, atau airfreight domestik. Apapun mode yang dibutuhkan, kami atur dari pickup sampai delivery. Satu titik koordinasi untuk seluruh distribusi nasional Anda.",
     accent: "bg-logistics-orange",
     theme: "dark" as const,
   },
@@ -28,7 +28,7 @@ const panels = [
     label: "International Freight",
     headline: "Impor dan Ekspor Tanpa Jeda.",
     description:
-      "FCL, LCL, dan airfreight — baik ekspor maupun impor. Kami tangani dari booking carrier, dokumentasi, sampai barang tiba di tujuan. Yang sering jadi bottleneck bukan jalurnya, tapi koordinasi di antara titik-titik transit. Di situ kami bekerja.",
+      "FCL, LCL, dan airfreight untuk ekspor maupun impor. Kami tangani dari booking carrier, dokumentasi, sampai barang tiba di tujuan. Yang sering jadi bottleneck bukan jalurnya, tapi koordinasi di antara titik-titik transit. Di situ kami bekerja.",
     accent: "bg-logistics-orange",
     theme: "light" as const,
   },
@@ -38,7 +38,7 @@ const panels = [
     label: "Import DTD & Customs",
     headline: "Dari Negara Asal Langsung ke Gudang Anda.",
     description:
-      "Import door-to-door artinya Anda tidak perlu urus apapun di tengah jalan. Kami jemput dari origin, tangani customs clearance — termasuk klasifikasi HS, dokumen LARTAS, dan segala kerumitan regulasi — lalu antarkan sampai ke lokasi Anda.",
+      "Import door-to-door artinya Anda tidak perlu urus apapun di tengah jalan. Kami jemput dari origin, tangani customs clearance termasuk klasifikasi HS dan dokumen LARTAS, lalu antarkan sampai ke lokasi Anda.",
     accent: "bg-logistics-orange",
     theme: "dark" as const,
   },
@@ -58,7 +58,7 @@ const panels = [
     label: "Project Cargo",
     headline: "Muatan Khusus Butuh Penanganan Khusus.",
     description:
-      "Alat berat, komponen oversized, atau material sensitif — pengiriman seperti ini tidak bisa pakai template standar. Kami rancang solusi per proyek: survei rute, perizinan khusus, alat angkut yang tepat, sampai penempatan di lokasi tujuan.",
+      "Alat berat, komponen oversized, atau material sensitif. Pengiriman seperti ini tidak bisa pakai template standar. Kami rancang solusi per proyek: survei rute, perizinan khusus, alat angkut yang tepat, sampai penempatan di lokasi tujuan.",
     accent: "bg-logistics-orange",
     theme: "dark" as const,
   },
@@ -94,7 +94,7 @@ function ServicePanel({
         isDark ? "bg-carbon-dark" : "bg-white"
       }`}
     >
-      {/* Garis indikator progress vertikal — 1px #ff4600 */}
+      {/* Garis indikator progress vertikal - 1px #ff4600 */}
       <div className="absolute left-8 md:left-16 top-0 bottom-0 flex flex-col items-center">
         <div className="w-[1px] flex-1 bg-logistics-orange/20" />
         <span
@@ -107,7 +107,7 @@ function ServicePanel({
         <div className="w-[1px] flex-1 bg-logistics-orange/20" />
       </div>
 
-      {/* Garis indikator horizontal bawah — progress rasio penyelesaian */}
+      {/* Garis indikator horizontal bawah - progress rasio penyelesaian */}
       <div className="absolute bottom-0 left-0 right-0 h-[1px]">
         <div
           className="h-full bg-logistics-orange"
@@ -134,7 +134,7 @@ function ServicePanel({
           {panel.number}
         </span>
 
-        {/* Headline PAS — tipografi masif pemantik masalah */}
+        {/* Headline PAS - tipografi masif pemantik masalah */}
         <h3
           className={`text-3xl md:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight ${
             isDark ? "text-white" : "text-carbon-dark"
@@ -178,7 +178,7 @@ function ServicePanel({
         </div>
       </div>
 
-      {/* Elemen geometris dekoratif — sudut kanan atas */}
+      {/* Elemen geometris dekoratif - sudut kanan atas */}
       <div className="absolute top-8 right-8 md:top-16 md:right-16">
         <div
           className={`w-16 h-16 md:w-24 md:h-24 border ${
@@ -192,7 +192,7 @@ function ServicePanel({
 }
 
 // ============================================================
-// Komponen Utama — Horizontal Scroll Hijacking via ScrollTrigger
+// Komponen Utama - Horizontal Scroll Hijacking via ScrollTrigger
 // ============================================================
 export default function ServicesHorizontal() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -250,7 +250,7 @@ export default function ServicesHorizontal() {
       {/* Kontainer pembajakan scroll horizontal */}
       {/* height: panels * 100vh untuk ruang penyerapan waktu gulir */}
       <div ref={sectionRef} className="relative" id="layanan">
-        {/* Track baris fleksibel nowrap — lebar = panels * 100vw */}
+        {/* Track baris fleksibel nowrap - lebar = panels * 100vw */}
         <div
           ref={trackRef}
           className="flex flex-col md:flex-row md:flex-nowrap"

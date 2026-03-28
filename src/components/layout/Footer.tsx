@@ -41,7 +41,7 @@ export default function Footer() {
             <p className="text-white/30 text-sm leading-relaxed max-w-sm">
               Freight forwarding, customs brokerage, warehousing, dan project
               cargo untuk perusahaan yang membutuhkan partner logistik
-              terpercaya. Jakarta — Asia Pasifik.
+              terpercaya. Jakarta, Asia Pasifik.
             </p>
             {/* Decorative line */}
             <div className="mt-8 flex items-center gap-3">

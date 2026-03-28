@@ -54,7 +54,7 @@ export default function CaseStudyModal({
               </div>
             </button>
 
-            {/* Hero image area — layoutId identik dengan kartu */}
+            {/* Hero image area - layoutId identik dengan kartu */}
             <motion.div
               layoutId={`case-study-hero-image-${study.id}`}
               className="relative w-full overflow-hidden"
@@ -91,7 +91,7 @@ export default function CaseStudyModal({
                     isDark ? "text-white/30" : "text-carbon-dark/30"
                   }`}
                 >
-                  Confidential — NDA Protected
+                  Confidential / NDA Protected
                 </span>
               </div>
             </motion.div>

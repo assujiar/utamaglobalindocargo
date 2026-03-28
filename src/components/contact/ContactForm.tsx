@@ -7,7 +7,7 @@ import { z } from "zod";
 import { useUTMCapture, getStoredUTMData } from "@/hooks/useUTMCapture";
 
 // ============================================================
-// Schema Validasi Zod — Perisai kebersihan data B2B
+// Schema Validasi Zod - Perisai kebersihan data B2B
 // ============================================================
 const leadSchema = z.object({
   pain_point: z.string().min(1, "Pilih layanan yang Anda butuhkan"),
@@ -19,7 +19,7 @@ const leadSchema = z.object({
 type LeadFormData = z.infer<typeof leadSchema>;
 
 // ============================================================
-// Opsi Fase 1 — Determinasi Niat Target
+// Opsi Fase 1 - Determinasi Niat Target
 // ============================================================
 const PAIN_POINTS = [
   {
@@ -45,7 +45,7 @@ const PAIN_POINTS = [
 ];
 
 // ============================================================
-// Opsi Fase 2 — Skrining Kualifikasi Volume Operasional
+// Opsi Fase 2 - Skrining Kualifikasi Volume Operasional
 // ============================================================
 const VOLUME_TIERS = [
   {
@@ -55,12 +55,12 @@ const VOLUME_TIERS = [
   },
   {
     id: "tier-regional",
-    label: "$50k — $150k / bulan",
+    label: "$50k - $150k / bulan",
     desc: "Pengiriman rutin dengan kebutuhan koordinasi multi-rute",
   },
   {
     id: "tier-national",
-    label: "$150k — $500k / bulan",
+    label: "$150k - $500k / bulan",
     desc: "Distribusi nasional atau multi-negara dengan volume konsisten",
   },
   {
@@ -124,7 +124,7 @@ function SelectionBlock({
 }
 
 // ============================================================
-// Komponen Utama — Multi-Step Progressive Disclosure Form
+// Komponen Utama - Multi-Step Progressive Disclosure Form
 // ============================================================
 export default function ContactForm() {
   const [step, setStep] = useState(1);
@@ -164,7 +164,7 @@ export default function ContactForm() {
     setStep((s) => Math.max(s - 1, 1));
   }, []);
 
-  // Submission — POST ke /api/leads dengan UTM data dari localStorage
+  // Submission - POST ke /api/leads dengan UTM data dari localStorage
   const onSubmit = useCallback(
     async (data: LeadFormData) => {
       setIsSubmitting(true);
@@ -214,7 +214,7 @@ export default function ContactForm() {
       <div className="flex-1 flex items-center justify-center px-6 md:px-16 py-32">
         <div className="w-full max-w-3xl">
           {/* ============================================ */}
-          {/* LAYAR SUKSES — konfirmasi penyelesaian */}
+          {/* LAYAR SUKSES - konfirmasi penyelesaian */}
           {/* ============================================ */}
           {isSuccess ? (
             <div className="animate-fade-in">
@@ -253,7 +253,7 @@ export default function ContactForm() {
               </div>
 
               {/* ============================================ */}
-              {/* FASE 1 — Determinasi Niat Target */}
+              {/* FASE 1 - Determinasi Niat Target */}
               {/* ============================================ */}
               {step === 1 && (
                 <div>
@@ -302,7 +302,7 @@ export default function ContactForm() {
               )}
 
               {/* ============================================ */}
-              {/* FASE 2 — Skrining Kualifikasi Volume */}
+              {/* FASE 2 - Skrining Kualifikasi Volume */}
               {/* ============================================ */}
               {step === 2 && (
                 <div>
@@ -371,7 +371,7 @@ export default function ContactForm() {
               )}
 
               {/* ============================================ */}
-              {/* FASE 3 — Profil Eksekutif */}
+              {/* FASE 3 - Profil Eksekutif */}
               {/* ============================================ */}
               {step === 3 && (
                 <div>
@@ -437,7 +437,7 @@ export default function ContactForm() {
                       Kembali
                     </button>
 
-                    {/* CTA — Tombol seruan pengiriman */}
+                    {/* CTA - Tombol seruan pengiriman */}
                     <button
                       type="submit"
                       disabled={isSubmitting}

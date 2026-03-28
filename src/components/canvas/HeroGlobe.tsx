@@ -5,7 +5,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
 // ============================================================
-// GLSL Vertex Shader — Menerima uniform uPointerPos (vec2)
+// GLSL Vertex Shader - Menerima uniform uPointerPos (vec2)
 // Menghitung jarak setiap partikel ke posisi kursor untuk
 // efek displacement interaktif magnetik
 // ============================================================
@@ -43,14 +43,14 @@ const vertexShader = `
     // Elevasi berdasarkan posisi Y asli untuk variasi warna
     vElevation = position.y;
 
-    // Ukuran partikel — membesar saat dekat kursor
+    // Ukuran partikel - membesar saat dekat kursor
     float proximity = 1.0 - smoothstep(0.0, 0.5, vDistance);
     gl_PointSize = aScale * (3.0 + proximity * 8.0) * (300.0 / -mvPosition.z);
   }
 `;
 
 // ============================================================
-// GLSL Fragment Shader — Pewarnaan partikel berbasis jarak
+// GLSL Fragment Shader - Pewarnaan partikel berbasis jarak
 // Base: carbon dark (#111111), Proximity glow: logistics orange (#ff4600)
 // ============================================================
 const fragmentShader = `
@@ -73,7 +73,7 @@ const fragmentShader = `
     // Warna identitas merek: logistics orange (#ff4600 = 1.0, 0.275, 0.0)
     vec3 brandColor = vec3(1.0, 0.275, 0.0);
 
-    // Interpolasi magnetik — partikel menyala oranye saat kursor mendekat
+    // Interpolasi magnetik - partikel menyala oranye saat kursor mendekat
     float proximity = 1.0 - smoothstep(0.0, 0.45, vDistance);
     proximity = pow(proximity, 1.5); // Kurva eksponensial untuk efek dramatis
 
@@ -95,7 +95,7 @@ const fragmentShader = `
 `;
 
 // ============================================================
-// Komponen Partikel Globe — BufferGeometry + Points
+// Komponen Partikel Globe - BufferGeometry + Points
 // ============================================================
 function ParticleGlobe() {
   const pointsRef = useRef<THREE.Points>(null);
@@ -122,7 +122,7 @@ function ParticleGlobe() {
     const scl = new Float32Array(count);
     const radius = 2.2;
 
-    // Distribusi Fibonacci sphere — distribusi merata di permukaan bola
+    // Distribusi Fibonacci sphere - distribusi merata di permukaan bola
     const goldenRatio = (1 + Math.sqrt(5)) / 2;
 
     for (let i = 0; i < count; i++) {
@@ -151,7 +151,7 @@ function ParticleGlobe() {
     []
   );
 
-  // Mouse tracking — konversi ke NDC (-1 to 1)
+  // Mouse tracking - konversi ke NDC (-1 to 1)
   const handlePointerMove = useCallback(
     (e: THREE.Event & { pointer?: THREE.Vector2 }) => {
       if (e.pointer) {
@@ -161,7 +161,7 @@ function ParticleGlobe() {
     []
   );
 
-  // Animation loop — update uniforms setiap frame
+  // Animation loop - update uniforms setiap frame
   useFrame((state) => {
     if (materialRef.current) {
       materialRef.current.uniforms.uTime.value = state.clock.elapsedTime;
@@ -200,7 +200,7 @@ function ParticleGlobe() {
 }
 
 // ============================================================
-// Canvas Wrapper — Eksportasi untuk digunakan di Hero Section
+// Canvas Wrapper - Eksportasi untuk digunakan di Hero Section
 // ============================================================
 export default function HeroGlobe() {
   return (

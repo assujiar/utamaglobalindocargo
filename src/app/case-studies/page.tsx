@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import CaseStudyGrid from "@/components/case-studies/CaseStudyGrid";
 
 export const metadata: Metadata = {
-  title: "Studi Kasus — Utama Globalindo Cargo",
+  title: "Studi Kasus | Utama Globalindo Cargo",
   description:
     "Bagaimana kami membantu perusahaan dari berbagai industri menyelesaikan tantangan logistik mereka. Studi kasus dengan data terverifikasi.",
 };

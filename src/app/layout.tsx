@@ -14,11 +14,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Utama Globalindo Cargo — Freight Forwarding & Logistics",
+    default: "Utama Globalindo Cargo | Freight Forwarding & Logistics",
     template: "%s | Utama Globalindo Cargo",
   },
   description:
-    "Freight forwarding, customs brokerage, warehousing, dan project cargo untuk perusahaan yang membutuhkan partner logistik terpercaya. Jakarta — Asia Pasifik.",
+    "Freight forwarding, customs brokerage, warehousing, dan project cargo untuk perusahaan yang membutuhkan partner logistik terpercaya. Jakarta, Asia Pasifik.",
   keywords: [
     "freight forwarding Indonesia",
     "customs brokerage Jakarta",
@@ -32,15 +32,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "id_ID",
     siteName: "Utama Globalindo Cargo",
-    title: "Utama Globalindo Cargo — Freight Forwarding & Logistics",
+    title: "Utama Globalindo Cargo | Freight Forwarding & Logistics",
     description:
-      "Freight forwarding, customs brokerage, warehousing, dan project cargo. Jakarta — Asia Pasifik.",
+      "Freight forwarding, customs brokerage, warehousing, dan project cargo. Jakarta, Asia Pasifik.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Utama Globalindo Cargo — Freight Forwarding & Logistics",
+    title: "Utama Globalindo Cargo | Freight Forwarding & Logistics",
     description:
-      "Domestic & international freight, customs, warehousing, project cargo. Jakarta — Asia Pasifik.",
+      "Domestic & international freight, customs, warehousing, project cargo. Jakarta, Asia Pasifik.",
   },
   robots: {
     index: true,

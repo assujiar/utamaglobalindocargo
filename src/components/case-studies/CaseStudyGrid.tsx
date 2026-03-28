@@ -7,7 +7,7 @@ import CaseStudyCard from "./CaseStudyCard";
 import CaseStudyModal from "./CaseStudyModal";
 
 // ============================================================
-// Offset margin vertikal per kolom — menciptakan ilusi
+// Offset margin vertikal per kolom - menciptakan ilusi
 // mengambang bebas di angkasa (kisi asimetris)
 // ============================================================
 const COLUMN_OFFSETS = [
@@ -35,7 +35,7 @@ export default function CaseStudyGrid() {
 
   return (
     <LayoutGroup>
-      {/* Kisi asimetris — variasi margin vertikal per kartu */}
+      {/* Kisi asimetris - variasi margin vertikal per kartu */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         {caseStudies.map((study, index) => (
           <div key={study.id} className={COLUMN_OFFSETS[index % COLUMN_OFFSETS.length]}>
@@ -44,7 +44,7 @@ export default function CaseStudyGrid() {
         ))}
       </div>
 
-      {/* AnimatePresence — memantau mount/unmount modal */}
+      {/* AnimatePresence - memantau mount/unmount modal */}
       <AnimatePresence>
         {selectedId && selectedStudy && (
           <CaseStudyModal

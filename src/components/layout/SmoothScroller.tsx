@@ -15,7 +15,7 @@ export default function SmoothScroller({ children }: SmoothScrollerProps) {
 
     // Code splitting: Lazy import GSAP + Lenis
     // Paket GSAP/Lenis hanya di-download setelah halaman selesai render
-    // Ini menjaga TTFB dan LCP tetap optimal — zero blocking scripts
+    // Ini menjaga TTFB dan LCP tetap optimal - zero blocking scripts
     async function initScrollEngine() {
       const [{ default: Lenis }, { gsap }, { ScrollTrigger }] =
         await Promise.all([

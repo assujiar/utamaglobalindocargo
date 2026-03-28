@@ -106,7 +106,7 @@ export default function StatsCounter() {
             <div className="w-12 h-[1px] bg-logistics-orange/30" />
           </div>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-carbon-dark tracking-tight">
-            Bukan Klaim. <span className="text-logistics-orange">Ini Data.</span>
+            Dalam <span className="text-logistics-orange">Angka.</span>
           </h2>
         </div>
 

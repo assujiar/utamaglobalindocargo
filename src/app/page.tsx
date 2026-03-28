@@ -5,10 +5,10 @@ import StatsCounter from "@/components/sections/StatsCounter";
 export default function Home() {
   return (
     <div className="flex flex-col">
-      {/* Hero Section — WebGL Globe + Tipografi GSAP */}
+      {/* Hero Section - WebGL Globe + Tipografi GSAP */}
       <HeroSection />
 
-      {/* Horizontal Scroll Hijacking — Panel Layanan */}
+      {/* Horizontal Scroll Hijacking - Panel Layanan */}
       <ServicesHorizontal />
 
       {/* Statistik Animatif */}
@@ -24,7 +24,7 @@ export default function Home() {
           </h2>
           <p className="mt-8 text-base md:text-lg text-white/40 max-w-xl mx-auto leading-relaxed">
             Kami tidak menawarkan paket template. Ceritakan situasi Anda,
-            dan kami akan jujur sampaikan apakah — dan bagaimana — kami bisa membantu.
+            dan kami akan sampaikan apakah dan bagaimana kami bisa membantu.
           </p>
           <div className="mt-10">
             <a

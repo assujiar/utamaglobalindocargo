@@ -54,7 +54,7 @@ export default function ClientLogos() {
           <div className="w-12 h-[1px] bg-logistics-orange/30" />
         </div>
 
-        {/* Logo grid — placeholder teks karena belum ada aset gambar */}
+        {/* Logo grid - placeholder teks karena belum ada aset gambar */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {CLIENTS.map((client) => (
             <div
