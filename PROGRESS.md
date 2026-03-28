@@ -102,6 +102,33 @@ npm run build     - PASS (41 routes generated)
 - [ ] Supabase production credentials
 - [ ] Privacy policy page content (legal review)
 
+## Verification Log (2026-03-28)
+
+### Phase 1 Verification
+- `npm run lint` - PASS (0 errors, 0 warnings)
+- `npx tsc --noEmit` - PASS (strict mode, no errors)
+- Dev server starts without errors
+- Root `/` redirects to `/id` (307) via middleware
+- All deleted files confirmed removed (9/9)
+- All preserved files confirmed present (5/5: supabaseServer, migrations, leads API, UTM hook, analytics)
+- GSAP and Lenis removed from package.json (0 references)
+- Brand colors match 06_visual_system: #ff4600, #111111, #f5f5f5, #666666, #999999, #e5e5e5, #333333
+- Font: Inter, Geist Sans configured
+- prefers-reduced-motion support in globals.css
+- tsconfig.json strict: true preserved
+- eslint.config.mjs preserved
+
+### Phase 2 Verification
+- All 10 page routes exist and return 200
+- Navigation links update URL and render correct page in both languages
+- Service taxonomy: 6 categories, 26 sub-services, matches SSOT exactly
+- Industries data: 6 industries with challenges, solutions, relevant services
+- Header: desktop dropdown, mobile drawer, language toggle, persistent contact CTA
+- Footer: service links, industry links, contact info, tagline "We Care What We Deliver"
+- Hero headline renders: "Satu kendali untuk setiap handoff." (id) / "One line of control across every handoff." (en)
+- Contact form validation: empty POST returns 400, honeypot returns fake 200, valid payload passes Zod
+- sitemap.xml and robots.txt return 200
+
 ## Technical Debt / Future Work
 - [ ] E2E tests for form submission and page navigation
 - [ ] Authentic logistics photography (replace placeholder imagery)
