@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase } from "@/lib/supabaseClient";
+import { getSupabase } from "@/lib/supabaseClient";
 
 interface LeadPayload {
   company_name: string;
@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
 
     // Injeksi ke tabel leads_prospect Supabase
     // utm_attribution disimpan sebagai JSONB (nested object)
-    const { error } = await supabase.from("leads_prospect").insert({
+    const { error } = await getSupabase().from("leads_prospect").insert({
       company_name: body.company_name,
       executive_email: body.executive_email,
       operational_volume: body.operational_volume,
