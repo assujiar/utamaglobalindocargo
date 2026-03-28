@@ -18,7 +18,7 @@
 - [x] Tailwind CSS v4 with brand colors (#ff4600, #111111)
 - [x] GSAP + Lenis smooth scroll integration
 - [x] HeroSection with WebGL particle globe + GSAP reveal
-- [x] HeroGlobe with reduced-motion fallback and WebGL detection
+- [x] Abstract Route Field hero background (2D canvas, replaced HeroGlobe)
 - [x] ServicesHorizontal with 6 service panels (desktop horizontal scroll, mobile vertical)
 - [x] 6 service detail pages with ServicePageLayout template
 - [x] Case studies page with Framer Motion layout transitions

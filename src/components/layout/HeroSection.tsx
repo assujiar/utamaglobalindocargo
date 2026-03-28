@@ -3,67 +3,58 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import dynamic from "next/dynamic";
+import AbstractRouteField from "@/components/canvas/AbstractRouteField";
 
-// Dynamic import untuk HeroGlobe - SSR disabled (WebGL hanya client-side)
-const HeroGlobe = dynamic(() => import("@/components/canvas/HeroGlobe"), {
-  ssr: false,
-});
+const TRUST_ITEMS = [
+  "Respons 1 hari kerja",
+  "Tim operasional berpengalaman",
+  "Domestik & internasional",
+  "Konsultasi tanpa komitmen",
+];
 
 export default function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
-  const headlineRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
 
-  // GSAP reveal animation - tipografi bermunculan frasa demi frasa
   useGSAP(
     () => {
-      const lines = headlineRef.current?.querySelectorAll("[data-reveal]");
-      if (!lines) return;
+      // Check reduced motion — skip animations if preferred
+      const prefersReduced = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+      if (prefersReduced) {
+        // Make everything visible immediately
+        gsap.set("[data-reveal]", { opacity: 1, y: 0 });
+        gsap.set("[data-hero-fade]", { opacity: 1, y: 0 });
+        return;
+      }
 
-      // Set initial state - opasitas nol, translasi ke bawah
-      gsap.set(lines, {
-        opacity: 0,
-        y: 80,
-        rotateX: 15,
-      });
+      const revealEls = contentRef.current?.querySelectorAll("[data-reveal]");
+      if (!revealEls) return;
 
-      // Stagger reveal - frasa demi frasa
-      gsap.to(lines, {
+      // Initial state
+      gsap.set(revealEls, { opacity: 0, y: 48 });
+      gsap.set("[data-hero-fade]", { opacity: 0, y: 20 });
+
+      // Stagger headline reveal
+      gsap.to(revealEls, {
         opacity: 1,
         y: 0,
-        rotateX: 0,
-        duration: 1.2,
-        stagger: 0.2,
+        duration: 1,
+        stagger: 0.15,
         ease: "power3.out",
-        delay: 0.5,
+        delay: 0.3,
       });
 
-      // Subtitle fade in
-      gsap.fromTo(
-        "[data-subtitle]",
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power2.out",
-          delay: 1.4,
-        }
-      );
-
-      // CTA button reveal
-      gsap.fromTo(
-        "[data-cta]",
-        { opacity: 0, y: 20, scale: 0.95 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          delay: 1.8,
-        }
-      );
+      // Fade-in secondary elements
+      gsap.to("[data-hero-fade]", {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "power2.out",
+        delay: 0.9,
+      });
     },
     { scope: containerRef }
   );
@@ -71,92 +62,129 @@ export default function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-carbon-dark"
+      className="relative min-h-screen flex items-center overflow-hidden bg-[#0b0b0d]"
     >
-      {/* WebGL Canvas - latar belakang z-index terendah */}
-      <div className="absolute inset-0 z-0">
-        <HeroGlobe />
-      </div>
+      {/* ── Background: Abstract Route Field ── */}
+      <AbstractRouteField />
 
-      {/* Pola SVG hexagon - kedalaman visual lapisan dekoratif */}
-      <div className="absolute inset-0 z-[1] opacity-[0.04] pointer-events-none">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="hexagons" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(1.5)">
-              <path
-                d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66Z"
-                fill="none"
-                stroke="#ff4600"
-                strokeWidth="0.5"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#hexagons)" />
-        </svg>
-      </div>
-
-      {/* Gradient overlay untuk keterbacaan teks */}
-      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-carbon-dark/40 via-transparent to-carbon-dark/80" />
-
-      {/* Tipografi lapisan teratas DOM */}
+      {/* ── Content Layer ── */}
       <div
-        ref={headlineRef}
-        className="relative z-[3] text-center px-6 max-w-6xl mx-auto"
-        style={{ perspective: "1000px" }}
+        ref={contentRef}
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16 py-28 md:py-0"
       >
-        {/* Headline */}
-        <h1 className="text-6xl md:text-8xl lg:text-[10rem] xl:text-[13rem] font-black uppercase leading-[0.82] tracking-tighter">
-          <span className="block overflow-hidden">
-            <span data-reveal className="block text-white/90">
-              Logistik
+        <div className="max-w-4xl">
+          {/* ── Pretitle: service signal ── */}
+          <div data-reveal className="flex items-center gap-3 mb-6 md:mb-8">
+            <div className="w-10 md:w-14 h-[1px] bg-logistics-orange/50" />
+            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.35em] text-white/35">
+              Freight &bull; Customs &bull; Warehouse &bull; Project Cargo
             </span>
-          </span>
-          <span className="block overflow-hidden">
-            <span data-reveal className="block text-logistics-orange">
-              Tanpa Drama
+          </div>
+
+          {/* ── Headline ── */}
+          <h1 className="leading-[0.88] tracking-tighter">
+            <span className="block overflow-hidden">
+              <span
+                data-reveal
+                className="block text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-black uppercase text-white/90"
+              >
+                Logistik
+              </span>
             </span>
-          </span>
-        </h1>
+            <span className="block overflow-hidden">
+              <span
+                data-reveal
+                className="block text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-black uppercase text-white/90"
+              >
+                Tanpa
+              </span>
+            </span>
+            <span className="block overflow-hidden">
+              <span
+                data-reveal
+                className="block text-[3.5rem] sm:text-[5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-black uppercase text-logistics-orange"
+              >
+                Drama.
+              </span>
+            </span>
+          </h1>
 
-        {/* Sub-headline - baris kecil di bawah hero */}
-        <div className="mt-6 md:mt-10 flex items-center justify-center gap-4">
-          <div className="w-12 h-[1px] bg-logistics-orange/40" />
-          <span data-reveal className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-white/30">
-            Freight &bull; Customs &bull; Warehouse &bull; Project Cargo
-          </span>
-          <div className="w-12 h-[1px] bg-logistics-orange/40" />
-        </div>
-
-        {/* Subtitle */}
-        <p
-          data-subtitle
-          className="mt-6 md:mt-10 text-base md:text-xl lg:text-2xl text-white/50 font-light max-w-2xl mx-auto tracking-wide leading-relaxed"
-        >
-          Logistik yang baik tidak perlu Anda pikirkan setiap hari.
-          Dari pengiriman domestik sampai impor door-to-door,
-          kami kelola supaya Anda bisa fokus mengembangkan bisnis.
-        </p>
-
-        {/* CTA Button */}
-        <div data-cta className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="#layanan"
-            className="inline-block px-10 py-4 bg-logistics-orange text-white font-bold text-sm md:text-base uppercase tracking-widest hover:bg-logistics-orange/90 transition-colors duration-300"
+          {/* ── Supporting copy ── */}
+          <p
+            data-hero-fade
+            className="mt-6 md:mt-8 text-base md:text-lg lg:text-xl text-white/45 max-w-xl leading-relaxed"
           >
-            Layanan Kami
-          </a>
-          <a
-            href="/contact"
-            className="inline-block px-10 py-4 border border-white/20 text-white/60 font-bold text-sm md:text-base uppercase tracking-widest hover:border-logistics-orange hover:text-logistics-orange transition-colors duration-300"
+            Kami kelola pengiriman dari asal sampai tujuan — domestik maupun
+            internasional — supaya Anda bisa fokus mengembangkan bisnis, bukan
+            mengejar status kargo.
+          </p>
+
+          {/* ── CTA Group ── */}
+          <div
+            data-hero-fade
+            className="mt-8 md:mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4"
           >
-            Konsultasi Gratis
-          </a>
+            {/* Primary CTA — direct business action */}
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-3 px-8 md:px-10 py-4 bg-logistics-orange text-white font-bold text-sm uppercase tracking-widest hover:bg-logistics-orange/90 transition-colors duration-300"
+            >
+              Diskusikan Kebutuhan Anda
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="opacity-70"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
+
+            {/* Secondary CTA — lower commitment */}
+            <a
+              href="#layanan"
+              className="inline-flex items-center gap-2 px-6 py-4 text-white/50 font-bold text-sm uppercase tracking-widest hover:text-white/80 transition-colors duration-300"
+            >
+              <span className="w-4 h-[1px] bg-white/30" />
+              Lihat Layanan
+            </a>
+          </div>
+
+          {/* ── Trust strip ── */}
+          <div
+            data-hero-fade
+            className="mt-10 md:mt-14 pt-6 md:pt-8 border-t border-white/[0.06]"
+          >
+            <div className="flex flex-wrap gap-x-6 gap-y-2 md:gap-x-8">
+              {TRUST_ITEMS.map((item) => (
+                <span
+                  key={item}
+                  className="text-[11px] md:text-xs font-medium uppercase tracking-[0.15em] text-white/25"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[3]">
-        <div className="w-[1px] h-16 bg-gradient-to-b from-logistics-orange to-transparent animate-pulse" />
+      {/* ── Scroll indicator ── */}
+      <div
+        data-hero-fade
+        className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-10"
+      >
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-white/15">
+            Scroll
+          </span>
+          <div className="w-[1px] h-8 md:h-12 bg-gradient-to-b from-logistics-orange/40 to-transparent" />
+        </div>
       </div>
     </section>
   );
