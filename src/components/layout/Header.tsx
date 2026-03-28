@@ -2,137 +2,235 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import type { Locale } from "@/i18n/config";
+import type { Dictionary } from "@/i18n/dictionaries/type";
+import { services } from "@/data/services";
 
-const NAV_LINKS = [
-  { label: "Tentang", href: "/about" },
-  { label: "Layanan", href: "/#layanan" },
-  { label: "Studi Kasus", href: "/case-studies" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Kontak", href: "/contact" },
-];
+interface HeaderProps {
+  locale: Locale;
+  dict: Dictionary;
+}
 
-export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+export default function Header({ locale, dict }: HeaderProps) {
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on ESC
+  const closeMobile = useCallback(() => {
+    setIsMobileOpen(false);
+    setIsServicesOpen(false);
+  }, []);
+
   useEffect(() => {
-    if (!menuOpen) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMobile();
     };
-    document.addEventListener("keydown", onKeyDown);
-    return () => document.removeEventListener("keydown", onKeyDown);
-  }, [menuOpen]);
+    if (isMobileOpen) {
+      document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
+    }
+    return () => {
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "";
+    };
+  }, [isMobileOpen, closeMobile]);
 
-  const toggleMenu = useCallback(() => {
-    setMenuOpen((prev) => !prev);
-  }, []);
+  const otherLocale = locale === "id" ? "en" : "id";
+  const prefix = `/${locale}`;
+
+  const navLinks = [
+    { href: `${prefix}`, label: dict.nav.home },
+    { href: `${prefix}/services`, label: dict.nav.services, hasDropdown: true },
+    { href: `${prefix}/industries`, label: dict.nav.industries },
+    { href: `${prefix}/case-studies`, label: dict.nav.caseStudies },
+    { href: `${prefix}/about`, label: dict.nav.about },
+    { href: `${prefix}/faq`, label: dict.nav.faq },
+  ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-sm"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-carbon-dark/95 backdrop-blur-md shadow-lg"
           : "bg-transparent"
       }`}
+      role="banner"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
+      <nav
+        className="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16 lg:h-20"
+        aria-label="Main navigation"
+      >
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-8 h-8 bg-logistics-orange flex items-center justify-center">
-            <span className="text-white font-black text-sm leading-none">U</span>
-          </div>
-          <span
-            className={`font-black text-sm md:text-base uppercase tracking-wider transition-colors duration-300 ${
-              scrolled ? "text-carbon-dark" : "text-white"
-            }`}
-          >
-            Utama<span className="text-logistics-orange">.</span>
+        <Link
+          href={prefix}
+          className="flex items-center gap-3 text-white font-black text-lg tracking-tight"
+          onClick={closeMobile}
+        >
+          <span className="w-8 h-8 bg-logistics-orange flex items-center justify-center text-sm font-black">
+            U
+          </span>
+          <span>
+            UGC<span className="hidden sm:inline"> Logistics</span>
           </span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-xs font-bold uppercase tracking-[0.2em] transition-colors duration-300 hover:text-logistics-orange ${
-                scrolled ? "text-carbon-dark/60" : "text-white/60"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/contact"
-            className="px-5 py-2.5 bg-logistics-orange text-white text-xs font-bold uppercase tracking-widest hover:bg-logistics-orange/90 transition-colors duration-300"
-          >
-            Hubungi Kami
-          </Link>
-        </nav>
-
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden flex flex-col gap-1.5 p-2"
-          onClick={toggleMenu}
-          aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
-          aria-expanded={menuOpen}
-          aria-controls="mobile-nav"
-        >
-          <span
-            className={`block w-6 h-[2px] transition-all duration-300 ${
-              menuOpen ? "rotate-45 translate-y-[5px]" : ""
-            } ${scrolled ? "bg-carbon-dark" : "bg-white"}`}
-          />
-          <span
-            className={`block w-6 h-[2px] transition-all duration-300 ${
-              menuOpen ? "opacity-0" : ""
-            } ${scrolled ? "bg-carbon-dark" : "bg-white"}`}
-          />
-          <span
-            className={`block w-6 h-[2px] transition-all duration-300 ${
-              menuOpen ? "-rotate-45 -translate-y-[5px]" : ""
-            } ${scrolled ? "bg-carbon-dark" : "bg-white"}`}
-          />
-        </button>
-      </div>
-
-      {/* Mobile menu overlay */}
-      {menuOpen && (
-        <nav
-          id="mobile-nav"
-          className="md:hidden bg-carbon-dark/98 backdrop-blur-lg"
-          role="navigation"
-          aria-label="Menu utama mobile"
-        >
-          <div className="flex flex-col px-6 py-8 gap-6">
-            {NAV_LINKS.map((link) => (
+        {/* Desktop Navigation */}
+        <div className="hidden lg:flex items-center gap-1">
+          {navLinks.map((link) =>
+            link.hasDropdown ? (
+              <div
+                key={link.href}
+                className="relative group"
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
+              >
+                <Link
+                  href={link.href}
+                  className="px-4 py-2 text-sm text-white/70 hover:text-white transition-colors font-medium"
+                >
+                  {link.label}
+                  <svg
+                    className="inline-block ml-1 w-3 h-3"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path d="M19 9l-7 7-7-7" />
+                  </svg>
+                </Link>
+                {isServicesOpen && (
+                  <div className="absolute top-full left-0 pt-2">
+                    <div className="bg-carbon-dark border border-white/10 py-2 min-w-[280px] shadow-xl">
+                      {services.map((service) => (
+                        <Link
+                          key={service.slug}
+                          href={`${prefix}/services/${service.slug}`}
+                          className="block px-5 py-3 text-sm text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+                        >
+                          {service.name[locale]}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
               <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="text-white text-lg font-bold uppercase tracking-widest hover:text-logistics-orange transition-colors"
+                className="px-4 py-2 text-sm text-white/70 hover:text-white transition-colors font-medium"
               >
                 {link.label}
               </Link>
+            )
+          )}
+        </div>
+
+        {/* Desktop right side */}
+        <div className="hidden lg:flex items-center gap-4">
+          <Link
+            href={`/${otherLocale}`}
+            className="text-sm text-white/50 hover:text-white transition-colors"
+            aria-label={`Switch to ${dict.common.language}`}
+          >
+            {dict.common.language}
+          </Link>
+          <Link
+            href={`${prefix}/contact`}
+            className="bg-logistics-orange text-white px-5 py-2.5 text-sm font-bold hover:bg-logistics-orange/90 transition-colors"
+          >
+            {dict.nav.contact}
+          </Link>
+        </div>
+
+        {/* Mobile menu button */}
+        <button
+          className="lg:hidden relative w-10 h-10 flex items-center justify-center text-white"
+          onClick={() => setIsMobileOpen(!isMobileOpen)}
+          aria-expanded={isMobileOpen}
+          aria-label={isMobileOpen ? "Close menu" : "Open menu"}
+        >
+          <span className="sr-only">{isMobileOpen ? "Close" : "Menu"}</span>
+          <div className="w-6 flex flex-col gap-1.5">
+            <span
+              className={`block h-0.5 bg-white transition-transform duration-300 ${
+                isMobileOpen ? "rotate-45 translate-y-2" : ""
+              }`}
+            />
+            <span
+              className={`block h-0.5 bg-white transition-opacity duration-300 ${
+                isMobileOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block h-0.5 bg-white transition-transform duration-300 ${
+                isMobileOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
+            />
+          </div>
+        </button>
+      </nav>
+
+      {/* Mobile menu overlay */}
+      {isMobileOpen && (
+        <div
+          className="lg:hidden fixed inset-0 top-16 bg-carbon-dark z-40 overflow-y-auto"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="px-6 py-8 flex flex-col gap-2">
+            {navLinks.map((link) => (
+              <div key={link.href}>
+                <Link
+                  href={link.href}
+                  className="block py-3 text-lg text-white/80 hover:text-white font-medium transition-colors"
+                  onClick={link.hasDropdown ? undefined : closeMobile}
+                >
+                  {link.label}
+                </Link>
+                {link.hasDropdown && (
+                  <div className="pl-4 flex flex-col gap-1 mt-1 mb-2">
+                    {services.map((service) => (
+                      <Link
+                        key={service.slug}
+                        href={`${prefix}/services/${service.slug}`}
+                        className="block py-2 text-sm text-white/50 hover:text-white transition-colors"
+                        onClick={closeMobile}
+                      >
+                        {service.name[locale]}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
+
+            <hr className="border-white/10 my-4" />
+
             <Link
-              href="/contact"
-              onClick={() => setMenuOpen(false)}
-              className="mt-4 inline-block px-6 py-3 bg-logistics-orange text-white text-sm font-bold uppercase tracking-widest text-center"
+              href={`/${otherLocale}`}
+              className="py-3 text-sm text-white/50 hover:text-white transition-colors"
+              onClick={closeMobile}
             >
-              Hubungi Kami
+              {dict.common.language}
+            </Link>
+
+            <Link
+              href={`${prefix}/contact`}
+              className="mt-4 bg-logistics-orange text-white px-6 py-4 text-center font-bold text-sm uppercase tracking-wider hover:bg-logistics-orange/90 transition-colors"
+              onClick={closeMobile}
+            >
+              {dict.nav.contact}
             </Link>
           </div>
-        </nav>
+        </div>
       )}
     </header>
   );

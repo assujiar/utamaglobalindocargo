@@ -1,105 +1,110 @@
-# PROGRESS.md — Honest Build Status
+# PROGRESS.md - UGC Logistics Website Rebuild
 
 **Last updated**: 2026-03-28
 
----
+## Rebuild Status
 
-## Status Legend
-- **Implemented** — Code exists and compiles
-- **Verified** — Tested and confirmed working
-- **Missing** — Not yet built
-- **Needs Business Input** — Requires real data/assets from stakeholders
+### Phase 1: Cleanup & Architecture Reset - COMPLETE
+- [x] Removed old front-end components (StatsCounter, ServicesHorizontal, old HeroSection, SmoothScroller, ConsoleEasterEgg, caseStudiesData)
+- [x] Removed unused GSAP and Lenis dependencies
+- [x] Preserved Supabase server client, leads API route, UTM capture hook, analytics helpers
+- [x] Set up i18n routing with `[locale]` dynamic segment (Indonesian default, English)
+- [x] Created full translation dictionaries (id.ts, en.ts) with typed Dictionary interface
+- [x] Configured middleware for locale detection and redirect
+- [x] Updated globals.css with brand tokens, accessible animations, prefers-reduced-motion
+- [x] Lint: PASS | TypeScript: PASS | Build: PASS
 
----
+### Phase 2: Information Architecture & Content Foundation - COMPLETE
+- [x] All routes per IA blueprint implemented:
+  - `/[locale]` (Homepage), `/[locale]/services`, `/[locale]/services/[slug]`
+  - `/[locale]/industries`, `/[locale]/industries/[slug]`
+  - `/[locale]/case-studies`, `/[locale]/about`, `/[locale]/faq`, `/[locale]/contact`
+- [x] Header with desktop dropdown nav, mobile drawer, language toggle
+- [x] Footer with brand tagline "We Care What We Deliver", service links, company links
+- [x] Service taxonomy data model (6 categories, all sub-services preserved per SSOT)
+- [x] Industry data model (6 industries with challenges, solutions, relevant services)
+- [x] Case study data model (3 entries, all marked isPlaceholder: true)
+- [x] Skip-to-content link, Container, SectionHeading reusable components
 
-## Implemented & Verified
+### Phase 3: Homepage Rebuild - COMPLETE
+- [x] Cinematic dark hero with "Satu kendali untuk setiap handoff." / "One line of control across every handoff."
+- [x] Trust strip (placeholder client logos, credibility statement)
+- [x] Services overview grid (6 categories with icons)
+- [x] How It Works (5-step process diagram)
+- [x] Proof section (featured case studies, dark chapter)
+- [x] Industries teaser (6 industry tiles)
+- [x] Secondary CTA section
+- [x] Chapter-based palette: dark hero > light services > white process > dark proof > light industries > dark CTA
 
-- [x] Next.js 16 App Router with TypeScript strict mode
-- [x] Tailwind CSS v4 with brand colors (#ff4600, #111111)
-- [x] GSAP + Lenis smooth scroll integration
-- [x] HeroSection: clean static hero (animated paths de-scoped and removed)
-- [x] ServicesHorizontal with 6 service panels (desktop horizontal scroll, mobile vertical)
-- [x] 6 service detail pages with ServicePageLayout template
-- [x] Case studies page with Framer Motion layout transitions
-- [x] Case study modal with ESC close and focus management
-- [x] Contact form — 3-step multi-field with Zod validation
-- [x] Contact form — proper error handling (success only on confirmed insert)
-- [x] Contact form — honeypot anti-spam field
-- [x] Contact form — privacy consent checkbox
-- [x] Contact form — direct contact fallback section
-- [x] /api/leads — server-side Zod validation
-- [x] /api/leads — uses server Supabase client (service role key)
-- [x] Supabase migration with RLS and insert-only anon policy
-- [x] About page — company positioning, services, approach
-- [x] FAQ page — 8 common questions
-- [x] Header — navigation with About, FAQ links, aria-expanded, ESC close
-- [x] Footer — 4-column with service links, company links, direct contact CTA
-- [x] Skip-to-content accessibility link
-- [x] prefers-reduced-motion CSS strategy
-- [x] Metadata — canonical, OG image, Twitter image, favicon
-- [x] JSON-LD — valid Organization schema with existing logo reference
-- [x] Sitemap — includes all 11 published routes
-- [x] robots.txt — allows crawling, blocks /api/
-- [x] Security headers (X-Frame-Options, X-Content-Type-Options, etc.)
-- [x] README rewritten from scratch
-- [x] Starter assets removed from public/
-- [x] Analytics helper structure (trackEvent, trackFormSubmit, trackCTAClick)
-- [x] UTM capture hook with localStorage persistence
-- [x] Console easter egg (ASCII cargo ship)
-- [x] Clean .env.example with all required variables
+### Phase 4: Service Architecture - COMPLETE
+- [x] Services landing page with numbered list of all 6 categories
+- [x] 6 individual service pages: hero, sub-services grid, process steps, best-for list, CTA
+- [x] All sub-services preserved exactly per 02_business_truth_ssot.md
+- [x] generateStaticParams for all 12 locale/slug combinations
 
-## Implemented — Needs Business Verification
+### Phase 5: Trust, Proof, Contact, FAQ, About & Industries - COMPLETE
+- [x] About page: mission, story (why one coordination point), 4 values, brand tagline section
+- [x] FAQ page: 8 Q&A items with accessible accordion, FAQPage JSON-LD schema
+- [x] Contact page: multi-step form with full i18n, honeypot, UTM attribution, privacy consent
+- [x] Case studies page: filter by industry, challenge/solution/result layout, placeholder badges
+- [x] Industries landing with all 6 industries
+- [x] Industry detail pages: challenge, solution, related services, CTA
+- [x] Tagline "We Care What We Deliver" in footer and About page (never as hero headline)
 
-- [ ] Case study content — marked as illustrative, needs business approval
-- [ ] Company description text — needs stakeholder review
-- [ ] FAQ answers — needs operations team verification
-- [ ] Service page content — needs confirmation of service scope accuracy
+### Phase 6: SEO, Analytics, Polish - COMPLETE
+- [x] Metadata (title, description, OG, Twitter) for all pages
+- [x] Canonical URLs and hreflang alternates (id/en)
+- [x] JSON-LD: Organization, Service, FAQPage, ContactPage, AboutPage schemas
+- [x] sitemap.xml with all pages and language alternates
+- [x] robots.txt blocking /api/
+- [x] GA4 integration via NEXT_PUBLIC_GA_MEASUREMENT_ID env var
+- [x] Analytics event tracking (form_submit, cta_click)
+- [x] prefers-reduced-motion fully respected
+- [x] Focus-visible outlines for keyboard navigation
+- [x] ARIA attributes on interactive elements (accordion, mobile nav, progress bar, form errors)
+- [x] Security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy)
 
-## Missing — Needs Business Input
+## Build Verification (2026-03-28)
 
-- [ ] Real brand logo (SVG, PNG) — currently using placeholder
-- [ ] OG image design (1200x630) — placeholder reference exists
-- [ ] Company phone number
-- [ ] Company WhatsApp number
-- [ ] Physical office address
+```
+npm run lint      - PASS (0 errors, 0 warnings)
+npx tsc --noEmit  - PASS (strict mode)
+npm run build     - PASS (41 routes generated)
+```
+
+### Routes Generated (41 total)
+- 2 homepage variants (id, en)
+- 2 services landing (id, en)
+- 12 service detail pages (6 services x 2 locales)
+- 2 industries landing (id, en)
+- 12 industry detail pages (6 industries x 2 locales)
+- 2 case studies (id, en)
+- 2 about (id, en)
+- 2 faq (id, en)
+- 2 contact (id, en)
+- 1 API route (/api/leads)
+- 1 robots.txt
+- 1 sitemap.xml
+
+## Needs Business Verification
+- [ ] Client logos for trust strip (currently placeholder)
+- [ ] Case study data (3 entries, all marked placeholder, need real client data)
+- [ ] FAQ answers (need operations team confirmation)
+- [ ] Service page copy accuracy (need confirmation of scope)
+
+## Needs Business Input
+- [ ] Real brand logo (SVG/PNG)
+- [ ] OG image design (1200x630)
+- [ ] Company phone number and WhatsApp
+- [ ] Physical office address for local SEO
 - [ ] Client logos (with permission)
-- [ ] Verified operational metrics (if any)
-- [ ] GTM container ID or GA4 measurement ID
+- [ ] GA4 measurement ID (NEXT_PUBLIC_GA_MEASUREMENT_ID)
+- [ ] Supabase production credentials
 - [ ] Privacy policy page content (legal review)
-- [ ] Supabase production project credentials
-- [ ] Custom domain DNS configuration
 
-## Missing — Engineering
-
-- [ ] GA4/GTM script injection (waiting for container ID)
-- [ ] Form submit event tracking integration
-- [ ] CTA click tracking integration
-- [ ] Bilingual architecture (id/en)
-- [ ] E2E smoke tests
-- [ ] Image optimization (no real images yet)
-
----
-
-## Build Status (2026-03-28)
-
-```
-npm run lint      — PASS (0 errors, 0 warnings)
-npx tsc --noEmit  — PASS (strict mode, no errors)
-npm run build     — PASS (17 routes generated, 4.8s compile)
-```
-
-### Routes Generated
-- `/` (static)
-- `/about` (static)
-- `/faq` (static)
-- `/contact` (static)
-- `/case-studies` (static)
-- `/api/leads` (dynamic)
-- `/services/domestic-distribution` (static)
-- `/services/international-freight` (static)
-- `/services/import-dtd` (static)
-- `/services/warehousing` (static)
-- `/services/project-cargo` (static)
-- `/services/blocspace` (static)
-- `/robots.txt` (static)
-- `/sitemap.xml` (static)
+## Technical Debt / Future Work
+- [ ] E2E tests for form submission and page navigation
+- [ ] Authentic logistics photography (replace placeholder imagery)
+- [ ] Lighthouse performance audit
+- [ ] Calendly scheduling integration
+- [ ] WhatsApp floating button

@@ -1,0 +1,48 @@
+import { isValidLocale, type Locale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/getDictionary";
+import { notFound } from "next/navigation";
+import HeroSection from "@/components/home/HeroSection";
+import TrustStrip from "@/components/home/TrustStrip";
+import ServicesOverview from "@/components/home/ServicesOverview";
+import HowItWorks from "@/components/home/HowItWorks";
+import ProofSection from "@/components/home/ProofSection";
+import IndustriesTeaser from "@/components/home/IndustriesTeaser";
+import SecondaryCTA from "@/components/home/SecondaryCTA";
+import JsonLd from "@/components/seo/JsonLd";
+
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function HomePage({ params }: Props) {
+  const { locale } = await params;
+  if (!isValidLocale(locale)) notFound();
+
+  const dict = await getDictionary(locale as Locale);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "UGC Logistics (Utama Globalindo Cargo)",
+    url: "https://utamaglobalindocargo.com",
+    description: dict.metadata.description,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Jakarta",
+      addressCountry: "ID",
+    },
+  };
+
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <HeroSection locale={locale as Locale} dict={dict} />
+      <TrustStrip dict={dict} />
+      <ServicesOverview locale={locale as Locale} dict={dict} />
+      <HowItWorks dict={dict} />
+      <ProofSection locale={locale as Locale} dict={dict} />
+      <IndustriesTeaser locale={locale as Locale} dict={dict} />
+      <SecondaryCTA locale={locale as Locale} dict={dict} />
+    </>
+  );
+}
