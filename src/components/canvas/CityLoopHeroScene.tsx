@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useLayoutEffect } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -20,56 +20,70 @@ function makeRng(seed: number) {
 // CITY BUILDINGS — procedural instanced silhouettes
 // ═══════════════════════════════════════════════════════
 
+type BuildingDatum = {
+  position: [number, number, number];
+  scale: [number, number, number];
+};
+
 function CityBuildings() {
   const meshRef = useRef<THREE.InstancedMesh>(null);
+  const tempObject = useMemo(() => new THREE.Object3D(), []);
 
-  const matrices = useMemo(() => {
+  // Generate stable building data in useMemo (pure data, no refs)
+  const buildings = useMemo<BuildingDatum[]>(() => {
     const rng = makeRng(77);
-    const dummy = new THREE.Object3D();
-    const result: THREE.Matrix4[] = [];
+    const result: BuildingDatum[] = [];
 
     // Near row — foreground silhouettes
     for (let i = 0; i < 16; i++) {
       const x = (i - 8) * 3.5 + rng() * 1.5;
       const h = 1.5 + rng() * 5;
-      dummy.position.set(x, h / 2 - 2, -1 + rng() * 3);
-      dummy.scale.set(0.8 + rng() * 1.4, h, 0.8 + rng() * 1.2);
-      dummy.updateMatrix();
-      result.push(dummy.matrix.clone());
+      result.push({
+        position: [x, h / 2 - 2, -1 + rng() * 3],
+        scale: [0.8 + rng() * 1.4, h, 0.8 + rng() * 1.2],
+      });
     }
     // Far row
     for (let i = 0; i < 22; i++) {
       const x = (i - 11) * 3 + rng() * 2;
       const h = 2.5 + rng() * 7;
-      dummy.position.set(x, h / 2 - 2, -7 + rng() * 3);
-      dummy.scale.set(0.6 + rng() * 1, h, 0.6 + rng() * 0.8);
-      dummy.updateMatrix();
-      result.push(dummy.matrix.clone());
+      result.push({
+        position: [x, h / 2 - 2, -7 + rng() * 3],
+        scale: [0.6 + rng() * 1, h, 0.6 + rng() * 0.8],
+      });
     }
     // Very far skyline
     for (let i = 0; i < 28; i++) {
       const x = (i - 14) * 2.6 + rng() * 2;
       const h = 3 + rng() * 9;
-      dummy.position.set(x, h / 2 - 2.5, -13 + rng() * 3);
-      dummy.scale.set(0.5 + rng() * 0.8, h, 0.4 + rng() * 0.6);
-      dummy.updateMatrix();
-      result.push(dummy.matrix.clone());
+      result.push({
+        position: [x, h / 2 - 2.5, -13 + rng() * 3],
+        scale: [0.5 + rng() * 0.8, h, 0.4 + rng() * 0.6],
+      });
     }
 
     return result;
   }, []);
 
-  // Apply instance matrices on first frame (when ref is available)
-  useFrame(() => {
+  // Apply matrices via useLayoutEffect — ref is available here, not during render
+  useLayoutEffect(() => {
     const mesh = meshRef.current;
-    if (!mesh || mesh.userData.initialized) return;
-    matrices.forEach((m, i) => mesh.setMatrixAt(i, m));
+    if (!mesh) return;
+
+    for (let i = 0; i < buildings.length; i++) {
+      const b = buildings[i];
+      tempObject.position.set(b.position[0], b.position[1], b.position[2]);
+      tempObject.scale.set(b.scale[0], b.scale[1], b.scale[2]);
+      tempObject.rotation.set(0, 0, 0);
+      tempObject.updateMatrix();
+      mesh.setMatrixAt(i, tempObject.matrix);
+    }
+
     mesh.instanceMatrix.needsUpdate = true;
-    mesh.userData.initialized = true;
-  });
+  }, [buildings, tempObject]);
 
   return (
-    <instancedMesh ref={meshRef} args={[undefined, undefined, matrices.length]}>
+    <instancedMesh ref={meshRef} args={[undefined, undefined, buildings.length]}>
       <boxGeometry args={[1, 1, 1]} />
       <meshBasicMaterial color="#0e0e11" />
     </instancedMesh>
