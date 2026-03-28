@@ -132,6 +132,6 @@
 | 14 | SEO incomplete | **PARTIALLY RESOLVED** — canonical, favicon, JSON-LD fixed. OG image needs real design. |
 | 15 | No analytics | **PARTIALLY RESOLVED** — analytics.ts helpers created. GTM ID needed from business. |
 | 16 | ServicesHorizontal | **RESOLVED** — rewritten with proper scroll-hijack + separate mobile stack |
-| 17 | HeroGlobe | **RESOLVED** — replaced with CityLoop 3D hero |
+| 17 | HeroGlobe | **RESOLVED** — replaced with static hero (animated paths de-scoped) |
 | 18 | Service pages template | **ACKNOWLEDGED** — adequate for launch, differentiate post-launch |
 | 19 | ClientLogos unused | **RESOLVED** — component deleted |

@@ -42,7 +42,7 @@
 
 - [x] Mobile experience clean and functional
 - [x] ServicesHorizontal usable on mobile (separate vertical stack)
-- [x] Hero background has reduced-motion fallback (CityLoopHeroFallback)
+- [x] Hero is static (no animation, no fallback needed)
 - [x] `prefers-reduced-motion` respected sitewide (globals.css + component hooks)
 - [x] Case study modal closeable via ESC
 - [x] Mobile menu has aria-expanded

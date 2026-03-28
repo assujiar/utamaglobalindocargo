@@ -53,8 +53,8 @@
 
 | # | Task | Status |
 |---|---|---|
-| D1 | Hero replaced with CityLoop 3D scene | DONE |
-| D2 | Reduced-motion fallback (CityLoopHeroFallback) | DONE |
+| D1 | Hero de-scoped to clean static implementation | DONE |
+| D2 | Animated hero paths removed (HeroGlobe, RouteField, CityLoop) | DONE |
 | D3 | Reduced-motion CSS media query (globals.css) | DONE |
 | D4 | ESC close + focus trap on case study modal | DONE |
 | D5 | ServicesHorizontal rewritten (proper scroll-hijack + mobile stack) | DONE |

@@ -17,8 +17,7 @@
 - [x] Next.js 16 App Router with TypeScript strict mode
 - [x] Tailwind CSS v4 with brand colors (#ff4600, #111111)
 - [x] GSAP + Lenis smooth scroll integration
-- [x] HeroSection with CityLoop 3D scene (R3F procedural city + highway loops)
-- [x] Hero fallback: static CSS cityscape for reduced-motion / no-WebGL
+- [x] HeroSection: clean static hero (animated paths de-scoped and removed)
 - [x] ServicesHorizontal with 6 service panels (desktop horizontal scroll, mobile vertical)
 - [x] 6 service detail pages with ServicePageLayout template
 - [x] Case studies page with Framer Motion layout transitions
