@@ -5,6 +5,7 @@ import { getDictionary } from "@/i18n/getDictionary";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
+import CookieConsent from "@/components/analytics/CookieConsent";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -78,6 +79,7 @@ export default async function LocaleLayout({
           {children}
         </main>
         <Footer locale={locale as Locale} dict={dict} />
+        <CookieConsent locale={locale} />
       </body>
     </html>
   );

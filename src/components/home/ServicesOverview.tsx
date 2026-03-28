@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
+import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/type";
 import { services } from "@/data/services";
@@ -49,51 +52,56 @@ export default function ServicesOverview({ locale, dict }: ServicesOverviewProps
   return (
     <section className="section-light py-20 lg:py-28">
       <Container>
-        <SectionHeading
-          title={dict.servicesOverview.heading}
-          subtitle={dict.servicesOverview.subHeading}
-        />
+        <AnimateOnScroll>
+          <SectionHeading
+            title={dict.servicesOverview.heading}
+            subtitle={dict.servicesOverview.subHeading}
+          />
+        </AnimateOnScroll>
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => (
-            <Link
-              key={service.slug}
-              href={`${prefix}/services/${service.slug}`}
-              className="group p-8 bg-white border border-border-light hover:border-logistics-orange/30 transition-all duration-300 hover:shadow-lg"
-            >
-              <div className="w-12 h-12 bg-logistics-orange/10 text-logistics-orange flex items-center justify-center mb-5 group-hover:bg-logistics-orange group-hover:text-white transition-colors duration-300">
-                {iconMap[service.icon]}
-              </div>
-              <h3 className="text-lg font-bold text-carbon-dark mb-3 group-hover:text-logistics-orange transition-colors">
-                {service.name[locale]}
-              </h3>
-              <p className="text-sm text-text-muted leading-relaxed">
-                {service.shortDescription[locale]}
-              </p>
-              <div className="mt-5 flex items-center gap-2 text-sm font-bold text-logistics-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                {dict.common.learnMore}
-                <svg
-                  className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </div>
-            </Link>
+          {services.map((service, i) => (
+            <AnimateOnScroll key={service.slug} delay={i * 0.08}>
+              <Link
+                href={`${prefix}/services/${service.slug}`}
+                className="group block p-8 bg-white border border-border-light hover:border-logistics-orange/30 transition-all duration-300 hover:shadow-lg h-full"
+              >
+                <div className="w-12 h-12 bg-logistics-orange/10 text-logistics-orange flex items-center justify-center mb-5 group-hover:bg-logistics-orange group-hover:text-white transition-colors duration-300">
+                  {iconMap[service.icon]}
+                </div>
+                <h3 className="text-lg font-bold text-carbon-dark mb-3 group-hover:text-logistics-orange transition-colors">
+                  {service.name[locale]}
+                </h3>
+                <p className="text-sm text-text-muted leading-relaxed">
+                  {service.shortDescription[locale]}
+                </p>
+                <div className="mt-5 flex items-center gap-2 text-sm font-bold text-logistics-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {dict.common.learnMore}
+                  <svg
+                    className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </Link>
+            </AnimateOnScroll>
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <Link
-            href={`${prefix}/services`}
-            className="inline-flex items-center gap-3 border border-carbon-dark text-carbon-dark px-8 py-4 font-bold text-sm uppercase tracking-wider hover:bg-carbon-dark hover:text-white transition-colors"
-          >
-            {dict.servicesOverview.cta}
-          </Link>
-        </div>
+        <AnimateOnScroll delay={0.3}>
+          <div className="mt-12 text-center">
+            <Link
+              href={`${prefix}/services`}
+              className="inline-flex items-center gap-3 border border-carbon-dark text-carbon-dark px-8 py-4 font-bold text-sm uppercase tracking-wider hover:bg-carbon-dark hover:text-white transition-colors"
+            >
+              {dict.servicesOverview.cta}
+            </Link>
+          </div>
+        </AnimateOnScroll>
       </Container>
     </section>
   );

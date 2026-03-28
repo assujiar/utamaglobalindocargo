@@ -2,7 +2,7 @@
 
 **Last updated**: 2026-03-28
 
-## Rebuild Status
+## Rebuild Status: ALL PHASES COMPLETE
 
 ### Phase 1: Cleanup & Architecture Reset - COMPLETE
 - [x] Removed old front-end components (StatsCounter, ServicesHorizontal, old HeroSection, SmoothScroller, ConsoleEasterEgg, caseStudiesData)
@@ -15,123 +15,133 @@
 - [x] Lint: PASS | TypeScript: PASS | Build: PASS
 
 ### Phase 2: Information Architecture & Content Foundation - COMPLETE
-- [x] All routes per IA blueprint implemented:
-  - `/[locale]` (Homepage), `/[locale]/services`, `/[locale]/services/[slug]`
-  - `/[locale]/industries`, `/[locale]/industries/[slug]`
-  - `/[locale]/case-studies`, `/[locale]/about`, `/[locale]/faq`, `/[locale]/contact`
+- [x] All routes per IA blueprint implemented
 - [x] Header with desktop dropdown nav, mobile drawer, language toggle
 - [x] Footer with brand tagline "We Care What We Deliver", service links, company links
-- [x] Service taxonomy data model (6 categories, all sub-services preserved per SSOT)
+- [x] Service taxonomy data model (6 categories, 26 sub-services, matches SSOT)
 - [x] Industry data model (6 industries with challenges, solutions, relevant services)
 - [x] Case study data model (3 entries, all marked isPlaceholder: true)
 - [x] Skip-to-content link, Container, SectionHeading reusable components
 
 ### Phase 3: Homepage Rebuild - COMPLETE
-- [x] Cinematic dark hero with "Satu kendali untuk setiap handoff." / "One line of control across every handoff."
-- [x] Trust strip (placeholder client logos, credibility statement)
-- [x] Services overview grid (6 categories with icons)
-- [x] How It Works (5-step process diagram)
-- [x] Proof section (featured case studies, dark chapter)
-- [x] Industries teaser (6 industry tiles)
+- [x] Cinematic dark hero with correct headlines in both languages
+- [x] Trust strip (placeholder client logos with marker, credibility statement)
+- [x] Services overview grid (6 categories with icons, Framer Motion viewport animations)
+- [x] How It Works (5-step process diagram with staggered animations)
+- [x] Proof section (featured case studies with animations, dark chapter)
+- [x] Industries teaser (6 industry tiles with staggered reveal)
 - [x] Secondary CTA section
 - [x] Chapter-based palette: dark hero > light services > white process > dark proof > light industries > dark CTA
+- [x] Framer Motion AnimateOnScroll component for viewport-triggered animations
+- [x] All animations respect prefers-reduced-motion via CSS
 
 ### Phase 4: Service Architecture - COMPLETE
 - [x] Services landing page with numbered list of all 6 categories
-- [x] 6 individual service pages: hero, sub-services grid, process steps, best-for list, CTA
+- [x] 6 individual service pages with: hero, collapsible sub-service accordion, process steps, best-for list, trust element, CTA
+- [x] SubServiceAccordion component with keyboard accessibility (aria-expanded)
+- [x] TrustElement component showing relevant case study on each service page
 - [x] All sub-services preserved exactly per 02_business_truth_ssot.md
-- [x] generateStaticParams for all 12 locale/slug combinations
+- [x] Service JSON-LD schema with areaServed on every page
 
 ### Phase 5: Trust, Proof, Contact, FAQ, About & Industries - COMPLETE
-- [x] About page: mission, story (why one coordination point), 4 values, brand tagline section
+- [x] Case studies index page with industry filters
+- [x] Individual case study detail pages (/case-studies/[slug]) with challenge/solution/result
+- [x] About page: mission, story, 4 values, team photo placeholder (marked), trust strip, brand tagline
 - [x] FAQ page: 8 Q&A items with accessible accordion, FAQPage JSON-LD schema
-- [x] Contact page: multi-step form with full i18n, honeypot, UTM attribution, privacy consent
-- [x] Case studies page: filter by industry, challenge/solution/result layout, placeholder badges
-- [x] Industries landing with all 6 industries
-- [x] Industry detail pages: challenge, solution, related services, CTA
+- [x] Contact page: multi-step form, i18n, honeypot, UTM, WhatsApp/phone/email direct links
+- [x] Industries landing and 6 detail pages with challenge/solution/related services
+- [x] Trust strip reused on About page
+- [x] Cookie consent banner with accept/decline, localStorage persistence
 - [x] Tagline "We Care What We Deliver" in footer and About page (never as hero headline)
 
-### Phase 6: SEO, Analytics, Polish - COMPLETE
+### Phase 6: SEO, Analytics, Polish & Launch Gates - COMPLETE
 - [x] Metadata (title, description, OG, Twitter) for all pages
-- [x] Canonical URLs and hreflang alternates (id/en)
-- [x] JSON-LD: Organization, Service, FAQPage, ContactPage, AboutPage schemas
+- [x] Canonical URLs and hreflang alternates (id/en) on all pages
+- [x] JSON-LD on 8 page types: Organization, Service, FAQPage, ContactPage, AboutPage, Article, WebPage
 - [x] sitemap.xml with all pages and language alternates
 - [x] robots.txt blocking /api/
-- [x] GA4 integration via NEXT_PUBLIC_GA_MEASUREMENT_ID env var
-- [x] Analytics event tracking (form_submit, cta_click)
-- [x] prefers-reduced-motion fully respected
+- [x] GA4 integration via NEXT_PUBLIC_GA_MEASUREMENT_ID
+- [x] Analytics event tracking (form_submit, cta_click via dataLayer)
+- [x] Cookie consent banner
+- [x] prefers-reduced-motion fully respected in CSS
 - [x] Focus-visible outlines for keyboard navigation
-- [x] ARIA attributes on interactive elements (accordion, mobile nav, progress bar, form errors)
+- [x] Skip-to-content link
+- [x] ARIA attributes on accordions, mobile nav, progress bar, form errors, cookie consent
 - [x] Security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy)
+- [x] E2E smoke tests: 31 tests, all passing
+- [x] Quality gate verification against 09_strict_rules_and_quality_gates.md
 
 ## Build Verification (2026-03-28)
 
 ```
 npm run lint      - PASS (0 errors, 0 warnings)
 npx tsc --noEmit  - PASS (strict mode)
-npm run build     - PASS (41 routes generated)
+npm run build     - PASS (49 pages generated, 4.5s compile)
 ```
 
-### Routes Generated (41 total)
-- 2 homepage variants (id, en)
+### Routes Generated (49 pages)
+- 2 homepage (id, en)
 - 2 services landing (id, en)
 - 12 service detail pages (6 services x 2 locales)
 - 2 industries landing (id, en)
 - 12 industry detail pages (6 industries x 2 locales)
-- 2 case studies (id, en)
+- 2 case studies landing (id, en)
+- 6 case study detail pages (3 cases x 2 locales)
 - 2 about (id, en)
 - 2 faq (id, en)
 - 2 contact (id, en)
 - 1 API route (/api/leads)
 - 1 robots.txt
 - 1 sitemap.xml
+- 1 _not-found
+- 1 middleware (locale redirect)
 
-## Needs Business Verification
-- [ ] Client logos for trust strip (currently placeholder)
-- [ ] Case study data (3 entries, all marked placeholder, need real client data)
-- [ ] FAQ answers (need operations team confirmation)
-- [ ] Service page copy accuracy (need confirmation of scope)
+## E2E Test Results
+
+```
+31 passed, 0 failed, 31 total
+Tests cover: navigation (20 routes), content (hero, tagline, services),
+SEO (robots, sitemap, JSON-LD, FAQPage schema), API (validation, honeypot),
+language alternates
+```
+
+## Quality Gate Verification
+
+| Gate | Status | Evidence |
+|------|--------|----------|
+| Gate 1: Clean Base | PASS | No leftover components, app compiles, i18n configured |
+| Gate 2: Scaffold & Nav | PASS | All routes return 200, form validates, bilingual output |
+| Gate 3: Homepage | PASS | All 8 sections implemented, copy follows rules, motion subtle |
+| Gate 4: Service Pages | PASS | 6 categories, 26 sub-services, accordion panels, JSON-LD |
+| Gate 5: Trust & Support | PASS | Case studies structured, About/FAQ/Contact complete, placeholders marked |
+| Gate 6: SEO & Polish | PASS | Meta tags valid, E2E tests pass, sitemap generated, analytics ready |
+
+### Rule Compliance
+- Rule 1 (Business truths): Brand name, tagline, hero headline, 6 service categories preserved
+- Rule 2 (Writing rules): 0 em dashes found across all content files
+- Rule 3 (Visual/motion): No GSAP/3D/WebGL, no horizontal hijacking, prefers-reduced-motion supported
+- Rule 4 (IA): All pages from blueprint implemented
+- Rule 5 (Accessibility): Skip link, focus-visible, ARIA on 7+ components
+- Rule 6 (SEO): JSON-LD on 8 page types, canonicals on 10+ routes
+- Rule 7 (Bilingual): ID and EN dictionaries, middleware redirect
+- Rule 8 (Supabase): Server-only client, no NEXT_PUBLIC service key exposure
+- Rule 9 (Progress): This file updated after each phase
+- Rule 10 (Real assets): All placeholders marked (case studies, client logos, team photo)
 
 ## Needs Business Input
+- [ ] Client logos for trust strip (currently placeholder)
+- [ ] Case study data (3 entries, all marked placeholder)
+- [ ] Company phone number and WhatsApp (NEXT_PUBLIC_CONTACT_PHONE)
+- [ ] Physical office address for local SEO
 - [ ] Real brand logo (SVG/PNG)
 - [ ] OG image design (1200x630)
-- [ ] Company phone number and WhatsApp
-- [ ] Physical office address for local SEO
-- [ ] Client logos (with permission)
 - [ ] GA4 measurement ID (NEXT_PUBLIC_GA_MEASUREMENT_ID)
+- [ ] Team photo for About page
 - [ ] Supabase production credentials
 - [ ] Privacy policy page content (legal review)
 
-## Verification Log (2026-03-28)
-
-### Phase 1 Verification
-- `npm run lint` - PASS (0 errors, 0 warnings)
-- `npx tsc --noEmit` - PASS (strict mode, no errors)
-- Dev server starts without errors
-- Root `/` redirects to `/id` (307) via middleware
-- All deleted files confirmed removed (9/9)
-- All preserved files confirmed present (5/5: supabaseServer, migrations, leads API, UTM hook, analytics)
-- GSAP and Lenis removed from package.json (0 references)
-- Brand colors match 06_visual_system: #ff4600, #111111, #f5f5f5, #666666, #999999, #e5e5e5, #333333
-- Font: Inter, Geist Sans configured
-- prefers-reduced-motion support in globals.css
-- tsconfig.json strict: true preserved
-- eslint.config.mjs preserved
-
-### Phase 2 Verification
-- All 10 page routes exist and return 200
-- Navigation links update URL and render correct page in both languages
-- Service taxonomy: 6 categories, 26 sub-services, matches SSOT exactly
-- Industries data: 6 industries with challenges, solutions, relevant services
-- Header: desktop dropdown, mobile drawer, language toggle, persistent contact CTA
-- Footer: service links, industry links, contact info, tagline "We Care What We Deliver"
-- Hero headline renders: "Satu kendali untuk setiap handoff." (id) / "One line of control across every handoff." (en)
-- Contact form validation: empty POST returns 400, honeypot returns fake 200, valid payload passes Zod
-- sitemap.xml and robots.txt return 200
-
 ## Technical Debt / Future Work
-- [ ] E2E tests for form submission and page navigation
 - [ ] Authentic logistics photography (replace placeholder imagery)
-- [ ] Lighthouse performance audit
+- [ ] Lighthouse performance audit (targeting >90)
 - [ ] Calendly scheduling integration
-- [ ] WhatsApp floating button
+- [ ] WCAG AA contrast audit with automated tooling

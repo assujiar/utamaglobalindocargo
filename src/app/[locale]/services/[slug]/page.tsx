@@ -6,6 +6,8 @@ import { getDictionary } from "@/i18n/getDictionary";
 import { services, getServiceBySlug } from "@/data/services";
 import Container from "@/components/ui/Container";
 import JsonLd from "@/components/seo/JsonLd";
+import SubServiceAccordion from "@/components/services/SubServiceAccordion";
+import TrustElement from "@/components/services/TrustElement";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
@@ -47,7 +49,15 @@ export default async function ServiceDetailPage({ params }: Props) {
       "@type": "Organization",
       name: "UGC Logistics (Utama Globalindo Cargo)",
     },
+    areaServed: { "@type": "Country", name: "Indonesia" },
   };
+
+  const subServiceItems = service.subServices.map((sub) => ({
+    name: sub.name[loc],
+    description: sub.description[loc],
+  }));
+
+  const trustHeading = loc === "id" ? "Contoh Penerapan" : "Example Application";
 
   return (
     <>
@@ -74,26 +84,14 @@ export default async function ServiceDetailPage({ params }: Props) {
         </Container>
       </section>
 
-      {/* Sub-services */}
+      {/* Sub-services with collapsible accordion */}
       <section className="section-light py-20 lg:py-28">
         <Container>
-          <h2 className="text-2xl md:text-3xl font-black text-carbon-dark tracking-tight mb-10">
+          <h2 className="text-2xl md:text-3xl font-black text-carbon-dark tracking-tight mb-8">
             {dict.services.subServices}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {service.subServices.map((sub) => (
-              <div
-                key={sub.name[loc]}
-                className="p-8 bg-white border border-border-light"
-              >
-                <h3 className="text-lg font-bold text-carbon-dark mb-3">
-                  {sub.name[loc]}
-                </h3>
-                <p className="text-sm text-text-muted leading-relaxed">
-                  {sub.description[loc]}
-                </p>
-              </div>
-            ))}
+          <div className="max-w-3xl">
+            <SubServiceAccordion items={subServiceItems} />
           </div>
         </Container>
       </section>
@@ -101,36 +99,44 @@ export default async function ServiceDetailPage({ params }: Props) {
       {/* Process */}
       <section className="bg-white py-20 lg:py-28">
         <Container>
-          <h2 className="text-2xl md:text-3xl font-black text-carbon-dark tracking-tight mb-10">
-            {dict.services.process}
-          </h2>
-          <div className="space-y-6">
-            {service.process[loc].map((step, i) => (
-              <div key={i} className="flex items-start gap-6">
-                <div className="flex-shrink-0 w-10 h-10 bg-carbon-dark text-white flex items-center justify-center font-bold text-sm">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <p className="text-base text-text-muted pt-2">{step}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-black text-carbon-dark tracking-tight mb-10">
+                {dict.services.process}
+              </h2>
+              <div className="space-y-6">
+                {service.process[loc].map((step, i) => (
+                  <div key={i} className="flex items-start gap-6">
+                    <div className="flex-shrink-0 w-10 h-10 bg-carbon-dark text-white flex items-center justify-center font-bold text-sm">
+                      {String(i + 1).padStart(2, "0")}
+                    </div>
+                    <p className="text-base text-text-muted pt-2">{step}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </Container>
-      </section>
+            </div>
 
-      {/* Best for */}
-      <section className="section-light py-20 lg:py-28">
-        <Container>
-          <h2 className="text-2xl md:text-3xl font-black text-carbon-dark tracking-tight mb-8">
-            {dict.services.bestFor}
-          </h2>
-          <ul className="space-y-4">
-            {service.bestFor[loc].map((item, i) => (
-              <li key={i} className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-2 h-2 bg-logistics-orange rotate-45 mt-2" />
-                <span className="text-base text-text-muted">{item}</span>
-              </li>
-            ))}
-          </ul>
+            <div>
+              <h2 className="text-2xl md:text-3xl font-black text-carbon-dark tracking-tight mb-8">
+                {dict.services.bestFor}
+              </h2>
+              <ul className="space-y-4 mb-10">
+                {service.bestFor[loc].map((item, i) => (
+                  <li key={i} className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-2 h-2 bg-logistics-orange rotate-45 mt-2" />
+                    <span className="text-base text-text-muted">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Trust element: relevant case study */}
+              <TrustElement
+                serviceSlug={slug}
+                locale={loc}
+                heading={trustHeading}
+              />
+            </div>
+          </div>
         </Container>
       </section>
 

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { isValidLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import Container from "@/components/ui/Container";
+import TrustStrip from "@/components/home/TrustStrip";
 import JsonLd from "@/components/seo/JsonLd";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -62,6 +63,9 @@ export default async function AboutPage({ params }: Props) {
         </Container>
       </section>
 
+      {/* Trust strip */}
+      <TrustStrip dict={dict} />
+
       {/* Mission */}
       <section className="bg-white py-20 lg:py-28">
         <Container>
@@ -108,6 +112,32 @@ export default async function AboutPage({ params }: Props) {
                 </p>
               </div>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Team placeholder */}
+      <section className="bg-white py-20 lg:py-28">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-black text-carbon-dark tracking-tight mb-6">
+                {locale === "id" ? "Tim Kami" : "Our Team"}
+              </h2>
+              <p className="text-base text-text-muted leading-relaxed">
+                {locale === "id"
+                  ? "Tim operasional UGC Logistics terdiri dari profesional logistik dengan pengalaman di freight forwarding, customs brokerage, dan warehouse management. Setiap klien mendapat dedicated coordinator yang memahami kebutuhan spesifik industri mereka."
+                  : "The UGC Logistics operations team consists of logistics professionals experienced in freight forwarding, customs brokerage, and warehouse management. Each client gets a dedicated coordinator who understands the specific needs of their industry."}
+              </p>
+            </div>
+            <div className="bg-surface-light aspect-[4/3] flex items-center justify-center">
+              {/* [PLACEHOLDER: Replace with actual team photo when available] */}
+              <p className="text-sm text-text-light text-center px-8">
+                {locale === "id"
+                  ? "[Foto tim akan ditambahkan setelah sesi pemotretan]"
+                  : "[Team photo to be added after photo session]"}
+              </p>
+            </div>
           </div>
         </Container>
       </section>
