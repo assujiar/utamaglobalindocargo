@@ -73,7 +73,7 @@ function ServicePanel({
 
   return (
     <div
-      className={`relative w-screen h-screen flex-shrink-0 flex items-center overflow-hidden ${
+      className={`relative w-full md:w-screen min-h-[80vh] md:h-screen flex-shrink-0 flex items-center overflow-hidden ${
         isDark ? "bg-carbon-dark" : "bg-white"
       }`}
     >
@@ -99,7 +99,7 @@ function ServicePanel({
       </div>
 
       {/* Konten panel */}
-      <div className="relative z-10 px-16 md:px-24 lg:px-32 xl:px-40 max-w-5xl">
+      <div className="relative z-10 px-8 py-12 md:py-0 md:px-24 lg:px-32 xl:px-40 max-w-5xl">
         {/* Label layanan */}
         <div className="flex items-center gap-4 mb-8">
           <div className="w-12 h-[1px] bg-logistics-orange" />
@@ -187,19 +187,22 @@ export default function ServicesHorizontal() {
     () => {
       if (!sectionRef.current || !trackRef.current) return;
 
-      // Animasi horizontal: xPercent bergeser -100 * (panels.length - 1)
-      // Menterjemahkan scroll vertikal → pergerakan lateral panel
-      gsap.to(trackRef.current, {
-        xPercent: -100 * (panels.length - 1),
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          pin: true,
-          scrub: 1,
-          end: `+=${panels.length * 1000}`,
-          // invalidateOnRefresh untuk responsivitas resize
-          invalidateOnRefresh: true,
-        },
+      // Hanya aktifkan horizontal scroll di desktop (>= 768px)
+      // Di mobile, panel akan stack vertikal secara alami
+      const mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        gsap.to(trackRef.current!, {
+          xPercent: -100 * (panels.length - 1),
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            pin: true,
+            scrub: 1,
+            end: `+=${panels.length * 1000}`,
+            invalidateOnRefresh: true,
+          },
+        });
       });
     },
     { scope: sectionRef }
@@ -235,8 +238,8 @@ export default function ServicesHorizontal() {
         {/* Track baris fleksibel nowrap — lebar = panels * 100vw */}
         <div
           ref={trackRef}
-          className="flex flex-nowrap"
-          style={{ width: `${panels.length * 100}vw` }}
+          className="flex flex-col md:flex-row md:flex-nowrap"
+          style={{ width: undefined }}
         >
           {panels.map((panel, index) => (
             <ServicePanel

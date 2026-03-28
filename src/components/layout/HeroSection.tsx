@@ -78,47 +78,83 @@ export default function HeroSection() {
         <HeroGlobe />
       </div>
 
+      {/* Pola SVG hexagon — kedalaman visual lapisan dekoratif */}
+      <div className="absolute inset-0 z-[1] opacity-[0.04] pointer-events-none">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="hexagons" width="56" height="100" patternUnits="userSpaceOnUse" patternTransform="scale(1.5)">
+              <path
+                d="M28 66L0 50L0 16L28 0L56 16L56 50L28 66Z"
+                fill="none"
+                stroke="#ff4600"
+                strokeWidth="0.5"
+              />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#hexagons)" />
+        </svg>
+      </div>
+
       {/* Gradient overlay untuk keterbacaan teks */}
-      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-carbon-dark/40 via-transparent to-carbon-dark/80" />
+      <div className="absolute inset-0 z-[2] bg-gradient-to-b from-carbon-dark/40 via-transparent to-carbon-dark/80" />
 
       {/* Tipografi lapisan teratas DOM */}
       <div
         ref={headlineRef}
-        className="relative z-[2] text-center px-6 max-w-6xl mx-auto"
+        className="relative z-[3] text-center px-6 max-w-6xl mx-auto"
         style={{ perspective: "1000px" }}
       >
-        {/* Headline berskala masif — sans-serif tebal */}
-        <h1 className="text-5xl md:text-7xl lg:text-[8rem] xl:text-[10rem] font-black uppercase leading-[0.85] tracking-tighter">
-          <span data-reveal className="block text-white/90">
-            Seni Mendikte
+        {/* Headline berskala masif — efek clip reveal overflow-hidden */}
+        <h1 className="text-6xl md:text-8xl lg:text-[10rem] xl:text-[13rem] font-black uppercase leading-[0.82] tracking-tighter">
+          <span className="block overflow-hidden">
+            <span data-reveal className="block text-white/90">
+              Seni Mendikte
+            </span>
           </span>
-          <span data-reveal className="block text-logistics-orange">
-            Waktu &amp; Jarak
+          <span className="block overflow-hidden">
+            <span data-reveal className="block text-logistics-orange">
+              Waktu &amp; Jarak
+            </span>
           </span>
         </h1>
+
+        {/* Sub-headline — baris kecil di bawah hero */}
+        <div className="mt-6 md:mt-10 flex items-center justify-center gap-4">
+          <div className="w-12 h-[1px] bg-logistics-orange/40" />
+          <span data-reveal className="text-[10px] md:text-xs font-bold uppercase tracking-[0.4em] text-white/30">
+            Logistik Korporat B2B
+          </span>
+          <div className="w-12 h-[1px] bg-logistics-orange/40" />
+        </div>
 
         {/* Subtitle manifesto B2B */}
         <p
           data-subtitle
-          className="mt-8 md:mt-12 text-base md:text-xl lg:text-2xl text-white/50 font-light max-w-2xl mx-auto tracking-wide"
+          className="mt-6 md:mt-10 text-base md:text-xl lg:text-2xl text-white/50 font-light max-w-2xl mx-auto tracking-wide leading-relaxed"
         >
           Sinkronisasi Resolusi Pasokan Asimetris — Infrastruktur logistik
           korporat untuk presisi rantai pasok tingkat eksekutif.
         </p>
 
-        {/* CTA Button */}
-        <div data-cta className="mt-10 md:mt-14">
+        {/* CTA Button — teks lebih kuat */}
+        <div data-cta className="mt-10 md:mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="#layanan"
             className="inline-block px-10 py-4 bg-logistics-orange text-white font-bold text-sm md:text-base uppercase tracking-widest hover:bg-logistics-orange/90 transition-colors duration-300"
           >
-            Jelajahi Kapabilitas
+            Eksplorasi Solusi
+          </a>
+          <a
+            href="/contact"
+            className="inline-block px-10 py-4 border border-white/20 text-white/60 font-bold text-sm md:text-base uppercase tracking-widest hover:border-logistics-orange hover:text-logistics-orange transition-colors duration-300"
+          >
+            Konsultasi Gratis
           </a>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[2]">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-[3]">
         <div className="w-[1px] h-16 bg-gradient-to-b from-logistics-orange to-transparent animate-pulse" />
       </div>
     </section>
