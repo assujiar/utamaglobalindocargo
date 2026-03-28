@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
-import AbstractRouteField from "@/components/canvas/AbstractRouteField";
+import CityLoopHero from "@/components/canvas/CityLoopHero";
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -25,26 +25,26 @@ export default function HeroSection() {
       }
 
       if (reveals) {
-        gsap.set(reveals, { opacity: 0, y: 48 });
+        gsap.set(reveals, { opacity: 0, y: 50 });
         gsap.to(reveals, {
           opacity: 1,
           y: 0,
-          duration: 1,
+          duration: 1.1,
           stagger: 0.15,
           ease: "power3.out",
-          delay: 0.3,
+          delay: 0.4,
         });
       }
 
       if (fades) {
-        gsap.set(fades, { opacity: 0, y: 16 });
+        gsap.set(fades, { opacity: 0, y: 14 });
         gsap.to(fades, {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          stagger: 0.12,
+          stagger: 0.1,
           ease: "power2.out",
-          delay: 0.9,
+          delay: 1.0,
         });
       }
     },
@@ -54,25 +54,20 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[100svh] overflow-hidden bg-[#0b0b0d]"
+      className="relative min-h-[100svh] overflow-hidden bg-[#08080a]"
     >
-      {/* Background */}
-      <AbstractRouteField />
+      {/* 3D Scene Background */}
+      <CityLoopHero />
 
-      {/* Texture overlay */}
+      {/* Readability veil — darkens the upper content zone */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)
+          background: `
+            radial-gradient(ellipse at 50% 35%, rgba(8,8,10,0.55) 0%, transparent 55%),
+            linear-gradient(to bottom, rgba(8,8,10,0.35) 0%, transparent 25%, transparent 65%, rgba(8,8,10,0.45) 100%)
           `,
-          backgroundSize: "80px 80px",
-          maskImage:
-            "radial-gradient(ellipse at 50% 50%, black 0%, transparent 65%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse at 50% 50%, black 0%, transparent 65%)",
         }}
       />
 
@@ -83,12 +78,12 @@ export default function HeroSection() {
       >
         <div className="mx-auto max-w-5xl text-center">
           {/* Pretitle */}
-          <div data-reveal className="mb-6 md:mb-8 flex items-center justify-center gap-3">
-            <span className="h-[1px] w-8 md:w-12 bg-logistics-orange/40" />
+          <div data-reveal className="mb-5 md:mb-7 flex items-center justify-center gap-3">
+            <span className="h-[1px] w-6 md:w-10 bg-logistics-orange/40" />
             <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-white/30">
               Freight &bull; Customs &bull; Warehouse &bull; Project Cargo
             </span>
-            <span className="h-[1px] w-8 md:w-12 bg-logistics-orange/40" />
+            <span className="h-[1px] w-6 md:w-10 bg-logistics-orange/40" />
           </div>
 
           {/* Headline */}
@@ -96,7 +91,7 @@ export default function HeroSection() {
             <span className="block overflow-hidden">
               <span
                 data-reveal
-                className="block text-[3.2rem] sm:text-[4.5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-black uppercase text-white/90"
+                className="block text-[3.2rem] sm:text-[4.5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-black uppercase text-white"
               >
                 Logistik
               </span>
@@ -104,7 +99,7 @@ export default function HeroSection() {
             <span className="block overflow-hidden">
               <span
                 data-reveal
-                className="block text-[3.2rem] sm:text-[4.5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-black uppercase text-white/90"
+                className="block text-[3.2rem] sm:text-[4.5rem] md:text-[7rem] lg:text-[9rem] xl:text-[11rem] font-black uppercase text-white"
               >
                 Tanpa
               </span>
@@ -122,7 +117,7 @@ export default function HeroSection() {
           {/* Supporting copy */}
           <p
             data-fade
-            className="mx-auto mt-6 md:mt-8 max-w-xl text-[15px] md:text-lg text-white/55 leading-relaxed"
+            className="mx-auto mt-6 md:mt-8 max-w-xl text-[15px] md:text-lg text-white/60 leading-relaxed"
           >
             Pickup, freight, customs, warehousing — satu titik koordinasi
             dari asal sampai tujuan. Anda terima barang, bukan masalah.
@@ -133,7 +128,6 @@ export default function HeroSection() {
             data-fade
             className="mt-8 md:mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
           >
-            {/* Primary CTA */}
             <a
               href="/contact"
               className="group inline-flex items-center gap-3 bg-logistics-orange px-8 md:px-10 py-4 text-white font-bold text-sm uppercase tracking-widest hover:bg-logistics-orange/90 transition-colors duration-300"
@@ -153,26 +147,24 @@ export default function HeroSection() {
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </a>
-
-            {/* Secondary CTA */}
             <a
               href="#layanan"
-              className="inline-flex items-center gap-2.5 border border-white/10 px-7 py-4 text-white/50 text-sm font-bold uppercase tracking-widest hover:border-white/25 hover:text-white/75 transition-all duration-300"
+              className="inline-flex items-center border border-white/12 px-7 py-4 text-white/50 text-sm font-bold uppercase tracking-widest hover:border-white/25 hover:text-white/75 transition-all duration-300"
             >
               Lihat Layanan
             </a>
           </div>
 
-          {/* Trust / capability line */}
+          {/* Service capability line */}
           <div
             data-fade
-            className="mx-auto mt-12 md:mt-16 flex items-center justify-center gap-3 md:gap-4"
+            className="mx-auto mt-12 md:mt-16 flex items-center justify-center gap-3"
           >
-            <span className="h-[1px] w-6 md:w-10 bg-white/10" />
-            <span className="text-[10px] md:text-[11px] font-medium uppercase tracking-[0.18em] text-white/25">
+            <span className="h-[1px] w-5 md:w-8 bg-white/8" />
+            <span className="text-[10px] md:text-[11px] font-medium uppercase tracking-[0.15em] text-white/22">
               Distribusi domestik &bull; Freight internasional &bull; Customs &bull; Gudang &bull; Kargo khusus
             </span>
-            <span className="h-[1px] w-6 md:w-10 bg-white/10" />
+            <span className="h-[1px] w-5 md:w-8 bg-white/8" />
           </div>
         </div>
       </div>
@@ -182,7 +174,7 @@ export default function HeroSection() {
         data-fade
         className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2"
       >
-        <div className="h-10 w-[1px] bg-gradient-to-b from-white/20 to-transparent" />
+        <div className="h-10 w-[1px] bg-gradient-to-b from-white/15 to-transparent" />
       </div>
     </section>
   );
