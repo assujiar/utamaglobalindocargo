@@ -46,9 +46,9 @@ export default function AbstractRouteFieldFallback() {
       <div className="absolute left-[11%] top-[74%] h-2 w-2 rounded-full bg-white/30" />
       <div className="absolute left-[14%] top-[68%] h-1.5 w-1.5 rounded-full bg-white/20" />
 
-      {/* Node clusters — transfer zone */}
-      <div className="absolute left-[58%] top-[47%] h-2 w-2 rounded-full bg-[#ff4600]/70" />
-      <div className="absolute left-[62%] top-[42%] h-1.5 w-1.5 rounded-full bg-[#ff4600]/40" />
+      {/* Node clusters — transfer zone (dimmed to avoid competing with centered text) */}
+      <div className="absolute left-[58%] top-[47%] h-2 w-2 rounded-full bg-[#ff4600]/40" />
+      <div className="absolute left-[62%] top-[42%] h-1.5 w-1.5 rounded-full bg-[#ff4600]/25" />
 
       {/* Node clusters — fulfillment zone */}
       <div className="absolute left-[86%] top-[31%] h-2 w-2 rounded-full bg-white/40" />

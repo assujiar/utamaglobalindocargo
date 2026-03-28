@@ -98,18 +98,6 @@ export const ROUTE_LANES: RouteLane[] = [
       { x: 0.96, y: 0.5 },
     ],
   },
-  {
-    id: "tertiary-3",
-    role: "tertiary",
-    points: [
-      { x: 0.0, y: 0.45 },
-      { x: 0.15, y: 0.42 },
-      { x: 0.32, y: 0.4 },
-      { x: 0.5, y: 0.38 },
-      { x: 0.68, y: 0.34 },
-      { x: 1.0, y: 0.28 },
-    ],
-  },
 ];
 
 // ─── Node clusters: operational zones ───
