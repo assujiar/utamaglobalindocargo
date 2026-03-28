@@ -5,79 +5,58 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useUTMCapture, getStoredUTMData } from "@/hooks/useUTMCapture";
+import { trackFormSubmit } from "@/lib/analytics";
+import type { Dictionary } from "@/i18n/dictionaries/type";
 
-// --- Validation Schema ---
+interface ContactFormProps {
+  dict: Dictionary;
+}
 
 const leadSchema = z.object({
-  service_interest: z.string().min(1, "Pilih layanan yang Anda butuhkan"),
-  operational_volume: z.string().min(1, "Pilih estimasi volume pengiriman"),
-  contact_person: z.string().min(2, "Nama lengkap wajib diisi"),
-  company_name: z.string().min(2, "Nama perusahaan wajib diisi"),
-  executive_email: z.string().email("Format email belum sesuai"),
-  phone_whatsapp: z.string().min(5, "Nomor telepon / WhatsApp wajib diisi"),
+  service_interest: z.string().min(1, "Required"),
+  operational_volume: z.string().min(1, "Required"),
+  contact_person: z.string().min(2, "Required"),
+  company_name: z.string().min(2, "Required"),
+  executive_email: z.string().email("Invalid email"),
+  phone_whatsapp: z.string().min(5, "Required"),
   cargo_description: z.string().optional(),
   origin_destination: z.string().optional(),
   timeline: z.string().optional(),
-  privacy_consent: z.literal(true, { error: "Anda harus menyetujui kebijakan privasi" }),
-  // Honeypot — invisible to users
+  privacy_consent: z.literal(true, { error: "Consent required" }),
   website_url: z.string().optional(),
 });
 
 type LeadFormData = z.infer<typeof leadSchema>;
 
-// --- Step 1: Service Selection ---
-
-const SERVICE_OPTIONS = [
-  {
-    id: "domestic-distribution",
-    label: "Distribusi Domestik",
-    desc: "FTL, LTL, FCL, LCL, atau airfreight ke seluruh Indonesia",
-  },
-  {
-    id: "international-freight",
-    label: "International Freight & Import DTD",
-    desc: "Ekspor, impor, atau door-to-door dari negara asal",
-  },
-  {
-    id: "customs-warehouse",
-    label: "Customs Brokerage & Warehousing",
-    desc: "Pengurusan bea cukai, penyimpanan, dan fulfillment",
-  },
-  {
-    id: "project-cargo-charter",
-    label: "Project Cargo, Blocspace & Charter",
-    desc: "Muatan khusus, oversized, atau kebutuhan kapasitas terjamin",
-  },
+const SERVICE_OPTIONS_ID = [
+  { id: "domestic-distribution", label: "Distribusi Domestik", desc: "FTL, LTL, FCL, LCL, atau airfreight ke seluruh Indonesia" },
+  { id: "international-freight", label: "International Freight & Import DTD", desc: "Ekspor, impor, atau door-to-door dari negara asal" },
+  { id: "customs-warehouse", label: "Customs Brokerage & Warehousing", desc: "Pengurusan bea cukai, penyimpanan, dan fulfillment" },
+  { id: "project-cargo-charter", label: "Project Cargo, Blocspace & Charter", desc: "Muatan khusus, oversized, atau kebutuhan kapasitas terjamin" },
 ];
 
-// --- Step 2: Volume Tiers ---
+const SERVICE_OPTIONS_EN = [
+  { id: "domestic-distribution", label: "Domestic Distribution", desc: "FTL, LTL, FCL, LCL, or airfreight across Indonesia" },
+  { id: "international-freight", label: "International Freight & Import DTD", desc: "Export, import, or door-to-door from origin country" },
+  { id: "customs-warehouse", label: "Customs Brokerage & Warehousing", desc: "Customs clearance, storage, and fulfillment" },
+  { id: "project-cargo-charter", label: "Project Cargo, Blocspace & Charter", desc: "Special cargo, oversized, or guaranteed capacity needs" },
+];
 
-const VOLUME_TIERS = [
-  {
-    id: "tier-entry",
-    label: "< $50k / bulan",
-    desc: "Skala awal atau pengiriman berkala dengan volume terbatas",
-  },
-  {
-    id: "tier-regional",
-    label: "$50k - $150k / bulan",
-    desc: "Pengiriman rutin dengan kebutuhan koordinasi multi-rute",
-  },
-  {
-    id: "tier-national",
-    label: "$150k - $500k / bulan",
-    desc: "Distribusi nasional atau multi-negara dengan volume konsisten",
-  },
-  {
-    id: "tier-global",
-    label: "$500k+ / bulan",
-    desc: "Operasi skala besar dengan rute internasional reguler",
-  },
+const VOLUME_TIERS_ID = [
+  { id: "tier-entry", label: "< $50k / bulan", desc: "Skala awal atau pengiriman berkala dengan volume terbatas" },
+  { id: "tier-regional", label: "$50k - $150k / bulan", desc: "Pengiriman rutin dengan kebutuhan koordinasi multi-rute" },
+  { id: "tier-national", label: "$150k - $500k / bulan", desc: "Distribusi nasional atau multi-negara dengan volume konsisten" },
+  { id: "tier-global", label: "$500k+ / bulan", desc: "Operasi skala besar dengan rute internasional reguler" },
+];
+
+const VOLUME_TIERS_EN = [
+  { id: "tier-entry", label: "< $50k / month", desc: "Entry scale or periodic shipments with limited volume" },
+  { id: "tier-regional", label: "$50k - $150k / month", desc: "Regular shipments with multi-route coordination" },
+  { id: "tier-national", label: "$150k - $500k / month", desc: "National or multi-country distribution with consistent volume" },
+  { id: "tier-global", label: "$500k+ / month", desc: "Large-scale operations with regular international routes" },
 ];
 
 const TOTAL_STEPS = 3;
-
-// --- Selection Block Component ---
 
 function SelectionBlock({
   options,
@@ -125,41 +104,44 @@ function SelectionBlock({
   );
 }
 
-// --- Text Input Component ---
-
 function FormInput({
   label,
   error,
+  optional,
   ...props
 }: {
   label: string;
   error?: string;
+  optional?: boolean;
 } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div>
       <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
         {label}
+        {optional && <span className="text-white/15 ml-2">(optional)</span>}
       </label>
       <input
         {...props}
         className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-lg md:text-xl font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
       />
       {error && (
-        <p className="mt-2 text-sm text-logistics-orange">{error}</p>
+        <p className="mt-2 text-sm text-logistics-orange" role="alert">{error}</p>
       )}
     </div>
   );
 }
 
-// --- Main Form ---
-
-export default function ContactForm() {
+export default function ContactForm({ dict }: ContactFormProps) {
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   useUTMCapture();
+
+  const isEN = dict.nav.home === "Home";
+  const serviceOptions = isEN ? SERVICE_OPTIONS_EN : SERVICE_OPTIONS_ID;
+  const volumeTiers = isEN ? VOLUME_TIERS_EN : VOLUME_TIERS_ID;
 
   const {
     register,
@@ -219,42 +201,43 @@ export default function ContactForm() {
           const result = await response.json();
           if (result.success) {
             setIsSuccess(true);
+            trackFormSubmit("contact_lead", {
+              service_interest: data.service_interest,
+              operational_volume: data.operational_volume,
+            });
           } else {
-            setSubmitError(
-              result.error || "Terjadi kesalahan. Silakan coba lagi."
-            );
+            setSubmitError(result.error || (isEN ? "An error occurred. Please try again." : "Terjadi kesalahan. Silakan coba lagi."));
           }
         } else {
           const result = await response.json().catch(() => null);
-          setSubmitError(
-            result?.error ||
-              "Gagal mengirim formulir. Silakan coba lagi atau hubungi kami langsung."
-          );
+          setSubmitError(result?.error || (isEN ? "Failed to submit. Please try again or contact us directly." : "Gagal mengirim formulir. Silakan coba lagi atau hubungi kami langsung."));
         }
       } catch {
-        setSubmitError(
-          "Koneksi bermasalah. Silakan periksa koneksi internet Anda dan coba lagi, atau hubungi kami langsung melalui email atau WhatsApp."
-        );
+        setSubmitError(dict.contact.orContactDirectly);
       } finally {
         setIsSubmitting(false);
       }
     },
-    []
+    [isEN, dict.contact.orContactDirectly]
   );
 
   const progressPercent = isSuccess ? 100 : (step / TOTAL_STEPS) * 100;
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-[60vh] flex flex-col">
       {/* Progress bar */}
-      <div className="fixed top-16 md:top-20 left-0 right-0 z-40 h-[2px] bg-white/5">
+      <div className="w-full h-[2px] bg-white/5 mb-12">
         <div
           className="h-full bg-logistics-orange transition-all duration-700 ease-out"
           style={{ width: `${progressPercent}%` }}
+          role="progressbar"
+          aria-valuenow={step}
+          aria-valuemin={1}
+          aria-valuemax={TOTAL_STEPS}
         />
       </div>
 
-      <div className="flex-1 flex items-center justify-center px-6 md:px-16 py-32">
+      <div className="flex-1 flex items-start justify-center">
         <div className="w-full max-w-3xl">
           {/* Success Screen */}
           {isSuccess ? (
@@ -263,54 +246,38 @@ export default function ContactForm() {
                 <div className="w-12 h-[1px] bg-logistics-orange" />
                 <div className="w-3 h-3 bg-logistics-orange rotate-45" />
               </div>
-
               <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.05]">
-                Terima Kasih.{" "}
+                {dict.contact.successTitle}{" "}
                 <span className="text-logistics-orange">
-                  Kami Akan Segera Menghubungi.
+                  {isEN ? "We'll Be in Touch." : "Kami Akan Segera Menghubungi."}
                 </span>
               </h2>
-
               <p className="mt-8 text-base md:text-lg text-white/40 leading-relaxed max-w-2xl">
-                Tim kami akan merespons dalam 1 hari kerja untuk menjadwalkan
-                diskusi awal sesuai kebutuhan yang Anda sampaikan.
+                {dict.contact.successMessage}
               </p>
-
-              <div className="mt-12 flex items-center gap-4">
-                <div className="w-20 h-[1px] bg-logistics-orange/40" />
-                <div className="w-2 h-2 bg-logistics-orange rotate-45" />
-              </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit(onSubmit)}>
-              {/* Honeypot — hidden from users, visible to bots */}
+            <form onSubmit={handleSubmit(onSubmit)} noValidate>
+              {/* Honeypot */}
               <div className="absolute -left-[9999px]" aria-hidden="true">
-                <input
-                  {...register("website_url")}
-                  type="text"
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
+                <input {...register("website_url")} type="text" tabIndex={-1} autoComplete="off" />
               </div>
 
               {/* Step indicator */}
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-[1px] bg-logistics-orange" />
                 <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">
-                  Langkah {step} dari {TOTAL_STEPS}
+                  {isEN ? "Step" : "Langkah"} {step} {dict.contact.stepOf} {TOTAL_STEPS}
                 </span>
               </div>
 
               {/* Error banner */}
               {submitError && (
-                <div className="mb-8 p-4 border border-red-500/30 bg-red-500/5">
+                <div className="mb-8 p-4 border border-red-500/30 bg-red-500/5" role="alert">
                   <p className="text-sm text-red-400">{submitError}</p>
                   <p className="mt-2 text-xs text-white/30">
-                    Atau hubungi kami langsung:{" "}
-                    <a
-                      href="mailto:info@utamaglobalindocargo.com"
-                      className="text-logistics-orange hover:underline"
-                    >
+                    {dict.contact.directContact}:{" "}
+                    <a href="mailto:info@utamaglobalindocargo.com" className="text-logistics-orange hover:underline">
                       info@utamaglobalindocargo.com
                     </a>
                   </p>
@@ -321,22 +288,21 @@ export default function ContactForm() {
               {step === 1 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
-                    Layanan apa yang{" "}
-                    <span className="text-logistics-orange">Anda butuhkan?</span>
+                    {dict.contact.step1Title.split(" ").slice(0, -1).join(" ")}{" "}
+                    <span className="text-logistics-orange">
+                      {dict.contact.step1Title.split(" ").slice(-1)}
+                    </span>
                   </h2>
-
                   <SelectionBlock
-                    options={SERVICE_OPTIONS}
+                    options={serviceOptions}
                     value={serviceInterest}
                     onChange={(id) => setValue("service_interest", id)}
                   />
-
                   {errors.service_interest && (
-                    <p className="mt-4 text-sm text-logistics-orange">
-                      {errors.service_interest.message}
+                    <p className="mt-4 text-sm text-logistics-orange" role="alert">
+                      {dict.contact.errors.serviceRequired}
                     </p>
                   )}
-
                   <div className="mt-10 flex justify-end">
                     <button
                       type="button"
@@ -348,7 +314,7 @@ export default function ContactForm() {
                           : "bg-white/5 text-white/20 cursor-not-allowed"
                       }`}
                     >
-                      Lanjutkan
+                      {dict.contact.next}
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
@@ -361,62 +327,44 @@ export default function ContactForm() {
               {step === 2 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
-                    Estimasi volume{" "}
-                    <span className="text-logistics-orange">pengiriman Anda?</span>
+                    {dict.contact.step2Title.split(" ").slice(0, -1).join(" ")}{" "}
+                    <span className="text-logistics-orange">
+                      {dict.contact.step2Title.split(" ").slice(-1)}
+                    </span>
                   </h2>
-
                   <SelectionBlock
-                    options={VOLUME_TIERS}
+                    options={volumeTiers}
                     value={volume}
                     onChange={(id) => setValue("operational_volume", id)}
                   />
-
                   {errors.operational_volume && (
-                    <p className="mt-4 text-sm text-logistics-orange">
-                      {errors.operational_volume.message}
+                    <p className="mt-4 text-sm text-logistics-orange" role="alert">
+                      {dict.contact.errors.volumeRequired}
                     </p>
                   )}
 
-                  {/* Optional context fields */}
                   <div className="mt-10 space-y-6">
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
-                        Deskripsi Kargo{" "}
-                        <span className="text-white/15">(opsional)</span>
-                      </label>
-                      <input
-                        {...register("cargo_description")}
-                        type="text"
-                        placeholder="Contoh: komponen elektronik, bahan kimia, alat berat..."
-                        className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-base font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
-                        Rute / Asal — Tujuan{" "}
-                        <span className="text-white/15">(opsional)</span>
-                      </label>
-                      <input
-                        {...register("origin_destination")}
-                        type="text"
-                        placeholder="Contoh: Shanghai → Jakarta, Surabaya → Makassar..."
-                        className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-base font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="block text-xs font-bold uppercase tracking-[0.25em] text-white/30 mb-3">
-                        Target Timeline{" "}
-                        <span className="text-white/15">(opsional)</span>
-                      </label>
-                      <input
-                        {...register("timeline")}
-                        type="text"
-                        placeholder="Contoh: dalam 2 minggu, reguler bulanan, ASAP..."
-                        className="w-full bg-transparent border-b border-white/20 focus:border-logistics-orange py-4 text-white text-base font-medium placeholder:text-white/15 outline-none transition-colors duration-300"
-                      />
-                    </div>
+                    <FormInput
+                      label={dict.contact.fields.cargoDescription}
+                      optional
+                      {...register("cargo_description")}
+                      type="text"
+                      placeholder={dict.contact.placeholders.cargoDescription}
+                    />
+                    <FormInput
+                      label={dict.contact.fields.originDestination}
+                      optional
+                      {...register("origin_destination")}
+                      type="text"
+                      placeholder={dict.contact.placeholders.originDestination}
+                    />
+                    <FormInput
+                      label={dict.contact.fields.timeline}
+                      optional
+                      {...register("timeline")}
+                      type="text"
+                      placeholder={dict.contact.placeholders.timeline}
+                    />
                   </div>
 
                   <div className="mt-10 flex justify-between">
@@ -428,9 +376,8 @@ export default function ContactForm() {
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M19 12H5M12 19l-7-7 7-7" />
                       </svg>
-                      Kembali
+                      {dict.contact.back}
                     </button>
-
                     <button
                       type="button"
                       onClick={goNext}
@@ -441,7 +388,7 @@ export default function ContactForm() {
                           : "bg-white/5 text-white/20 cursor-not-allowed"
                       }`}
                     >
-                      Lanjutkan
+                      {dict.contact.next}
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
@@ -454,41 +401,40 @@ export default function ContactForm() {
               {step === 3 && (
                 <div>
                   <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
-                    Siapa yang bisa{" "}
-                    <span className="text-logistics-orange">kami hubungi?</span>
+                    {dict.contact.step3Title.split(" ").slice(0, -1).join(" ")}{" "}
+                    <span className="text-logistics-orange">
+                      {dict.contact.step3Title.split(" ").slice(-1)}
+                    </span>
                   </h2>
 
                   <div className="mt-8 space-y-6">
                     <FormInput
-                      label="Nama Lengkap"
+                      label={dict.contact.fields.contactPerson}
                       {...register("contact_person")}
                       type="text"
-                      placeholder="Nama lengkap Anda"
-                      error={errors.contact_person?.message}
+                      placeholder={dict.contact.placeholders.contactPerson}
+                      error={errors.contact_person ? dict.contact.errors.nameRequired : undefined}
                     />
-
                     <FormInput
-                      label="Nama Perusahaan"
+                      label={dict.contact.fields.companyName}
                       {...register("company_name")}
                       type="text"
-                      placeholder="PT. Perusahaan Anda"
-                      error={errors.company_name?.message}
+                      placeholder={dict.contact.placeholders.companyName}
+                      error={errors.company_name ? dict.contact.errors.companyRequired : undefined}
                     />
-
                     <FormInput
-                      label="Email Kerja"
+                      label={dict.contact.fields.email}
                       {...register("executive_email")}
                       type="email"
-                      placeholder="nama@perusahaan.co.id"
-                      error={errors.executive_email?.message}
+                      placeholder={dict.contact.placeholders.email}
+                      error={errors.executive_email ? dict.contact.errors.emailInvalid : undefined}
                     />
-
                     <FormInput
-                      label="Telepon / WhatsApp"
+                      label={dict.contact.fields.phone}
                       {...register("phone_whatsapp")}
                       type="tel"
-                      placeholder="+62 812 xxxx xxxx"
-                      error={errors.phone_whatsapp?.message}
+                      placeholder={dict.contact.placeholders.phone}
+                      error={errors.phone_whatsapp ? dict.contact.errors.phoneRequired : undefined}
                     />
 
                     {/* Privacy consent */}
@@ -500,16 +446,12 @@ export default function ContactForm() {
                           className="mt-1 w-4 h-4 accent-logistics-orange bg-transparent border-white/20"
                         />
                         <span className="text-sm text-white/40 leading-relaxed group-hover:text-white/60 transition-colors">
-                          Saya menyetujui bahwa data yang saya kirimkan akan
-                          digunakan oleh PT Utama Globalindo Cargo untuk
-                          merespons permintaan ini dan menghubungi saya terkait
-                          layanan logistik. Data tidak akan dibagikan ke pihak
-                          ketiga tanpa persetujuan.
+                          {dict.contact.privacyConsent}
                         </span>
                       </label>
                       {errors.privacy_consent && (
-                        <p className="mt-2 ml-8 text-sm text-logistics-orange">
-                          {errors.privacy_consent.message}
+                        <p className="mt-2 ml-8 text-sm text-logistics-orange" role="alert">
+                          {dict.contact.errors.consentRequired}
                         </p>
                       )}
                     </div>
@@ -524,35 +466,24 @@ export default function ContactForm() {
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <path d="M19 12H5M12 19l-7-7 7-7" />
                       </svg>
-                      Kembali
+                      {dict.contact.back}
                     </button>
-
                     <button
                       type="submit"
                       disabled={isSubmitting}
                       className="group flex items-center gap-4 bg-logistics-orange text-white px-8 py-4 font-bold text-xs md:text-sm uppercase tracking-widest hover:bg-logistics-orange/90 transition-all duration-300 disabled:opacity-50"
                     >
-                      {isSubmitting ? "Mengirim..." : "Kirim & Jadwalkan Diskusi"}
+                      {isSubmitting ? dict.contact.submitting : dict.contact.submit}
                       <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 32 32"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
                         fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
                         className="transition-transform duration-300 group-hover:translate-x-1"
                       >
-                        <polygon
-                          points="16,2 28,9 28,23 16,30 4,23 4,9"
-                          stroke="#fff"
-                          strokeWidth="1.5"
-                          fill="none"
-                        />
-                        <path
-                          d="M12 16h8M17 12l4 4-4 4"
-                          stroke="#fff"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
+                        <path d="M5 12h14M12 5l7 7-7 7" />
                       </svg>
                     </button>
                   </div>
@@ -564,22 +495,18 @@ export default function ContactForm() {
       </div>
 
       {/* Direct contact fallback */}
-      <div className="px-6 md:px-16 pb-16">
-        <div className="max-w-3xl mx-auto border-t border-white/5 pt-8">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/20 mb-4">
-            Atau hubungi kami langsung
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
-            <a
-              href="mailto:info@utamaglobalindocargo.com"
-              className="text-sm text-white/40 hover:text-logistics-orange transition-colors"
-            >
-              info@utamaglobalindocargo.com
-            </a>
-            <span className="text-sm text-white/40">
-              Jakarta, Indonesia
-            </span>
-          </div>
+      <div className="mt-16 border-t border-white/5 pt-8">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/20 mb-4">
+          {dict.contact.directContact}
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8">
+          <a
+            href="mailto:info@utamaglobalindocargo.com"
+            className="text-sm text-white/40 hover:text-logistics-orange transition-colors"
+          >
+            info@utamaglobalindocargo.com
+          </a>
+          <span className="text-sm text-white/40">Jakarta, Indonesia</span>
         </div>
       </div>
     </div>
