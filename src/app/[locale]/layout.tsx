@@ -40,11 +40,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale: locale === "id" ? "id_ID" : "en_US",
       type: "website",
       url: `${siteUrl}/${locale}`,
+      images: [
+        {
+          url: `${siteUrl}/og-image.svg`,
+          width: 1200,
+          height: 630,
+          alt: "UGC Logistics - One line of control across every handoff",
+          type: "image/svg+xml",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: dict.metadata.title,
       description: dict.metadata.description,
+      images: [`${siteUrl}/og-image.svg`],
     },
     robots: {
       index: true,
