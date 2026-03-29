@@ -11,6 +11,7 @@ interface FooterProps {
 export default function Footer({ locale, dict }: FooterProps) {
   const prefix = `/${locale}`;
   const currentYear = new Date().getFullYear();
+  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@utamaglobalindocargo.com";
 
   return (
     <footer className="bg-carbon-dark text-white" role="contentinfo">
@@ -29,6 +30,9 @@ export default function Footer({ locale, dict }: FooterProps) {
             </Link>
             <p className="text-sm text-white/40 leading-relaxed mb-4">
               PT Utama Globalindo Cargo
+            </p>
+            <p className="text-sm text-white/30 leading-relaxed mb-6">
+              {dict.footer.description}
             </p>
             <p className="text-sm italic text-logistics-orange font-medium">
               &ldquo;{dict.footer.tagline}&rdquo;
@@ -102,12 +106,15 @@ export default function Footer({ locale, dict }: FooterProps) {
             </h3>
             <div className="space-y-3">
               <a
-                href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@utamaglobalindocargo.com"}`}
+                href={`mailto:${email}`}
                 className="block text-sm text-white/50 hover:text-white transition-colors"
               >
-                {process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@utamaglobalindocargo.com"}
+                {email}
               </a>
-              <p className="text-sm text-white/40">{dict.footer.address}</p>
+              <p className="text-sm text-white/40">{dict.footer.addressFull}</p>
+              <p className="text-xs text-white/25 mt-4">
+                {dict.contact.responseTime}
+              </p>
               <Link
                 href={`${prefix}/contact`}
                 className="inline-block mt-4 bg-logistics-orange text-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-logistics-orange/90 transition-colors"

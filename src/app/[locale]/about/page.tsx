@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { isValidLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import TrustStrip from "@/components/home/TrustStrip";
 import JsonLd from "@/components/seo/JsonLd";
 
@@ -16,7 +17,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: dict.about.heading,
     description: dict.about.subHeading,
-    alternates: { canonical: `/${locale}/about` },
+    alternates: {
+      canonical: `/${locale}/about`,
+      languages: { id: "/id/about", en: "/en/about" },
+    },
   };
 }
 
@@ -48,6 +52,12 @@ export default async function AboutPage({ params }: Props) {
       {/* Hero */}
       <section className="section-dark pt-32 pb-20 lg:pt-40 lg:pb-28">
         <Container>
+          <Breadcrumb
+            items={[
+              { label: dict.breadcrumb.home, href: prefix },
+              { label: dict.nav.about },
+            ]}
+          />
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-[2px] bg-logistics-orange" />
             <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">
@@ -66,7 +76,7 @@ export default async function AboutPage({ params }: Props) {
       {/* Trust strip */}
       <TrustStrip locale={locale as Locale} />
 
-      {/* Mission */}
+      {/* Mission + Story */}
       <section className="bg-white py-20 lg:py-28">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
@@ -90,25 +100,20 @@ export default async function AboutPage({ params }: Props) {
         </Container>
       </section>
 
-      {/* Values */}
+      {/* Operational Profile */}
       <section className="section-light py-20 lg:py-28">
         <Container>
-          <h2 className="text-2xl md:text-3xl font-black text-carbon-dark tracking-tight mb-12">
-            {dict.about.valuesHeading}
+          <h2 className="text-2xl md:text-3xl font-black text-carbon-dark tracking-tight mb-10">
+            {dict.about.operationalHeading}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {dict.about.values.map((value, i) => (
-              <div key={i} className="p-8 bg-white border border-border-light">
-                <div className="flex items-center gap-4 mb-4">
-                  <div className="w-10 h-10 bg-carbon-dark text-white flex items-center justify-center font-bold text-sm">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <h3 className="text-lg font-bold text-carbon-dark">
-                    {value.title}
-                  </h3>
-                </div>
-                <p className="text-sm text-text-muted leading-relaxed">
-                  {value.description}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border-light">
+            {dict.about.operationalItems.map((item, i) => (
+              <div key={i} className="bg-white p-6 lg:p-8">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-text-light mb-2">
+                  {item.label}
+                </p>
+                <p className="text-base font-bold text-carbon-dark">
+                  {item.value}
                 </p>
               </div>
             ))}
@@ -116,27 +121,57 @@ export default async function AboutPage({ params }: Props) {
         </Container>
       </section>
 
-      {/* Team placeholder */}
+      {/* Values */}
       <section className="bg-white py-20 lg:py-28">
+        <Container>
+          <h2 className="text-2xl md:text-3xl font-black text-carbon-dark tracking-tight mb-12">
+            {dict.about.valuesHeading}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border-light">
+            {dict.about.values.map((value, i) => (
+              <div key={i} className="bg-white p-8 lg:p-10">
+                <div className="flex items-start gap-5">
+                  <div className="flex-shrink-0 w-10 h-10 bg-carbon-dark text-white flex items-center justify-center font-bold text-sm">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-carbon-dark mb-2">
+                      {value.title}
+                    </h3>
+                    <p className="text-sm text-text-muted leading-relaxed">
+                      {value.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Team */}
+      <section className="section-light py-20 lg:py-28">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-2xl md:text-3xl font-black text-carbon-dark tracking-tight mb-6">
-                {locale === "id" ? "Tim Kami" : "Our Team"}
+                {dict.about.teamHeading}
               </h2>
               <p className="text-base text-text-muted leading-relaxed">
-                {locale === "id"
-                  ? "Tim operasional UGC Logistics terdiri dari profesional logistik dengan pengalaman di freight forwarding, customs brokerage, dan warehouse management. Setiap klien mendapat dedicated coordinator yang memahami kebutuhan spesifik industri mereka."
-                  : "The UGC Logistics operations team consists of logistics professionals experienced in freight forwarding, customs brokerage, and warehouse management. Each client gets a dedicated coordinator who understands the specific needs of their industry."}
+                {dict.about.teamText}
               </p>
             </div>
-            <div className="bg-surface-light aspect-[4/3] flex items-center justify-center">
-              {/* [PLACEHOLDER: Replace with actual team photo when available] */}
-              <p className="text-sm text-text-light text-center px-8">
-                {locale === "id"
-                  ? "[Foto tim akan ditambahkan setelah sesi pemotretan]"
-                  : "[Team photo to be added after photo session]"}
-              </p>
+            <div className="bg-carbon-dark/5 aspect-[4/3] flex items-center justify-center border border-border-light">
+              <div className="text-center px-8">
+                <div className="w-12 h-12 mx-auto mb-4 bg-carbon-dark/10 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-text-light" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                    <path d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                  </svg>
+                </div>
+                <p className="text-sm text-text-light">
+                  {dict.about.teamPlaceholder}
+                </p>
+              </div>
             </div>
           </div>
         </Container>

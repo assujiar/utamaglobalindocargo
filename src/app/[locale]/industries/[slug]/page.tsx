@@ -6,6 +6,7 @@ import { getDictionary } from "@/i18n/getDictionary";
 import { industries, getIndustryBySlug } from "@/data/industries";
 import { getServiceBySlug } from "@/data/services";
 import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import JsonLd from "@/components/seo/JsonLd";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -16,9 +17,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const industry = getIndustryBySlug(slug);
   if (!industry) return {};
   return {
-    title: industry.name[locale],
+    title: `${industry.name[locale]} - UGC Logistics`,
     description: industry.description[locale],
-    alternates: { canonical: `/${locale}/industries/${slug}` },
+    alternates: {
+      canonical: `/${locale}/industries/${slug}`,
+      languages: {
+        id: `/id/industries/${slug}`,
+        en: `/en/industries/${slug}`,
+      },
+    },
   };
 }
 
@@ -56,13 +63,20 @@ export default async function IndustryDetailPage({ params }: Props) {
 
       <section className="section-dark pt-32 pb-16 lg:pt-40 lg:pb-24">
         <Container>
+          <Breadcrumb
+            items={[
+              { label: dict.breadcrumb.home, href: prefix },
+              { label: dict.nav.industries, href: `${prefix}/industries` },
+              { label: industry.name[loc] },
+            ]}
+          />
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-[2px] bg-logistics-orange" />
             <Link
               href={`${prefix}/industries`}
               className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em] hover:text-white transition-colors"
             >
-              {dict.nav.industries}
+              {dict.industries.backToIndustries}
             </Link>
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-6xl font-black text-white tracking-tight leading-[1.05]">
@@ -74,7 +88,7 @@ export default async function IndustryDetailPage({ params }: Props) {
         </Container>
       </section>
 
-      {/* Challenge */}
+      {/* Challenge + Solution */}
       <section className="section-light py-20 lg:py-28">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
@@ -103,7 +117,7 @@ export default async function IndustryDetailPage({ params }: Props) {
         <section className="bg-white py-20 lg:py-28">
           <Container>
             <h2 className="text-2xl md:text-3xl font-black text-carbon-dark tracking-tight mb-10">
-              {dict.servicesOverview.heading}
+              {dict.industries.relevantServices}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {relatedServices.map((service) =>
@@ -111,7 +125,7 @@ export default async function IndustryDetailPage({ params }: Props) {
                   <Link
                     key={service.slug}
                     href={`${prefix}/services/${service.slug}`}
-                    className="group p-8 border border-border-light hover:border-logistics-orange/30 transition-all"
+                    className="group p-8 border border-border-light hover:border-logistics-orange/30 transition-all hover:shadow-md"
                   >
                     <h3 className="text-lg font-bold text-carbon-dark group-hover:text-logistics-orange transition-colors">
                       {service.name[loc]}
@@ -119,6 +133,12 @@ export default async function IndustryDetailPage({ params }: Props) {
                     <p className="mt-2 text-sm text-text-muted leading-relaxed">
                       {service.shortDescription[loc]}
                     </p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-logistics-orange opacity-0 group-hover:opacity-100 transition-opacity">
+                      {dict.common.learnMore}
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </span>
                   </Link>
                 ) : null
               )}

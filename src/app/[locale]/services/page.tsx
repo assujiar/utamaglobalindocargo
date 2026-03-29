@@ -5,6 +5,7 @@ import { isValidLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import { services } from "@/data/services";
 import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import SectionHeading from "@/components/ui/SectionHeading";
 import JsonLd from "@/components/seo/JsonLd";
 
@@ -17,7 +18,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: dict.services.landing.heading,
     description: dict.services.landing.subHeading,
-    alternates: { canonical: `/${locale}/services` },
+    alternates: {
+      canonical: `/${locale}/services`,
+      languages: { id: "/id/services", en: "/en/services" },
+    },
   };
 }
 
@@ -36,6 +40,7 @@ export default async function ServicesPage({ params }: Props) {
     },
     name: dict.services.landing.heading,
     description: dict.services.landing.subHeading,
+    areaServed: { "@type": "Country", name: "Indonesia" },
   };
 
   return (
@@ -45,6 +50,12 @@ export default async function ServicesPage({ params }: Props) {
       {/* Hero */}
       <section className="section-dark pt-32 pb-20 lg:pt-40 lg:pb-28">
         <Container>
+          <Breadcrumb
+            items={[
+              { label: dict.breadcrumb.home, href: prefix },
+              { label: dict.nav.services },
+            ]}
+          />
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-[2px] bg-logistics-orange" />
             <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">
@@ -62,17 +73,17 @@ export default async function ServicesPage({ params }: Props) {
       {/* Service categories */}
       <section className="section-light py-20 lg:py-28">
         <Container>
-          <div className="space-y-8">
+          <div className="space-y-6">
             {services.map((service, i) => (
               <Link
                 key={service.slug}
                 href={`${prefix}/services/${service.slug}`}
                 className="group flex flex-col lg:flex-row items-start gap-8 p-8 lg:p-10 bg-white border border-border-light hover:border-logistics-orange/30 transition-all duration-300 hover:shadow-lg"
               >
-                <div className="flex-shrink-0 w-16 h-16 bg-carbon-dark text-white flex items-center justify-center font-black text-xl">
+                <div className="flex-shrink-0 w-16 h-16 bg-carbon-dark text-white flex items-center justify-center font-black text-xl group-hover:bg-logistics-orange transition-colors duration-300">
                   {String(i + 1).padStart(2, "0")}
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <h2 className="text-xl lg:text-2xl font-bold text-carbon-dark group-hover:text-logistics-orange transition-colors">
                     {service.name[locale as Locale]}
                   </h2>
@@ -90,7 +101,7 @@ export default async function ServicesPage({ params }: Props) {
                     ))}
                   </div>
                 </div>
-                <div className="flex-shrink-0 self-center">
+                <div className="flex-shrink-0 self-center hidden lg:block">
                   <svg
                     className="w-6 h-6 text-text-light group-hover:text-logistics-orange transition-all group-hover:translate-x-1"
                     fill="none"

@@ -7,6 +7,7 @@ import { caseStudies } from "@/data/caseStudies";
 import { getServiceBySlug } from "@/data/services";
 import { getIndustryBySlug } from "@/data/industries";
 import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import JsonLd from "@/components/seo/JsonLd";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
@@ -23,7 +24,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: cs.title[locale],
     description: cs.challenge[locale],
-    alternates: { canonical: `/${locale}/case-studies/${slug}` },
+    alternates: {
+      canonical: `/${locale}/case-studies/${slug}`,
+      languages: {
+        id: `/id/case-studies/${slug}`,
+        en: `/en/case-studies/${slug}`,
+      },
+    },
   };
 }
 
@@ -47,12 +54,6 @@ export default async function CaseStudyDetailPage({ params }: Props) {
   const relatedService = getServiceBySlug(cs.service);
   const relatedIndustry = getIndustryBySlug(cs.industry);
 
-  const challengeLabel = loc === "id" ? "Tantangan" : "Challenge";
-  const solutionLabel = loc === "id" ? "Solusi" : "Solution";
-  const resultLabel = loc === "id" ? "Hasil" : "Result";
-  const relatedLabel = loc === "id" ? "Layanan Terkait" : "Related Service";
-  const industryLabel = loc === "id" ? "Industri" : "Industry";
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -71,6 +72,13 @@ export default async function CaseStudyDetailPage({ params }: Props) {
       {/* Hero */}
       <section className="section-dark pt-32 pb-16 lg:pt-40 lg:pb-24">
         <Container>
+          <Breadcrumb
+            items={[
+              { label: dict.breadcrumb.home, href: prefix },
+              { label: dict.nav.caseStudies, href: `${prefix}/case-studies` },
+              { label: cs.title[loc] },
+            ]}
+          />
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-[2px] bg-logistics-orange" />
             <Link
@@ -80,12 +88,6 @@ export default async function CaseStudyDetailPage({ params }: Props) {
               {dict.nav.caseStudies}
             </Link>
           </div>
-
-          {cs.isPlaceholder && (
-            <span className="inline-block mb-4 text-[10px] uppercase tracking-wider text-logistics-orange/60 bg-logistics-orange/10 px-2 py-1">
-              Placeholder
-            </span>
-          )}
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.05] max-w-3xl">
             {cs.title[loc]}
@@ -97,7 +99,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                 href={`${prefix}/industries/${relatedIndustry.slug}`}
                 className="text-xs font-bold uppercase tracking-wider text-white/40 border border-white/10 px-3 py-1 hover:border-white/30 transition-colors"
               >
-                {industryLabel}: {relatedIndustry.name[loc]}
+                {relatedIndustry.name[loc]}
               </Link>
             )}
             {relatedService && (
@@ -105,46 +107,72 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                 href={`${prefix}/services/${relatedService.slug}`}
                 className="text-xs font-bold uppercase tracking-wider text-white/40 border border-white/10 px-3 py-1 hover:border-white/30 transition-colors"
               >
-                {relatedLabel}: {relatedService.name[loc]}
+                {relatedService.name[loc]}
               </Link>
             )}
           </div>
+
+          {/* Disclaimer */}
+          <p className="mt-6 text-xs text-white/20">
+            {dict.caseStudies.disclaimer}
+          </p>
         </Container>
       </section>
 
-      {/* Content sections */}
+      {/* Content */}
       <section className="bg-white py-20 lg:py-28">
         <Container>
           <div className="max-w-3xl mx-auto space-y-16">
-            {/* Challenge */}
             <div>
               <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-logistics-orange mb-4">
-                {challengeLabel}
+                {dict.common.challengeLabel}
               </h2>
               <p className="text-base md:text-lg text-text-muted leading-relaxed">
                 {cs.challenge[loc]}
               </p>
             </div>
 
-            {/* Solution */}
             <div>
               <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-logistics-orange mb-4">
-                {solutionLabel}
+                {dict.common.solutionLabel}
               </h2>
               <p className="text-base md:text-lg text-text-muted leading-relaxed">
                 {cs.solution[loc]}
               </p>
             </div>
 
-            {/* Result */}
             <div>
               <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-logistics-orange mb-4">
-                {resultLabel}
+                {dict.common.outcomeLabel}
               </h2>
               <p className="text-base md:text-lg text-text-muted leading-relaxed">
                 {cs.result[loc]}
               </p>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Related links */}
+      <section className="section-light py-16">
+        <Container>
+          <div className="flex flex-wrap gap-4">
+            {relatedService && (
+              <Link
+                href={`${prefix}/services/${relatedService.slug}`}
+                className="text-sm font-bold text-carbon-dark border border-border-light px-5 py-3 hover:border-logistics-orange/30 hover:text-logistics-orange transition-colors"
+              >
+                {dict.industries.relevantServices}: {relatedService.name[loc]}
+              </Link>
+            )}
+            {relatedIndustry && (
+              <Link
+                href={`${prefix}/industries/${relatedIndustry.slug}`}
+                className="text-sm font-bold text-carbon-dark border border-border-light px-5 py-3 hover:border-logistics-orange/30 hover:text-logistics-orange transition-colors"
+              >
+                {dict.nav.industries}: {relatedIndustry.name[loc]}
+              </Link>
+            )}
           </div>
         </Container>
       </section>

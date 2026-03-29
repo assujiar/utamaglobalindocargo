@@ -17,15 +17,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!isValidLocale(locale)) return {};
   const dict = await getDictionary(locale);
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://utamaglobalindocargo.com";
+
   return {
     title: {
       default: dict.metadata.title,
       template: `%s | UGC Logistics`,
     },
     description: dict.metadata.description,
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL || "https://utamaglobalindocargo.com"
-    ),
+    metadataBase: new URL(siteUrl),
     alternates: {
       canonical: `/${locale}`,
       languages: {
@@ -39,6 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: "UGC Logistics (Utama Globalindo Cargo)",
       locale: locale === "id" ? "id_ID" : "en_US",
       type: "website",
+      url: `${siteUrl}/${locale}`,
     },
     twitter: {
       card: "summary_large_image",
@@ -48,6 +49,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     robots: {
       index: true,
       follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    other: {
+      "format-detection": "telephone=no",
     },
   };
 }

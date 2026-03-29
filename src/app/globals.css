@@ -4,11 +4,12 @@
   --color-background: #ffffff;
   --color-foreground: #111111;
   --color-logistics-orange: #ff4600;
+  --color-logistics-orange-dark: #e03e00;
   --color-carbon-dark: #111111;
   --color-surface-dark: #1a1a1a;
-  --color-surface-light: #f5f5f5;
-  --color-text-muted: #666666;
-  --color-text-light: #999999;
+  --color-surface-light: #f7f7f7;
+  --color-text-muted: #555555;
+  --color-text-light: #888888;
   --color-border-light: #e5e5e5;
   --color-border-dark: #333333;
   --font-sans: "Inter", "Geist Sans", "Helvetica Neue", Arial, sans-serif;
@@ -137,4 +138,26 @@ body {
 .section-light {
   background-color: var(--color-surface-light);
   color: var(--color-foreground);
+}
+
+/* Improved selection colors */
+::selection {
+  background-color: var(--color-logistics-orange);
+  color: white;
+}
+
+/* Smooth image rendering */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Better text rendering for headings */
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/* Improved paragraph wrap */
+p {
+  text-wrap: pretty;
 }

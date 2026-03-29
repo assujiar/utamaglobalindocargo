@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { isValidLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import ContactForm from "@/components/contact/ContactForm";
 import JsonLd from "@/components/seo/JsonLd";
 
@@ -15,7 +16,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: dict.contact.heading,
     description: dict.contact.subHeading,
-    alternates: { canonical: `/${locale}/contact` },
+    alternates: {
+      canonical: `/${locale}/contact`,
+      languages: { id: "/id/contact", en: "/en/contact" },
+    },
   };
 }
 
@@ -23,6 +27,7 @@ export default async function ContactPage({ params }: Props) {
   const { locale } = await params;
   if (!isValidLocale(locale)) notFound();
   const dict = await getDictionary(locale as Locale);
+  const prefix = `/${locale}`;
 
   const isEN = locale === "en";
   const phone = process.env.NEXT_PUBLIC_CONTACT_PHONE;
@@ -50,6 +55,12 @@ export default async function ContactPage({ params }: Props) {
 
       <section className="section-dark pt-32 pb-8 lg:pt-40 lg:pb-12">
         <Container>
+          <Breadcrumb
+            items={[
+              { label: dict.breadcrumb.home, href: prefix },
+              { label: dict.nav.contact },
+            ]}
+          />
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-[2px] bg-logistics-orange" />
             <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">
@@ -99,6 +110,11 @@ export default async function ContactPage({ params }: Props) {
               Email
             </a>
           </div>
+
+          {/* Response time indicator */}
+          <p className="mt-4 text-xs text-white/25">
+            {dict.contact.responseTime}
+          </p>
         </Container>
       </section>
 
