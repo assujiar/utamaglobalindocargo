@@ -52,8 +52,8 @@
   <text x="152" y="183" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="13" fill="#ff4600" letter-spacing="4" text-anchor="start">UGC LOGISTICS</text>
 
   <!-- Main headline -->
-  <text x="80" y="260" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="56" fill="#ffffff" letter-spacing="-1">One line of control</text>
-  <text x="80" y="330" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="56" fill="#ffffff" letter-spacing="-1">across every handoff.</text>
+  <text x="80" y="260" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="56" fill="#ffffff" letter-spacing="-1">Freight forwarder with</text>
+  <text x="80" y="330" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="56" fill="#ffffff" letter-spacing="-1">operational control.</text>
 
   <!-- Sub-headline -->
   <text x="80" y="390" font-family="Arial,Helvetica,sans-serif" font-weight="400" font-size="18" fill="#ffffff" opacity="0.45">Freight Forwarding &amp; Supply Chain Coordination</text>

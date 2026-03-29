@@ -2,9 +2,9 @@ import type { Dictionary } from "./type";
 
 const en: Dictionary = {
   metadata: {
-    title: "UGC Logistics - Freight Forwarding & Supply Chain Coordination | Jakarta, Indonesia",
+    title: "UGC Logistics - Freight Forwarder & Logistics Operator | Jakarta, Indonesia",
     description:
-      "End-to-end logistics coordination: domestic distribution, international freight forwarding, customs brokerage, warehousing, project cargo, and charter services. One team, one point of contact.",
+      "Freight forwarder with direct execution capability: domestic distribution, international forwarding, in-house customs brokerage, warehousing, project cargo, and charter. Jakarta, Indonesia.",
   },
   nav: {
     home: "Home",
@@ -16,9 +16,9 @@ const en: Dictionary = {
     contact: "Contact Us",
   },
   hero: {
-    headline: "One line of control across every handoff.",
+    headline: "A freight forwarder with operational control.",
     subHeadline:
-      "Domestic trucking. International freight. Customs clearance. Warehousing. You deal with one team that coordinates everything. No more chasing five vendors for one shipment.",
+      "Ground distribution across Java. Containers and airfreight to 5 continents. In-house customs clearance. Warehouse facilities in Jakarta. One company that executes, from pickup to delivered.",
     ctaPrimary: "Get a Logistics Consultation",
     ctaSecondary: "Explore Our Services",
     proofLine: "Jakarta-based. Serving domestic and international routes.",
@@ -30,43 +30,43 @@ const en: Dictionary = {
   },
   whyUgc: {
     label: "Why UGC",
-    heading: "Most logistics problems happen at the handoff.",
+    heading: "Operational infrastructure, not just a vendor network.",
     subHeading:
-      "Every time cargo moves from one vendor to another, risk goes up. Documents get lost, timelines slip, and nobody owns the problem. We exist to eliminate that gap.",
+      "Own distribution fleet, warehouse facilities, and an in-house customs team means direct control. Problems get caught earlier, decisions get made faster.",
     items: [
       {
-        title: "Single Coordination Point",
+        title: "Direct Execution Capability",
         description:
-          "One team manages your transport, documentation, customs, and warehousing. When something needs to change, one call is enough.",
+          "Ground distribution fleet, warehouse operations in Jakarta, and direct booking with shipping lines and airlines. Operations controlled in-house.",
       },
       {
-        title: "Mode-Agnostic Planning",
+        title: "Multi-Modal, One Operations Desk",
         description:
-          "Truck, vessel, or aircraft. We pick the mode that fits your timeline and budget, not the one that pays us the highest margin.",
+          "Truck, vessel, aircraft, or any combination. All modes managed from one operations team, so there is no gap between cargo handoffs.",
       },
       {
-        title: "Documentation Accuracy",
+        title: "In-House Customs",
         description:
-          "We verify HS classification, commercial invoices, and packing lists before cargo moves. Customs delays from document errors are preventable.",
+          "Our own customs team verifies HS codes, invoices, and packing lists before cargo moves. Faster clearance, lower risk of penalties.",
       },
       {
-        title: "Operational Transparency",
+        title: "Cost and Status Transparency",
         description:
-          "You know where your cargo is, what it costs, and when it arrives. No hidden fees, no surprise surcharges, no radio silence.",
+          "Cargo position, cost breakdown, ETA. You know exactly where your shipment stands without chasing for updates.",
       },
     ],
     cta: "Talk to Our Team",
   },
   servicesOverview: {
-    heading: "Six service lines. One coordinator.",
+    heading: "Six service lines. Operated directly.",
     subHeading:
-      "Trucks across Java. Containers to Europe. Customs paperwork. Bonded storage. We handle the full chain so you only manage one relationship.",
+      "Distribution across Java. Containers to Europe. Customs clearance. Bonded warehouse. Project cargo. Charter. All executed from one operations desk.",
     cta: "View All Services",
   },
   howItWorks: {
-    heading: "From first call to delivery report.",
+    heading: "From brief to cargo delivered.",
     subHeading:
-      "You speak to one contact person throughout. Our operations team handles routing, booking, documentation, and monitoring until cargo arrives.",
+      "One PIC from start to finish, backed by a full operations team: planners, booking desk, customs, and warehouse crew executing each stage.",
     steps: [
       {
         title: "Consultation",
@@ -115,7 +115,7 @@ const en: Dictionary = {
   },
   footer: {
     tagline: "We Care What We Deliver",
-    description: "End-to-end logistics coordination for companies that cannot afford supply chain gaps.",
+    description: "Freight forwarder with direct execution capability: distribution, forwarding, customs brokerage, warehousing, project cargo, and charter.",
     servicesLabel: "Services",
     companyLabel: "Company",
     contactLabel: "Get in Touch",
@@ -172,15 +172,15 @@ const en: Dictionary = {
     },
   },
   about: {
-    heading: "The Company Behind the Coordination",
+    heading: "About UGC Logistics",
     subHeading:
-      "UGC Logistics (Utama Globalindo Cargo) is a Jakarta-based freight forwarder and logistics coordinator serving domestic and international supply chains.",
+      "PT Utama Globalindo Cargo is a Jakarta-based freight forwarder with direct execution capability in distribution, international forwarding, customs brokerage, and warehousing.",
     missionHeading: "What We Do",
     missionText:
-      "We manage end-to-end logistics coordination. Our clients deal with one team for transport, documentation, customs clearance, and warehousing. Instead of juggling multiple freight vendors, trucking companies, customs brokers, and warehouse operators, you work with one point of contact who owns the entire process.",
-    storyHeading: "Why Single-Point Coordination",
+      "UGC operates ground distribution, manages warehouse facilities, executes customs clearance with an in-house team, and books directly with shipping lines and airlines. Clients deal with one company that has operational control at every stage of the shipment.",
+    storyHeading: "Direct Operational Control",
     storyText:
-      "In freight forwarding, problems surface at handoff points: when cargo moves from one vendor to another, when documents transfer between parties, when responsibility shifts mid-transit. Every handoff is a risk point. Our approach is straightforward: reduce the parties involved, and you reduce the failure points. One team that sees the full picture can catch problems before they become delays.",
+      "With in-house execution capability across transport, customs, and warehousing, we have higher visibility and control than forwarders that rely entirely on subcontractors. Problems get caught earlier, decisions get made faster, and clients have one accountable party throughout.",
     valuesHeading: "How We Operate",
     values: [
       {
@@ -207,15 +207,15 @@ const en: Dictionary = {
     operationalHeading: "Operational Profile",
     operationalItems: [
       { label: "Headquarters", value: "Jakarta, Indonesia" },
-      { label: "Service Scope", value: "Domestic (all Indonesia) + International" },
+      { label: "Operations Scope", value: "Domestic (all Indonesia) + International" },
       { label: "Service Lines", value: "6 categories, 25+ sub-services" },
+      { label: "Operational Assets", value: "Distribution fleet, warehouse, in-house customs team" },
       { label: "Industries Served", value: "Manufacturing, FMCG, E-Commerce, Pharma, Commodities, Energy" },
-      { label: "Coordination Model", value: "Single point of contact per client" },
       { label: "Response Time", value: "Within 1 business day for new inquiries" },
     ],
     teamHeading: "Our Team",
     teamText:
-      "The UGC Logistics operations team consists of professionals with hands-on experience in freight forwarding, customs brokerage, and warehouse management. Each client is assigned a dedicated coordinator who understands the operational specifics of their industry.",
+      "The UGC operations team includes planners, a booking desk, customs officers, and warehouse crew. Each client gets a dedicated PIC with direct access to all operational lines.",
     teamPlaceholder: "Team photo to be added",
     ctaHeading: "Ready to Simplify Your Logistics?",
     ctaText:
@@ -268,9 +268,9 @@ const en: Dictionary = {
           "No strict minimum. For LCL and LTL, we accept small volumes. If your shipment is below typical thresholds for cost efficiency, we will recommend consolidation options that balance your budget and delivery timeline.",
       },
       {
-        question: "How does the 'single coordination point' model work in practice?",
+        question: "How is UGC different from forwarders that only broker shipments?",
         answer:
-          "You are assigned one dedicated coordinator who manages your entire logistics flow: carrier selection, booking, documentation, customs, and delivery tracking. Instead of calling a trucking company, then a freight forwarder, then a customs broker, you call one person who orchestrates all of it.",
+          "UGC has direct execution capability: a ground distribution fleet, warehouse operations, an in-house customs team, and direct booking with shipping lines and airlines. You get one PIC, backed by operations we control at every stage.",
       },
       {
         question: "What industries do you specialize in?",

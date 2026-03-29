@@ -2,9 +2,9 @@ import type { Dictionary } from "./type";
 
 const id: Dictionary = {
   metadata: {
-    title: "UGC Logistics - Freight Forwarding & Koordinasi Supply Chain | Jakarta, Indonesia",
+    title: "UGC Logistics - Freight Forwarder & Operator Logistik | Jakarta, Indonesia",
     description:
-      "Koordinasi logistik end-to-end: distribusi domestik, freight forwarding internasional, customs brokerage, warehousing, project cargo, dan charter. Satu tim, satu kontak.",
+      "Freight forwarder dengan kapabilitas eksekusi langsung: distribusi domestik, forwarding internasional, customs brokerage, warehousing, project cargo, dan charter. Jakarta, Indonesia.",
   },
   nav: {
     home: "Beranda",
@@ -16,9 +16,9 @@ const id: Dictionary = {
     contact: "Hubungi Kami",
   },
   hero: {
-    headline: "Satu kendali untuk setiap handoff.",
+    headline: "Freight forwarder yang pegang kendali operasional.",
     subHeadline:
-      "Truk domestik. Freight internasional. Customs clearance. Warehousing. Anda bicara dengan satu tim yang koordinasi semuanya. Tidak perlu lagi kejar-kejaran dengan lima vendor untuk satu shipment.",
+      "Distribusi darat seluruh Jawa. Kontainer dan airfreight ke 5 benua. Customs clearance dengan tim sendiri. Gudang di Jakarta. Satu perusahaan yang mengeksekusi, dari pickup sampai delivered.",
     ctaPrimary: "Konsultasi Logistik",
     ctaSecondary: "Lihat Layanan Kami",
     proofLine: "Berbasis di Jakarta. Melayani rute domestik dan internasional.",
@@ -30,43 +30,43 @@ const id: Dictionary = {
   },
   whyUgc: {
     label: "Kenapa UGC",
-    heading: "Masalah logistik paling sering muncul di titik perpindahan.",
+    heading: "Infrastruktur operasional, bukan cuma jaringan vendor.",
     subHeading:
-      "Setiap kali kargo berpindah dari satu vendor ke vendor lain, risiko naik. Dokumen hilang, timeline molor, dan tidak ada yang merasa bertanggung jawab. Kami hadir untuk menghilangkan gap itu.",
+      "Punya armada distribusi, gudang, dan tim customs sendiri berarti kami punya kontrol langsung. Masalah bisa ditangkap lebih awal, keputusan bisa diambil lebih cepat.",
     items: [
       {
-        title: "Satu Titik Koordinasi",
+        title: "Kapabilitas Eksekusi Langsung",
         description:
-          "Satu tim mengurus transport, dokumentasi, customs, dan gudang Anda. Kalau ada yang perlu diubah, satu telepon cukup.",
+          "Armada distribusi darat, gudang operasional di Jakarta, dan booking langsung ke shipping line serta airline. Operasi dikendalikan dari dalam, bukan disubkonkan.",
       },
       {
-        title: "Perencanaan Mode-Agnostik",
+        title: "Multi-Moda, Satu Operasional",
         description:
-          "Truk, kapal, atau pesawat. Kami pilih moda yang sesuai timeline dan budget Anda, bukan yang kasih margin tertinggi ke kami.",
+          "Truk, kapal, pesawat, atau kombinasinya. Semua moda dikelola dari satu tim operasi, jadi tidak ada gap waktu antar perpindahan kargo.",
       },
       {
-        title: "Ketepatan Dokumentasi",
+        title: "Customs In-House",
         description:
-          "Kami verifikasi klasifikasi HS, invoice, dan packing list sebelum kargo bergerak. Keterlambatan customs karena dokumen yang salah itu bisa dicegah.",
+          "Tim customs sendiri yang verifikasi HS code, invoice, dan packing list sebelum kargo bergerak. Clearance lebih cepat, risiko denda lebih kecil.",
       },
       {
-        title: "Transparansi Operasional",
+        title: "Transparansi Biaya dan Status",
         description:
-          "Anda tahu posisi kargo, biayanya berapa, dan kapan tiba. Tidak ada biaya tersembunyi, tidak ada surcharge mendadak, tidak ada silent treatment.",
+          "Posisi kargo, breakdown biaya, ETA. Anda tahu persis kondisi pengiriman tanpa harus kejar-kejaran minta update.",
       },
     ],
     cta: "Hubungi Tim Kami",
   },
   servicesOverview: {
-    heading: "Enam lini layanan. Satu koordinator.",
+    heading: "Enam lini layanan. Dioperasikan langsung.",
     subHeading:
-      "Truk se-Jawa. Kontainer ke Eropa. Dokumen customs. Bonded warehouse. Kami handle seluruh rantai supaya Anda hanya kelola satu hubungan kerja.",
+      "Distribusi se-Jawa. Kontainer ke Eropa. Customs clearance. Bonded warehouse. Project cargo. Charter. Semua dieksekusi dari satu operasional.",
     cta: "Lihat Semua Layanan",
   },
   howItWorks: {
-    heading: "Dari telepon pertama sampai laporan pengiriman.",
+    heading: "Dari brief sampai barang tiba.",
     subHeading:
-      "Anda bicara dengan satu kontak dari awal sampai akhir. Tim operasional kami yang mengurus routing, booking, dokumentasi, dan monitoring sampai kargo tiba.",
+      "Satu PIC dari awal sampai akhir, didukung tim planner, booking desk, customs, dan warehouse yang mengeksekusi setiap tahap.",
     steps: [
       {
         title: "Konsultasi",
@@ -115,7 +115,7 @@ const id: Dictionary = {
   },
   footer: {
     tagline: "We Care What We Deliver",
-    description: "Koordinasi logistik end-to-end untuk perusahaan yang tidak bisa toleransi gap di supply chain.",
+    description: "Freight forwarder dengan kapabilitas eksekusi langsung: distribusi, forwarding, customs brokerage, warehousing, project cargo, dan charter.",
     servicesLabel: "Layanan",
     companyLabel: "Perusahaan",
     contactLabel: "Hubungi Kami",
@@ -172,15 +172,15 @@ const id: Dictionary = {
     },
   },
   about: {
-    heading: "Perusahaan di Balik Koordinasi",
+    heading: "Tentang UGC Logistics",
     subHeading:
-      "UGC Logistics (Utama Globalindo Cargo) adalah freight forwarder dan koordinator logistik berbasis di Jakarta, melayani supply chain domestik dan internasional.",
+      "PT Utama Globalindo Cargo adalah freight forwarder berbasis di Jakarta dengan kapabilitas eksekusi langsung di distribusi, forwarding internasional, customs brokerage, dan warehousing.",
     missionHeading: "Apa yang Kami Kerjakan",
     missionText:
-      "Kami mengelola koordinasi logistik dari ujung ke ujung. Klien kami berurusan dengan satu tim untuk transport, dokumentasi, customs clearance, dan warehousing. Daripada harus juggling antara perusahaan truk, freight forwarder, customs broker, dan operator gudang, Anda kerja dengan satu kontak yang mengurus keseluruhan proses.",
-    storyHeading: "Kenapa Satu Titik Koordinasi",
+      "UGC mengoperasikan distribusi darat, mengelola gudang, mengeksekusi customs clearance dengan tim sendiri, dan booking langsung ke shipping line serta airline. Klien berurusan dengan satu perusahaan yang punya kendali operasional di setiap tahap pengiriman.",
+    storyHeading: "Kontrol Operasional Langsung",
     storyText:
-      "Di industri freight forwarding, masalah muncul di titik perpindahan: saat kargo berpindah dari satu vendor ke vendor lain, saat dokumen berpindah tangan, saat tanggung jawab bergeser di tengah perjalanan. Setiap handoff itu titik risiko. Pendekatan kami sederhana: kurangi pihak yang terlibat, maka titik kegagalan juga berkurang. Satu tim yang melihat gambaran utuh bisa menangkap masalah sebelum jadi keterlambatan.",
+      "Dengan kapabilitas eksekusi sendiri di transport, customs, dan warehousing, kami punya visibilitas dan kontrol yang lebih tinggi dibanding forwarder yang sepenuhnya bergantung pada subkontraktor. Masalah bisa ditangkap lebih awal, keputusan bisa diambil lebih cepat, dan klien mendapat satu pihak yang bertanggung jawab penuh.",
     valuesHeading: "Prinsip Kerja Kami",
     values: [
       {
@@ -207,15 +207,15 @@ const id: Dictionary = {
     operationalHeading: "Profil Operasional",
     operationalItems: [
       { label: "Kantor Pusat", value: "Jakarta, Indonesia" },
-      { label: "Cakupan Layanan", value: "Domestik (seluruh Indonesia) + Internasional" },
+      { label: "Cakupan Operasi", value: "Domestik (seluruh Indonesia) + Internasional" },
       { label: "Lini Layanan", value: "6 kategori, 25+ sub-layanan" },
+      { label: "Aset Operasional", value: "Armada distribusi, gudang, tim customs in-house" },
       { label: "Industri Dilayani", value: "Manufacturing, FMCG, E-Commerce, Farmasi, Komoditas, Energi" },
-      { label: "Model Koordinasi", value: "Satu kontak dedicated per klien" },
       { label: "Waktu Respons", value: "Dalam 1 hari kerja untuk inquiry baru" },
     ],
     teamHeading: "Tim Kami",
     teamText:
-      "Tim operasional UGC Logistics terdiri dari profesional dengan pengalaman langsung di freight forwarding, customs brokerage, dan warehouse management. Setiap klien mendapat dedicated coordinator yang memahami kebutuhan spesifik industri mereka.",
+      "Tim operasional UGC terdiri dari planner, booking desk, customs officer, dan warehouse crew. Setiap klien mendapat PIC dedicated yang punya akses langsung ke seluruh lini operasi.",
     teamPlaceholder: "Foto tim akan ditambahkan",
     ctaHeading: "Siap Menyederhanakan Logistik Anda?",
     ctaText:
@@ -268,9 +268,9 @@ const id: Dictionary = {
           "Tidak ada minimum yang strict. Untuk LCL dan LTL, kami terima volume kecil. Kalau shipment Anda di bawah threshold normal untuk efisiensi biaya, kami akan rekomendasikan opsi konsolidasi yang balance antara budget dan timeline pengiriman Anda.",
       },
       {
-        question: "Bagaimana model 'satu titik koordinasi' bekerja dalam praktik?",
+        question: "Apa bedanya UGC dengan forwarder yang hanya jadi perantara?",
         answer:
-          "Anda mendapat satu dedicated coordinator yang mengurus seluruh alur logistik: pemilihan carrier, booking, dokumentasi, customs, dan tracking pengiriman. Daripada harus telepon perusahaan truk, lalu freight forwarder, lalu customs broker, Anda cukup hubungi satu orang yang mengorkestrasi semuanya.",
+          "UGC punya kapabilitas eksekusi langsung: armada distribusi darat, gudang operasional, tim customs in-house, dan booking langsung ke shipping line serta airline. Anda dapat satu PIC, dan di belakangnya ada operasional yang kami kendalikan sendiri di setiap tahap.",
       },
       {
         question: "Industri apa saja yang dilayani UGC?",
