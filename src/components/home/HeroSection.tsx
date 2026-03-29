@@ -15,8 +15,8 @@ export default function HeroSection({ locale, dict }: HeroSectionProps) {
       className="relative min-h-[90vh] lg:min-h-screen flex items-center bg-carbon-dark overflow-hidden"
       aria-label={locale === "id" ? "Hero utama" : "Main hero"}
     >
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
+      {/* Grid pattern: subtle movement/route reference */}
+      <div className="absolute inset-0 opacity-[0.04]">
         <div
           className="absolute inset-0"
           style={{
@@ -26,14 +26,20 @@ export default function HeroSection({ locale, dict }: HeroSectionProps) {
         />
       </div>
 
-      {/* Diagonal accent */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-logistics-orange/5 -skew-x-12 translate-x-1/4" />
+      {/* Route line motif: diagonal orange line that suggests movement */}
+      <div className="absolute top-0 right-0 w-[2px] h-full bg-gradient-to-b from-logistics-orange/0 via-logistics-orange/20 to-logistics-orange/0 translate-x-[-120px] lg:translate-x-[-200px]" />
+      <div className="absolute bottom-0 left-1/4 w-full h-[1px] bg-gradient-to-r from-logistics-orange/0 via-logistics-orange/10 to-logistics-orange/0" />
+
+      {/* Large faded number: branded chapter marker */}
+      <div className="absolute top-16 right-6 lg:right-16 text-[12rem] lg:text-[20rem] font-black text-white/[0.02] leading-none select-none pointer-events-none">
+        01
+      </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-0 w-full">
         <div className="max-w-3xl">
-          {/* Label */}
+          {/* Brand marker */}
           <div className="flex items-center gap-3 mb-8 animate-fade-in">
-            <div className="w-12 h-[2px] bg-logistics-orange" />
+            <div className="w-16 h-[2px] bg-logistics-orange" />
             <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">
               UGC Logistics
             </span>
@@ -73,13 +79,21 @@ export default function HeroSection({ locale, dict }: HeroSectionProps) {
               {dict.hero.ctaSecondary}
             </Link>
           </div>
+
+          {/* Quick proof line */}
+          <div className="mt-14 flex items-center gap-4 animate-fade-in-up opacity-0 delay-400">
+            <div className="w-2 h-2 bg-logistics-orange rotate-45" />
+            <p className="text-xs text-white/30 uppercase tracking-wider">
+              {locale === "id"
+                ? "Jakarta, Indonesia. Rute domestik dan internasional."
+                : "Jakarta, Indonesia. Domestic and international routes."}
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-        <div className="w-[1px] h-12 bg-gradient-to-b from-transparent to-white/20" />
-      </div>
+      {/* Bottom transition line */}
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-logistics-orange/20 to-transparent" />
     </section>
   );
 }

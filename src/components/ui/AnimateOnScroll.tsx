@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 
 interface AnimateOnScrollProps {
   children: ReactNode;
@@ -13,8 +13,8 @@ interface AnimateOnScrollProps {
 const variants = {
   hidden: (direction: string) => ({
     opacity: 0,
-    y: direction === "up" ? 24 : 0,
-    x: direction === "right" ? 24 : 0,
+    y: direction === "up" ? 20 : 0,
+    x: direction === "right" ? 20 : 0,
   }),
   visible: {
     opacity: 1,
@@ -31,6 +31,12 @@ export default function AnimateOnScroll({
 }: AnimateOnScrollProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const prefersReducedMotion = useReducedMotion();
+
+  // Skip animation entirely when user prefers reduced motion
+  if (prefersReducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <motion.div
@@ -40,7 +46,7 @@ export default function AnimateOnScroll({
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={variants}
-      transition={{ duration: 0.5, delay, ease: "easeOut" }}
+      transition={{ duration: 0.45, delay, ease: "easeOut" }}
     >
       {children}
     </motion.div>

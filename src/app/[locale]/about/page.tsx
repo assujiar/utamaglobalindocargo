@@ -64,7 +64,7 @@ export default async function AboutPage({ params }: Props) {
       </section>
 
       {/* Trust strip */}
-      <TrustStrip dict={dict} />
+      <TrustStrip locale={locale as Locale} />
 
       {/* Mission */}
       <section className="bg-white py-20 lg:py-28">

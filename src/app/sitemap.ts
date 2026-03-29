@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { services } from "@/data/services";
 import { industries } from "@/data/industries";
+import { caseStudies } from "@/data/caseStudies";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://utamaglobalindocargo.com";
@@ -66,6 +67,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
           languages: {
             id: `${baseUrl}/id/industries/${industry.slug}`,
             en: `${baseUrl}/en/industries/${industry.slug}`,
+          },
+        },
+      });
+    }
+  }
+
+  // Case study detail pages
+  for (const locale of ["id", "en"]) {
+    for (const cs of caseStudies) {
+      entries.push({
+        url: `${baseUrl}/${locale}/case-studies/${cs.slug}`,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.5,
+        alternates: {
+          languages: {
+            id: `${baseUrl}/id/case-studies/${cs.slug}`,
+            en: `${baseUrl}/en/case-studies/${cs.slug}`,
           },
         },
       });

@@ -28,15 +28,15 @@ const id: Dictionary = {
       "Melayani manufacturing, FMCG, e-commerce, farmasi, komoditas, dan energi di seluruh Indonesia dan rute internasional.",
   },
   servicesOverview: {
-    heading: "Layanan Kami",
+    heading: "Enam layanan, satu koordinator.",
     subHeading:
-      "Enam kategori layanan yang mencakup seluruh rantai pasok, dari first mile sampai last mile.",
+      "Dari truk di Jawa sampai kontainer ke Eropa, dari customs clearance sampai gudang. Semua lewat satu tim.",
     cta: "Lihat Semua Layanan",
   },
   howItWorks: {
-    heading: "Bagaimana Kami Bekerja",
+    heading: "Dari permintaan sampai laporan, satu alur.",
     subHeading:
-      "Proses yang terstruktur, dari permintaan awal sampai laporan pengiriman. Satu kontak, satu alur kerja.",
+      "Anda bicara dengan satu kontak. Tim kami yang mengurus sisanya: rute, booking, dokumen, monitoring, sampai kargo tiba.",
     steps: [
       {
         title: "Konsultasi Awal",
@@ -72,15 +72,15 @@ const id: Dictionary = {
     cta: "Lihat Studi Kasus Lainnya",
   },
   industriesTeaser: {
-    heading: "Industri yang Kami Layani",
+    heading: "Beda industri, beda tantangan logistik.",
     subHeading:
-      "Setiap industri punya tantangan logistik yang berbeda. Kami sudah familiar dengan kebutuhan spesifik masing-masing.",
+      "Manufacturing, farmasi, e-commerce, komoditas, energi. Masing-masing punya kebutuhan spesifik yang sudah kami tangani.",
     cta: "Pelajari Lebih Lanjut",
   },
   secondaryCta: {
-    heading: "Butuh koordinasi logistik yang lebih rapi?",
+    heading: "Satu percakapan bisa memperjelas banyak hal.",
     subHeading:
-      "Ceritakan kebutuhan Anda. Tim kami akan bantu analisis rute dan opsi terbaik dalam 1 hari kerja.",
+      "Ceritakan apa yang Anda kirim, ke mana, dan kapan. Tim kami akan bantu carikan rute dan opsi terbaik dalam 1 hari kerja.",
     cta: "Hubungi Tim Kami",
   },
   footer: {

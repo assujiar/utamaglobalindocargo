@@ -64,7 +64,9 @@ async function main() {
     "/id/services/project-cargo",
     "/id/services/blocspace",
     "/id/industries", "/id/industries/manufacturing",
-    "/id/case-studies", "/id/about", "/id/faq", "/id/contact",
+    "/id/case-studies",
+    "/id/case-studies/manufacturing-import-consolidation",
+    "/id/about", "/id/faq", "/id/contact",
     "/en/about", "/en/faq", "/en/contact",
   ];
 
@@ -115,11 +117,12 @@ async function main() {
     assert(body.includes("Sitemap"), "Missing Sitemap in robots.txt");
   });
 
-  await runTest("sitemap.xml returns 200 with both locales", async () => {
+  await runTest("sitemap.xml returns 200 with both locales and case studies", async () => {
     const { status, body } = await fetchPage("/sitemap.xml");
     assert(status === 200, `Expected 200, got ${status}`);
     assert(body.includes("/id"), "Missing /id in sitemap");
     assert(body.includes("/en"), "Missing /en in sitemap");
+    assert(body.includes("/case-studies/"), "Missing case study detail routes in sitemap");
   });
 
   await runTest("Homepage has JSON-LD with org name", async () => {

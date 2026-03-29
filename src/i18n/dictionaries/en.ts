@@ -28,15 +28,15 @@ const en: Dictionary = {
       "Serving manufacturing, FMCG, e-commerce, pharmaceutical, commodities, and energy sectors across Indonesia and international routes.",
   },
   servicesOverview: {
-    heading: "Our Services",
+    heading: "Six services, one coordinator.",
     subHeading:
-      "Six service categories covering the full supply chain, from first mile to last mile.",
+      "From trucks across Java to containers bound for Europe, customs clearance to warehousing. All through one team.",
     cta: "View All Services",
   },
   howItWorks: {
-    heading: "How We Work",
+    heading: "From enquiry to report, one workflow.",
     subHeading:
-      "A structured process, from initial enquiry to delivery report. One contact, one workflow.",
+      "You talk to one contact. Our team handles the rest: routes, booking, documentation, monitoring, until cargo arrives.",
     steps: [
       {
         title: "Initial Consultation",
@@ -72,15 +72,15 @@ const en: Dictionary = {
     cta: "View More Case Studies",
   },
   industriesTeaser: {
-    heading: "Industries We Serve",
+    heading: "Different industries, different logistics problems.",
     subHeading:
-      "Every industry has different logistics challenges. We know the specific requirements of each.",
+      "Manufacturing, pharma, e-commerce, commodities, energy. Each has specific requirements we already handle.",
     cta: "Learn More",
   },
   secondaryCta: {
-    heading: "Need better logistics coordination?",
+    heading: "One conversation can clarify a lot.",
     subHeading:
-      "Tell us what you need. Our team will analyze your best route and mode options within 1 business day.",
+      "Tell us what you ship, where it goes, and when. Our team will find the best routes and options within 1 business day.",
     cta: "Talk to Our Team",
   },
   footer: {

@@ -20,24 +20,40 @@ export default async function HomePage({ params }: Props) {
 
   const dict = await getDictionary(locale as Locale);
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://utamaglobalindocargo.com";
+  const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@utamaglobalindocargo.com";
+  const contactPhone = process.env.NEXT_PUBLIC_CONTACT_PHONE;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "UGC Logistics (Utama Globalindo Cargo)",
-    url: "https://utamaglobalindocargo.com",
+    legalName: "PT Utama Globalindo Cargo",
+    url: siteUrl,
     description: dict.metadata.description,
+    email: contactEmail,
+    ...(contactPhone ? { telephone: contactPhone } : {}),
     address: {
       "@type": "PostalAddress",
       addressLocality: "Jakarta",
+      addressRegion: "DKI Jakarta",
       addressCountry: "ID",
     },
+    areaServed: { "@type": "Country", name: "Indonesia" },
+    knowsAbout: [
+      "Freight Forwarding",
+      "Domestic Distribution",
+      "Customs Brokerage",
+      "Warehousing",
+      "Project Cargo",
+    ],
   };
 
   return (
     <>
       <JsonLd data={jsonLd} />
       <HeroSection locale={locale as Locale} dict={dict} />
-      <TrustStrip dict={dict} />
+      <TrustStrip locale={locale as Locale} />
       <ServicesOverview locale={locale as Locale} dict={dict} />
       <HowItWorks dict={dict} />
       <ProofSection locale={locale as Locale} dict={dict} />
