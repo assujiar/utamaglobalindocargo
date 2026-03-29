@@ -4,7 +4,9 @@ import { notFound } from "next/navigation";
 import { isValidLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import { services, getServiceBySlug } from "@/data/services";
+import { industries } from "@/data/industries";
 import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import JsonLd from "@/components/seo/JsonLd";
 import SubServiceAccordion from "@/components/services/SubServiceAccordion";
 import TrustElement from "@/components/services/TrustElement";
@@ -19,7 +21,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: service.name[locale],
     description: service.shortDescription[locale],
-    alternates: { canonical: `/${locale}/services/${slug}` },
+    alternates: {
+      canonical: `/${locale}/services/${slug}`,
+      languages: {
+        id: `/id/services/${slug}`,
+        en: `/en/services/${slug}`,
+      },
+    },
   };
 }
 
@@ -39,6 +47,11 @@ export default async function ServiceDetailPage({ params }: Props) {
   const dict = await getDictionary(locale as Locale);
   const prefix = `/${locale}`;
   const loc = locale as Locale;
+
+  // Find industries that use this service
+  const relatedIndustries = industries.filter((ind) =>
+    ind.relevantServices.includes(slug)
+  );
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -66,13 +79,20 @@ export default async function ServiceDetailPage({ params }: Props) {
       {/* Hero */}
       <section className="section-dark pt-32 pb-16 lg:pt-40 lg:pb-24">
         <Container>
+          <Breadcrumb
+            items={[
+              { label: dict.breadcrumb.home, href: prefix },
+              { label: dict.nav.services, href: `${prefix}/services` },
+              { label: service.name[loc] },
+            ]}
+          />
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-[2px] bg-logistics-orange" />
             <Link
               href={`${prefix}/services`}
               className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em] hover:text-white transition-colors"
             >
-              {dict.nav.services}
+              {dict.services.backToServices}
             </Link>
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-6xl font-black text-white tracking-tight leading-[1.05]">
@@ -84,7 +104,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         </Container>
       </section>
 
-      {/* Sub-services with collapsible accordion */}
+      {/* Sub-services */}
       <section className="section-light py-20 lg:py-28">
         <Container>
           <h2 className="text-2xl md:text-3xl font-black text-carbon-dark tracking-tight mb-8">
@@ -96,7 +116,7 @@ export default async function ServiceDetailPage({ params }: Props) {
         </Container>
       </section>
 
-      {/* Process */}
+      {/* Process + Best For */}
       <section className="bg-white py-20 lg:py-28">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
@@ -129,7 +149,6 @@ export default async function ServiceDetailPage({ params }: Props) {
                 ))}
               </ul>
 
-              {/* Trust element: relevant case study */}
               <TrustElement
                 serviceSlug={slug}
                 locale={loc}
@@ -139,6 +158,28 @@ export default async function ServiceDetailPage({ params }: Props) {
           </div>
         </Container>
       </section>
+
+      {/* Related industries */}
+      {relatedIndustries.length > 0 && (
+        <section className="section-light py-16 lg:py-20">
+          <Container>
+            <h2 className="text-xl font-black text-carbon-dark tracking-tight mb-6">
+              {dict.services.relatedIndustries}
+            </h2>
+            <div className="flex flex-wrap gap-3">
+              {relatedIndustries.map((ind) => (
+                <Link
+                  key={ind.slug}
+                  href={`${prefix}/industries/${ind.slug}`}
+                  className="text-sm font-bold text-carbon-dark border border-border-light px-4 py-2 hover:border-logistics-orange/30 hover:text-logistics-orange transition-colors"
+                >
+                  {ind.name[loc]}
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* CTA */}
       <section className="section-dark py-20 lg:py-28">

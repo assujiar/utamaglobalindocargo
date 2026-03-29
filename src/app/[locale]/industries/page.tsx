@@ -5,6 +5,7 @@ import { isValidLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import { industries } from "@/data/industries";
 import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -16,7 +17,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: dict.industries.heading,
     description: dict.industries.subHeading,
-    alternates: { canonical: `/${locale}/industries` },
+    alternates: {
+      canonical: `/${locale}/industries`,
+      languages: { id: "/id/industries", en: "/en/industries" },
+    },
   };
 }
 
@@ -31,6 +35,12 @@ export default async function IndustriesPage({ params }: Props) {
     <>
       <section className="section-dark pt-32 pb-20 lg:pt-40 lg:pb-28">
         <Container>
+          <Breadcrumb
+            items={[
+              { label: dict.breadcrumb.home, href: prefix },
+              { label: dict.nav.industries },
+            ]}
+          />
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-[2px] bg-logistics-orange" />
             <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">
@@ -47,7 +57,7 @@ export default async function IndustriesPage({ params }: Props) {
 
       <section className="section-light py-20 lg:py-28">
         <Container>
-          <div className="space-y-8">
+          <div className="space-y-6">
             {industries.map((industry) => (
               <Link
                 key={industry.slug}

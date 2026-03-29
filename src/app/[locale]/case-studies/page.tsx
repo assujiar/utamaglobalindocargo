@@ -6,6 +6,7 @@ import { getDictionary } from "@/i18n/getDictionary";
 import { caseStudies } from "@/data/caseStudies";
 import { industries } from "@/data/industries";
 import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import SectionHeading from "@/components/ui/SectionHeading";
 import CaseStudyFilter from "@/components/case-studies/CaseStudyFilter";
 
@@ -18,7 +19,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: dict.caseStudies.heading,
     description: dict.caseStudies.subHeading,
-    alternates: { canonical: `/${locale}/case-studies` },
+    alternates: {
+      canonical: `/${locale}/case-studies`,
+      languages: { id: "/id/case-studies", en: "/en/case-studies" },
+    },
   };
 }
 
@@ -49,6 +53,12 @@ export default async function CaseStudiesPage({ params }: Props) {
     <>
       <section className="section-dark pt-32 pb-20 lg:pt-40 lg:pb-28">
         <Container>
+          <Breadcrumb
+            items={[
+              { label: dict.breadcrumb.home, href: prefix },
+              { label: dict.nav.caseStudies },
+            ]}
+          />
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-[2px] bg-logistics-orange" />
             <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">
@@ -60,6 +70,9 @@ export default async function CaseStudiesPage({ params }: Props) {
             subtitle={dict.caseStudies.subHeading}
             dark
           />
+          <p className="mt-4 text-xs text-white/25 max-w-xl">
+            {dict.caseStudies.disclaimer}
+          </p>
         </Container>
       </section>
 
@@ -69,9 +82,9 @@ export default async function CaseStudiesPage({ params }: Props) {
             cases={casesForClient}
             industries={industriesForFilter}
             filterAllLabel={dict.caseStudies.filterAll}
-            challengeLabel={locale === "id" ? "Tantangan" : "Challenge"}
-            solutionLabel={locale === "id" ? "Solusi" : "Solution"}
-            resultLabel={locale === "id" ? "Hasil" : "Result"}
+            challengeLabel={dict.common.challengeLabel}
+            solutionLabel={dict.common.solutionLabel}
+            resultLabel={dict.common.outcomeLabel}
           />
         </Container>
       </section>

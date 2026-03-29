@@ -2,9 +2,9 @@ import type { Dictionary } from "./type";
 
 const en: Dictionary = {
   metadata: {
-    title: "UGC Logistics (Utama Globalindo Cargo) - Freight Forwarding & Logistics Indonesia",
+    title: "UGC Logistics - Freight Forwarding & Supply Chain Coordination | Jakarta, Indonesia",
     description:
-      "One point of coordination for domestic distribution, international freight forwarding, customs brokerage, warehousing, project cargo, and charter. Based in Jakarta.",
+      "End-to-end logistics coordination: domestic distribution, international freight forwarding, customs brokerage, warehousing, project cargo, and charter services. One team, one point of contact.",
   },
   nav: {
     home: "Home",
@@ -18,50 +18,80 @@ const en: Dictionary = {
   hero: {
     headline: "One line of control across every handoff.",
     subHeadline:
-      "From domestic trucking to international freight, customs clearance to warehousing, one team handles the full coordination. No more juggling multiple vendors.",
-    ctaPrimary: "Discuss Your Requirements",
-    ctaSecondary: "View Our Services",
+      "Domestic trucking. International freight. Customs clearance. Warehousing. You deal with one team that coordinates everything. No more chasing five vendors for one shipment.",
+    ctaPrimary: "Get a Logistics Consultation",
+    ctaSecondary: "Explore Our Services",
+    proofLine: "Jakarta-based. Serving domestic and international routes.",
   },
   trustStrip: {
     heading: "Trusted by companies across industries",
     description:
       "Serving manufacturing, FMCG, e-commerce, pharmaceutical, commodities, and energy sectors across Indonesia and international routes.",
   },
-  servicesOverview: {
-    heading: "Six services, one coordinator.",
+  whyUgc: {
+    label: "Why UGC",
+    heading: "Most logistics problems happen at the handoff.",
     subHeading:
-      "From trucks across Java to containers bound for Europe, customs clearance to warehousing. All through one team.",
+      "Every time cargo moves from one vendor to another, risk goes up. Documents get lost, timelines slip, and nobody owns the problem. We exist to eliminate that gap.",
+    items: [
+      {
+        title: "Single Coordination Point",
+        description:
+          "One team manages your transport, documentation, customs, and warehousing. When something needs to change, one call is enough.",
+      },
+      {
+        title: "Mode-Agnostic Planning",
+        description:
+          "Truck, vessel, or aircraft. We pick the mode that fits your timeline and budget, not the one that pays us the highest margin.",
+      },
+      {
+        title: "Documentation Accuracy",
+        description:
+          "We verify HS classification, commercial invoices, and packing lists before cargo moves. Customs delays from document errors are preventable.",
+      },
+      {
+        title: "Operational Transparency",
+        description:
+          "You know where your cargo is, what it costs, and when it arrives. No hidden fees, no surprise surcharges, no radio silence.",
+      },
+    ],
+    cta: "Talk to Our Team",
+  },
+  servicesOverview: {
+    heading: "Six service lines. One coordinator.",
+    subHeading:
+      "Trucks across Java. Containers to Europe. Customs paperwork. Bonded storage. We handle the full chain so you only manage one relationship.",
     cta: "View All Services",
   },
   howItWorks: {
-    heading: "From enquiry to report, one workflow.",
+    heading: "From first call to delivery report.",
     subHeading:
-      "You talk to one contact. Our team handles the rest: routes, booking, documentation, monitoring, until cargo arrives.",
+      "You speak to one contact person throughout. Our operations team handles routing, booking, documentation, and monitoring until cargo arrives.",
     steps: [
       {
-        title: "Initial Consultation",
+        title: "Consultation",
         description:
-          "Tell us your logistics requirements. Our team analyzes the best routes, modes, and timelines.",
+          "Share your cargo details, routes, and timeline. We analyze the best combination of modes and carriers.",
       },
       {
         title: "Planning & Booking",
         description:
-          "We build your shipping plan, reserve capacity, and prepare all required documentation.",
+          "We build your shipping plan, reserve capacity with carriers, and prepare all documentation in advance.",
       },
       {
-        title: "Execution & Monitoring",
+        title: "Execution",
         description:
-          "Cargo moves according to plan. You get status updates without chasing multiple parties.",
+          "Cargo moves according to plan. You receive status updates proactively, without chasing multiple vendors.",
       },
       {
-        title: "Delivery & Documentation",
+        title: "Delivery & Clearance",
         description:
-          "Goods arrive at destination. Documentation complete, customs cleared, report delivered.",
+          "Goods arrive at destination. Customs cleared, documents complete, delivery confirmed at your warehouse.",
       },
       {
-        title: "Review & Reporting",
+        title: "Report & Review",
         description:
-          "Shipment performance review. Data you can use for your next planning cycle.",
+          "Full shipment report delivered. Performance data you can use for future planning and cost optimization.",
       },
     ],
   },
@@ -72,50 +102,53 @@ const en: Dictionary = {
     cta: "View More Case Studies",
   },
   industriesTeaser: {
-    heading: "Different industries, different logistics problems.",
+    heading: "Built for industries where logistics failures cost real money.",
     subHeading:
-      "Manufacturing, pharma, e-commerce, commodities, energy. Each has specific requirements we already handle.",
-    cta: "Learn More",
+      "Manufacturing lines that stop. Pharma batches that expire. Project deadlines with penalty clauses. We understand what is at stake.",
+    cta: "See All Industries",
   },
   secondaryCta: {
-    heading: "One conversation can clarify a lot.",
+    heading: "Start with one conversation.",
     subHeading:
-      "Tell us what you ship, where it goes, and when. Our team will find the best routes and options within 1 business day.",
+      "Tell us what you ship, where it goes, and when it needs to arrive. Our team responds with route options and a cost framework within 1 business day.",
     cta: "Talk to Our Team",
   },
   footer: {
     tagline: "We Care What We Deliver",
+    description: "End-to-end logistics coordination for companies that cannot afford supply chain gaps.",
     servicesLabel: "Services",
     companyLabel: "Company",
-    contactLabel: "Contact",
+    contactLabel: "Get in Touch",
     copyright: "PT Utama Globalindo Cargo. All rights reserved.",
     address: "Jakarta, Indonesia",
+    addressFull: "Jakarta, Indonesia",
   },
   contact: {
     heading: "Let's Talk Logistics",
     subHeading:
-      "Tell us what you need, and one of our specialists will get back to you within 1 business day.",
-    step1Title: "What service do you need?",
-    step2Title: "Estimated shipping volume?",
-    step3Title: "Who should we contact?",
+      "Describe your shipping needs and one of our specialists will respond within 1 business day with route options and a cost framework.",
+    step1Title: "What do you need to ship?",
+    step2Title: "How large is your operation?",
+    step3Title: "Where should we reach you?",
     stepOf: "of",
     next: "Continue",
     back: "Back",
-    submit: "Submit & Schedule a Call",
-    submitting: "Submitting...",
-    successTitle: "Thank You.",
+    submit: "Submit Request",
+    submitting: "Sending...",
+    successTitle: "Request Received.",
     successMessage:
-      "Our team will respond within 1 business day to schedule an initial discussion based on your requirements.",
+      "Our logistics team will review your requirements and respond within 1 business day to schedule an initial discussion.",
     directContact: "Or contact us directly",
-    orContactDirectly: "Or reach us directly via email or WhatsApp.",
+    orContactDirectly: "You can also reach us directly via email or WhatsApp.",
     privacyConsent:
-      "I agree that the data I submit will be used by PT Utama Globalindo Cargo to respond to this request and contact me regarding logistics services. Data will not be shared with third parties without consent.",
+      "I agree that the data I submit will be used by PT Utama Globalindo Cargo to respond to this inquiry and contact me regarding logistics services. Data will not be shared with third parties without consent.",
+    responseTime: "Average response time: within 1 business day",
     fields: {
       contactPerson: "Full Name",
       companyName: "Company Name",
       email: "Work Email",
       phone: "Phone / WhatsApp",
-      cargoDescription: "Cargo Description",
+      cargoDescription: "Cargo Type",
       originDestination: "Route / Origin - Destination",
       timeline: "Target Timeline",
     },
@@ -133,124 +166,155 @@ const en: Dictionary = {
       volumeRequired: "Select your estimated shipping volume",
       nameRequired: "Full name is required",
       companyRequired: "Company name is required",
-      emailInvalid: "Invalid email format",
-      phoneRequired: "Phone / WhatsApp number is required",
+      emailInvalid: "Enter a valid email address",
+      phoneRequired: "Phone or WhatsApp number is required",
       consentRequired: "You must agree to the privacy policy",
     },
   },
   about: {
-    heading: "About UGC Logistics",
+    heading: "The Company Behind the Coordination",
     subHeading:
-      "A Jakarta-based freight forwarder and logistics company serving domestic and international routes.",
+      "UGC Logistics (Utama Globalindo Cargo) is a Jakarta-based freight forwarder and logistics coordinator serving domestic and international supply chains.",
     missionHeading: "What We Do",
     missionText:
-      "UGC Logistics (Utama Globalindo Cargo) manages end-to-end logistics coordination. Our clients deal with one team for transport, documentation, customs, and warehousing. No juggling multiple vendors.",
-    storyHeading: "Why One Point of Coordination",
+      "We manage end-to-end logistics coordination. Our clients deal with one team for transport, documentation, customs clearance, and warehousing. Instead of juggling multiple freight vendors, trucking companies, customs brokers, and warehouse operators, you work with one point of contact who owns the entire process.",
+    storyHeading: "Why Single-Point Coordination",
     storyText:
-      "In freight forwarding, problems most often surface at handoff points: from one mode to another, from one vendor to the next. Every handoff is a risk. Our approach is simple: reduce the number of parties involved, and you reduce the points of failure.",
+      "In freight forwarding, problems surface at handoff points: when cargo moves from one vendor to another, when documents transfer between parties, when responsibility shifts mid-transit. Every handoff is a risk point. Our approach is straightforward: reduce the parties involved, and you reduce the failure points. One team that sees the full picture can catch problems before they become delays.",
     valuesHeading: "How We Operate",
     values: [
       {
-        title: "Transparency",
+        title: "Transparency First",
         description:
-          "You know where your cargo is, what it costs, and when it arrives. No hidden fees or inflated estimates.",
+          "You see exactly where your cargo is, what the costs are, and when delivery is expected. We quote honestly and flag issues early, not after they become expensive.",
       },
       {
-        title: "Reliability",
+        title: "Route-Based Reliability",
         description:
-          "We select partners and routes based on track record, not the lowest price. Consistency matters more than one cheap shipment.",
+          "We select carriers and routes based on track record, not the cheapest rate. A reliable shipment saves more money than a cheap one that arrives late.",
       },
       {
-        title: "Responsiveness",
+        title: "Responsive Operations",
         description:
-          "An operations team you can reach when you need them. Logistics problems don't wait for office hours.",
+          "An operations team that picks up when you call. Logistics problems do not wait for office hours, and neither do we.",
       },
       {
-        title: "Documentation Accuracy",
+        title: "Document Precision",
         description:
-          "Smooth customs clearance starts with correct documents. We verify HS classification, invoices, and packing lists before cargo moves.",
+          "Smooth customs clearance starts with correct documents. We verify HS codes, commercial invoices, and packing lists before cargo moves, not after it is stuck at the port.",
       },
     ],
-    ctaHeading: "Ready to Talk?",
+    operationalHeading: "Operational Profile",
+    operationalItems: [
+      { label: "Headquarters", value: "Jakarta, Indonesia" },
+      { label: "Service Scope", value: "Domestic (all Indonesia) + International" },
+      { label: "Service Lines", value: "6 categories, 25+ sub-services" },
+      { label: "Industries Served", value: "Manufacturing, FMCG, E-Commerce, Pharma, Commodities, Energy" },
+      { label: "Coordination Model", value: "Single point of contact per client" },
+      { label: "Response Time", value: "Within 1 business day for new inquiries" },
+    ],
+    teamHeading: "Our Team",
+    teamText:
+      "The UGC Logistics operations team consists of professionals with hands-on experience in freight forwarding, customs brokerage, and warehouse management. Each client is assigned a dedicated coordinator who understands the operational specifics of their industry.",
+    teamPlaceholder: "Team photo to be added",
+    ctaHeading: "Ready to Simplify Your Logistics?",
     ctaText:
-      "Tell us about your logistics needs. Our team is ready to analyze your best options.",
-    ctaButton: "Contact Us",
+      "Tell us about your shipping needs. Our team will analyze the best routes, modes, and cost options for your operation.",
+    ctaButton: "Contact Our Team",
   },
   faq: {
     heading: "Frequently Asked Questions",
     subHeading:
-      "Straight answers to common questions about our logistics services.",
+      "Direct answers about our services, process, and what to expect when working with UGC Logistics.",
     items: [
       {
-        question: "What services does UGC Logistics offer?",
+        question: "What services does UGC Logistics cover?",
         answer:
-          "We handle domestic distribution (FTL, LTL, FCL, LCL, airfreight), international freight forwarding (export and import via sea and air), import door-to-door, customs brokerage, warehousing and fulfillment, project cargo for special handling, and blocspace and charter for guaranteed capacity.",
+          "Six service categories: domestic distribution (FTL, LTL, FCL, LCL, airfreight), international freight forwarding (export and import via sea and air), import door-to-door with customs brokerage, warehousing and fulfillment (general, bonded, pick-and-pack, cross-docking), project cargo and special handling (heavy lift, DG, temperature controlled), and blocspace and charter for guaranteed capacity.",
       },
       {
         question: "How long does customs clearance typically take?",
         answer:
-          "For standard imports with complete documentation, customs clearance usually takes 2-5 business days at major ports. Duration varies depending on goods type, document completeness, and inspection channel (red, yellow, green). We prepare documents before cargo arrives to speed up the process.",
+          "For standard imports with complete documentation, customs clearance at major Indonesian ports usually takes 2 to 5 business days. The exact timeline depends on goods classification, document completeness, and the assigned inspection channel (red, yellow, or green). We prepare and verify all documents before cargo arrival to minimize port dwell time.",
       },
       {
-        question: "Can UGC handle dangerous goods?",
+        question: "Can UGC handle dangerous goods (DG)?",
         answer:
-          "Yes. We handle dangerous goods shipments in compliance with IATA (air) and IMDG (sea) regulations. Our team assists with classification, packaging, labeling, and required documentation. Certain DG types may require longer booking lead times due to carrier restrictions.",
+          "Yes. We ship dangerous goods in compliance with IATA regulations for air and IMDG for sea freight. Our team handles DG classification, packaging certification, labeling, and all required documentation. Some DG classes require longer booking lead times due to carrier capacity constraints.",
       },
       {
-        question: "How do I get a price quote?",
+        question: "How do I get a cost estimate?",
         answer:
-          "Fill out our contact form with basic information: cargo type, origin-destination route, estimated volume, and timeline. Our team will get back to you within 1 business day with options and cost estimates. For urgent needs, contact us directly via WhatsApp or phone.",
+          "Submit a request through our contact form or reach out via WhatsApp/email with your cargo type, origin-destination route, estimated volume, and timeline. Our team will respond within 1 business day with routing options and a cost framework. For complex or project-based shipments, we may schedule a consultation call.",
       },
       {
-        question: "Does UGC provide warehousing services?",
+        question: "Does UGC provide warehousing?",
         answer:
-          "Yes, we offer general warehousing, bonded warehouse for imported goods with deferred duties, pick and pack fulfillment for e-commerce, and cross-docking for rapid distribution. Warehouse locations are available in the Jakarta metropolitan area.",
+          "Yes. We operate general warehousing, bonded warehouse for imported goods with deferred duties, pick-and-pack fulfillment for e-commerce, and cross-docking for rapid distribution. Facilities are located in the greater Jakarta area.",
       },
       {
         question: "What is the difference between FCL and LCL?",
         answer:
-          "FCL (Full Container Load) means you book an entire container exclusively for your cargo. LCL (Less than Container Load) means your cargo is consolidated with other shippers in one container. FCL suits large volumes, LCL is more economical for smaller volumes.",
+          "FCL (Full Container Load) means you book an entire 20-foot or 40-foot container exclusively for your cargo. LCL (Less than Container Load) means your cargo shares container space with other shippers. FCL gives you dedicated space and often faster transit; LCL is more cost-effective for smaller volumes.",
       },
       {
-        question: "Does UGC ship to areas outside Java?",
+        question: "Do you ship to areas outside Java?",
         answer:
-          "Yes. Our domestic distribution covers all of Indonesia, including Sumatra, Kalimantan, Sulawesi, Bali, Nusa Tenggara, Maluku, and Papua. Transport modes are adapted: trucks for Java, vessels and aircraft for inter-island routes.",
+          "Yes. Our domestic network covers all of Indonesia: Sumatra, Kalimantan, Sulawesi, Bali, Nusa Tenggara, Maluku, and Papua. We use multi-modal transport: trucks for Java routes, vessels and aircraft for inter-island shipments, adapted to the infrastructure and urgency of each destination.",
       },
       {
-        question: "Is there a minimum shipping volume?",
+        question: "Is there a minimum shipment size?",
         answer:
-          "No absolute minimum. For LCL and LTL, we accept small volumes. For shipments where cost efficiency matters at lower volumes, we recommend consolidation options that fit your budget and timeline.",
+          "No strict minimum. For LCL and LTL, we accept small volumes. If your shipment is below typical thresholds for cost efficiency, we will recommend consolidation options that balance your budget and delivery timeline.",
+      },
+      {
+        question: "How does the 'single coordination point' model work in practice?",
+        answer:
+          "You are assigned one dedicated coordinator who manages your entire logistics flow: carrier selection, booking, documentation, customs, and delivery tracking. Instead of calling a trucking company, then a freight forwarder, then a customs broker, you call one person who orchestrates all of it.",
+      },
+      {
+        question: "What industries do you specialize in?",
+        answer:
+          "We serve manufacturing (inbound raw materials, outbound finished goods), FMCG (national multi-point distribution), e-commerce (fulfillment and last-mile), pharmaceutical (cold chain and regulatory compliance), commodities (bulk and charter), and energy (project cargo and heavy lift). Each industry has specific logistics requirements that our team is experienced with.",
       },
     ],
-    ctaHeading: "Have another question?",
-    ctaButton: "Contact Our Team",
+    ctaHeading: "Have a specific logistics question?",
+    ctaButton: "Talk to Our Specialist",
   },
   caseStudies: {
     heading: "Case Studies",
     subHeading:
-      "Real examples of how we help clients solve their logistics challenges.",
+      "Operational scenarios that illustrate how we approach real logistics challenges across different industries.",
     filterAll: "All",
     ctaHeading: "Facing a similar logistics challenge?",
     ctaButton: "Discuss with Our Team",
+    disclaimer: "Based on typical operational scenarios. Specific metrics subject to client verification.",
   },
   services: {
     landing: {
       heading: "Logistics Services",
       subHeading:
-        "Six service categories covering your full supply chain needs, from factory pickup to final warehouse delivery.",
+        "Six service categories that cover the full supply chain: from factory pickup to final warehouse delivery, from export documentation to customs clearance.",
     },
     cta: "Discuss Your Requirements",
     process: "How It Works",
     bestFor: "Best For",
     subServices: "Services in This Category",
+    relatedIndustries: "Industries That Use This",
+    backToServices: "All Services",
   },
   industries: {
     heading: "Industries We Serve",
     subHeading:
-      "Every industry has unique logistics needs. Here is how we tailor our services for each sector.",
-    challenge: "Logistics Challenge",
-    solution: "How UGC Helps",
+      "Every industry has specific logistics requirements. Here is how we adapt our services to match the operational realities of each sector.",
+    challenge: "The Logistics Challenge",
+    solution: "How UGC Addresses It",
+    relevantServices: "Services Used",
     cta: "Discuss Your Industry Needs",
+    backToIndustries: "All Industries",
+  },
+  breadcrumb: {
+    home: "Home",
   },
   common: {
     learnMore: "Learn More",
@@ -258,6 +322,11 @@ const en: Dictionary = {
     viewAll: "View All",
     readMore: "Read More",
     language: "Bahasa Indonesia",
+    illustrativeScenario: "Operational Scenario",
+    challengeLabel: "Challenge",
+    solutionLabel: "Approach",
+    resultLabel: "Result",
+    outcomeLabel: "Outcome",
   },
 };
 

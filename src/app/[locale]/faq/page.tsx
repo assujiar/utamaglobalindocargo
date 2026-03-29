@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { isValidLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/getDictionary";
 import Container from "@/components/ui/Container";
+import Breadcrumb from "@/components/ui/Breadcrumb";
 import SectionHeading from "@/components/ui/SectionHeading";
 import FaqAccordion from "@/components/faq/FaqAccordion";
 import JsonLd from "@/components/seo/JsonLd";
@@ -17,7 +18,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: dict.faq.heading,
     description: dict.faq.subHeading,
-    alternates: { canonical: `/${locale}/faq` },
+    alternates: {
+      canonical: `/${locale}/faq`,
+      languages: { id: "/id/faq", en: "/en/faq" },
+    },
   };
 }
 
@@ -46,6 +50,12 @@ export default async function FaqPage({ params }: Props) {
 
       <section className="section-dark pt-32 pb-20 lg:pt-40 lg:pb-28">
         <Container>
+          <Breadcrumb
+            items={[
+              { label: dict.breadcrumb.home, href: prefix },
+              { label: dict.nav.faq },
+            ]}
+          />
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-[2px] bg-logistics-orange" />
             <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">

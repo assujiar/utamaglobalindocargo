@@ -7,16 +7,16 @@ interface TrustStripProps {
 
 const capabilities = {
   id: [
-    { label: "6 Kategori Layanan", detail: "Domestik, internasional, customs, gudang, project, charter" },
-    { label: "Seluruh Indonesia", detail: "Jawa, Sumatera, Kalimantan, Sulawesi, dan pulau lainnya" },
-    { label: "Rute Internasional", detail: "Ekspor dan impor via laut dan udara ke berbagai negara" },
-    { label: "Satu Titik Koordinasi", detail: "Satu tim mengurus transport, dokumen, customs, dan gudang" },
+    { label: "6 Kategori Layanan", detail: "Domestik, internasional, customs, gudang, project cargo, charter" },
+    { label: "Seluruh Indonesia", detail: "Jawa, Sumatera, Kalimantan, Sulawesi, dan seluruh kepulauan" },
+    { label: "Rute Internasional", detail: "Ekspor & impor via laut dan udara ke berbagai negara" },
+    { label: "Satu Koordinator", detail: "Satu dedicated contact person dari awal sampai kargo tiba" },
   ],
   en: [
-    { label: "6 Service Categories", detail: "Domestic, international, customs, warehouse, project, charter" },
-    { label: "Across Indonesia", detail: "Java, Sumatra, Kalimantan, Sulawesi, and beyond" },
-    { label: "International Routes", detail: "Export and import via sea and air to multiple countries" },
-    { label: "One Coordination Point", detail: "One team handling transport, docs, customs, and storage" },
+    { label: "6 Service Categories", detail: "Domestic, international, customs, warehouse, project cargo, charter" },
+    { label: "All of Indonesia", detail: "Java, Sumatra, Kalimantan, Sulawesi, and the entire archipelago" },
+    { label: "International Routes", detail: "Export & import via sea and air to multiple countries" },
+    { label: "One Coordinator", detail: "One dedicated contact person from start to cargo arrival" },
   ],
 };
 

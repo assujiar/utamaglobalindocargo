@@ -22,7 +22,7 @@ export default function SecondaryCTA({ locale, dict }: SecondaryCTAProps) {
         <p className="mt-5 text-base md:text-lg text-white/50 leading-relaxed max-w-2xl mx-auto">
           {dict.secondaryCta.subHeading}
         </p>
-        <div className="mt-10">
+        <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link
             href={`/${locale}/contact`}
             className="group inline-flex items-center gap-3 bg-logistics-orange text-white px-10 py-5 font-bold text-sm uppercase tracking-wider hover:bg-logistics-orange/90 transition-colors"
@@ -38,6 +38,9 @@ export default function SecondaryCTA({ locale, dict }: SecondaryCTAProps) {
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </Link>
+          <p className="text-xs text-white/30">
+            {dict.contact.responseTime}
+          </p>
         </div>
       </Container>
     </section>

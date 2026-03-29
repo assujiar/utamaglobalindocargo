@@ -26,11 +26,11 @@ export default function HeroSection({ locale, dict }: HeroSectionProps) {
         />
       </div>
 
-      {/* Route line motif: diagonal orange line that suggests movement */}
+      {/* Route line motif */}
       <div className="absolute top-0 right-0 w-[2px] h-full bg-gradient-to-b from-logistics-orange/0 via-logistics-orange/20 to-logistics-orange/0 translate-x-[-120px] lg:translate-x-[-200px]" />
       <div className="absolute bottom-0 left-1/4 w-full h-[1px] bg-gradient-to-r from-logistics-orange/0 via-logistics-orange/10 to-logistics-orange/0" />
 
-      {/* Large faded number: branded chapter marker */}
+      {/* Large faded number */}
       <div className="absolute top-16 right-6 lg:right-16 text-[12rem] lg:text-[20rem] font-black text-white/[0.02] leading-none select-none pointer-events-none">
         01
       </div>
@@ -84,9 +84,7 @@ export default function HeroSection({ locale, dict }: HeroSectionProps) {
           <div className="mt-14 flex items-center gap-4 animate-fade-in-up opacity-0 delay-400">
             <div className="w-2 h-2 bg-logistics-orange rotate-45" />
             <p className="text-xs text-white/30 uppercase tracking-wider">
-              {locale === "id"
-                ? "Jakarta, Indonesia. Rute domestik dan internasional."
-                : "Jakarta, Indonesia. Domestic and international routes."}
+              {dict.hero.proofLine}
             </p>
           </div>
         </div>

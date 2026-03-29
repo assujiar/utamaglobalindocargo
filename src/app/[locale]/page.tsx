@@ -3,6 +3,7 @@ import { getDictionary } from "@/i18n/getDictionary";
 import { notFound } from "next/navigation";
 import HeroSection from "@/components/home/HeroSection";
 import TrustStrip from "@/components/home/TrustStrip";
+import WhyUGC from "@/components/home/WhyUGC";
 import ServicesOverview from "@/components/home/ServicesOverview";
 import HowItWorks from "@/components/home/HowItWorks";
 import ProofSection from "@/components/home/ProofSection";
@@ -39,13 +40,26 @@ export default async function HomePage({ params }: Props) {
       addressRegion: "DKI Jakarta",
       addressCountry: "ID",
     },
-    areaServed: { "@type": "Country", name: "Indonesia" },
+    areaServed: [
+      { "@type": "Country", name: "Indonesia" },
+    ],
     knowsAbout: [
       "Freight Forwarding",
       "Domestic Distribution",
+      "International Freight",
       "Customs Brokerage",
       "Warehousing",
       "Project Cargo",
+      "Charter Services",
+    ],
+    serviceType: [
+      "Domestic Distribution",
+      "International Freight Forwarding",
+      "Import Door-to-Door",
+      "Customs Brokerage",
+      "Warehousing & Fulfillment",
+      "Project Cargo & Special Handling",
+      "Blocspace & Charter",
     ],
   };
 
@@ -54,6 +68,7 @@ export default async function HomePage({ params }: Props) {
       <JsonLd data={jsonLd} />
       <HeroSection locale={locale as Locale} dict={dict} />
       <TrustStrip locale={locale as Locale} />
+      <WhyUGC locale={locale as Locale} dict={dict} />
       <ServicesOverview locale={locale as Locale} dict={dict} />
       <HowItWorks dict={dict} />
       <ProofSection locale={locale as Locale} dict={dict} />

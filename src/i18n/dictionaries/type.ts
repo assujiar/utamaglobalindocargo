@@ -17,10 +17,18 @@ export interface Dictionary {
     subHeadline: string;
     ctaPrimary: string;
     ctaSecondary: string;
+    proofLine: string;
   };
   trustStrip: {
     heading: string;
     description: string;
+  };
+  whyUgc: {
+    label: string;
+    heading: string;
+    subHeading: string;
+    items: { title: string; description: string }[];
+    cta: string;
   };
   servicesOverview: {
     heading: string;
@@ -49,11 +57,13 @@ export interface Dictionary {
   };
   footer: {
     tagline: string;
+    description: string;
     servicesLabel: string;
     companyLabel: string;
     contactLabel: string;
     copyright: string;
     address: string;
+    addressFull: string;
   };
   contact: {
     heading: string;
@@ -71,6 +81,7 @@ export interface Dictionary {
     directContact: string;
     orContactDirectly: string;
     privacyConsent: string;
+    responseTime: string;
     fields: {
       contactPerson: string;
       companyName: string;
@@ -108,6 +119,11 @@ export interface Dictionary {
     storyText: string;
     valuesHeading: string;
     values: { title: string; description: string }[];
+    operationalHeading: string;
+    operationalItems: { label: string; value: string }[];
+    teamHeading: string;
+    teamText: string;
+    teamPlaceholder: string;
     ctaHeading: string;
     ctaText: string;
     ctaButton: string;
@@ -125,6 +141,7 @@ export interface Dictionary {
     filterAll: string;
     ctaHeading: string;
     ctaButton: string;
+    disclaimer: string;
   };
   services: {
     landing: {
@@ -135,13 +152,20 @@ export interface Dictionary {
     process: string;
     bestFor: string;
     subServices: string;
+    relatedIndustries: string;
+    backToServices: string;
   };
   industries: {
     heading: string;
     subHeading: string;
     challenge: string;
     solution: string;
+    relevantServices: string;
     cta: string;
+    backToIndustries: string;
+  };
+  breadcrumb: {
+    home: string;
   };
   common: {
     learnMore: string;
@@ -149,5 +173,10 @@ export interface Dictionary {
     viewAll: string;
     readMore: string;
     language: string;
+    illustrativeScenario: string;
+    challengeLabel: string;
+    solutionLabel: string;
+    resultLabel: string;
+    outcomeLabel: string;
   };
 }
