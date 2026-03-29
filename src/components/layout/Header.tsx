@@ -181,10 +181,32 @@ export default function Header({ locale, dict }: HeaderProps) {
       {/* Mobile menu overlay */}
       {isMobileOpen && (
         <div
-          className="lg:hidden fixed inset-0 top-16 bg-carbon-dark z-40 overflow-y-auto"
+          className="lg:hidden fixed inset-0 bg-carbon-dark z-[60] overflow-y-auto"
           role="dialog"
           aria-modal="true"
         >
+          {/* Mobile menu header with close button */}
+          <div className="flex items-center justify-between px-6 h-16">
+            <Link
+              href={prefix}
+              className="flex items-center gap-3 text-white font-black text-lg tracking-tight"
+              onClick={closeMobile}
+            >
+              <span className="w-8 h-8 bg-logistics-orange flex items-center justify-center text-sm font-black">
+                U
+              </span>
+              <span>UGC</span>
+            </Link>
+            <button
+              className="w-10 h-10 flex items-center justify-center text-white"
+              onClick={closeMobile}
+              aria-label="Close menu"
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
           <div className="px-6 py-8 flex flex-col gap-2">
             {navLinks.map((link) => (
               <div key={link.href}>
