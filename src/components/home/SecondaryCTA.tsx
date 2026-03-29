@@ -10,8 +10,12 @@ interface SecondaryCTAProps {
 
 export default function SecondaryCTA({ locale, dict }: SecondaryCTAProps) {
   return (
-    <section className="section-dark py-20 lg:py-28">
-      <Container className="text-center">
+    <section className="section-dark py-20 lg:py-28 relative overflow-hidden">
+      {/* Route accent line */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-logistics-orange/20 to-transparent" />
+
+      <Container className="text-center relative">
+        <div className="w-2 h-2 bg-logistics-orange rotate-45 mx-auto mb-8" />
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight leading-[1.1]">
           {dict.secondaryCta.heading}
         </h2>

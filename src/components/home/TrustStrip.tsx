@@ -1,35 +1,40 @@
 import Container from "@/components/ui/Container";
-import type { Dictionary } from "@/i18n/dictionaries/type";
+import type { Locale } from "@/i18n/config";
 
 interface TrustStripProps {
-  dict: Dictionary;
+  locale: Locale;
 }
 
-export default function TrustStrip({ dict }: TrustStripProps) {
-  return (
-    <section className="bg-white py-12 lg:py-16 border-b border-border-light">
-      <Container>
-        <div className="text-center">
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-text-light mb-3">
-            {dict.trustStrip.heading}
-          </p>
-          <p className="text-sm text-text-muted max-w-2xl mx-auto leading-relaxed">
-            {dict.trustStrip.description}
-          </p>
+const capabilities = {
+  id: [
+    { label: "6 Kategori Layanan", detail: "Domestik, internasional, customs, gudang, project, charter" },
+    { label: "Seluruh Indonesia", detail: "Jawa, Sumatera, Kalimantan, Sulawesi, dan pulau lainnya" },
+    { label: "Rute Internasional", detail: "Ekspor dan impor via laut dan udara ke berbagai negara" },
+    { label: "Satu Titik Koordinasi", detail: "Satu tim mengurus transport, dokumen, customs, dan gudang" },
+  ],
+  en: [
+    { label: "6 Service Categories", detail: "Domestic, international, customs, warehouse, project, charter" },
+    { label: "Across Indonesia", detail: "Java, Sumatra, Kalimantan, Sulawesi, and beyond" },
+    { label: "International Routes", detail: "Export and import via sea and air to multiple countries" },
+    { label: "One Coordination Point", detail: "One team handling transport, docs, customs, and storage" },
+  ],
+};
 
-          {/* Placeholder for client logos */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-8 lg:gap-12">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div
-                key={i}
-                className="w-24 h-8 bg-surface-light flex items-center justify-center text-[10px] text-text-light uppercase tracking-wider"
-                aria-label={`Client logo placeholder ${i}`}
-              >
-                {/* [PLACEHOLDER: Replace with real client logos when available] */}
-                Logo {i}
-              </div>
-            ))}
-          </div>
+export default function TrustStrip({ locale }: TrustStripProps) {
+  const items = capabilities[locale];
+
+  return (
+    <section className="bg-white py-10 lg:py-12 border-b border-border-light">
+      <Container>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {items.map((item, i) => (
+            <div key={i} className="text-center lg:text-left">
+              <p className="text-sm font-bold text-carbon-dark">{item.label}</p>
+              <p className="mt-1 text-xs text-text-muted leading-relaxed">
+                {item.detail}
+              </p>
+            </div>
+          ))}
         </div>
       </Container>
     </section>

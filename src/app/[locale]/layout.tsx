@@ -6,6 +6,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import GoogleAnalytics from "@/components/analytics/GoogleAnalytics";
 import CookieConsent from "@/components/analytics/CookieConsent";
+import LocaleHtmlLang from "@/components/layout/LocaleHtmlLang";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -68,19 +69,18 @@ export default async function LocaleLayout({
   const dict = await getDictionary(locale as Locale);
 
   return (
-    <html lang={locale} className="antialiased">
-      <body className="min-h-screen flex flex-col">
-        <GoogleAnalytics />
-        <a href="#main-content" className="skip-link">
-          {locale === "id" ? "Langsung ke konten" : "Skip to content"}
-        </a>
-        <Header locale={locale as Locale} dict={dict} />
-        <main id="main-content" className="flex-1">
-          {children}
-        </main>
-        <Footer locale={locale as Locale} dict={dict} />
-        <CookieConsent locale={locale} />
-      </body>
-    </html>
+    <>
+      <LocaleHtmlLang locale={locale} />
+      <GoogleAnalytics />
+      <a href="#main-content" className="skip-link">
+        {locale === "id" ? "Langsung ke konten" : "Skip to content"}
+      </a>
+      <Header locale={locale as Locale} dict={dict} />
+      <main id="main-content" className="flex-1">
+        {children}
+      </main>
+      <Footer locale={locale as Locale} dict={dict} />
+      <CookieConsent locale={locale} />
+    </>
   );
 }

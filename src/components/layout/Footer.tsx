@@ -102,12 +102,12 @@ export default function Footer({ locale, dict }: FooterProps) {
             </h3>
             <div className="space-y-3">
               <a
-                href="mailto:info@utamaglobalindocargo.com"
+                href={`mailto:${process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@utamaglobalindocargo.com"}`}
                 className="block text-sm text-white/50 hover:text-white transition-colors"
               >
-                info@utamaglobalindocargo.com
+                {process.env.NEXT_PUBLIC_CONTACT_EMAIL || "info@utamaglobalindocargo.com"}
               </a>
-              <p className="text-sm text-white/50">{dict.footer.address}</p>
+              <p className="text-sm text-white/40">{dict.footer.address}</p>
               <Link
                 href={`${prefix}/contact`}
                 className="inline-block mt-4 bg-logistics-orange text-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-logistics-orange/90 transition-colors"

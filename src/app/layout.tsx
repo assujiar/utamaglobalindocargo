@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "UGC Logistics (Utama Globalindo Cargo)",
+  title: {
+    default: "UGC Logistics (Utama Globalindo Cargo)",
+    template: "%s | UGC Logistics",
+  },
   description: "Freight Forwarding & Logistics Indonesia",
 };
 
@@ -11,5 +14,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <html lang="id" className="antialiased" suppressHydrationWarning>
+      <body className="min-h-screen flex flex-col">{children}</body>
+    </html>
+  );
 }
