@@ -161,3 +161,126 @@ h1, h2, h3, h4, h5, h6 {
 p {
   text-wrap: pretty;
 }
+
+/* === Visual Ornaments === */
+
+/* Dot grid pattern overlay */
+.ornament-dots {
+  background-image: radial-gradient(circle, var(--color-logistics-orange) 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  opacity: 0.06;
+}
+
+/* Diagonal corner accent (top-right) */
+.ornament-corner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, transparent 50%, var(--color-logistics-orange) 50%);
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+/* Geometric cross marker */
+.ornament-cross::after {
+  content: "+";
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 200;
+  color: var(--color-logistics-orange);
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+/* Horizontal rule with diamond center */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ornament-divider::before,
+.ornament-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-border-light),
+    transparent
+  );
+}
+
+/* Noise texture overlay */
+.noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Section diagonal slice transition */
+.section-slice-top {
+  clip-path: polygon(0 4%, 100% 0, 100% 100%, 0 100%);
+}
+
+.section-slice-bottom {
+  clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
+}
+
+/* Animated orange accent line */
+@keyframes line-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.animate-line-grow {
+  animation: line-grow 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  transform-origin: left;
+}
+
+/* Hover lift with shadow */
+.hover-lift {
+  transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px -8px rgba(0, 0, 0, 0.12);
+}
+
+/* Glow pulse on orange elements */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 70, 0, 0); }
+  50% { box-shadow: 0 0 20px 4px rgba(255, 70, 0, 0.15); }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Stagger delay utilities for fine control */
+.delay-50 { animation-delay: 50ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-250 { animation-delay: 250ms; }
+.delay-350 { animation-delay: 350ms; }
+.delay-450 { animation-delay: 450ms; }
+.delay-600 { animation-delay: 600ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-line-grow,
+  .animate-glow-pulse {
+    animation: none;
+  }
+  .hover-lift:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

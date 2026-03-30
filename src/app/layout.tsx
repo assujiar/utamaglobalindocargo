@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SmoothScroll from "@/components/ui/SmoothScroll";
+import ScrollProgress from "@/components/ui/ScrollProgress";
 
 export const metadata: Metadata = {
   title: {
@@ -16,7 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id" className="antialiased" suppressHydrationWarning>
-      <body className="min-h-screen flex flex-col">{children}</body>
+      <body className="min-h-screen flex flex-col">
+        <SmoothScroll>
+          <ScrollProgress />
+          {children}
+        </SmoothScroll>
+      </body>
     </html>
   );
 }

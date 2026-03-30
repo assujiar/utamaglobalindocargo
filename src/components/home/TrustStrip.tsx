@@ -1,4 +1,7 @@
+"use client";
+
 import Container from "@/components/ui/Container";
+import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerReveal";
 import type { Locale } from "@/i18n/config";
 
 interface TrustStripProps {
@@ -26,16 +29,18 @@ export default function TrustStrip({ locale }: TrustStripProps) {
   return (
     <section className="bg-white py-10 lg:py-12 border-b border-border-light">
       <Container>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8" stagger={0.06} physics="tween">
           {items.map((item, i) => (
-            <div key={i} className="text-center lg:text-left">
-              <p className="text-sm font-bold text-carbon-dark">{item.label}</p>
-              <p className="mt-1 text-xs text-text-muted leading-relaxed">
-                {item.detail}
-              </p>
-            </div>
+            <StaggerItem key={i} physics="tween">
+              <div className="text-center lg:text-left">
+                <p className="text-sm font-bold text-carbon-dark">{item.label}</p>
+                <p className="mt-1 text-xs text-text-muted leading-relaxed">
+                  {item.detail}
+                </p>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </Container>
     </section>
   );
