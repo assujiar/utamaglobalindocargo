@@ -7,16 +7,16 @@ interface TrustStripProps {
 
 const capabilities = {
   id: [
-    { label: "6 Kategori Layanan", detail: "Domestik, internasional, customs, gudang, project cargo, charter" },
+    { label: "6 Lini Layanan", detail: "Distribusi, freight internasional, customs, warehousing, project cargo, charter" },
     { label: "Seluruh Indonesia", detail: "Jawa, Sumatera, Kalimantan, Sulawesi, dan seluruh kepulauan" },
-    { label: "Rute Internasional", detail: "Ekspor & impor via laut dan udara ke berbagai negara" },
-    { label: "Satu Koordinator", detail: "Satu dedicated contact person dari awal sampai kargo tiba" },
+    { label: "Rute Internasional", detail: "Ekspor dan impor via laut dan udara ke berbagai negara" },
+    { label: "Model Hybrid", detail: "Kapabilitas in-house dan jaringan carrier partner yang established" },
   ],
   en: [
-    { label: "6 Service Categories", detail: "Domestic, international, customs, warehouse, project cargo, charter" },
+    { label: "6 Service Lines", detail: "Distribution, international freight, customs, warehousing, project cargo, charter" },
     { label: "All of Indonesia", detail: "Java, Sumatra, Kalimantan, Sulawesi, and the entire archipelago" },
-    { label: "International Routes", detail: "Export & import via sea and air to multiple countries" },
-    { label: "One Coordinator", detail: "One dedicated contact person from start to cargo arrival" },
+    { label: "International Routes", detail: "Export and import via sea and air to multiple countries" },
+    { label: "Hybrid Model", detail: "In-house capability combined with established carrier partnerships" },
   ],
 };
 

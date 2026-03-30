@@ -21,8 +21,8 @@ export const industries: Industry[] = [
       en: "Coordinating inbound raw materials from multiple suppliers (domestic and international) with tight production schedules. One component delay can stop an entire production line.",
     },
     solution: {
-      id: "Satu titik koordinasi untuk semua inbound dan outbound. Kami sinkronkan jadwal pengiriman dengan jadwal produksi, handle customs clearance untuk material impor, dan atur distribusi produk jadi ke multiple tujuan.",
-      en: "One coordination point for all inbound and outbound. We synchronize delivery schedules with production schedules, handle customs clearance for imported materials, and manage finished goods distribution to multiple destinations.",
+      id: "Kami sinkronkan jadwal pengiriman inbound dengan jadwal produksi, handle customs clearance untuk material impor dengan dokumen yang diverifikasi sebelum kargo tiba, dan atur distribusi produk jadi ke multiple tujuan. Satu tim yang menangani keseluruhan alur.",
+      en: "We synchronize inbound delivery schedules with production timelines, handle customs clearance for imported materials with documents verified before cargo arrives, and manage finished goods distribution to multiple destinations. One team handling the full flow.",
     },
     relevantServices: ["domestic-distribution", "international-freight", "import-dtd", "warehousing"],
     icon: "factory",

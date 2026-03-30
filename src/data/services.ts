@@ -109,8 +109,8 @@ export const services: ServiceCategory[] = [
       en: "Export and import via sea and air. FCL, LCL, and airfreight for international routes.",
     },
     description: {
-      id: "Freight forwarding internasional bukan cuma soal booking space di kapal. Ada dokumen ekspor-impor, koordinasi dengan shipping line, monitoring transit, dan penanganan di port tujuan. Kami urus keseluruhan alur, dari booking sampai kargo tiba di pelabuhan tujuan.",
-      en: "International freight forwarding is more than booking space on a vessel. There's export-import documentation, coordination with shipping lines, transit monitoring, and handling at the destination port. We manage the entire flow, from booking to cargo arrival at the destination port.",
+      id: "Freight forwarding internasional melibatkan dokumen ekspor-impor, koordinasi dengan shipping line, monitoring transit, dan penanganan di port tujuan. Kami mengelola keseluruhan alur dengan disiplin — dari booking dan dokumentasi sampai kargo tiba di pelabuhan tujuan.",
+      en: "International freight forwarding involves export-import documentation, shipping line coordination, transit monitoring, and destination port handling. We manage the full flow with discipline — from booking and documentation through to cargo arrival at the destination port.",
     },
     subServices: [
       {
@@ -199,8 +199,8 @@ export const services: ServiceCategory[] = [
       en: "Import from supplier's door to your warehouse door. Including customs clearance and brokerage.",
     },
     description: {
-      id: "Impor itu rumit bukan di pengiriman saja, tapi di dokumen dan customs. Satu dokumen salah, kargo bisa tertahan berminggu-minggu. Layanan door-to-door kami menangani semuanya: pickup di supplier, freight, customs clearance, sampai delivery ke gudang Anda. Customs brokerage juga tersedia sebagai layanan terpisah.",
-      en: "The complexity of importing isn't just in the shipping, it's in the documentation and customs. One wrong document can hold your cargo for weeks. Our door-to-door service handles everything: pickup at the supplier, freight, customs clearance, and delivery to your warehouse. Customs brokerage is also available as a standalone service.",
+      id: "Kompleksitas impor ada di dokumen dan customs. Satu dokumen salah, kargo bisa tertahan berminggu-minggu. Layanan door-to-door kami menangani alur lengkap: pickup di supplier, freight, customs clearance yang disiapkan sesuai spesifik kargo Anda, sampai delivery ke gudang. Customs brokerage juga tersedia sebagai layanan terpisah.",
+      en: "The complexity of importing lies in the documentation and customs. One wrong document can hold your cargo for weeks. Our door-to-door service handles the full flow: supplier pickup, freight, customs clearance prepared to the specifics of your cargo, and delivery to your warehouse. Customs brokerage is also available as a standalone service.",
     },
     subServices: [
       {
