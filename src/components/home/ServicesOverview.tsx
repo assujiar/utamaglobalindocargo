@@ -92,7 +92,7 @@ export default function ServicesOverview({ locale, dict }: ServicesOverviewProps
           trigger: section,
           pin: true,
           scrub: 0.8,
-          end: () => "+=" + (track.scrollWidth - window.innerWidth + 200),
+          end: () => "+=" + track.scrollWidth,
           invalidateOnRefresh: true,
         },
       });
