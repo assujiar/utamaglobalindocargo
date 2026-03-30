@@ -188,7 +188,7 @@ export default function Header({ locale, dict }: HeaderProps) {
                 >
                   <Link
                     href={link.href}
-                    className="px-4 py-2 text-sm text-white/70 hover:text-white transition-colors font-medium"
+                    className="px-4 py-2 text-sm text-white/70 hover:text-white transition-colors font-medium hover-underline-slide"
                   >
                     {link.label}
                     <svg
@@ -208,7 +208,7 @@ export default function Header({ locale, dict }: HeaderProps) {
                           <Link
                             key={service.slug}
                             href={`${prefix}/services/${service.slug}`}
-                            className="block px-5 py-3 text-sm text-white/60 hover:text-white hover:bg-white/5 transition-colors"
+                            className="block px-5 py-3 text-sm text-white/60 hover:text-white hover:bg-white/5 transition-colors hover-line-extend"
                           >
                             {service.name[locale]}
                           </Link>
@@ -221,7 +221,7 @@ export default function Header({ locale, dict }: HeaderProps) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="px-4 py-2 text-sm text-white/70 hover:text-white transition-colors font-medium"
+                  className="px-4 py-2 text-sm text-white/70 hover:text-white transition-colors font-medium hover-underline-slide"
                 >
                   {link.label}
                 </Link>
@@ -240,7 +240,7 @@ export default function Header({ locale, dict }: HeaderProps) {
             </Link>
             <Link
               href={`${prefix}/contact`}
-              className="bg-logistics-orange text-white px-5 py-2.5 text-sm font-bold hover:bg-logistics-orange/90 transition-colors"
+              className="bg-logistics-orange text-white px-5 py-2.5 text-sm font-bold transition-colors hover-sweep-fill"
             >
               {dict.nav.contact}
             </Link>

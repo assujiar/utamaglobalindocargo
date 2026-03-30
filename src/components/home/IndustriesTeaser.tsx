@@ -91,9 +91,9 @@ export default function IndustriesTeaser({ locale, dict }: IndustriesTeaserProps
             <StaggerItem key={industry.slug}>
               <Link
                 href={`${prefix}/industries/${industry.slug}`}
-                className="group block p-6 bg-white border border-border-light hover:border-logistics-orange/30 text-center transition-all duration-300 h-full hover-lift"
+                className="group block p-6 bg-white border border-border-light text-center transition-all duration-300 h-full hover-border-draw hover-icon-float"
               >
-                <div className="w-10 h-10 mx-auto mb-3 bg-carbon-dark/5 text-carbon-dark flex items-center justify-center group-hover:bg-logistics-orange/10 group-hover:text-logistics-orange transition-colors">
+                <div className="w-10 h-10 mx-auto mb-3 bg-carbon-dark/5 text-carbon-dark flex items-center justify-center group-hover:bg-logistics-orange/10 group-hover:text-logistics-orange transition-colors hover-icon-target">
                   {industryIcons[industry.icon] || industryIcons.factory}
                 </div>
                 <span className="text-xs font-bold text-carbon-dark group-hover:text-logistics-orange transition-colors">

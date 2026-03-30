@@ -9,6 +9,7 @@ import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/type";
 import { services } from "@/data/services";
+import Tilt3DWrap from "@/components/ui/Tilt3DWrap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -116,26 +117,28 @@ export default function ServicesOverview({ locale, dict }: ServicesOverviewProps
   }, []);
 
   const renderCard = (service: (typeof services)[number]) => (
-    <Link
-      href={`${prefix}/services/${service.slug}`}
-      className="group block p-8 bg-white border border-border-light hover:border-logistics-orange/30 transition-all duration-300 h-full hover-lift"
-    >
-      <div className="w-12 h-12 bg-logistics-orange/10 text-logistics-orange flex items-center justify-center mb-5 group-hover:bg-logistics-orange group-hover:text-white transition-colors duration-300">
-        {iconMap[service.icon]}
-      </div>
-      <h3 className="text-lg font-bold text-carbon-dark mb-3 group-hover:text-logistics-orange transition-colors">
-        {service.name[locale]}
-      </h3>
-      <p className="text-sm text-text-muted leading-relaxed">
-        {service.shortDescription[locale]}
-      </p>
-      <div className="mt-5 flex items-center gap-2 text-sm font-bold text-logistics-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        {dict.common.learnMore}
-        <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </div>
-    </Link>
+    <Tilt3DWrap className="h-full">
+      <Link
+        href={`${prefix}/services/${service.slug}`}
+        className="group block p-8 bg-white border border-border-light hover:border-logistics-orange/30 transition-all duration-300 h-full hover-icon-float hover-line-extend"
+      >
+        <div className="w-12 h-12 bg-logistics-orange/10 text-logistics-orange flex items-center justify-center mb-5 group-hover:bg-logistics-orange group-hover:text-white transition-colors duration-300 hover-icon-target">
+          {iconMap[service.icon]}
+        </div>
+        <h3 className="text-lg font-bold text-carbon-dark mb-3 group-hover:text-logistics-orange transition-colors">
+          {service.name[locale]}
+        </h3>
+        <p className="text-sm text-text-muted leading-relaxed">
+          {service.shortDescription[locale]}
+        </p>
+        <div className="mt-5 flex items-center gap-2 text-sm font-bold text-logistics-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {dict.common.learnMore}
+          <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </div>
+      </Link>
+    </Tilt3DWrap>
   );
 
   return (
@@ -188,7 +191,7 @@ export default function ServicesOverview({ locale, dict }: ServicesOverviewProps
             <div className="mt-12 text-center">
               <Link
                 href={`${prefix}/services`}
-                className="inline-flex items-center gap-3 border border-carbon-dark text-carbon-dark px-8 py-4 font-bold text-sm uppercase tracking-wider hover:bg-carbon-dark hover:text-white transition-colors"
+                className="inline-flex items-center gap-3 border border-carbon-dark text-carbon-dark px-8 py-4 font-bold text-sm uppercase tracking-wider hover:bg-carbon-dark hover:text-white transition-colors hover-shine"
               >
                 {dict.servicesOverview.cta}
               </Link>

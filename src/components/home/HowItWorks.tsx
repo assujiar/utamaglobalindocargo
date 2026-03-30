@@ -168,7 +168,7 @@ export default function HowItWorks({ dict }: HowItWorksProps) {
               {dict.howItWorks.steps.map((step, i) => (
                 <StaggerItem key={i}>
                   <div className="relative group">
-                    <div className="relative z-10 w-16 h-16 bg-carbon-dark text-white flex items-center justify-center font-black text-lg mb-5 group-hover:bg-logistics-orange transition-colors duration-300">
+                    <div className="relative z-10 w-16 h-16 bg-carbon-dark text-white flex items-center justify-center font-black text-lg mb-5 group-hover:bg-logistics-orange transition-colors duration-300 hover-ring-pulse">
                       {String(i + 1).padStart(2, "0")}
                     </div>
                     <h3 className="text-base font-bold text-carbon-dark mb-2">

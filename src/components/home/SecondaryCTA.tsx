@@ -55,7 +55,7 @@ export default function SecondaryCTA({ locale, dict }: SecondaryCTAProps) {
             <MagneticWrap strength={0.15}>
               <Link
                 href={`/${locale}/contact`}
-                className="group inline-flex items-center gap-3 bg-logistics-orange text-white px-10 py-5 font-bold text-sm uppercase tracking-wider hover:bg-logistics-orange-dark transition-colors animate-glow-pulse"
+                className="group inline-flex items-center gap-3 bg-logistics-orange text-white px-10 py-5 font-bold text-sm uppercase tracking-wider transition-colors animate-glow-pulse hover-sweep-fill"
               >
                 {dict.secondaryCta.cta}
                 <svg
