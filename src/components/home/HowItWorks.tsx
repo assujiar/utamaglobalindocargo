@@ -54,6 +54,7 @@ export default function HowItWorks({ dict }: HowItWorksProps) {
 
       const steps = gsap.utils.toArray<HTMLElement>(".process-step", track);
       const getScrollDist = () => track.scrollWidth - window.innerWidth + 60;
+      const getEndDist = () => track.scrollWidth;
 
       // Main horizontal scroll
       const scrollTween = gsap.to(track, {
@@ -63,7 +64,7 @@ export default function HowItWorks({ dict }: HowItWorksProps) {
           trigger: section,
           pin: true,
           scrub: 0.6,
-          end: () => "+=" + (getScrollDist() + 200),
+          end: () => "+=" + getEndDist(),
           invalidateOnRefresh: true,
         },
       });
@@ -79,7 +80,7 @@ export default function HowItWorks({ dict }: HowItWorksProps) {
             scrollTrigger: {
               trigger: section,
               scrub: true,
-              end: () => "+=" + (getScrollDist() + 200),
+              end: () => "+=" + getEndDist(),
             },
           }
         );
