@@ -2,7 +2,7 @@ import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
 /**
  * Server-only Supabase client.
- * Uses SUPABASE_SERVICE_ROLE_KEY — must never be exposed to browser.
+ * Uses SUPABASE_SERVICE_ROLE_KEY  - must never be exposed to browser.
  * Only use in API routes and server components.
  */
 let _serverClient: SupabaseClient | null = null;

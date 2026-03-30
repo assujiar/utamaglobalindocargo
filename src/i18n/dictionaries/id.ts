@@ -2,7 +2,7 @@ import type { Dictionary } from "./type";
 
 const id: Dictionary = {
   metadata: {
-    title: "UGC Logistics — Premium Freight Forwarding | Jakarta, Indonesia",
+    title: "UGC Logistics - Premium Freight Forwarding | Jakarta, Indonesia",
     description:
       "Enam lini layanan logistik terintegrasi: distribusi domestik, freight forwarding internasional, customs brokerage, warehousing, project cargo, dan charter. Berbasis di Jakarta, melayani rute domestik dan internasional.",
   },
@@ -18,10 +18,10 @@ const id: Dictionary = {
   hero: {
     headline: "Presisi di Setiap Pengiriman.",
     subHeadline:
-      "Distribusi domestik. Freight internasional. Customs brokerage. Warehousing. Project cargo. Charter. Enam lini layanan dengan standar yang sama: dokumen diverifikasi sebelum kargo bergerak, timeline dipantau, setiap tahap tercatat.",
+      "Distribusi domestik. Freight internasional. Customs brokerage. Warehousing. Project cargo. Charter. Enam lini layanan, satu standar kerja: dokumen dicek sebelum kargo jalan, timeline dipantau, setiap tahap tercatat.",
     ctaPrimary: "Konsultasi",
     ctaSecondary: "Lihat Layanan",
-    proofLine: "Berbasis di Jakarta. Rute domestik dan internasional.",
+    proofLine: "Berbasis di Jakarta. Melayani rute domestik dan internasional.",
   },
   trustStrip: {
     heading: "Melayani bisnis lintas sektor",
@@ -42,7 +42,7 @@ const id: Dictionary = {
       {
         title: "Pemilihan Moda yang Tepat",
         description:
-          "Truk, kapal, atau pesawat — dipilih berdasarkan profil kargo, timeline, dan struktur biaya Anda. Rekomendasi kami mengikuti kebutuhan shipment.",
+          "Truk, kapal, atau pesawat - dipilih berdasarkan profil kargo, timeline, dan struktur biaya Anda. Rekomendasi kami mengikuti kebutuhan shipment.",
       },
       {
         title: "Persiapan Customs yang Teliti",
@@ -66,7 +66,7 @@ const id: Dictionary = {
   howItWorks: {
     heading: "Proses yang konsisten untuk setiap pengiriman.",
     subHeading:
-      "Apapun ukuran, moda, atau kompleksitasnya — pendekatan terstruktur yang sama berlaku.",
+      "Apapun ukuran, moda, atau kompleksitasnya - pendekatan terstruktur yang sama berlaku.",
     steps: [
       {
         title: "Konsultasi",
@@ -210,7 +210,7 @@ const id: Dictionary = {
       { label: "Kantor Pusat", value: "Jakarta, Indonesia" },
       { label: "Operasi", value: "Domestik (seluruh Indonesia) + Internasional" },
       { label: "Lini Layanan", value: "6 kategori, 25+ sub-layanan" },
-      { label: "Model Operasi", value: "Hybrid — kapabilitas in-house + partnership carrier" },
+      { label: "Model Operasi", value: "Hybrid - kapabilitas in-house + partnership carrier" },
       { label: "Industri Dilayani", value: "Manufacturing, FMCG, E-Commerce, Farmasi, Komoditas, Energi" },
       { label: "Waktu Respons", value: "Dalam 1 hari kerja untuk inquiry baru" },
     ],
@@ -256,7 +256,7 @@ const id: Dictionary = {
       {
         question: "Apa bedanya FCL dan LCL?",
         answer:
-          "FCL (Full Container Load) artinya Anda booking satu kontainer — 20 kaki atau 40 kaki — eksklusif untuk kargo Anda. LCL (Less than Container Load) artinya kargo Anda berbagi ruang kontainer dengan shipper lain. FCL memberikan kapasitas dedicated dan transit biasanya lebih cepat. LCL lebih hemat biaya untuk volume kecil.",
+          "FCL (Full Container Load) artinya Anda booking satu kontainer - 20 kaki atau 40 kaki - eksklusif untuk kargo Anda. LCL (Less than Container Load) artinya kargo Anda berbagi ruang kontainer dengan shipper lain. FCL memberikan kapasitas dedicated dan transit biasanya lebih cepat. LCL lebih hemat biaya untuk volume kecil.",
       },
       {
         question: "Apakah UGC melayani pengiriman ke luar Jawa?",
@@ -271,7 +271,7 @@ const id: Dictionary = {
       {
         question: "Apa maksudnya model operasi hybrid UGC?",
         answer:
-          "Kami menggabungkan kapabilitas operasional in-house — termasuk customs processing, operasi gudang, dan aset distribusi — dengan jaringan carrier dan vendor partner untuk jangkauan yang lebih luas. Ini memberikan kontrol langsung atas proses yang kritikal sekaligus fleksibilitas dan reach dari partner network.",
+          "Kami menggabungkan kapabilitas operasional in-house - termasuk customs processing, operasi gudang, dan aset distribusi - dengan jaringan carrier dan vendor partner untuk jangkauan yang lebih luas. Ini memberikan kontrol langsung atas proses yang kritikal sekaligus fleksibilitas dan reach dari partner network.",
       },
       {
         question: "Industri apa saja yang dilayani UGC?",

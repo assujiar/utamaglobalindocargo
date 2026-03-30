@@ -109,8 +109,8 @@ export const services: ServiceCategory[] = [
       en: "Export and import via sea and air. FCL, LCL, and airfreight for international routes.",
     },
     description: {
-      id: "Freight forwarding internasional melibatkan dokumen ekspor-impor, koordinasi dengan shipping line, monitoring transit, dan penanganan di port tujuan. Kami mengelola keseluruhan alur dengan disiplin — dari booking dan dokumentasi sampai kargo tiba di pelabuhan tujuan.",
-      en: "International freight forwarding involves export-import documentation, shipping line coordination, transit monitoring, and destination port handling. We manage the full flow with discipline — from booking and documentation through to cargo arrival at the destination port.",
+      id: "Freight forwarding internasional melibatkan dokumen ekspor-impor, koordinasi dengan shipping line, monitoring transit, dan penanganan di port tujuan. Kami mengelola keseluruhan alur dengan disiplin, dari booking dan dokumentasi sampai kargo tiba di pelabuhan tujuan.",
+      en: "International freight forwarding involves export-import documentation, shipping line coordination, transit monitoring, and destination port handling. We manage the full flow with discipline, from booking and documentation through to cargo arrival at the destination port.",
     },
     subServices: [
       {

@@ -2,7 +2,7 @@ import type { Dictionary } from "./type";
 
 const en: Dictionary = {
   metadata: {
-    title: "UGC Logistics — Premium Freight Forwarding | Jakarta, Indonesia",
+    title: "UGC Logistics - Premium Freight Forwarding | Jakarta, Indonesia",
     description:
       "Six integrated logistics service lines: domestic distribution, international freight forwarding, customs brokerage, warehousing, project cargo, and charter. Jakarta-based, serving domestic and international routes.",
   },
@@ -18,7 +18,7 @@ const en: Dictionary = {
   hero: {
     headline: "Precision in Motion, Every Mile.",
     subHeadline:
-      "Domestic distribution. International freight. Customs brokerage. Warehousing. Project cargo. Charter. Six service lines, each handled with the same discipline — documents verified, timelines tracked, cargo accounted for.",
+      "Domestic distribution. International freight. Customs brokerage. Warehousing. Project cargo. Charter. Six service lines, each handled with the same discipline - documents verified, timelines tracked, cargo accounted for.",
     ctaPrimary: "Request a Consultation",
     ctaSecondary: "Explore Services",
     proofLine: "Jakarta-based. Domestic and international routes.",
@@ -42,7 +42,7 @@ const en: Dictionary = {
       {
         title: "Considered Mode Selection",
         description:
-          "Truck, vessel, or aircraft — chosen based on your cargo profile, timeline, and cost structure. The recommendation fits the shipment.",
+          "Truck, vessel, or aircraft - chosen based on your cargo profile, timeline, and cost structure. The recommendation fits the shipment.",
       },
       {
         title: "Customs Preparation",
@@ -52,7 +52,7 @@ const en: Dictionary = {
       {
         title: "Transparent Communication",
         description:
-          "Shipment status, cost structure, and delivery timeline — communicated clearly and updated proactively. If conditions change, you hear from us first.",
+          "Shipment status, cost structure, and delivery timeline - communicated clearly and updated proactively. If conditions change, you hear from us first.",
       },
     ],
     cta: "Speak with Our Team",
@@ -66,7 +66,7 @@ const en: Dictionary = {
   howItWorks: {
     heading: "A consistent process for every shipment.",
     subHeading:
-      "Regardless of size, mode, or complexity — the same structured approach applies.",
+      "Regardless of size, mode, or complexity - the same structured approach applies.",
     steps: [
       {
         title: "Consultation",
@@ -210,7 +210,7 @@ const en: Dictionary = {
       { label: "Headquarters", value: "Jakarta, Indonesia" },
       { label: "Operations", value: "Domestic (all Indonesia) + International" },
       { label: "Service Lines", value: "6 categories, 25+ sub-services" },
-      { label: "Operating Model", value: "Hybrid — in-house capability + carrier partnerships" },
+      { label: "Operating Model", value: "Hybrid - in-house capability + carrier partnerships" },
       { label: "Industries Served", value: "Manufacturing, FMCG, E-Commerce, Pharmaceutical, Commodities, Energy" },
       { label: "Response Time", value: "Within 1 business day for new inquiries" },
     ],
@@ -256,7 +256,7 @@ const en: Dictionary = {
       {
         question: "What is the difference between FCL and LCL?",
         answer:
-          "FCL (Full Container Load) means you book an entire container — 20-foot or 40-foot — exclusively for your cargo. LCL (Less than Container Load) means your cargo shares container space with other shippers. FCL provides dedicated capacity and typically faster transit. LCL is more cost-effective for smaller volumes.",
+          "FCL (Full Container Load) means you book an entire container - 20-foot or 40-foot - exclusively for your cargo. LCL (Less than Container Load) means your cargo shares container space with other shippers. FCL provides dedicated capacity and typically faster transit. LCL is more cost-effective for smaller volumes.",
       },
       {
         question: "Do you ship to areas outside Java?",
@@ -271,7 +271,7 @@ const en: Dictionary = {
       {
         question: "What does the hybrid operating model mean?",
         answer:
-          "We combine in-house operational capability — including customs processing, warehouse operations, and distribution assets — with established carrier and vendor partnerships for broader network coverage. This gives us direct control over quality-critical processes while maintaining the flexibility and reach that partner networks provide.",
+          "We combine in-house operational capability - including customs processing, warehouse operations, and distribution assets - with established carrier and vendor partnerships for broader network coverage. This gives us direct control over quality-critical processes while maintaining the flexibility and reach that partner networks provide.",
       },
       {
         question: "What industries does UGC serve?",

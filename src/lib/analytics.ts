@@ -21,7 +21,7 @@ export function trackEvent(name: string, params?: EventParams) {
     return;
   }
 
-  // Development fallback — log to console
+  // Development fallback  - log to console
   if (process.env.NODE_ENV === "development") {
     console.info(`[analytics] ${name}`, params);
   }

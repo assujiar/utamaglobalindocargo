@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
-// Server-side validation schema — stricter than client
+// Server-side validation schema  - stricter than client
 const leadSchema = z.object({
   contact_person: z.string().min(2).max(200),
   company_name: z.string().min(2).max(200),
@@ -14,7 +14,7 @@ const leadSchema = z.object({
   timeline: z.string().max(200).optional().default(""),
   privacy_consent: z.literal(true, { error: "Privacy consent is required" }),
   utm_attribution: z.record(z.string(), z.string()).optional().default({}),
-  // Honeypot — must be empty
+  // Honeypot  - must be empty
   website_url: z.string().max(0).optional(),
 });
 
@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
 
-    // Honeypot check — bots fill hidden fields
+    // Honeypot check  - bots fill hidden fields
     if (body.website_url && body.website_url.length > 0) {
       // Return fake success to bots
       return NextResponse.json({ success: true });

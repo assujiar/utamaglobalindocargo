@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import Container from "@/components/ui/Container";
+import TextReveal from "@/components/ui/TextReveal";
+import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerReveal";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/type";
@@ -49,29 +51,47 @@ export default function IndustriesTeaser({ locale, dict }: IndustriesTeaserProps
   const prefix = `/${locale}`;
 
   return (
-    <section className="section-light py-20 lg:py-28">
+    <section className="section-light py-20 lg:py-28 relative overflow-hidden">
+      {/* Chapter marker */}
+      <div className="absolute top-8 right-6 lg:right-16 text-[10rem] lg:text-[16rem] font-black text-carbon-dark/[0.02] leading-none select-none pointer-events-none">
+        05
+      </div>
+
+      {/* Geometric cross */}
+      <div className="absolute top-24 left-12 text-logistics-orange/[0.07] font-mono text-4xl font-light hidden lg:block select-none pointer-events-none">
+        +
+      </div>
+
       <Container>
         <AnimateOnScroll>
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-[2px] bg-logistics-orange" />
+            <div className="w-12 h-[2px] bg-logistics-orange animate-line-grow" />
             <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">
               {dict.nav.industries}
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-carbon-dark tracking-tight leading-[1.1] max-w-3xl">
-            {dict.industriesTeaser.heading}
-          </h2>
+        </AnimateOnScroll>
+
+        <TextReveal
+          as="h2"
+          variant="word"
+          className="text-3xl md:text-4xl lg:text-5xl font-black text-carbon-dark tracking-tight leading-[1.1] max-w-3xl"
+        >
+          {dict.industriesTeaser.heading}
+        </TextReveal>
+
+        <AnimateOnScroll delay={0.15}>
           <p className="mt-4 text-base md:text-lg text-text-muted leading-relaxed max-w-2xl">
             {dict.industriesTeaser.subHeading}
           </p>
         </AnimateOnScroll>
 
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {industries.map((industry, i) => (
-            <AnimateOnScroll key={industry.slug} delay={i * 0.06}>
+        <StaggerContainer className="mt-14 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4" stagger={0.06}>
+          {industries.map((industry) => (
+            <StaggerItem key={industry.slug}>
               <Link
                 href={`${prefix}/industries/${industry.slug}`}
-                className="group block p-6 bg-white border border-border-light hover:border-logistics-orange/30 text-center transition-all duration-300 hover:shadow-md h-full"
+                className="group block p-6 bg-white border border-border-light hover:border-logistics-orange/30 text-center transition-all duration-300 h-full hover-lift"
               >
                 <div className="w-10 h-10 mx-auto mb-3 bg-carbon-dark/5 text-carbon-dark flex items-center justify-center group-hover:bg-logistics-orange/10 group-hover:text-logistics-orange transition-colors">
                   {industryIcons[industry.icon] || industryIcons.factory}
@@ -80,9 +100,9 @@ export default function IndustriesTeaser({ locale, dict }: IndustriesTeaserProps
                   {industry.name[locale]}
                 </span>
               </Link>
-            </AnimateOnScroll>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         <AnimateOnScroll delay={0.3}>
           <div className="mt-10 text-center">

@@ -1,12 +1,18 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
+import TextReveal from "@/components/ui/TextReveal";
+import { StaggerContainer, StaggerItem } from "@/components/ui/StaggerReveal";
 import AnimateOnScroll from "@/components/ui/AnimateOnScroll";
 import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/dictionaries/type";
 import { services } from "@/data/services";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface ServicesOverviewProps {
   locale: Locale;
@@ -46,63 +52,176 @@ const iconMap: Record<string, React.ReactNode> = {
   ),
 };
 
+// Per-card animation configs (each unique)
+const cardAnimations = [
+  { from: { scale: 0.75, opacity: 0 }, to: { scale: 1, opacity: 1 } },
+  { from: { y: 80, rotation: 5, opacity: 0 }, to: { y: 0, rotation: 0, opacity: 1 } },
+  { from: { xPercent: 40, opacity: 0 }, to: { xPercent: 0, opacity: 1 } },
+  { from: { y: -60, rotation: -3, opacity: 0 }, to: { y: 0, rotation: 0, opacity: 1 } },
+  { from: { scale: 0.85, y: 50, opacity: 0 }, to: { scale: 1, y: 0, opacity: 1 } },
+  { from: { xPercent: -30, skewX: 6, opacity: 0 }, to: { xPercent: 0, skewX: 0, opacity: 1 } },
+];
+
 export default function ServicesOverview({ locale, dict }: ServicesOverviewProps) {
   const prefix = `/${locale}`;
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1024px)", () => {
+      const track = trackRef.current;
+      const section = sectionRef.current;
+      if (!track || !section) return;
+
+      const cards = gsap.utils.toArray<HTMLElement>(".service-card", track);
+
+      // Reveal track after GSAP sets initial states
+      gsap.set(track, { visibility: "visible" });
+
+      // Main horizontal scroll with pin
+      const scrollTween = gsap.to(track, {
+        x: () => -(track.scrollWidth - window.innerWidth + 60),
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          pin: true,
+          scrub: 0.8,
+          end: () => "+=" + (track.scrollWidth - window.innerWidth + 200),
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // Per-card unique animations triggered by horizontal position
+      cards.forEach((card, i) => {
+        const anim = cardAnimations[i % cardAnimations.length];
+        gsap.fromTo(card, anim.from, {
+          ...anim.to,
+          scrollTrigger: {
+            trigger: card,
+            containerAnimation: scrollTween,
+            start: "left 90%",
+            end: "left 55%",
+            scrub: true,
+          },
+        });
+      });
+    });
+
+    return () => mm.revert();
+  }, []);
+
+  const renderCard = (service: (typeof services)[number]) => (
+    <Link
+      href={`${prefix}/services/${service.slug}`}
+      className="group block p-8 bg-white border border-border-light hover:border-logistics-orange/30 transition-all duration-300 h-full hover-lift"
+    >
+      <div className="w-12 h-12 bg-logistics-orange/10 text-logistics-orange flex items-center justify-center mb-5 group-hover:bg-logistics-orange group-hover:text-white transition-colors duration-300">
+        {iconMap[service.icon]}
+      </div>
+      <h3 className="text-lg font-bold text-carbon-dark mb-3 group-hover:text-logistics-orange transition-colors">
+        {service.name[locale]}
+      </h3>
+      <p className="text-sm text-text-muted leading-relaxed">
+        {service.shortDescription[locale]}
+      </p>
+      <div className="mt-5 flex items-center gap-2 text-sm font-bold text-logistics-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        {dict.common.learnMore}
+        <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </div>
+    </Link>
+  );
 
   return (
-    <section className="section-light py-20 lg:py-28">
-      <Container>
-        <AnimateOnScroll>
-          <SectionHeading
-            title={dict.servicesOverview.heading}
-            subtitle={dict.servicesOverview.subHeading}
-          />
-        </AnimateOnScroll>
+    <section className="section-light relative overflow-hidden">
+      {/* Chapter marker */}
+      <div className="absolute top-8 left-6 lg:left-16 text-[10rem] lg:text-[16rem] font-black text-carbon-dark/[0.02] leading-none select-none pointer-events-none">
+        03
+      </div>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service, i) => (
-            <AnimateOnScroll key={service.slug} delay={i * 0.08}>
+      {/* Dot grid ornament */}
+      <div className="absolute top-0 right-0 w-32 h-32 ornament-dots" />
+
+      <div ref={sectionRef} className="py-20 lg:py-28">
+        <Container>
+          <AnimateOnScroll>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-[2px] bg-logistics-orange animate-line-grow" />
+              <span className="text-logistics-orange text-xs font-bold uppercase tracking-[0.3em]">
+                {dict.nav.services}
+              </span>
+            </div>
+          </AnimateOnScroll>
+
+          <TextReveal
+            as="h2"
+            variant="clip"
+            className="text-3xl md:text-4xl lg:text-5xl font-black text-carbon-dark tracking-tight leading-[1.1]"
+          >
+            {dict.servicesOverview.heading}
+          </TextReveal>
+
+          <AnimateOnScroll delay={0.15}>
+            <p className="mt-4 text-base md:text-lg text-text-muted leading-relaxed max-w-2xl">
+              {dict.servicesOverview.subHeading}
+            </p>
+          </AnimateOnScroll>
+        </Container>
+
+        {/* Mobile: stagger grid */}
+        <Container className="lg:hidden">
+          <StaggerContainer className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6" stagger={0.08}>
+            {services.map((service) => (
+              <StaggerItem key={service.slug}>
+                {renderCard(service)}
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+
+          <AnimateOnScroll delay={0.3}>
+            <div className="mt-12 text-center">
               <Link
-                href={`${prefix}/services/${service.slug}`}
-                className="group block p-8 bg-white border border-border-light hover:border-logistics-orange/30 transition-all duration-300 hover:shadow-lg h-full"
+                href={`${prefix}/services`}
+                className="inline-flex items-center gap-3 border border-carbon-dark text-carbon-dark px-8 py-4 font-bold text-sm uppercase tracking-wider hover:bg-carbon-dark hover:text-white transition-colors"
               >
-                <div className="w-12 h-12 bg-logistics-orange/10 text-logistics-orange flex items-center justify-center mb-5 group-hover:bg-logistics-orange group-hover:text-white transition-colors duration-300">
-                  {iconMap[service.icon]}
-                </div>
-                <h3 className="text-lg font-bold text-carbon-dark mb-3 group-hover:text-logistics-orange transition-colors">
-                  {service.name[locale]}
-                </h3>
-                <p className="text-sm text-text-muted leading-relaxed">
-                  {service.shortDescription[locale]}
-                </p>
-                <div className="mt-5 flex items-center gap-2 text-sm font-bold text-logistics-orange opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {dict.common.learnMore}
-                  <svg
-                    className="w-4 h-4 transition-transform group-hover:translate-x-1"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </div>
+                {dict.servicesOverview.cta}
               </Link>
-            </AnimateOnScroll>
-          ))}
-        </div>
+            </div>
+          </AnimateOnScroll>
+        </Container>
 
-        <AnimateOnScroll delay={0.3}>
-          <div className="mt-12 text-center">
+        {/* Desktop: horizontal scroll track */}
+        <div
+          ref={trackRef}
+          className="hidden lg:flex gap-8 mt-14 invisible"
+          style={{ paddingLeft: "max(2rem, calc((100vw - 80rem) / 2 + 2rem))", paddingRight: "4rem" }}
+        >
+          {services.map((service) => (
+            <div key={service.slug} className="service-card w-[380px] flex-shrink-0">
+              {renderCard(service)}
+            </div>
+          ))}
+
+          {/* CTA as final element in scroll */}
+          <div className="service-card flex items-center justify-center w-[300px] flex-shrink-0">
             <Link
               href={`${prefix}/services`}
-              className="inline-flex items-center gap-3 border border-carbon-dark text-carbon-dark px-8 py-4 font-bold text-sm uppercase tracking-wider hover:bg-carbon-dark hover:text-white transition-colors"
+              className="inline-flex items-center gap-3 border border-carbon-dark text-carbon-dark px-8 py-4 font-bold text-sm uppercase tracking-wider hover:bg-carbon-dark hover:text-white transition-colors whitespace-nowrap"
             >
               {dict.servicesOverview.cta}
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
             </Link>
           </div>
-        </AnimateOnScroll>
-      </Container>
+        </div>
+      </div>
     </section>
   );
 }
