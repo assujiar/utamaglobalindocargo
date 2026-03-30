@@ -2,9 +2,9 @@ import type { Dictionary } from "./type";
 
 const id: Dictionary = {
   metadata: {
-    title: "UGC Logistics - Freight Forwarder & Operator Logistik | Jakarta, Indonesia",
+    title: "UGC Logistics — Premium Freight Forwarding | Jakarta, Indonesia",
     description:
-      "Freight forwarder dengan kapabilitas eksekusi langsung: distribusi domestik, forwarding internasional, customs brokerage, warehousing, project cargo, dan charter. Jakarta, Indonesia.",
+      "Enam lini layanan logistik terintegrasi: distribusi domestik, freight forwarding internasional, customs brokerage, warehousing, project cargo, dan charter. Berbasis di Jakarta, melayani rute domestik dan internasional.",
   },
   nav: {
     home: "Beranda",
@@ -13,109 +13,110 @@ const id: Dictionary = {
     caseStudies: "Studi Kasus",
     about: "Tentang",
     faq: "FAQ",
-    contact: "Hubungi Kami",
+    contact: "Kontak",
   },
   hero: {
-    headline: "Freight forwarder yang pegang kendali operasional.",
+    headline: "Presisi di Setiap Pengiriman.",
     subHeadline:
-      "Distribusi darat seluruh Jawa. Kontainer dan airfreight ke 5 benua. Customs clearance dengan tim sendiri. Gudang di Jakarta. Satu perusahaan yang mengeksekusi, dari pickup sampai delivered.",
-    ctaPrimary: "Konsultasi Logistik",
-    ctaSecondary: "Lihat Layanan Kami",
-    proofLine: "Berbasis di Jakarta. Melayani rute domestik dan internasional.",
+      "Distribusi domestik. Freight internasional. Customs brokerage. Warehousing. Project cargo. Charter. Enam lini layanan dengan standar yang sama: dokumen diverifikasi sebelum kargo bergerak, timeline dipantau, setiap tahap tercatat.",
+    ctaPrimary: "Konsultasi",
+    ctaSecondary: "Lihat Layanan",
+    proofLine: "Berbasis di Jakarta. Rute domestik dan internasional.",
   },
   trustStrip: {
-    heading: "Dipercaya oleh perusahaan di berbagai sektor",
+    heading: "Melayani bisnis lintas sektor",
     description:
-      "Melayani manufacturing, FMCG, e-commerce, farmasi, komoditas, dan energi di seluruh Indonesia dan rute internasional.",
+      "Manufacturing, FMCG, e-commerce, farmasi, komoditas, dan energi. Rute domestik seluruh Indonesia dan freight internasional ke jalur perdagangan utama.",
   },
   whyUgc: {
     label: "Kenapa UGC",
-    heading: "Infrastruktur operasional, bukan cuma jaringan vendor.",
+    heading: "Detail yang menentukan apakah pengiriman Anda tiba sesuai jadwal.",
     subHeading:
-      "Punya armada distribusi, gudang, dan tim customs sendiri berarti kami punya kontrol langsung. Masalah bisa ditangkap lebih awal, keputusan bisa diambil lebih cepat.",
+      "Freight forwarding melibatkan dokumen, regulasi, koordinasi carrier, dan penanganan fisik. Kalau salah satunya ditangani asal-asalan, pengiriman terlambat. Kami tidak menangani satupun dengan asal-asalan.",
     items: [
       {
-        title: "Kapabilitas Eksekusi Langsung",
+        title: "Disiplin Dokumen",
         description:
-          "Armada distribusi darat, gudang operasional di Jakarta, dan booking langsung ke shipping line serta airline. Operasi dikendalikan dari dalam, bukan disubkonkan.",
+          "Kode HS, commercial invoice, dan packing list diverifikasi sebelum kargo bergerak. Keterlambatan customs karena kesalahan dokumen itu bisa dicegah.",
       },
       {
-        title: "Multi-Moda, Satu Operasional",
+        title: "Pemilihan Moda yang Tepat",
         description:
-          "Truk, kapal, pesawat, atau kombinasinya. Semua moda dikelola dari satu tim operasi, jadi tidak ada gap waktu antar perpindahan kargo.",
+          "Truk, kapal, atau pesawat — dipilih berdasarkan profil kargo, timeline, dan struktur biaya Anda. Rekomendasi kami mengikuti kebutuhan shipment.",
       },
       {
-        title: "Customs In-House",
+        title: "Persiapan Customs yang Teliti",
         description:
-          "Tim customs sendiri yang verifikasi HS code, invoice, dan packing list sebelum kargo bergerak. Clearance lebih cepat, risiko denda lebih kecil.",
+          "Setiap clearance disiapkan berdasarkan kebutuhan spesifik kargo dan regulasi yang berlaku. Dokumen yang sudah diverifikasi mengurangi waktu tunggu di pelabuhan.",
       },
       {
-        title: "Transparansi Biaya dan Status",
+        title: "Komunikasi Transparan",
         description:
-          "Posisi kargo, breakdown biaya, ETA. Anda tahu persis kondisi pengiriman tanpa harus kejar-kejaran minta update.",
+          "Status pengiriman, struktur biaya, dan timeline delivery dikomunikasikan dengan jelas dan di-update secara proaktif. Kalau ada perubahan kondisi, Anda tahu lebih dulu.",
       },
     ],
     cta: "Hubungi Tim Kami",
   },
   servicesOverview: {
-    heading: "Enam lini layanan. Dioperasikan langsung.",
+    heading: "Enam lini layanan. Satu standar operasional.",
     subHeading:
-      "Distribusi se-Jawa. Kontainer ke Eropa. Customs clearance. Bonded warehouse. Project cargo. Charter. Semua dieksekusi dari satu operasional.",
+      "Dari distribusi lokal se-Jawa sampai kontainer internasional, dari dokumentasi customs sampai bonded warehouse. Semua dikelola dengan disiplin dan perhatian yang sama.",
     cta: "Lihat Semua Layanan",
   },
   howItWorks: {
-    heading: "Dari brief sampai barang tiba.",
+    heading: "Proses yang konsisten untuk setiap pengiriman.",
     subHeading:
-      "Satu PIC dari awal sampai akhir, didukung tim planner, booking desk, customs, dan warehouse yang mengeksekusi setiap tahap.",
+      "Apapun ukuran, moda, atau kompleksitasnya — pendekatan terstruktur yang sama berlaku.",
     steps: [
       {
         title: "Konsultasi",
         description:
-          "Ceritakan detail kargo, rute, dan timeline Anda. Kami analisis kombinasi moda dan carrier yang paling optimal.",
+          "Anda sampaikan detail kargo, kebutuhan rute, dan timeline. Kami assess kombinasi moda, routing, dan penanganan yang sesuai.",
       },
       {
-        title: "Perencanaan & Booking",
+        title: "Perencanaan",
         description:
-          "Kami susun rencana pengiriman, reservasi kapasitas di carrier, dan siapkan semua dokumen dari awal.",
+          "Rencana pengiriman dikonfirmasi. Kapasitas carrier di-booking. Dokumen disiapkan dan diverifikasi lebih awal.",
       },
       {
         title: "Eksekusi",
         description:
-          "Kargo bergerak sesuai rencana. Anda terima update status secara proaktif, tanpa harus mengejar banyak vendor.",
+          "Kargo bergerak sesuai rencana. Update status diberikan secara proaktif selama transit.",
       },
       {
-        title: "Pengiriman & Clearance",
+        title: "Clearance & Delivery",
         description:
-          "Barang tiba di tujuan. Customs cleared, dokumen lengkap, pengiriman dikonfirmasi di gudang Anda.",
+          "Customs diproses. Kargo di-clear. Delivery dikonfirmasi di lokasi yang Anda tentukan.",
       },
       {
-        title: "Laporan & Review",
+        title: "Pelaporan",
         description:
-          "Laporan pengiriman lengkap dikirim. Data performa yang bisa Anda pakai untuk perencanaan dan optimasi biaya ke depan.",
+          "Laporan pengiriman dikirim lengkap dengan breakdown biaya, performa timeline, dan catatan untuk referensi ke depan.",
       },
     ],
   },
   proof: {
-    heading: "Bagaimana Kami Membantu",
+    heading: "Skenario Operasional",
     subHeading:
-      "Contoh nyata koordinasi logistik untuk klien di berbagai industri.",
-    cta: "Lihat Studi Kasus Lainnya",
+      "Contoh representatif bagaimana kami menangani tantangan logistik di berbagai industri.",
+    cta: "Lihat Semua Studi Kasus",
   },
   industriesTeaser: {
-    heading: "Dibangun untuk industri di mana kegagalan logistik berarti kerugian nyata.",
+    heading: "Industri di mana presisi logistik berdampak langsung.",
     subHeading:
-      "Lini produksi yang berhenti. Batch farmasi yang expired. Deadline proyek dengan penalty clause. Kami paham apa yang dipertaruhkan.",
+      "Jadwal produksi, tenggat regulasi, penalty clause di kontrak proyek. Kami paham apa yang dipertaruhkan kalau pengiriman tidak sesuai rencana.",
     cta: "Lihat Semua Industri",
   },
   secondaryCta: {
-    heading: "Mulai dari satu percakapan.",
+    heading: "Sampaikan kebutuhan pengiriman Anda.",
     subHeading:
-      "Ceritakan apa yang Anda kirim, ke mana tujuannya, dan kapan harus sampai. Tim kami balas dengan opsi rute dan estimasi biaya dalam 1 hari kerja.",
-    cta: "Hubungi Tim Kami",
+      "Ceritakan detail kargo, rute, dan timeline. Tim kami akan merespons dalam satu hari kerja dengan assessment terstruktur.",
+    cta: "Mulai Percakapan",
   },
   footer: {
     tagline: "We Care What We Deliver",
-    description: "Freight forwarder dengan kapabilitas eksekusi langsung: distribusi, forwarding, customs brokerage, warehousing, project cargo, dan charter.",
+    description:
+      "Premium freight forwarding. Enam lini layanan terintegrasi: distribusi domestik, freight internasional, customs brokerage, warehousing, project cargo, dan charter.",
     servicesLabel: "Layanan",
     companyLabel: "Perusahaan",
     contactLabel: "Hubungi Kami",
@@ -124,25 +125,25 @@ const id: Dictionary = {
     addressFull: "Jakarta, Indonesia",
   },
   contact: {
-    heading: "Mari Bicara Logistik",
+    heading: "Mulai Percakapan",
     subHeading:
-      "Ceritakan kebutuhan pengiriman Anda, dan salah satu spesialis kami akan merespons dalam 1 hari kerja dengan opsi rute dan estimasi biaya.",
+      "Jelaskan kebutuhan pengiriman Anda. Tim logistik kami akan review dan merespons dalam satu hari kerja dengan opsi rute dan kerangka biaya awal.",
     step1Title: "Apa yang perlu Anda kirim?",
-    step2Title: "Seberapa besar operasi Anda?",
-    step3Title: "Ke mana kami bisa menghubungi Anda?",
+    step2Title: "Seberapa besar skala operasi Anda?",
+    step3Title: "Bagaimana kami bisa menghubungi Anda?",
     stepOf: "dari",
     next: "Lanjutkan",
     back: "Kembali",
-    submit: "Kirim Permintaan",
+    submit: "Kirim Inquiry",
     submitting: "Mengirim...",
-    successTitle: "Permintaan Diterima.",
+    successTitle: "Inquiry Diterima.",
     successMessage:
-      "Tim logistik kami akan review kebutuhan Anda dan merespons dalam 1 hari kerja untuk menjadwalkan diskusi awal.",
+      "Tim logistik kami akan review kebutuhan Anda dan merespons dalam satu hari kerja untuk membahas langkah selanjutnya.",
     directContact: "Atau hubungi kami langsung",
     orContactDirectly: "Anda juga bisa menghubungi kami langsung via email atau WhatsApp.",
     privacyConsent:
-      "Saya menyetujui bahwa data yang saya kirim akan digunakan oleh PT Utama Globalindo Cargo untuk merespons permintaan ini dan menghubungi saya terkait layanan logistik. Data tidak akan dibagikan ke pihak ketiga tanpa persetujuan.",
-    responseTime: "Rata-rata waktu respons: dalam 1 hari kerja",
+      "Saya menyetujui bahwa data yang saya kirim akan digunakan oleh PT Utama Globalindo Cargo untuk merespons inquiry ini dan menghubungi saya terkait layanan logistik. Data tidak akan dibagikan ke pihak ketiga tanpa persetujuan.",
+    responseTime: "Waktu respons: dalam 1 hari kerja",
     fields: {
       contactPerson: "Nama Lengkap",
       companyName: "Nama Perusahaan",
@@ -174,119 +175,119 @@ const id: Dictionary = {
   about: {
     heading: "Tentang UGC Logistics",
     subHeading:
-      "PT Utama Globalindo Cargo adalah freight forwarder berbasis di Jakarta dengan kapabilitas eksekusi langsung di distribusi, forwarding internasional, customs brokerage, dan warehousing.",
+      "PT Utama Globalindo Cargo adalah freight forwarder berbasis Jakarta yang mengoperasikan enam lini layanan logistik terintegrasi untuk rute domestik dan internasional.",
     missionHeading: "Apa yang Kami Kerjakan",
     missionText:
-      "UGC mengoperasikan distribusi darat, mengelola gudang, mengeksekusi customs clearance dengan tim sendiri, dan booking langsung ke shipping line serta airline. Klien berurusan dengan satu perusahaan yang punya kendali operasional di setiap tahap pengiriman.",
-    storyHeading: "Kontrol Operasional Langsung",
+      "Kami menangani freight forwarding, customs brokerage, warehousing, dan distribusi. Model operasi kami menggabungkan kapabilitas in-house dengan jaringan carrier dan vendor partner yang sudah established. Pendekatan hybrid ini memberikan kontrol langsung di proses yang kritikal dan jangkauan jaringan di area yang membutuhkan.",
+    storyHeading: "Cara Kami Bekerja",
     storyText:
-      "Dengan kapabilitas eksekusi sendiri di transport, customs, dan warehousing, kami punya visibilitas dan kontrol yang lebih tinggi dibanding forwarder yang sepenuhnya bergantung pada subkontraktor. Masalah bisa ditangkap lebih awal, keputusan bisa diambil lebih cepat, dan klien mendapat satu pihak yang bertanggung jawab penuh.",
-    valuesHeading: "Prinsip Kerja Kami",
+      "Setiap pengiriman mengikuti proses terstruktur: dokumen diverifikasi sebelum kargo bergerak, moda transport dipilih berdasarkan kebutuhan aktual pengiriman, dan update diberikan secara proaktif selama transit. Detail dicek. Timeline dipantau. Masalah di-flag lebih awal.",
+    valuesHeading: "Prinsip Operasional",
     values: [
       {
-        title: "Transparansi di Depan",
+        title: "Presisi dalam Penanganan",
         description:
-          "Anda tahu persis posisi kargo, berapa biayanya, dan kapan jadwal tiba. Kami kasih penawaran jujur dan flagging masalah lebih awal, bukan setelah jadi mahal.",
+          "Klasifikasi kargo diverifikasi. Dokumen di-cross-check. Jadwal dikonfirmasi sebelum eksekusi. Pekerjaan yang mencegah masalah dilakukan sebelum kargo bergerak.",
       },
       {
-        title: "Keandalan Berbasis Rute",
+        title: "Komunikasi yang Jujur",
         description:
-          "Kami pilih carrier dan rute berdasarkan track record, bukan tarif termurah. Pengiriman yang reliable menghemat lebih banyak uang daripada yang murah tapi telat.",
+          "Timeline yang realistis. Struktur biaya yang transparan. Peringatan dini saat kondisi berubah. Jawaban yang realistis lebih berguna daripada yang sekadar menyenangkan.",
       },
       {
-        title: "Operasional Responsif",
+        title: "Keahlian Customs",
         description:
-          "Tim operasional yang angkat telepon saat dibutuhkan. Masalah logistik tidak menunggu jam kerja, dan kami juga tidak.",
+          "Customs clearance adalah titik di mana pengiriman bisa cepat atau lambat. Setiap clearance disiapkan secara individual berdasarkan spesifik kargo, asal, dan konteks regulasi.",
       },
       {
-        title: "Presisi Dokumen",
+        title: "Konsistensi Proses",
         description:
-          "Customs clearance yang lancar dimulai dari dokumen yang benar. Kami verifikasi kode HS, invoice, dan packing list sebelum kargo bergerak, bukan setelah tertahan di pelabuhan.",
+          "Setiap pengiriman mengikuti workflow yang terdefinisi dari inquiry sampai laporan delivery. Konsistensi mengurangi kesalahan. Kesalahan menyebabkan keterlambatan. Keterlambatan bikin rugi.",
       },
     ],
     operationalHeading: "Profil Operasional",
     operationalItems: [
       { label: "Kantor Pusat", value: "Jakarta, Indonesia" },
-      { label: "Cakupan Operasi", value: "Domestik (seluruh Indonesia) + Internasional" },
+      { label: "Operasi", value: "Domestik (seluruh Indonesia) + Internasional" },
       { label: "Lini Layanan", value: "6 kategori, 25+ sub-layanan" },
-      { label: "Aset Operasional", value: "Armada distribusi, gudang, tim customs in-house" },
+      { label: "Model Operasi", value: "Hybrid — kapabilitas in-house + partnership carrier" },
       { label: "Industri Dilayani", value: "Manufacturing, FMCG, E-Commerce, Farmasi, Komoditas, Energi" },
       { label: "Waktu Respons", value: "Dalam 1 hari kerja untuk inquiry baru" },
     ],
     teamHeading: "Tim Kami",
     teamText:
-      "Tim operasional UGC terdiri dari planner, booking desk, customs officer, dan warehouse crew. Setiap klien mendapat PIC dedicated yang punya akses langsung ke seluruh lini operasi.",
+      "Tim operasional kami terdiri dari route planner, koordinator booking, customs specialist, dan warehouse personnel. Setiap klien mendapat satu kontak dedicated dengan akses langsung ke tim operasional yang menangani pengiriman mereka.",
     teamPlaceholder: "Foto tim akan ditambahkan",
-    ctaHeading: "Siap Menyederhanakan Logistik Anda?",
+    ctaHeading: "Mari diskusikan kebutuhan logistik Anda.",
     ctaText:
-      "Ceritakan kebutuhan pengiriman Anda. Tim kami akan analisis rute, moda, dan opsi biaya terbaik untuk operasi Anda.",
+      "Sampaikan detail pengiriman dan tim kami akan memberikan assessment terstruktur dengan opsi rute dan kerangka biaya.",
     ctaButton: "Hubungi Tim Kami",
   },
   faq: {
-    heading: "Pertanyaan yang Sering Ditanyakan",
+    heading: "Pertanyaan yang Sering Diajukan",
     subHeading:
-      "Jawaban langsung tentang layanan, proses, dan apa yang bisa Anda harapkan saat bekerja dengan UGC Logistics.",
+      "Jawaban praktis tentang layanan, proses, dan apa yang bisa Anda harapkan.",
     items: [
       {
-        question: "Layanan apa saja yang dicakup UGC Logistics?",
+        question: "Layanan apa saja yang disediakan UGC Logistics?",
         answer:
-          "Enam kategori layanan: distribusi domestik (FTL, LTL, FCL, LCL, airfreight), freight forwarding internasional (ekspor dan impor via laut dan udara), import door-to-door dengan customs brokerage, warehousing dan fulfillment (general, bonded, pick-and-pack, cross-docking), project cargo dan special handling (heavy lift, DG, temperature controlled), serta blocspace dan charter untuk kapasitas terjamin.",
+          "Enam kategori layanan: distribusi domestik (FTL, LTL, FCL, LCL, airfreight), freight forwarding internasional (ekspor dan impor via laut dan udara), import door-to-door dengan customs brokerage, warehousing dan fulfillment (general, bonded, pick-and-pack, cross-docking), project cargo dan special handling (heavy lift, dangerous goods, temperature controlled), serta blocspace dan charter untuk kapasitas terjamin.",
       },
       {
         question: "Berapa lama proses customs clearance biasanya?",
         answer:
-          "Untuk impor standar dengan dokumen lengkap, customs clearance di pelabuhan utama Indonesia biasanya 2 sampai 5 hari kerja. Durasi tergantung klasifikasi barang, kelengkapan dokumen, dan jalur inspeksi (merah, kuning, atau hijau). Kami persiapkan dan verifikasi semua dokumen sebelum kargo tiba untuk meminimalkan waktu tunggu di pelabuhan.",
+          "Untuk impor standar dengan dokumen lengkap, customs clearance di pelabuhan utama Indonesia biasanya 2 sampai 5 hari kerja. Timeline tergantung klasifikasi barang, kelengkapan dokumen, dan jalur inspeksi (merah, kuning, atau hijau). Kami persiapkan dan verifikasi semua dokumen sebelum kargo tiba untuk meminimalkan waktu tunggu di pelabuhan.",
       },
       {
         question: "Apakah UGC bisa menangani barang berbahaya (DG)?",
         answer:
-          "Ya. Kami kirim dangerous goods sesuai regulasi IATA untuk udara dan IMDG untuk laut. Tim kami handle klasifikasi DG, sertifikasi pengemasan, labeling, dan semua dokumentasi yang diperlukan. Beberapa kelas DG butuh lead time booking lebih lama karena keterbatasan kapasitas carrier.",
+          "Ya. Kami menangani dangerous goods sesuai regulasi IATA untuk udara dan IMDG untuk laut. Ini termasuk klasifikasi DG, sertifikasi pengemasan, labeling, dan semua dokumentasi yang diperlukan. Beberapa kelas DG butuh lead time booking lebih lama karena keterbatasan kapasitas carrier.",
       },
       {
         question: "Bagaimana cara mendapatkan estimasi biaya?",
         answer:
-          "Kirim permintaan lewat formulir kontak kami atau hubungi via WhatsApp/email dengan info jenis kargo, rute asal-tujuan, estimasi volume, dan timeline. Tim kami akan respons dalam 1 hari kerja dengan opsi routing dan kerangka biaya. Untuk shipment yang kompleks atau project-based, kami mungkin jadwalkan consultation call.",
+          "Kirim inquiry lewat formulir kontak kami atau hubungi via WhatsApp/email dengan info jenis kargo, rute asal-tujuan, estimasi volume, dan timeline. Tim kami merespons dalam satu hari kerja dengan opsi routing dan kerangka biaya. Untuk shipment yang kompleks atau project-based, kami mungkin jadwalkan call konsultasi.",
       },
       {
         question: "Apakah UGC menyediakan layanan gudang?",
         answer:
-          "Ya. Kami operasikan general warehousing, bonded warehouse untuk barang impor dengan penundaan bea, pick-and-pack fulfillment untuk e-commerce, dan cross-docking untuk distribusi cepat. Fasilitas berlokasi di area Jakarta dan sekitarnya.",
+          "Ya. Kami mengoperasikan general warehousing, bonded warehouse untuk barang impor dengan penundaan bea, pick-and-pack fulfillment, dan cross-docking untuk distribusi cepat. Fasilitas berlokasi di area Jakarta dan sekitarnya.",
       },
       {
         question: "Apa bedanya FCL dan LCL?",
         answer:
-          "FCL (Full Container Load) artinya Anda booking satu kontainer 20 kaki atau 40 kaki eksklusif untuk kargo Anda. LCL (Less than Container Load) artinya kargo Anda berbagi ruang kontainer dengan shipper lain. FCL kasih kapasitas dedicated dan transit biasanya lebih cepat; LCL lebih hemat biaya untuk volume kecil.",
+          "FCL (Full Container Load) artinya Anda booking satu kontainer — 20 kaki atau 40 kaki — eksklusif untuk kargo Anda. LCL (Less than Container Load) artinya kargo Anda berbagi ruang kontainer dengan shipper lain. FCL memberikan kapasitas dedicated dan transit biasanya lebih cepat. LCL lebih hemat biaya untuk volume kecil.",
       },
       {
         question: "Apakah UGC melayani pengiriman ke luar Jawa?",
         answer:
-          "Ya. Jaringan domestik kami mencakup seluruh Indonesia: Sumatera, Kalimantan, Sulawesi, Bali, Nusa Tenggara, Maluku, dan Papua. Kami pakai multi-modal transport: truk untuk rute Jawa, kapal dan pesawat untuk antar-pulau, disesuaikan dengan infrastruktur dan urgensi setiap tujuan.",
+          "Ya. Jaringan domestik kami mencakup seluruh Indonesia termasuk Sumatera, Kalimantan, Sulawesi, Bali, Nusa Tenggara, Maluku, dan Papua. Kami pakai multi-modal transport yang disesuaikan dengan setiap tujuan: truk untuk rute Jawa, kapal dan pesawat untuk antar-pulau.",
       },
       {
         question: "Apakah ada minimum volume pengiriman?",
         answer:
-          "Tidak ada minimum yang strict. Untuk LCL dan LTL, kami terima volume kecil. Kalau shipment Anda di bawah threshold normal untuk efisiensi biaya, kami akan rekomendasikan opsi konsolidasi yang balance antara budget dan timeline pengiriman Anda.",
+          "Tidak ada minimum yang strict. Untuk LCL dan LTL, kami terima volume kecil. Kalau shipment Anda di bawah threshold normal untuk efisiensi biaya, kami akan rekomendasikan opsi konsolidasi yang balance antara biaya dan timeline.",
       },
       {
-        question: "Apa bedanya UGC dengan forwarder yang hanya jadi perantara?",
+        question: "Apa maksudnya model operasi hybrid UGC?",
         answer:
-          "UGC punya kapabilitas eksekusi langsung: armada distribusi darat, gudang operasional, tim customs in-house, dan booking langsung ke shipping line serta airline. Anda dapat satu PIC, dan di belakangnya ada operasional yang kami kendalikan sendiri di setiap tahap.",
+          "Kami menggabungkan kapabilitas operasional in-house — termasuk customs processing, operasi gudang, dan aset distribusi — dengan jaringan carrier dan vendor partner untuk jangkauan yang lebih luas. Ini memberikan kontrol langsung atas proses yang kritikal sekaligus fleksibilitas dan reach dari partner network.",
       },
       {
         question: "Industri apa saja yang dilayani UGC?",
         answer:
-          "Kami melayani manufacturing (inbound bahan baku, outbound barang jadi), FMCG (distribusi nasional multi-titik), e-commerce (fulfillment dan last-mile), farmasi (cold chain dan regulatory compliance), komoditas (bulk dan charter), dan energi (project cargo dan heavy lift). Setiap industri punya kebutuhan logistik spesifik yang sudah berpengalaman kami tangani.",
+          "Kami melayani manufacturing (inbound material, outbound barang jadi), FMCG (distribusi nasional multi-titik), e-commerce (fulfillment dan distribusi), farmasi (cold chain dan compliance regulasi), komoditas (bulk dan charter), dan energi (project cargo dan heavy lift). Setiap industri punya kebutuhan logistik spesifik yang tim kami tangani secara reguler.",
       },
     ],
     ctaHeading: "Punya pertanyaan logistik yang spesifik?",
-    ctaButton: "Bicara dengan Spesialis Kami",
+    ctaButton: "Hubungi Tim Kami",
   },
   caseStudies: {
     heading: "Studi Kasus",
     subHeading:
-      "Skenario operasional yang menggambarkan pendekatan kami terhadap tantangan logistik nyata di berbagai industri.",
+      "Skenario operasional yang menggambarkan pendekatan kami terhadap tantangan logistik di berbagai industri.",
     filterAll: "Semua",
-    ctaHeading: "Punya tantangan logistik serupa?",
+    ctaHeading: "Punya kebutuhan logistik serupa?",
     ctaButton: "Diskusikan dengan Tim Kami",
     disclaimer: "Berdasarkan skenario operasional tipikal. Metrik spesifik bergantung pada verifikasi klien.",
   },
@@ -294,21 +295,21 @@ const id: Dictionary = {
     landing: {
       heading: "Layanan Logistik",
       subHeading:
-        "Enam kategori layanan yang mencakup seluruh rantai pasok: dari pengambilan di pabrik sampai pengiriman ke gudang tujuan, dari dokumen ekspor sampai customs clearance.",
+        "Enam kategori layanan yang mencakup seluruh rantai logistik: pickup, freight, customs clearance, warehousing, dan delivery. Masing-masing dengan proses yang terdefinisi dan scope yang jelas.",
     },
     cta: "Diskusikan Kebutuhan Anda",
-    process: "Proses Kerja",
+    process: "Proses",
     bestFor: "Cocok Untuk",
     subServices: "Layanan dalam Kategori Ini",
-    relatedIndustries: "Industri yang Menggunakan Ini",
+    relatedIndustries: "Industri Terkait",
     backToServices: "Semua Layanan",
   },
   industries: {
     heading: "Industri yang Kami Layani",
     subHeading:
-      "Setiap industri punya kebutuhan logistik yang spesifik. Berikut cara kami menyesuaikan layanan dengan realitas operasional masing-masing sektor.",
+      "Industri yang berbeda punya tekanan logistik yang berbeda. Berikut cara kami menyesuaikan layanan dengan realitas operasional setiap sektor.",
     challenge: "Tantangan Logistik",
-    solution: "Bagaimana UGC Menanganinya",
+    solution: "Cara Kami Menanganinya",
     relevantServices: "Layanan yang Digunakan",
     cta: "Diskusikan Kebutuhan Industri Anda",
     backToIndustries: "Semua Industri",
@@ -317,7 +318,7 @@ const id: Dictionary = {
     home: "Beranda",
   },
   common: {
-    learnMore: "Pelajari Lebih Lanjut",
+    learnMore: "Selengkapnya",
     getQuote: "Minta Penawaran",
     viewAll: "Lihat Semua",
     readMore: "Baca Selengkapnya",

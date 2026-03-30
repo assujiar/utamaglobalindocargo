@@ -52,12 +52,12 @@
   <text x="152" y="183" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="13" fill="#ff4600" letter-spacing="4" text-anchor="start">UGC LOGISTICS</text>
 
   <!-- Main headline -->
-  <text x="80" y="260" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="56" fill="#ffffff" letter-spacing="-1">Freight forwarder with</text>
-  <text x="80" y="330" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="56" fill="#ffffff" letter-spacing="-1">operational control.</text>
+  <text x="80" y="260" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="56" fill="#ffffff" letter-spacing="-1">Precision in Motion,</text>
+  <text x="80" y="330" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="56" fill="#ffffff" letter-spacing="-1">Every Mile.</text>
 
   <!-- Sub-headline -->
-  <text x="80" y="390" font-family="Arial,Helvetica,sans-serif" font-weight="400" font-size="18" fill="#ffffff" opacity="0.45">Freight Forwarding &amp; Supply Chain Coordination</text>
-  <text x="80" y="416" font-family="Arial,Helvetica,sans-serif" font-weight="400" font-size="18" fill="#ffffff" opacity="0.45">Domestic. International. Customs. Warehousing. Charter.</text>
+  <text x="80" y="390" font-family="Arial,Helvetica,sans-serif" font-weight="400" font-size="18" fill="#ffffff" opacity="0.45">Premium Freight Forwarding</text>
+  <text x="80" y="416" font-family="Arial,Helvetica,sans-serif" font-weight="400" font-size="18" fill="#ffffff" opacity="0.45">Distribution. Freight. Customs. Warehousing. Project Cargo. Charter.</text>
 
   <!-- Bottom bar -->
   <rect x="0" y="590" width="1200" height="40" fill="#ff4600"/>
