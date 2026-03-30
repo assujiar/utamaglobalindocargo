@@ -65,7 +65,7 @@ export default function ProofSection({ locale, dict }: ProofSectionProps) {
             <StaggerItem key={cs.slug}>
               <Link
                 href={`${prefix}/case-studies/${cs.slug}`}
-                className="block p-8 lg:p-10 border border-white/10 hover:border-logistics-orange/30 transition-colors group h-full hover-lift"
+                className="block p-8 lg:p-10 border border-white/10 hover:border-logistics-orange/30 transition-colors group h-full hover-shine hover-lift"
               >
                 <div className="flex items-center gap-3 mb-5">
                   <div className="w-8 h-[2px] bg-logistics-orange/40" />

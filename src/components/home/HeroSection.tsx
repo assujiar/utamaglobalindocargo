@@ -108,7 +108,7 @@ export default function HeroSection({ locale, dict }: HeroSectionProps) {
             <MagneticWrap strength={0.15}>
               <Link
                 href={`${prefix}/contact`}
-                className="group inline-flex items-center justify-center gap-3 bg-logistics-orange text-white px-8 py-4 font-bold text-sm uppercase tracking-wider hover:bg-logistics-orange-dark transition-colors animate-glow-pulse"
+                className="group inline-flex items-center justify-center gap-3 bg-logistics-orange text-white px-8 py-4 font-bold text-sm uppercase tracking-wider transition-colors animate-glow-pulse hover-sweep-fill"
               >
                 {dict.hero.ctaPrimary}
                 <svg
@@ -125,7 +125,7 @@ export default function HeroSection({ locale, dict }: HeroSectionProps) {
             <MagneticWrap strength={0.15}>
               <Link
                 href={`${prefix}/services`}
-                className="inline-flex items-center justify-center gap-3 border border-white/20 text-white px-8 py-4 font-bold text-sm uppercase tracking-wider hover:border-white/40 hover:bg-white/5 transition-colors"
+                className="inline-flex items-center justify-center gap-3 border border-white/20 text-white px-8 py-4 font-bold text-sm uppercase tracking-wider hover:border-white/40 transition-colors hover-shine"
               >
                 {dict.hero.ctaSecondary}
               </Link>

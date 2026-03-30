@@ -51,9 +51,9 @@ export default function WhyUGC({ locale, dict }: WhyUGCProps) {
         <StaggerContainer className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-px bg-border-light" stagger={0.1}>
           {dict.whyUgc.items.map((item, i) => (
             <StaggerItem key={i}>
-              <div className="bg-white p-8 lg:p-10 h-full group hover-lift">
+              <div className="bg-white p-8 lg:p-10 h-full group hover-corner-fill">
                 <div className="flex items-start gap-5">
-                  <div className="flex-shrink-0 w-10 h-10 bg-carbon-dark text-white flex items-center justify-center font-bold text-sm group-hover:bg-logistics-orange transition-colors duration-300">
+                  <div className="flex-shrink-0 w-10 h-10 bg-carbon-dark text-white flex items-center justify-center font-bold text-sm group-hover:bg-logistics-orange transition-colors duration-300 hover-ring-pulse">
                     {String(i + 1).padStart(2, "0")}
                   </div>
                   <div>
@@ -74,7 +74,7 @@ export default function WhyUGC({ locale, dict }: WhyUGCProps) {
           <div className="mt-12 text-center">
             <Link
               href={`/${locale}/contact`}
-              className="inline-flex items-center gap-3 bg-logistics-orange text-white px-8 py-4 font-bold text-sm uppercase tracking-wider hover:bg-logistics-orange-dark transition-colors"
+              className="inline-flex items-center gap-3 bg-logistics-orange text-white px-8 py-4 font-bold text-sm uppercase tracking-wider transition-colors hover-sweep-fill"
             >
               {dict.whyUgc.cta}
               <svg

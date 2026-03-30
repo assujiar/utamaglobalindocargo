@@ -49,7 +49,7 @@ export default function Footer({ locale, dict }: FooterProps) {
                 <li key={service.slug}>
                   <Link
                     href={`${prefix}/services/${service.slug}`}
-                    className="text-sm text-white/50 hover:text-white transition-colors"
+                    className="text-sm text-white/50 hover:text-white transition-colors hover-underline-slide inline-block"
                   >
                     {service.name[locale]}
                   </Link>
@@ -117,7 +117,7 @@ export default function Footer({ locale, dict }: FooterProps) {
               </p>
               <Link
                 href={`${prefix}/contact`}
-                className="inline-block mt-4 bg-logistics-orange text-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider hover:bg-logistics-orange/90 transition-colors"
+                className="inline-block mt-4 bg-logistics-orange text-white px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors hover-sweep-fill"
               >
                 {dict.nav.contact}
               </Link>
